@@ -9,9 +9,10 @@
 </template>
 
 <script>
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { stayService } from '../services/stay.service.local'
-import { getActionUpdateStay } from '../store/stay.store'
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
+import { stayService } from '../../services/stay.service.local'
+// import { getActionUpdateStay } from '../store/stay.store'
+
 export default {
   data() {
     return {
@@ -42,7 +43,5 @@ export default {
     //   }
     // },
   }
-
-  
 }
 </script>

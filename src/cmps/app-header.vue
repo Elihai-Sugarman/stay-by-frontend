@@ -18,7 +18,7 @@
   </header>
 </template>
 <script>
-import stayFilter from './stay-filter.vue'
+import stayFilter from './stay/stay-filter.vue'
 export default {
   components:{
     stayFilter

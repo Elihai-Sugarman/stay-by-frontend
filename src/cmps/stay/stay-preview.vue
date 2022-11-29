@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import {showErrorMsg, showSuccessMsg} from '../services/event-bus.service'
-import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../store/stay.store'
+import {showErrorMsg, showSuccessMsg} from '../../services/event-bus.service'
+import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/stay.store'
 
 export default {
   created() {

@@ -5,16 +5,13 @@
 </template>
 
 <script>
-import {showErrorMsg, showSuccessMsg} from '../services/event-bus.service'
-import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../store/stay.store'
+import {showErrorMsg, showSuccessMsg} from '../../services/event-bus.service'
+import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/stay.store'
 import stayPreview from './stay-preview.vue'
 
 export default {
   components: {
     stayPreview
-  },
-  created() {
-    
   },
   methods: {
     async removeStay(stayId) {

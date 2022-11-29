@@ -1,10 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import stayApp from './views/stay-app.vue'
-import stayDetails from './views/stay-details.vue'
+import stayApp from './views/stay/stay-app.vue'
+import stayDetails from './views/stay/stay-details.vue'
+import stayEdit from './views/stay/stay-edit.vue'
+
 import loginSignup from './views/login-signup.vue'
 import orderDetails from './views/order-details.vue'
-// import stayEdit from './views/stay-edit.vue'
 
 const routes = [
     {
@@ -15,6 +16,11 @@ const routes = [
         path: '/stay',
         name: 'stay-app',
         component: stayApp,
+    },
+    {
+        path: '/stay/edit/:id?',
+        name: 'stay-edit',
+        component: stayEdit,
     },
     {
         path: '/stay/:id/order',
@@ -28,14 +34,9 @@ const routes = [
     },
     {
         path: '/login',
-        name: 'loginSignup',
+        name: 'login-signup',
         component: loginSignup,
-    },
-    // {
-    //     path: '/stay/edit/:id?',
-    //     name: 'stay-edit',
-    //     component: stayEdit,
-    // },
+    }
 ]
 
 export const router = createRouter({

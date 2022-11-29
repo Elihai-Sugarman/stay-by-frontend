@@ -1,18 +1,19 @@
 <template>
   <div class="container home">
-    <stay-header/>
-    <stay-list v-if="stays" :stays="stays"/>
+    <stay-header />
+    <stay-list v-if="stays" :stays="stays" />
     <hr />
-    <stay-edit/>
+    <stay-edit />
   </div>
 </template>
 
 <script>
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../store/stay.store'
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
+import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/stay.store'
+
 import stayEdit from './stay-edit.vue'
-import stayList from '../cmps/stay-list.vue'
-import stayHeader from '../cmps/stay-header.vue'
+import stayList from '../../cmps/stay/stay-list.vue'
+import stayHeader from '../../cmps/stay/stay-header.vue'
 
 export default {
   components: {
@@ -29,7 +30,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({type: 'loadStays'})
+    this.$store.dispatch({ type: 'loadStays' })
   },
   methods: {
     async removeStay(stayId) {
@@ -37,19 +38,19 @@ export default {
         await this.$store.dispatch(getActionRemoveStay(stayId))
         showSuccessMsg('Stay removed')
 
-      } catch(err) {
+      } catch (err) {
         console.log(err)
         showErrorMsg('Cannot remove stay')
       }
     },
     async updateStay(stay) {
       try {
-        stay = {...stay}
+        stay = { ...stay }
         stay.price = +prompt('New price?', stay.price)
         await this.$store.dispatch(getActionUpdateStay(stay))
         showSuccessMsg('Stay updated')
 
-      } catch(err) {
+      } catch (err) {
         console.log(err)
         showErrorMsg('Cannot update stay')
       }
@@ -58,7 +59,7 @@ export default {
       try {
         await this.$store.dispatch(getActionAddStayMsg(stayId))
         showSuccessMsg('Stay msg added')
-      } catch(err) {
+      } catch (err) {
         console.log(err)
         showErrorMsg('Cannot add stay msg')
       }
@@ -68,6 +69,6 @@ export default {
     }
   }
 
-  
+
 }
 </script>
