@@ -4,7 +4,7 @@
       <router-link to="/">
         <span role="img" aria-label="logo">🙏</span>
       </router-link>
-      <router-link to="/car">Cars</router-link>
+      <router-link to="/stay">Stays</router-link>
       <router-link to="/review">Reviews</router-link>
       <router-link to="/chat">Chat</router-link>
       <router-link to="/login">Login / Signup</router-link>
