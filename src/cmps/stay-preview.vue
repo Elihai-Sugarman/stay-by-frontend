@@ -1,35 +1,26 @@
 <template>
-  <div class="container home">
-    <stay-header/>
-    <stay-list v-if="stays" :stays="stays"/>
-    <hr />
-    <stay-edit/>
-  </div>
+    <li>
+        <p>
+          {{stay.name}}
+        </p>
+        <p>
+          ${{stay.price?.toLocaleString()}}
+        </p>
+        <button @click="removeStay(stay._id)">x</button>
+        <button @click="updateStay(stay)">Update</button>
+        <hr />
+        <button @click="addStayMsg(stay._id)">Add stay msg</button>
+        <button @click="printStayToConsole(stay)">Print msgs to console</button>
+      </li>
 </template>
 
 <script>
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import {showErrorMsg, showSuccessMsg} from '../services/event-bus.service'
 import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../store/stay.store'
-import stayEdit from './stay-edit.vue'
-import stayList from '../cmps/stay-list.vue'
-import stayHeader from '../cmps/stay-header.vue'
 
 export default {
-  components: {
-    stayHeader,
-    stayList,
-    stayEdit,
-  },
-  computed: {
-    loggedInUser() {
-      return this.$store.getters.loggedinUser
-    },
-    stays() {
-      return this.$store.getters.stays
-    }
-  },
   created() {
-    this.$store.dispatch({type: 'loadStays'})
+    
   },
   methods: {
     async removeStay(stayId) {
@@ -67,7 +58,5 @@ export default {
       console.log('Stay msgs:', stay.msgs)
     }
   }
-
-  
 }
 </script>

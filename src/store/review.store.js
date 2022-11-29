@@ -1,16 +1,13 @@
 import { reviewService } from '../services/review.service'
 
-
-
-
-
-
 export const reviewStore = {
     state: {
-        reviews: []
+        reviews: [],
     },
     getters: {
-        reviews({ reviews }) { return reviews },
+        reviews({ reviews }) {
+            return reviews
+        },
     },
     mutations: {
         setReviews(state, { reviews }) {
@@ -20,7 +17,9 @@ export const reviewStore = {
             state.reviews.push(review)
         },
         removeReview(state, { reviewId }) {
-            state.reviews = state.reviews.filter(review => review._id !== reviewId)
+            state.reviews = state.reviews.filter(
+                (review) => review._id !== reviewId
+            )
         },
     },
     actions: {
@@ -54,6 +53,5 @@ export const reviewStore = {
                 throw err
             }
         },
-
-    }
+    },
 }

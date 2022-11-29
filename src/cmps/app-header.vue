@@ -5,8 +5,6 @@
         <span role="img" aria-label="logo">🙏</span>
       </router-link>
       <router-link to="/stay">Stays</router-link>
-      <router-link to="/review">Reviews</router-link>
-      <router-link to="/chat">Chat</router-link>
       <router-link to="/login">Login / Signup</router-link>
     </nav>
     <section class="loggedin-user" v-if="loggedInUser">
@@ -16,10 +14,15 @@
       <span>{{ loggedInUser.score.toLocaleString() }}</span>
       <img :src="loggedInUser.imgUrl" />
     </section>
+    <stay-filter/>
   </header>
 </template>
 <script>
+import stayFilter from './stay-filter.vue'
 export default {
+  components:{
+    stayFilter
+  },
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedinUser

@@ -11,13 +11,20 @@
 @import "basics/links";
 @import "basics/forms";
 
-
-
-
 // Components
 @import "cmps/app-header";
-@import "cmps/user-msg";
+@import "cmps/img-uploader";
 @import "cmps/review-list";
-@import "cmps/stay-list";
+@import "cmps/user-msg";
+@import "cmps/stay/stay-filter";
+@import "cmps/stay/stay-header";
+@import "cmps/stay/stay-list";
+@import "cmps/stay/stay-preview";
 
+// Views
+@import "views/login-signup";
+@import "views/order-details";
+@import "views/stay/stay-app";
+@import "views/stay/stay-details";
+@import "views/stay/stay-edit";
 

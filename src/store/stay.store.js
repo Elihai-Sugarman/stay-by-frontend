@@ -3,19 +3,19 @@ import { stayService } from '../services/stay.service.local'
 export function getActionRemoveStay(stayId) {
     return {
         type: 'removeStay',
-        stayId
+        stayId,
     }
 }
 export function getActionAddStay(stay) {
     return {
         type: 'addStay',
-        stay
+        stay,
     }
 }
 export function getActionUpdateStay(stay) {
     return {
         type: 'updateStay',
-        stay
+        stay,
     }
 }
 
@@ -23,16 +23,18 @@ export function getActionAddStayMsg(stayId) {
     return {
         type: 'addStayMsg',
         stayId,
-        txt: 'Stam txt'
+        txt: 'Stam txt',
     }
 }
 
 export const stayStore = {
     state: {
-        stays: []
+        stays: [],
     },
     getters: {
-        stays({stays}) { return stays },
+        stays({ stays }) {
+            return stays
+        },
     },
     mutations: {
         setStays(state, { stays }) {
@@ -42,14 +44,14 @@ export const stayStore = {
             state.stays.push(stay)
         },
         updateStay(state, { stay }) {
-            const idx = state.stays.findIndex(c => c.id === stay._id)
+            const idx = state.stays.findIndex((c) => c.id === stay._id)
             state.stays.splice(idx, 1, stay)
         },
         removeStay(state, { stayId }) {
-            state.stays = state.stays.filter(stay => stay._id !== stayId)
+            state.stays = state.stays.filter((stay) => stay._id !== stayId)
         },
-        addStayMsg(state, { stayId , msg}) {
-            const stay = state.stays.find(stay => stay._id === stayId)
+        addStayMsg(state, { stayId, msg }) {
+            const stay = state.stays.find((stay) => stay._id === stayId)
             if (!stay.msgs) stay.msgs = []
             stay.msgs.push(msg)
         },
@@ -96,12 +98,11 @@ export const stayStore = {
         async addStayMsg(context, { stayId, txt }) {
             try {
                 const msg = await stayService.addStayMsg(stayId, txt)
-                context.commit({type: 'addStayMsg', stayId, msg })
+                context.commit({ type: 'addStayMsg', stayId, msg })
             } catch (err) {
                 console.log('stayStore: Error in addStayMsg', err)
                 throw err
             }
         },
-
-    }
+    },
 }

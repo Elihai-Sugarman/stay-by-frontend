@@ -1,35 +1,20 @@
 <template>
-  <div class="container home">
-    <stay-header/>
-    <stay-list v-if="stays" :stays="stays"/>
-    <hr />
-    <stay-edit/>
-  </div>
+    <ul class="stay-list">
+        <stay-preview v-for="stay in stays" :stay="stay" :key="stay._id"/>
+    </ul>
 </template>
 
 <script>
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import {showErrorMsg, showSuccessMsg} from '../services/event-bus.service'
 import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../store/stay.store'
-import stayEdit from './stay-edit.vue'
-import stayList from '../cmps/stay-list.vue'
-import stayHeader from '../cmps/stay-header.vue'
+import stayPreview from './stay-preview.vue'
 
 export default {
   components: {
-    stayHeader,
-    stayList,
-    stayEdit,
-  },
-  computed: {
-    loggedInUser() {
-      return this.$store.getters.loggedinUser
-    },
-    stays() {
-      return this.$store.getters.stays
-    }
+    stayPreview
   },
   created() {
-    this.$store.dispatch({type: 'loadStays'})
+    
   },
   methods: {
     async removeStay(stayId) {
@@ -67,7 +52,5 @@ export default {
       console.log('Stay msgs:', stay.msgs)
     }
   }
-
-  
 }
 </script>

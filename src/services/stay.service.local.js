@@ -1,4 +1,3 @@
-
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
@@ -11,19 +10,20 @@ export const stayService = {
     save,
     remove,
     getEmptyStay,
-    addStayMsg
+    addStayMsg,
 }
 window.cs = stayService
-
 
 async function query(filterBy = { txt: '', price: 0 }) {
     var stays = await storageService.query(STORAGE_KEY)
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
-        stays = stays.filter(stay => regex.test(stay.name) || regex.test(stay.description))
+        stays = stays.filter(
+            (stay) => regex.test(stay.name) || regex.test(stay.description)
+        )
     }
     if (filterBy.price) {
-        stays = stays.filter(stay => stay.price <= filterBy.price)
+        stays = stays.filter((stay) => stay.price <= filterBy.price)
     }
     return stays
 }
@@ -56,7 +56,7 @@ async function addStayMsg(stayId, txt) {
     const msg = {
         id: utilService.makeId(),
         by: userService.getLoggedinUser(),
-        txt
+        txt,
     }
     stay.msgs.push(msg)
     await storageService.put(STORAGE_KEY, stay)
@@ -71,9 +71,8 @@ function getEmptyStay() {
     }
 }
 
-
 // TEST DATA
-;(async ()=>{
-    await storageService.post(STORAGE_KEY, {name: 'House 1', price: 180})
-    await storageService.post(STORAGE_KEY, {name: 'House 2', price: 240})
-})()
+// ;(async () => {
+//     await storageService.post(STORAGE_KEY, { name: 'House 1', price: 180 })
+//     await storageService.post(STORAGE_KEY, { name: 'House 2', price: 240 })
+// })()
