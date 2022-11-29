@@ -1,30 +1,30 @@
 <template>
   <section>
-    <user-msg/>
     <app-header />
-    <router-view/>
+    <router-view />
+    <!-- <app-footer /> cuz miriam does't like footer :) will uncomment in future -->
+    <user-msg />
   </section>
 </template>
 
 <script>
-
-
-import { store } from './store/store'
-import appHeader from './cmps/app-header.vue'
-import userMsg from './cmps/user-msg.vue'
 import { userService } from './services/user.service'
+import { store } from './store/store'
 
+import appHeader from './cmps/app-header.vue'
+import appFooter from './cmps/app-footer.vue'
+import userMsg from './cmps/user-msg.vue'
 
 export default {
-
+  components: {
+    appHeader,
+    appFooter,
+    userMsg
+  },
   created() {
     console.log('Vue App created')
     const user = userService.getLoggedinUser()
-    if (user)  store.commit({type: 'setLoggedinUser', user})
-  },
-  components: {
-    appHeader,
-    userMsg
-  },
+    if (user) store.commit({ type: 'setLoggedinUser', user })
+  }
 }
 </script>
