@@ -4,10 +4,14 @@
       <img class="stay-img" :src="stay.imgUrls[0]"/>
       <div class="preview-info">
           <div class="preview-address">{{ stay.address.city }}, {{ stay.address.country }}</div>
-          <div class="preview-rate">
-            <icon-cmp iconType="star"/>
-            {{ rateInfo }}
-          </div>
+          <span v-if="stay.reviews.length" class="preview-data-info flex">
+            <span class="preview-rate-icon">
+              <icon-cmp iconType="star"/>
+            </span>
+            <span class="preview-rate">
+              {{ rateInfo }}
+            </span>
+          </span>
         <div class="preview-time-ago">Added {{ timeAgo }}</div>
         <div class="preview-dates">{{ availableDates }}</div>
         <div class="preview-price"><span class="bold">${{ stay.price }}</span> night</div>
@@ -44,13 +48,14 @@ export default {
       return month + ' ' + startDate + '-' + (startDate+length)
     },
     imgURL(){
-      return stay.imgUrls[0]
+      return this.stay.imgUrls[0]
     },
     rateInfo() {
+      if (!this.stay.reviews.length) return 'New'
       return (
         this.stay.reviews.reduce((acc, currRev) => acc + currRev.rate, 0) /
         this.stay.reviews.length
-      ).toFixed(2) + ' ('+this.stay.reviews.length + ')'
+      ).toFixed(2) + ' (' + this.stay.reviews.length + ')'
     },
   },
   methods: {

@@ -2,7 +2,8 @@
   <section class="main-layout">
     <app-header />
     <router-view />
-    <!-- <app-footer /> cuz miriam does't like footer :) will uncomment in future -->
+    <!-- <app-footer />  -->
+    <!-- cuz miriam does't like footer :) will uncomment in future -->
     <user-msg />
   </section>
 </template>

@@ -35,6 +35,18 @@ export const stayStore = {
         stays(state) {
             return state.stays
         },
+        labels(state) {
+            const labels = []
+            state.stays.forEach((stay) => {
+                stay.labels.forEach((label) => {
+                    let currLabel =
+                        label.charAt(0).toUpperCase() + label.slice(1)
+                    if (currLabel === 'Omg') currLabel = 'OMG!'
+                    if (!labels.includes(currLabel)) labels.push(currLabel)
+                })
+            })
+            return labels
+        },
     },
     mutations: {
         setStays(state, { stays }) {
@@ -68,7 +80,7 @@ export const stayStore = {
                 throw err
             }
         },
-        async getStayById(context, {stayId}){
+        async getStayById(context, { stayId }) {
             try {
                 return stayService.getById(stayId)
             } catch (err) {
