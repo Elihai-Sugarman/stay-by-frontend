@@ -68,6 +68,13 @@ export const stayStore = {
                 throw err
             }
         },
+        async getStayById(context, {stayId}){
+            try {
+                return stayService.getById(stayId)
+            } catch (err) {
+                console.log(err)
+            }
+        },
         async updateStay(context, { stay }) {
             try {
                 stay = await stayService.save(stay)
@@ -80,8 +87,7 @@ export const stayStore = {
         },
         async loadStays(context) {
             try {
-                // const stays = await stayService.query()
-                const stays = staysArray
+                const stays = await stayService.query()
                 context.commit({ type: 'setStays', stays })
             } catch (err) {
                 console.log('stayStore: Error in loadStays', err)
