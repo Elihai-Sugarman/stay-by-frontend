@@ -19,7 +19,7 @@ async function query(filterBy = { txt: '', price: 0 }) {
     var stays = await storageService.query(STORAGE_KEY)
     if (!stays.length) {
         stays = staysArray
-        utilService.saveToStorage('stays', stays)
+        utilService.saveToStorage(STORAGE_KEY, stays)
     }
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
