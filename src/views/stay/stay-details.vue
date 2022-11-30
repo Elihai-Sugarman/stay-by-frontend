@@ -1,7 +1,7 @@
 <template>
-    <section v-if="user">
-      <h1>User Details - {{ user.fullname }}</h1>
-      <h3>{{ user.username }} score: {{ user.score }}</h3>
+    <section v-if="stay">
+      <h1>Stay Details - {{ stay.name }}</h1>
+      <!-- <h3>{{ user.username }} score: {{ user.score }}</h3>
       <img style="max-width: 200px;" :src="user.imgUrl" />
       <ul>
         <li v-for="review in user.givenReviews" :key="review._id">
@@ -10,11 +10,11 @@
             About {{ review.aboutUser.fullname }}
           </router-link>
         </li>
-      </ul>
+      </ul> -->
   
       <details>
         <summary>Full JSON</summary>
-        <pre>{{ user }}</pre>
+        <pre>{{ stay }}</pre>
       </details>
     </section>
   </template>
@@ -25,30 +25,38 @@
   export default {
     data() {
       return {
-        // user: null
+        stay: null
       }
     },
     async created() {
       // const user = await userService.getById(id)
-      // this.user = user
+      let stayId = this.$route.params.id
+      this.getStayById(stayId)
     },
-    watch: {
-      userId: {
-        handler() {
-          if(this.userId){
-              this.$store.dispatch({ type: "loadAndWatchUser", userId: this.userId })
-          }
-        },
-        immediate: true,
-      },
-    },
+    // watch: {
+    //   stayId: {
+    //     handler() {
+    //       if(this.stayId){
+    //           this.$store.dispatch({ type: "loadAndWatchUser", userId: this.userId })
+    //       }
+    //     },
+    //     immediate: true,
+    //   },
+    // },
     computed: {
-      user() {
-        return this.$store.getters.watchedUser
-      },
-      userId() {
-        return this.$route.params.id
-      },
+      // stay() {
+      //   return this.$store.getters.watchedUser
+      // },
+     
     },
+    methods: {
+      async getStayById(stayId){
+        this.stay = await this.$store.dispatch({
+          type: 'getStayById',
+          stayId
+        })
+      }
+    },
+
   }
   </script>
