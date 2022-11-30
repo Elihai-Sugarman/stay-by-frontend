@@ -3,6 +3,7 @@ import { createApp } from 'vue'
 import { router } from './router.js'
 import { store } from './store/store.js'
 
+import './assets/styles/setup/_typography.scss'
 import './assets/styles/main.scss'
 import rootCmp from './root-cmp.vue'
 
