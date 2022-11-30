@@ -1,9 +1,11 @@
 .main-header {
+    position: sticky;
+    top: 0;
     color: #222222;
     height: 80px;
     background-color: white;
     padding-inline: $layout-padding;
-    position: relative;
+    // position: relative;
     z-index: 200;
 
     &::after {
