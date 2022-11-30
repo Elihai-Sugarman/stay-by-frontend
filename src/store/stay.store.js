@@ -68,6 +68,13 @@ export const stayStore = {
                 throw err
             }
         },
+        async getStayById(context, {stayId}){
+            try {
+                return stayService.getById(stayId)
+            } catch (err) {
+                console.log(err)
+            }
+        },
         async updateStay(context, { stay }) {
             try {
                 stay = await stayService.save(stay)
