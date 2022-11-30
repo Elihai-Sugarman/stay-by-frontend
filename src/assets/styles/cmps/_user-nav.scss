@@ -33,16 +33,19 @@
 .user-nav .user-menu {
   position: absolute;
   top: 15px;
-  right: 0;
+  right: -1px;
   background-color: white;
   width: 240px;
   box-shadow: 0 2px 16px rgb(0 0 0 / 12%);
   border-radius: 12px;
   padding: 8px 0;
   margin-top: 34px; 
+  font-size: 14px;
+
+  & hr { margin: 0 }
 
   & li {
-    padding: 8px 10px;
+    padding: 8px 12px;
 
     &:hover {
       background-color: #F7F7F7;
