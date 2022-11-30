@@ -2,14 +2,18 @@
     <ul class="stay-list">
         <stay-preview v-for="stay in stays" :stay="stay" :key="stay._id"/>
     </ul>
+    <!-- <pre>{{stays}}</pre> -->
 </template>
 
 <script>
 import {showErrorMsg, showSuccessMsg} from '../../services/event-bus.service'
-import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/stay.store'
+// import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/test.store'
 import stayPreview from './stay-preview.vue'
 
 export default {
+  props: {
+    stays: Array
+  },
   components: {
     stayPreview
   },

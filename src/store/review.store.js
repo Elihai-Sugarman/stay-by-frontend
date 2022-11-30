@@ -21,6 +21,9 @@ export const reviewStore = {
                 (review) => review._id !== reviewId
             )
         },
+        test() {
+            console.log('test')
+        },
     },
     actions: {
         async addReview(context, { review }) {

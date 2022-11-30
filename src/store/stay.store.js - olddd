@@ -18,6 +18,7 @@ export function getActionUpdateStay(stay) {
         stay,
     }
 }
+
 export function getActionAddStayMsg(stayId) {
     return {
         type: 'addStayMsg',
@@ -31,13 +32,12 @@ export const stayStore = {
         stays: [],
     },
     getters: {
-        stays(state) {
-            return state.stays
+        stays({ stays }) {
+            return stays
         },
     },
     mutations: {
         setStays(state, { stays }) {
-            console.log('stays', stays)
             state.stays = stays
         },
         addStay(state, { stay }) {
@@ -57,26 +57,26 @@ export const stayStore = {
         },
     },
     actions: {
-        async addStay(context, { stay }) {
-            try {
-                stay = await stayService.save(stay)
-                context.commit(getActionAddStay(stay))
-                return stay
-            } catch (err) {
-                console.log('stayStore: Error in addStay', err)
-                throw err
-            }
-        },
-        async updateStay(context, { stay }) {
-            try {
-                stay = await stayService.save(stay)
-                context.commit(getActionUpdateStay(stay))
-                return stay
-            } catch (err) {
-                console.log('stayStore: Error in updateStay', err)
-                throw err
-            }
-        },
+        // async addStay(context, { stay }) {
+        //     try {
+        //         stay = await stayService.save(stay)
+        //         context.commit(getActionAddStay(stay))
+        //         return stay
+        //     } catch (err) {
+        //         console.log('stayStore: Error in addStay', err)
+        //         throw err
+        //     }
+        // },
+        // async updateStay(context, { stay }) {
+        //     try {
+        //         stay = await stayService.save(stay)
+        //         context.commit(getActionUpdateStay(stay))
+        //         return stay
+        //     } catch (err) {
+        //         console.log('stayStore: Error in updateStay', err)
+        //         throw err
+        //     }
+        // },
         async loadStays(context) {
             try {
                 const stays = await stayService.query()
@@ -86,23 +86,23 @@ export const stayStore = {
                 throw err
             }
         },
-        async removeStay(context, { stayId }) {
-            try {
-                await stayService.remove(stayId)
-                context.commit(getActionRemoveStay(stayId))
-            } catch (err) {
-                console.log('stayStore: Error in removeStay', err)
-                throw err
-            }
-        },
-        async addStayMsg(context, { stayId, txt }) {
-            try {
-                const msg = await stayService.addStayMsg(stayId, txt)
-                context.commit({ type: 'addStayMsg', stayId, msg })
-            } catch (err) {
-                console.log('stayStore: Error in addStayMsg', err)
-                throw err
-            }
-        },
+        // async removeStay(context, { stayId }) {
+        //     try {
+        //         await stayService.remove(stayId)
+        //         context.commit(getActionRemoveStay(stayId))
+        //     } catch (err) {
+        //         console.log('stayStore: Error in removeStay', err)
+        //         throw err
+        //     }
+        // },
+        // async addStayMsg(context, { stayId, txt }) {
+        //     try {
+        //         const msg = await stayService.addStayMsg(stayId, txt)
+        //         context.commit({ type: 'addStayMsg', stayId, msg })
+        //     } catch (err) {
+        //         console.log('stayStore: Error in addStayMsg', err)
+        //         throw err
+        //     }
+        // },
     },
 }

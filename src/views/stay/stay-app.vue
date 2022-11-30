@@ -1,7 +1,7 @@
 <template>
   <div class="container home">
     <stay-header />
-    <stay-list v-if="stays" :stays="stays" />
+    <stay-list v-if="stays.length" :stays="stays" />
     <hr />
     <stay-edit />
   </div>
@@ -9,7 +9,7 @@
 
 <script>
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
-import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/stay.store'
+// import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/test.store'
 
 import stayEdit from './stay-edit.vue'
 import stayList from '../../cmps/stay/stay-list.vue'
@@ -27,10 +27,12 @@ export default {
     },
     stays() {
       return this.$store.getters.stays
+      // return this.$store.state.stays
     }
   },
   created() {
     this.$store.dispatch({ type: 'loadStays' })
+    this.$store.commit({type:'test'})
   },
   methods: {
     async removeStay(stayId) {

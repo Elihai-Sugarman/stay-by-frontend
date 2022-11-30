@@ -19,6 +19,9 @@ import {showErrorMsg, showSuccessMsg} from '../../services/event-bus.service'
 import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/stay.store'
 
 export default {
+  props:{
+    stay: Object,
+  },
   created() {
     
   },
