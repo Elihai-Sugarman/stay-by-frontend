@@ -1,5 +1,6 @@
 <template>
-  <header>
+  <header class="main-header full">
+    <fa-icon icon="fa-brands fa-airbnb" />
     <nav>
       <router-link to="/">
         <span role="img" aria-label="logo">🙏</span>
@@ -19,6 +20,7 @@
 </template>
 <script>
 import stayFilter from './stay/stay-filter.vue'
+
 export default {
   components:{
     stayFilter
@@ -26,7 +28,7 @@ export default {
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedinUser
-    },
+    }
   }
 }
 </script>

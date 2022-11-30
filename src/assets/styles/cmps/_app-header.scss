@@ -1,8 +1,14 @@
 header {
+    color: #222222;
     background-color: $clr5;
-    padding: 10px;
+    padding-inline: 80px;
+    height: 80px;
+    position: relative;
+    font-size: 1em;
+
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .loggedin-user {
         background-color: $clr1;
