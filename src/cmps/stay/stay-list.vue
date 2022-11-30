@@ -2,7 +2,6 @@
     <ul class="stay-list">
         <stay-preview v-for="stay in stays" :stay="stay" :key="stay._id"/>
     </ul>
-    <!-- <pre>{{stays}}</pre> -->
 </template>
 
 <script>

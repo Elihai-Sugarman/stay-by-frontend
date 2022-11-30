@@ -38,7 +38,7 @@ export const stayStore = {
     },
     mutations: {
         setStays(state, { stays }) {
-            console.log('stays', stays)
+            // console.log('stays', stays)
             state.stays = stays
         },
         addStay(state, { stay }) {

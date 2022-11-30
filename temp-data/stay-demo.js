@@ -207,6 +207,7 @@ export const staysArray = [
             countryCode: 'PT',
             city: 'Porto',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531b4',
@@ -289,6 +290,7 @@ export const staysArray = [
             countryCode: 'CA',
             city: 'Montreal',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531bb',
@@ -381,6 +383,7 @@ export const staysArray = [
             countryCode: 'PT',
             city: 'Porto',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531b9',
@@ -608,6 +611,7 @@ export const staysArray = [
             countryCode: 'US',
             city: 'New York',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531b3',
@@ -736,6 +740,7 @@ export const staysArray = [
             countryCode: 'US',
             city: 'Maui',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531b6',
@@ -963,6 +968,7 @@ export const staysArray = [
             countryCode: 'US',
             city: 'Maui',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531c0',
@@ -1190,6 +1196,7 @@ export const staysArray = [
             countryCode: 'ES',
             city: 'Barcelona',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531c1',
@@ -1417,6 +1424,7 @@ export const staysArray = [
             countryCode: 'US',
             city: 'New York',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531cc',
@@ -1644,6 +1652,7 @@ export const staysArray = [
             countryCode: 'ES',
             city: 'Barcelona',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531c4',
@@ -1700,6 +1709,7 @@ export const staysArray = [
             countryCode: 'US',
             city: 'New York',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531bc',
@@ -1927,6 +1937,7 @@ export const staysArray = [
             countryCode: 'TR',
             city: 'Istanbul',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531c7',
@@ -2019,6 +2030,7 @@ export const staysArray = [
             countryCode: 'US',
             city: 'Maui',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531c9',
@@ -2246,6 +2258,7 @@ export const staysArray = [
             countryCode: 'CA',
             city: 'Montreal',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531ba',
@@ -2473,6 +2486,7 @@ export const staysArray = [
             countryCode: 'PT',
             city: 'Porto',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531bf',
@@ -2700,6 +2714,7 @@ export const staysArray = [
             countryCode: 'ES',
             city: 'Barcelona',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531b7',
@@ -2764,6 +2779,7 @@ export const staysArray = [
             countryCode: 'ES',
             city: 'Barcelona',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531c3',
@@ -2874,6 +2890,7 @@ export const staysArray = [
             countryCode: 'US',
             city: 'Maui',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531c5',
@@ -2984,6 +3001,7 @@ export const staysArray = [
             countryCode: 'ES',
             city: 'Barcelona',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531c8',
@@ -3211,6 +3229,7 @@ export const staysArray = [
             countryCode: 'TR',
             city: 'Istanbul',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
     {
         _id: '62dfe4eb7fca8ee5f0d531cd',
@@ -3438,5 +3457,6 @@ export const staysArray = [
             countryCode: 'ES',
             city: 'Barcelona',
         },
+        createdAt: '2022-07-26T12:58:19.000Z',
     },
 ]
