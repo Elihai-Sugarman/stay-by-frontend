@@ -121,3 +121,28 @@ const users = [
 // userService.login()
   //  const userStays = stayService.query({ownerId: loggeinUser._id})
   //  loggeinUser.isOwner = userStays.length > 0
+
+
+
+
+  // .map(p => {
+  //   return {
+  //     _id: p._id,
+  //     name: p.name,
+  //     type: p.roomType,
+  //     price: p.price,
+  //     summary: p.summary,
+  //     capacity: p.capacity,
+  //     amenities: p.amenities,
+  //     labels: p.tags,
+  //     host: p.host,
+  //     reviews: p.reviews,
+  //     imgUrls: [
+  //       'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
+  //       'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
+  //       'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720'
+  //     ],
+  //     address: p.address
+  //   }
+  // })
+  
