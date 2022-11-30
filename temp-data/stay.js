@@ -117,7 +117,7 @@ const users = [
 //  const userStays = stayService.query({ownerId: loggeinUser._id})
 //  loggeinUser.isOwner = userStays.length > 0
 
-// .map(p => {
+// [].map(p => {
 //   return {
 //     _id: p._id,
 //     name: p.name,
@@ -136,5 +136,18 @@ const users = [
 //     ],
 //     address: p.address,
 //     createdAt: p.createdAt
+//   }
+// })
+// [].map(p => {
+//   return {
+//     ...p,
+//     reviews: p.reviews.map(rev => {
+//         const rndRate = +(Math.random() * (5 - 3.2) + 3.2).toFixed(2)
+
+//         return {
+//             ...rev,
+//             rate: rndRate
+//         }
+//     }),
 //   }
 // })

@@ -9,7 +9,7 @@
 
 html {
     // font-family: montserrat;
-    font-family: cereal;
+    font-family: cereal, sans-serif;
     line-height: 1.6;
     color: $clr2;
 }
@@ -26,6 +26,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1;
 }
 
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
 section, main, footer {
     padding: 5px;
