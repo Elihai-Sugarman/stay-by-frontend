@@ -32,7 +32,6 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: 'loadStays' })
-    this.$store.commit({type:'test'})
   },
   methods: {
     async removeStay(stayId) {

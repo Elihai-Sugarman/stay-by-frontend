@@ -1,100 +1,97 @@
 const stays = [
-  {
-    "_id": "10006546",
-    "name": "Ribeira Charming Duplex",
-    "type": "House",
-    "imgUrls": ["https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large", "otherImg.jpg"],
-    "price": 80.00,
-    "summary": "Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...",
-    "capacity": 8,
-    "amenities": [
-      "TV",
-      "Wifi",
-      "Kitchen",
-      "Smoking allowed",
-      "Pets allowed",
-      "Cooking basics"
-    ],
-    "labels": [
-      "Top of the world",
-      "Trending",
-      "Play",
-      "Tropical"
-    ],
-    "host": {
-      "_id": "u101",
-      "fullname": "Davit Pok",
-      "imgUrl": "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
+    {
+        _id: '10006546',
+        name: 'Ribeira Charming Duplex',
+        type: 'House',
+        imgUrls: [
+            'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large',
+            'otherImg.jpg',
+        ],
+        price: 80.0,
+        summary:
+            'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
+        capacity: 8,
+        amenities: [
+            'TV',
+            'Wifi',
+            'Kitchen',
+            'Smoking allowed',
+            'Pets allowed',
+            'Cooking basics',
+        ],
+        labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+        host: {
+            _id: 'u101',
+            fullname: 'Davit Pok',
+            imgUrl: 'https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        },
+        loc: {
+            country: 'Portugal',
+            countryCode: 'PT',
+            city: 'Porto',
+            address: '17 Kombo st',
+            lat: -8.61308,
+            lng: 41.1413,
+        },
+        reviews: [
+            {
+                id: 'madeId',
+                txt: 'Very helpful hosts. Cooked traditional...',
+                rate: 4,
+                by: {
+                    _id: 'u102',
+                    fullname: 'user2',
+                    imgUrl: '/img/img2.jpg',
+                },
+            },
+        ],
+        likedByUsers: ['mini-user'], // for user-wishlist : use $in
     },
-    "loc": {
-      "country": "Portugal",
-      "countryCode": "PT",
-      "city": "Porto",
-      "address": "17 Kombo st",
-      "lat": -8.61308,
-      "lng": 41.1413
-    },
-    "reviews": [
-      {
-        "id": "madeId",
-        "txt": "Very helpful hosts. Cooked traditional...",
-        "rate": 4,
-        "by": {
-          "_id": "u102",
-          "fullname": "user2",
-          "imgUrl": "/img/img2.jpg"
-        }
-      }
-    ],
-    "likedByUsers": ['mini-user'] // for user-wishlist : use $in
-  }
 ]
 
 const orders = [
-  {
-    "_id": "o1225",
-    "hostId": "u102",
-    "createdAt": 9898989,
-    "buyer": {
-      "_id": "u101",
-      "fullname": "User 1"
+    {
+        _id: 'o1225',
+        hostId: 'u102',
+        createdAt: 9898989,
+        buyer: {
+            _id: 'u101',
+            fullname: 'User 1',
+        },
+        totalPrice: 160,
+        startDate: '2025/10/15',
+        endDate: '2025/10/17',
+        guests: {
+            adults: 2,
+            kids: 1,
+        },
+        stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+        },
+        msgs: [],
+        status: 'pending', // pending, approved
     },
-    "totalPrice": 160,
-    "startDate": "2025/10/15",
-    "endDate": "2025/10/17",
-    "guests": {
-      "adults": 2,
-      "kids": 1
-    },
-    "stay": {
-      "_id": "h102",
-      "name": "House Of Uncle My",
-      "price": 80.00
-    },
-    "msgs": [],
-    "status": "pending" // pending, approved
-  }
 ]
 
 const users = [
-  {
-    "_id": "u101",
-    "fullname": "User 1",
-    "imgUrl": "/img/img1.jpg",
-    "username": "user1",
-    "password": "secret"
-  },
-  {
-    "_id": "u102",
-    "fullname": "User 2",
-    "imgUrl": "/img/img2.jpg",
-    "username": "user2",
-    "password": "secret",
-    // "isOwner" : true // OPTIONAL
-  }
+    {
+        _id: 'u101',
+        fullname: 'User 1',
+        imgUrl: '/img/img1.jpg',
+        username: 'user1',
+        password: 'secret',
+    },
+    {
+        _id: 'u102',
+        fullname: 'User 2',
+        imgUrl: '/img/img2.jpg',
+        username: 'user2',
+        password: 'secret',
+        // "isOwner" : true // OPTIONAL
+    },
 ]
-
-
 
 // Homepage: TOP categories: Best Rate / Houses / Kitchen  - show all - link to Explore
 // Renders a <StayList> with <StayPreview> with Link to <StayDetails>   url: /stay/123
@@ -115,34 +112,29 @@ const users = [
 // Order, confirm Order
 // Lastly: StayExplore, Filtering
 
-
-
 // Example - figuring up if the user is an owner:
 // userService.login()
-  //  const userStays = stayService.query({ownerId: loggeinUser._id})
-  //  loggeinUser.isOwner = userStays.length > 0
+//  const userStays = stayService.query({ownerId: loggeinUser._id})
+//  loggeinUser.isOwner = userStays.length > 0
 
-
-
-
-  // .map(p => {
-  //   return {
-  //     _id: p._id,
-  //     name: p.name,
-  //     type: p.roomType,
-  //     price: p.price,
-  //     summary: p.summary,
-  //     capacity: p.capacity,
-  //     amenities: p.amenities,
-  //     labels: p.tags,
-  //     host: p.host,
-  //     reviews: p.reviews,
-  //     imgUrls: [
-  //       'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-  //       'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-  //       'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720'
-  //     ],
-  //     address: p.address
-  //   }
-  // })
-  
+// .map(p => {
+//   return {
+//     _id: p._id,
+//     name: p.name,
+//     type: p.roomType,
+//     price: p.price,
+//     summary: p.summary,
+//     capacity: p.capacity,
+//     amenities: p.amenities,
+//     labels: p.tags,
+//     host: p.host,
+//     reviews: p.reviews,
+//     imgUrls: [
+//       'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
+//       'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
+//       'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720'
+//     ],
+//     address: p.address,
+//     createdAt: p.createdAt
+//   }
+// })
