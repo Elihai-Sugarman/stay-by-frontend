@@ -36,7 +36,10 @@ export default {
       return moment(this.stay.createdAt).fromNow()
     },
     availableDates(){
-      return new Date.getMonth(utilService.getRandomIntInclusive(0,11))
+      const month = utilService.getRandomMonth()
+      const length = utilService.getRandomIntInclusive(3,7)
+      const startDate = utilService.getRandomIntInclusive(1,30-length)
+      return month + ' ' + startDate + '-' + (startDate+length)
     },
   },
   methods: {
