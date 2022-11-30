@@ -1,16 +1,15 @@
 .stay-list {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    .stay-preview {
-        background-color: $clr2;
-        color: $clr6;
-        padding: 5px;
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(234px, 1fr));
+    grid-auto-flow: row dense;
+    row-gap: 40px;
+    column-gap: 24px;
+    padding: 0;
 
     a {
         color: $clr1;
-        padding: 10px;
+        padding: 0;
     }
 
     pre {

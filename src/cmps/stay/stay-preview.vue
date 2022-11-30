@@ -2,10 +2,13 @@
   <router-link class="li" :to="`/stay/${stay._id}`">
     <article class="stay-preview">
       <img class="stay-img" :src="stay.imgUrls[0]"/>
-      <p>{{ stay.address.city }}, {{ stay.address.country }}</p>
-      <p>Added {{ timeAgo }}</p>
-      <p>{{ availableDates }}</p>
-      <p><span class="bold">${{ stay.price }}</span> night</p>
+      <div class="preview-info">
+          <div class="preview-address">{{ stay.address.city }}, {{ stay.address.country }}</div>
+          <div class="preview-rate">rate</div>
+        <div class="preview-time-ago">Added {{ timeAgo }}</div>
+        <div class="preview-dates">{{ availableDates }}</div>
+        <div class="preview-price"><span class="bold">${{ stay.price }}</span> night</div>
+    </div>
     </article>
     </router-link>
 </template>
