@@ -1,10 +1,13 @@
 <template>
-  <router-link class="li" :to="`/stay/${stay._id}`">
+  <router-link class="li" :to="`/stay/${stay._id}`" target="_blank">
     <article class="stay-preview">
       <img class="stay-img" :src="stay.imgUrls[0]"/>
       <div class="preview-info">
           <div class="preview-address">{{ stay.address.city }}, {{ stay.address.country }}</div>
-          <div class="preview-rate">rate</div>
+          <div class="preview-rate">
+            <icon-cmp iconType="star"/>
+            {{ rateInfo }}
+          </div>
         <div class="preview-time-ago">Added {{ timeAgo }}</div>
         <div class="preview-dates">{{ availableDates }}</div>
         <div class="preview-price"><span class="bold">${{ stay.price }}</span> night</div>
@@ -18,10 +21,14 @@ import {showErrorMsg, showSuccessMsg} from '../../services/event-bus.service'
 import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/stay.store'
 import { utilService } from '../../services/util.service'
 import * as moment from 'moment'
+import iconCmp from '../icon-cmp.vue'
 
 export default {
   props:{
     stay: Object,
+  },
+  components:{
+    iconCmp
   },
   created() {
     
@@ -38,7 +45,13 @@ export default {
     },
     imgURL(){
       return stay.imgUrls[0]
-    }
+    },
+    rateInfo() {
+      return (
+        this.stay.reviews.reduce((acc, currRev) => acc + currRev.rate, 0) /
+        this.stay.reviews.length
+      ).toFixed(2) + ' ('+this.stay.reviews.length + ')'
+    },
   },
   methods: {
     async removeStay(stayId) {

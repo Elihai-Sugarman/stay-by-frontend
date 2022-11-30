@@ -2,8 +2,8 @@
   <div class="container home">
     <stay-header />
     <stay-list v-if="stays.length" :stays="stays" />
-    <hr />
-    <stay-edit />
+    <!-- <hr /> -->
+    <!-- <stay-edit /> -->
   </div>
 </template>
 

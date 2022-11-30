@@ -15,6 +15,7 @@ html {
 }
 
 body {
+    background-color: $clr6;
     font-size: rem(18px);
     margin: 0;
 }
@@ -48,12 +49,3 @@ p {
 a {
     text-decoration: none;
 }
-
-.flex {
-    display: flex;
-}
-
-.flex-row {
-    flex-direction: row;
-}
-
