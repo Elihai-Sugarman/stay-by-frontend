@@ -8,6 +8,7 @@
 
 <script>
 import iconCmp from '../icon-cmp.vue'
+import _camelCase from 'lodash/camelCase'
 
 export default {
   props: {
@@ -18,11 +19,7 @@ export default {
   },
   computed: {
     camelizedAmenity() {
-      return this.amenity
-        .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-          return index === 0 ? word.toLowerCase() : word.toUpperCase()
-        })
-        .replace(/\s+/g, '')
+        return _camelCase(this.amenity)
     },
   },
   components: {
