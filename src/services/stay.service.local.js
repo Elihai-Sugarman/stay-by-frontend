@@ -15,14 +15,12 @@ export const stayService = {
 }
 window.cs = stayService
 
-function init() {
-    save(staysArray)
-    return staysArray
-}
-
 async function query(filterBy = { txt: '', price: 0 }) {
     var stays = await storageService.query(STORAGE_KEY)
-    if (!stays.length) stays = init()
+    if (!stays.length) {
+        stays = staysArray
+        utilService.saveToStorage('stays', stays)
+    }
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
         stays = stays.filter(
