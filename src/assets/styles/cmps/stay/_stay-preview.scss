@@ -1,5 +1,12 @@
-li {
+.stay-preview {
+    &:hover{
+        text-decoration: none;
+    }
     .bold {
         font-weight: bold;
     }
+}
+
+.stay-img{
+    width:50px;
 }

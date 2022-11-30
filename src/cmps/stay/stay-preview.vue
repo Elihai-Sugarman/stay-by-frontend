@@ -1,35 +1,22 @@
 <template>
-    <li>
-      <!-- <stay-img :url="stay.imgUrls[0]"/> -->
+  <router-link class="li" :to="`/stay/${stay._id}`">
+    <article class="stay-preview">
+      <img class="stay-img" :src="stay.imgUrls[0]"/>
       <p>{{ stay.address.city }}, {{ stay.address.country }}</p>
       <p>Added {{ timeAgo }}</p>
       <p>{{ availableDates }}</p>
       <p><span class="bold">${{ stay.price }}</span> night</p>
-        <!-- <p>
-          {{stay.name}}
-        </p>
-        <p>
-          ${{stay.price?.toLocaleString()}}
-        </p>
-        <button @click="removeStay(stay._id)">x</button>
-        <button @click="updateStay(stay)">Update</button>
-        <hr />
-        <button @click="addStayMsg(stay._id)">Add stay msg</button>
-        <button @click="printStayToConsole(stay)">Print msgs to console</button> -->
-      </li>
+    </article>
+    </router-link>
 </template>
 
 <script>
 import {showErrorMsg, showSuccessMsg} from '../../services/event-bus.service'
 import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/stay.store'
 import { utilService } from '../../services/util.service'
-import stayImg from './stay-img.vue'
 import * as moment from 'moment'
 
 export default {
-  components:{
-    stayImg
-  },
   props:{
     stay: Object,
   },
