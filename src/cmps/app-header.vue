@@ -1,33 +1,46 @@
 <template>
-  <header class="main-header full">
-    <fa-icon icon="fa-brands fa-airbnb" />
-    <nav>
+  <div class="search-backdrop" v-if="isSearchOpen"></div>
+  <header class="main-header full" v-outside-click="() => (isSearchOpen = false)" :style="headerHeight">
+    <nav class="main-nav">
       <router-link to="/">
-        <span role="img" aria-label="logo">🙏</span>
+        <div class="brand">
+          <font-awesome-icon icon="fa-brands fa-airbnb" />
+          <span class="brand-txt">stayby</span>
+        </div>
       </router-link>
-      <router-link to="/stay">Stays</router-link>
-      <router-link to="/login">Login / Signup</router-link>
+
+      <search-bar
+        :open="isSearchOpen"
+        @click="(isSearchOpen = true)" />
+
+      <user-nav
+        :open="isUserNavOpen"
+        @click="(isUserNavOpen = !isUserNavOpen)"
+        @outside-click="(isUserNavOpen = false)" />
     </nav>
-    <section class="loggedin-user" v-if="loggedInUser">
-      <router-link :to="`/user/${loggedInUser._id}`">
-        {{ loggedInUser.fullname }}
-      </router-link>
-      <span>{{ loggedInUser.score.toLocaleString() }}</span>
-      <img :src="loggedInUser.imgUrl" />
-    </section>
-    <stay-filter/>
   </header>
 </template>
 <script>
-import stayFilter from './stay/stay-filter.vue'
+import searchBar from './search-bar.vue'
+import userNav from './user-nav.vue'
 
 export default {
   components:{
-    stayFilter
+    searchBar,
+    userNav
+  },
+  data() {
+    return {
+      isUserNavOpen: false,
+      isSearchOpen: false
+    }
   },
   computed: {
-    loggedInUser() {
+    user() {
       return this.$store.getters.loggedinUser
+    },
+    headerHeight() {
+      return { height: this.isSearchOpen ? 'max-content' : '80px' }
     }
   }
 }

@@ -1,0 +1,51 @@
+.user-nav {
+  border-radius: 50px;
+  border: 1px solid #DDDDDD;
+  cursor: pointer;
+  transition: box-shadow .3s;
+  position: relative;
+  padding: 5px 5px 5px 12px;
+
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  }
+
+  & button {
+    background-color: unset;
+    color: gray;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: rem(18px);
+
+    & .profile-icon {
+      border-radius: 50%;
+      height: 30px;
+      padding: 0;
+    }
+  }
+}
+
+.user-nav .user-menu {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  background-color: white;
+  width: 240px;
+  box-shadow: 0 2px 16px rgb(0 0 0 / 12%);
+  border-radius: 12px;
+  padding: 8px 0;
+  margin-top: 34px; 
+
+  & li {
+    padding: 8px 10px;
+
+    &:hover {
+      background-color: #F7F7F7;
+    }
+  }
+}

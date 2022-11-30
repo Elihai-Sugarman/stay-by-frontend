@@ -1,44 +1,45 @@
-header {
+.main-header {
     color: #222222;
-    background-color: $clr5;
-    padding-inline: 80px;
-    height: 80px;
+    min-height: 80px;
+    height: 160px;
+    background-color: white;
+    padding-inline: $layout-padding;
     position: relative;
     font-size: 1em;
+    z-index: 200;
+    transition: .3s;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    & .main-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-block: 16px;
+    }
 
-    .loggedin-user {
-        background-color: $clr1;
-        padding: 2px 8px;
-        border-radius: 1em;
-        align-self: flex-end;
-        color: whitesmoke;
-        span{
-            background-color: $clr2;
-            padding: 4px;
-            margin: 10px;
-            border-radius: 50%;
-        }
-        img {
-            width: 2em;
-            height: 2em;
-            border-radius: 50%;
+    @include for-xl {
+        padding-inline: calc($layout-padding * 2);
+    }
+
+    & .main-nav .brand {
+        color: #FF385C;
+        font-size: rem(36px);
+        display: flex;
+        justify-items: center;
+        gap: 5px;
+
+        & .brand-txt {
+            font-weight: bold;
+            font-size: rem(24px);
         }
     }
-    nav {
-        background-color: $clr4;
-        padding: 5px 0;
-    }
-    nav a:not(:first-child) {
-        border-top: 1px solid $clr1;
-        padding: 0 5px;
-        margin: 10px;
-    }
-    nav .active {
-        color: $clr1;
-    }
-    
+}
+
+.search-backdrop {
+    background-color: rgba(0, 0, 0, 0.25);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    height: 100vh;
+    width: 100%;
 }
