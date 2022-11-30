@@ -1,38 +1,36 @@
-.container {
-    max-width: 1500px;
-    padding: 10px;
-}
-
-.main-container {
+.main-layout {
     display: grid;
-    grid-template-columns: 20px 1fr 20px;
+    grid-template-columns: $layout-padding 1fr $layout-padding;
+    max-width: 2520px;
+    padding: 0;
 
     > * {
         grid-column: 2;
+        // padding-inline: $layout-padding;
 
         &.full {
             grid-column: 1 /-1;
         }
     }
 
-    @include for-narrow-layout {
-        grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $mobile-breakpoint)
-            minmax(20px, 1fr);
-    }
-    @include for-normal-layout {
-        grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $narrow-breakpoint)
-            minmax(20px, 1fr);
-    }
-    @include for-wide-layout {
-        grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $normal-breakpoint)
-            minmax(20px, 1fr);
-    }
+    // @include for-narrow-layout {
+    //     grid-template-columns: 
+    //         minmax(20px, 1fr)
+    //         minmax(auto, $mobile-breakpoint)
+    //         minmax(20px, 1fr);
+    // }
+    // @include for-normal-layout {
+    //     grid-template-columns: 
+    //         minmax(20px, 1fr)
+    //         minmax(auto, $narrow-breakpoint)
+    //         minmax(20px, 1fr);
+    // }
+    // @include for-wide-layout {
+    //     grid-template-columns: 
+    //         minmax(20px, 1fr)
+    //         minmax(auto, $normal-breakpoint)
+    //         minmax(20px, 1fr);
+    // }
 }
 
 .card-grid {
