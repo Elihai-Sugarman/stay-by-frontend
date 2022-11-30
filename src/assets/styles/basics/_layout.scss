@@ -1,8 +1,18 @@
 .main-layout {
-    display: grid;
-    grid-template-columns: $layout-padding 1fr $layout-padding;
     max-width: 2520px;
     padding: 0;
+    display: grid;
+    grid-template-columns:
+        $layout-padding
+        1fr
+        $layout-padding;
+
+    @include for-xl {
+        grid-template-columns:
+            calc($layout-padding * 2)
+            1fr
+            calc($layout-padding * 2);
+    }
 
     > * {
         grid-column: 2;
@@ -31,10 +41,4 @@
     //         minmax(auto, $normal-breakpoint)
     //         minmax(20px, 1fr);
     // }
-}
-
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 20px;
 }
