@@ -11,7 +11,7 @@ import './font-awesome'
 
 const app = createApp(rootCmp)
 
-app.component('fa-icon', FontAwesomeIcon)
+app.component('font-awesome-icon', FontAwesomeIcon) 
 app.use(router)
 app.use(store)
 
