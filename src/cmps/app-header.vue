@@ -1,6 +1,9 @@
 <template>
   <div class="search-backdrop" v-if="isSearchOpen"></div>
-  <header class="main-header full" v-outside-click="() => (isSearchOpen = false)" :style="headerHeight">
+  <header
+    v-outside-click="() => (isSearchOpen = false)"
+    class="main-header full"
+    :class="searchOpenClass">
     <nav class="main-nav">
       <router-link to="/">
         <div class="brand">
@@ -35,12 +38,15 @@ export default {
       isSearchOpen: false
     }
   },
+  created() {
+    document.addEventListener('scroll', () => this.isSearchOpen = false)
+  },
   computed: {
     user() {
       return this.$store.getters.loggedinUser
     },
-    headerHeight() {
-      return { height: this.isSearchOpen ? 'max-content' : '80px' }
+    searchOpenClass() {
+      return { open: this.isSearchOpen }
     }
   }
 }

@@ -2,17 +2,14 @@
   <section class="user-nav" @click="$emit('click')">
     <template v-if="open">
       <section class="user-menu" v-outside-click="() => this.$emit('outside-click')">
-        <ul>
+        <ul v-if="user">
+          <li>Logout</li>
+        </ul>
+        <ul v-else>
           <li>Log in</li>
           <li>Sign up</li>
           <hr>
           <li>Airbnb your home</li>
-          <li>Host an experience</li>
-          <li>Help</li>
-        </ul>
-        <hr>
-        <ul>
-          <li>Logout</li>
         </ul>
       </section>
     </template>
@@ -30,6 +27,11 @@ import icon from '../cmps/icon-cmp.vue'
 export default {
   props: { open: Boolean },
   emits: ['click'],
-  components: { icon }
+  components: { icon },
+  computed: {
+    user() {
+      return this.$store.getters.loggedinUser
+    }
+  }
 }
 </script>
