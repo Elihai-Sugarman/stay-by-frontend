@@ -193,9 +193,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Porto, Porto, Portugal',
@@ -276,9 +276,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Montréal, QC, Canada',
@@ -369,9 +369,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Porto, Porto District, Portugal',
@@ -597,9 +597,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'New York, NY, United States',
@@ -726,9 +726,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Lahaina, HI, United States',
@@ -954,9 +954,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Brooklyn, NY, United States',
@@ -1182,9 +1182,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Barcelona, Catalunya, Spain',
@@ -1410,9 +1410,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Brooklyn, NY, United States',
@@ -1638,9 +1638,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Barcelona, Catalunya, Spain',
@@ -1695,9 +1695,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Brooklyn, NY, United States',
@@ -1923,9 +1923,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Taksim, Cihangir, Istanbul , Beyoğlu, Turkey',
@@ -2016,9 +2016,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Lahaina, HI, United States',
@@ -2244,9 +2244,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Montreal, QC, Canada',
@@ -2472,9 +2472,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Porto, Porto, Portugal',
@@ -2700,9 +2700,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Barcelona, Catalunya, Spain',
@@ -2765,9 +2765,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Barcelona, Catalunya, Spain',
@@ -2876,9 +2876,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Wailuku, HI, United States',
@@ -2987,9 +2987,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Barcelona, Catalunya, Spain',
@@ -3215,9 +3215,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'TR, Turkey',
@@ -3443,9 +3443,9 @@ export const staysArray = [
             },
         ],
         imgUrls: [
-            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg?im_w=720',
-            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg?im_w=720',
+            'https://a0.muscache.com/im/pictures/1d90adf4-75a6-41ee-a1d2-479db0feb0b0.jpg',
+            'https://a0.muscache.com/im/pictures/6fe35c7e-5427-4796-8f40-39d6dd56bfb5.jpg',
+            'https://a0.muscache.com/im/pictures/c11bbded-a17c-4381-b59a-f1492019cd78.jpg',
         ],
         address: {
             street: 'Barcelona, Catalunya, Spain',

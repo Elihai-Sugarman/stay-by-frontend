@@ -1,5 +1,6 @@
 <template>
     <li>
+      <!-- <stay-img :url="stay.imgUrls[0]"/> -->
       <p>{{ stay.address.city }}, {{ stay.address.country }}</p>
       <p>Added {{ timeAgo }}</p>
       <p>{{ availableDates }}</p>
@@ -22,9 +23,13 @@
 import {showErrorMsg, showSuccessMsg} from '../../services/event-bus.service'
 import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/stay.store'
 import { utilService } from '../../services/util.service'
+import stayImg from './stay-img.vue'
 import * as moment from 'moment'
 
 export default {
+  components:{
+    stayImg
+  },
   props:{
     stay: Object,
   },
@@ -41,6 +46,9 @@ export default {
       const startDate = utilService.getRandomIntInclusive(1,30-length)
       return month + ' ' + startDate + '-' + (startDate+length)
     },
+    imgURL(){
+      return stay.imgUrls[0]
+    }
   },
   methods: {
     async removeStay(stayId) {

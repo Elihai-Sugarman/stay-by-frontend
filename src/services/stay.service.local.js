@@ -1,6 +1,7 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
+import { staysArray } from '../../temp-data/stay-demo.js'
 
 const STORAGE_KEY = 'stay'
 
@@ -14,8 +15,14 @@ export const stayService = {
 }
 window.cs = stayService
 
+function init() {
+    save(staysArray)
+    return staysArray
+}
+
 async function query(filterBy = { txt: '', price: 0 }) {
     var stays = await storageService.query(STORAGE_KEY)
+    if (!stays.length) stays = init()
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
         stays = stays.filter(
