@@ -1,7 +1,7 @@
 <template>
   <div class="search-backdrop" v-if="isSearchOpen" @click="() => (isSearchOpen = false)"></div>
   <header
-    class="main-header full"
+    class="main-header full divider"
     :class="searchOpenClass">
     <nav class="main-nav">
       <router-link to="/">
