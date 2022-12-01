@@ -1,6 +1,9 @@
 .stay-details {
   & > * {
-    margin-top: 24px;
+    margin-top: 18px;
+  }
+  .md {
+    font-family: 'cereal-medium';
   }
 
   .name-title {
@@ -18,7 +21,7 @@
 
   .name-subtitle {
     // gap: 18px;
-    gap: rem(18px);
+    gap: rem(9px);
     font-size: rem(14px);
     margin-top: 0%;
 
@@ -75,6 +78,9 @@
         height: 56px;
         width: 56px;
         border-radius: 50%;
+      }
+      h2 {
+        margin-bottom: 0.3em;
       }
     }
 
