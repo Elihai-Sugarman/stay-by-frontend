@@ -8,11 +8,15 @@ import './assets/styles/main.scss'
 import rootCmp from './root-cmp.vue'
 import { clickOutsideDirective, focusDirective, rainbowDirective } from './directives'
 
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
 const app = createApp(rootCmp)
 
 app.directive('outside-click', clickOutsideDirective)
 app.directive('focus', focusDirective)
 app.directive('rainbow', rainbowDirective)
+app.use(ElementPlus)
 app.use(router)
 app.use(store)
 
