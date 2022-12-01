@@ -2,7 +2,7 @@
   <el-form class="search-form" :model="form">
     <div class="container" v-outside-click="setActive">
       <div class="form-control" :class="getActiveClass('where')" @click="setActive('where')">
-        <div>Where</div>
+        <div class="title">Where</div>
         <el-autocomplete
           v-model="form.where"
           :fetch-suggestions="searchLocations"
@@ -10,6 +10,7 @@
           @select="handleSelect"
           style="width: 260px"
           clearable
+          ref="whereInput"
         />
       </div>
 
@@ -20,8 +21,8 @@
           class="form-control"
           :class="getActiveClass('checkIn')"
           @click="openDatePicker('checkIn')">
-          <div>Check in</div>
-          <span>Add dates</span>
+          <div class="title">Check in</div>
+          <span class="subtitle">Add dates</span>
         </div>
 
         <span class="splitter"></span>
@@ -30,8 +31,8 @@
           class="form-control"
           :class="getActiveClass('checkOut')"
           @click="openDatePicker('checkOut')">
-          <div>Check out</div>
-          <span>Add dates</span>
+          <div class="title">Check out</div>
+          <span class="subtitle">Add dates</span>
         </div>
 
         <el-date-picker
@@ -49,11 +50,13 @@
       <span class="splitter"></span>
 
       <div
-        class="form-control"
+        class="form-control submit"
         :class="getActiveClass('who')"
         @click="setActive('who')">
-        <div>Who</div>
-        <span>Add guests</span>
+        <div>
+          <div class="title">Who</div>
+          <span class="subtitle">Add guests</span>
+        </div>
 
         <button type="button" @click="handleSearch">
           <icon icon-type="search" />
@@ -112,9 +115,13 @@ export default {
       this.$refs.datePicker?.handleOpen()
     },
     setActive(type) {
+      if (type === 'where' && !this.activeInput[type]) {
+        this.$refs.whereInput?.focus()
+      }
+
       this.activeInput = {
         ...initialActive,
-        [type]: true
+        [type]: !this.activeInput[type]
       }
     },
     getActiveClass(type) {

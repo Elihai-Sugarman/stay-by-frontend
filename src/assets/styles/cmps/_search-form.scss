@@ -22,6 +22,26 @@
     border-radius: 32px;
   }
 
+  & .form-control:last-child {
+    width: 260px;
+    display: inline-flex;
+  }
+
+  & .form-control.submit {
+    flex-direction: row;
+    justify-content: space-between;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    button {
+      margin: 0;
+    }
+  }
+
   & .form-control {
     padding: 12px 33px;
     cursor: pointer;
@@ -40,15 +60,6 @@
       padding: 0;
       height: 18px;
       background: transparent;
-    }
-    
-    & div {
-      font-size: rem(12px);
-      font-weight: 600;
-    }
-
-    & span {
-      font-size: rem(14px);
     }
   }
 
@@ -71,5 +82,13 @@
     transform: translateX(-50%);
     visibility: hidden;
   }
-}
 
+  & .title {
+    font-size: rem(12px);
+    font-weight: 600;
+  }
+  
+  & .subtitle {
+    font-size: rem(14px);
+  }
+}
