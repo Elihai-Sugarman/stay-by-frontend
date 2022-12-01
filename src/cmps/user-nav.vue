@@ -8,7 +8,7 @@
         <ul v-else>
           <li>Log in</li>
           <li>Sign up</li>
-          <hr>
+          <divider />
           <li>Airbnb your home</li>
         </ul>
       </section>

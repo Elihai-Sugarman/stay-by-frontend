@@ -6,6 +6,7 @@ import { store } from './store/store.js'
 import './assets/styles/setup/_typography.scss'
 import './assets/styles/main.scss'
 import rootCmp from './root-cmp.vue'
+import divider from './cmps/divider.vue'
 import { clickOutsideDirective, focusDirective, rainbowDirective } from './directives'
 
 import ElementPlus from 'element-plus'
@@ -16,6 +17,7 @@ const app = createApp(rootCmp)
 app.directive('outside-click', clickOutsideDirective)
 app.directive('focus', focusDirective)
 app.directive('rainbow', rainbowDirective)
+app.component('divider', divider)
 app.use(ElementPlus)
 app.use(router)
 app.use(store)
