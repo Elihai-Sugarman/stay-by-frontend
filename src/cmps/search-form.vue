@@ -1,31 +1,35 @@
 <template>
   <el-form class="search-form" :model="form">
-    <div class="container">
-      <div class="form-control">
+    <div class="container" v-outside-click="setActive">
+      <div class="form-control" :class="getActiveClass('where')" @click="setActive('where')">
         <div>Where</div>
-        <!-- <input type="text" v-model="form.where" placeholder="Search destinations"> -->
-        <!-- <el-input v-model="form.where" placeholder="Where" size="large" /> -->
         <el-autocomplete
           v-model="form.where"
           :fetch-suggestions="searchLocations"
           placeholder="Search destinations"
           @select="handleSelect"
-          clearable
           style="width: 260px"
+          clearable
         />
       </div>
 
       <span class="splitter"></span>
 
       <div class="dates-container">
-        <div class="form-control" @click="openDatePicker">
+        <div
+          class="form-control"
+          :class="getActiveClass('checkIn')"
+          @click="openDatePicker('checkIn')">
           <div>Check in</div>
           <span>Add dates</span>
         </div>
-  
+
         <span class="splitter"></span>
-  
-        <div class="form-control" @click="openDatePicker">
+
+        <div
+          class="form-control"
+          :class="getActiveClass('checkOut')"
+          @click="openDatePicker('checkOut')">
           <div>Check out</div>
           <span>Add dates</span>
         </div>
@@ -44,7 +48,10 @@
 
       <span class="splitter"></span>
 
-      <div class="form-control">
+      <div
+        class="form-control"
+        :class="getActiveClass('who')"
+        @click="setActive('who')">
         <div>Who</div>
         <span>Add guests</span>
 
@@ -52,13 +59,19 @@
           <icon icon-type="search" />
         </button>
       </div>
-  
+
     </div>
   </el-form>
 </template>
 
 <script>
 import icon from './icon-cmp.vue'
+const initialActive = {
+  where: false,
+  checkIn: false,
+  checkOut: false,
+  who: false
+}
 
 export default {
   components: {
@@ -70,7 +83,8 @@ export default {
         where: '',
         checkDates: [],
         guests: []
-      }
+      },
+      activeInput: { ...initialActive }
     }
   },
   methods: {
@@ -81,7 +95,7 @@ export default {
         checkOut: this.form.checkDates[1].getTime(),
         guests: this.form.guests
       }
-    
+
       this.$router.push({ path: '/explore', query })
     },
     searchLocations(queryString, cb) {
@@ -93,14 +107,24 @@ export default {
     handleSelect(item) {
       this.form.where = item
     },
-    openDatePicker() {
+    openDatePicker(type) {
+      this.setActive(type)
       this.$refs.datePicker?.handleOpen()
+    },
+    setActive(type) {
+      this.activeInput = {
+        ...initialActive,
+        [type]: true
+      }
+    },
+    getActiveClass(type) {
+      return { active: this.activeInput[type] }
     }
   },
   computed: {
     AllLocations() {
       return this.$store.getters.locations
-    }
+    },
   }
 }
 </script>
