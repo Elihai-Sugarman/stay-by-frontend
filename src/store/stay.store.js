@@ -46,6 +46,10 @@ export const stayStore = {
             })
             return labels
         },
+        // used for datalist on search-bar
+        locations({ allStays }) {
+            return allStays.map(({ address }) => `${address.city}, ${address.country}`)
+        },
     },
     mutations: {
         setStays(state, { stays }) {
