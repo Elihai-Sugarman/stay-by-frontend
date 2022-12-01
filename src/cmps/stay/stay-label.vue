@@ -1,6 +1,6 @@
 <template>
     <section class="stay-label">
-        <p @click="filter">{{ label }}</p>
+        <p @click="filter">{{ designedLabel }}</p>
     </section>
 </template>
 
@@ -10,9 +10,16 @@ export default {
         label: String,
     },
     computed:{
+        designedLabel(){
+            let currLabel = this.label.charAt(0).toUpperCase() + this.label.slice(1)
+            if (currLabel === 'Omg') currLabel = 'OMG!'
+            return currLabel
+        },
+    },
+    methods: {
         filter(){
-            console.log(this.label)
-        }
+            this.$emit('filter', this.label)
+        },
     }
 }
 </script>

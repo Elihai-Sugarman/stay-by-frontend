@@ -1,6 +1,6 @@
 <template>
   <div class="container home">
-    <stay-header />
+    <stay-header @filter="filter" />
     <stay-list v-if="stays.length" :stays="stays" />
     <!-- <hr /> -->
     <!-- <stay-edit /> -->
@@ -67,6 +67,11 @@ export default {
     },
     printStayToConsole(stay) {
       console.log('Stay msgs:', stay.msgs)
+    },
+    filter(label){
+      const filterBy = { label }
+      this.$store.commit({type: 'setFilterBy', filterBy: JSON.parse(JSON.stringify(filterBy))})
+      this.$store.dispatch('loadStays')
     }
   }
 

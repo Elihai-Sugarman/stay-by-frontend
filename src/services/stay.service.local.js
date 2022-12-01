@@ -21,6 +21,9 @@ async function query(filterBy = { txt: '', price: 0 }) {
         stays = staysArray
         utilService.saveToStorage(STORAGE_KEY, stays)
     }
+    if (filterBy.label) {
+        stays = stays.filter((stay) => stay.labels.includes(filterBy.label))
+    }
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
         stays = stays.filter(
