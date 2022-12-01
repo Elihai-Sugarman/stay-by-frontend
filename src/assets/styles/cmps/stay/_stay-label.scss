@@ -1,4 +1,30 @@
 .stay-label {
     cursor: pointer;
     white-space: nowrap;
+    text-align: center;
+    min-width: 56px;
+    color: $clr11;
+
+    &:hover {
+        border-bottom: 2px solid $clr11;
+        color: black;
+
+        .label-img {
+            opacity: 1;
+        }
+    }
+}
+
+.label-img {
+    box-sizing: border-box;
+    color: $clr11;
+    font-size: 12px;
+    height: 24px;
+    fill: $clr11;
+    opacity: 50%;
+    transition: opacity 0.2s;
+
+    &:hover {
+        // opacity: 1;
+    }
 }

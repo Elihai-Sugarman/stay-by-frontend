@@ -1,5 +1,6 @@
 <template>
     <section @click="filter" class="stay-label">
+        <img class="label-img" :src="labelUrl"/>
         <p>{{ designedLabel }}</p>
     </section>
 </template>
@@ -9,12 +10,26 @@ export default {
     props:{
         label: String,
     },
+    data(){
+        return {
+            labelImgUrl: null,
+        }
+    },
+    created() {
+        console.log(this.label)
+        this.labelImgUrl = `https://res.cloudinary.com/dgzyxjapv/image/upload/v1669918322/stayby/labels/${this.label}.png`
+        console.log(this.labelImgUrl)
+    },
     computed:{
         designedLabel(){
+            if (this.label === 'omg') return 'OMG!'
+            else if (this.label === 'bed-breakfast') return 'Bed & breakfasts'
             let currLabel = this.label.charAt(0).toUpperCase() + this.label.slice(1)
-            if (currLabel === 'Omg') currLabel = 'OMG!'
-            return currLabel
+            return currLabel.split('-').join(' ')
         },
+        labelUrl(){
+            return `https://res.cloudinary.com/dgzyxjapv/image/upload/v1669918322/stayby/labels/${this.label}.png`
+        }
     },
     methods: {
         filter(){

@@ -2,14 +2,14 @@
   <router-link class="li" :to="`/stay/${stay._id}`" target="_blank">
     <article class="stay-preview">
       <div class="stay-img-container">
-        <!-- <div class="block text-center" m="t-4" @click.prevent="moveCarousel">
+        <div class="block text-center" m="t-4">
           <el-carousel trigger="click" :autoplay="false" :loop="false">
             <el-carousel-item v-for="img in stay.imgUrls" :key="img">
-              <img class="stay-img" :src="img"/>
+                <img class="stay-img" :src="img"/>
             </el-carousel-item>
           </el-carousel>
-        </div> -->
-        <img class="stay-img" :src="stay.imgUrls[0]"/>
+        </div>
+        <!-- <img class="stay-img" :src="stay.imgUrls[0]"/> -->
         <icon-cmp iconType="heart" class="stay-like" @click.prevent="likeStay" :class="{liked: liked}"/>
       </div>
       <div class="preview-info">
@@ -45,7 +45,7 @@ export default {
     iconCmp
   },
   created() {
-    
+    const arrows = document.querySelectorAll('.el-carousel__arrow')
   },
   data(){
     return {
@@ -117,3 +117,5 @@ export default {
   }
 }
 </script>
+
+<!-- <button type="button" class="el-carousel__arrow el-carousel__arrow--right carousel-arrow-right-enter-from carousel-arrow-right-enter-active" style=""><i class="el-icon"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M340.864 149.312a30.592 30.592 0 0 0 0 42.752L652.736 512 340.864 831.872a30.592 30.592 0 0 0 0 42.752 29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z"></path></svg></i></button> -->
