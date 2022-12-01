@@ -2,6 +2,13 @@
   <router-link class="li" :to="`/stay/${stay._id}`" target="_blank">
     <article class="stay-preview">
       <div class="stay-img-container">
+        <!-- <div class="block text-center" m="t-4" @click.prevent="moveCarousel">
+          <el-carousel trigger="click" :autoplay="false" :loop="false">
+            <el-carousel-item v-for="img in stay.imgUrls" :key="img">
+              <img class="stay-img" :src="img"/>
+            </el-carousel-item>
+          </el-carousel>
+        </div> -->
         <img class="stay-img" :src="stay.imgUrls[0]"/>
         <icon-cmp iconType="heart" class="stay-like" @click.prevent="likeStay" :class="{liked: liked}"/>
       </div>
@@ -17,7 +24,7 @@
           </span>
         <div class="preview-time-ago">Added {{ timeAgo }}</div>
         <div class="preview-dates">{{ availableDates }}</div>
-        <div class="preview-price"><span class="bold">${{ stay.price }}</span> night</div>
+        <div class="preview-price"><span class="bold">${{ stay.price }}</span> / night</div>
     </div>
     </article>
     </router-link>
@@ -68,8 +75,10 @@ export default {
   },
   methods: {
     likeStay(){
-      console.log('it works!')
       this.liked = !this.liked
+    },
+    moveCarousel(){
+      console.log('It works!')
     },
     async removeStay(stayId) {
       try {
