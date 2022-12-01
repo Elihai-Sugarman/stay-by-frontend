@@ -1,7 +1,6 @@
 <template>
-  <div class="search-backdrop" v-if="isSearchOpen"></div>
+  <div class="search-backdrop" v-if="isSearchOpen" @click="() => (isSearchOpen = false)"></div>
   <header
-    v-outside-click="() => (isSearchOpen = false)"
     class="main-header full"
     :class="searchOpenClass">
     <nav class="main-nav">
