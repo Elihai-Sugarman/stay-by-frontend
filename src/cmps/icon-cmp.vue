@@ -1,5 +1,5 @@
 <template>
-  <section v-html="type[iconType]"></section>
+  <section v-html="type[iconType]" class="icon-svg"></section>
 </template>
 
 <script>
