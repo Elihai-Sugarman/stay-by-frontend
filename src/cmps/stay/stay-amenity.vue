@@ -1,6 +1,6 @@
 <template>
   <section>
-    {{camelizedAmenity}}
+    <!-- {{camelizedAmenity}} -->
     <icon-cmp :iconType="camelizedAmenity" />
     <span>{{amenity}}</span>
   </section>
