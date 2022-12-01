@@ -10,16 +10,6 @@ export default {
     props:{
         label: String,
     },
-    data(){
-        return {
-            labelImgUrl: null,
-        }
-    },
-    created() {
-        console.log(this.label)
-        this.labelImgUrl = `https://res.cloudinary.com/dgzyxjapv/image/upload/v1669918322/stayby/labels/${this.label}.png`
-        console.log(this.labelImgUrl)
-    },
     computed:{
         designedLabel(){
             if (this.label === 'omg') return 'OMG!'

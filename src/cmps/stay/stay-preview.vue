@@ -47,7 +47,14 @@ export default {
     iconCmp
   },
   created() {
+  },
+  mounted(){
     const arrows = document.querySelectorAll('.el-carousel__arrow')
+    arrows.forEach(arrow => {
+      arrow.addEventListener("click",(event)=>{
+        event.preventDefault()
+      })
+    })
   },
   data(){
     return {

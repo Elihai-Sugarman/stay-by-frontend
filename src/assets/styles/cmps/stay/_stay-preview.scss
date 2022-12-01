@@ -114,3 +114,41 @@
     grid-column: 1;
     margin-top: 6px;
 }
+
+button.el-carousel__arrow {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: rgba(0,0,0,0) 0px 0px 0px 1px;
+    color: black;
+    font-size: 1rem;
+    font-stretch: 100%;
+    font-weight: 400;
+    height: 2rem;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 2rem;
+    z-index: 1000;
+
+    &:hover {
+        align-items: center;
+        background-clip: padding-box;
+        background-color: rgba(255,255,255);
+        border: 1px solid rgba(0,0,0,0.08);
+        box-shadow: rgba(0,0,0,0) 0px 0px 0px 1px;
+        color: black;
+        font-size: 1rem;
+        font-stretch: 100%;
+        font-weight: 400;
+        height: 2rem;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        width: 2rem;
+        z-index: 1000;
+    }
+}
