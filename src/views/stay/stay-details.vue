@@ -37,6 +37,7 @@
             <div class="capacity-subtitle">{{ stay.capacity }} guests</div>
           </div>
           <img :src="stay.host.imgUrl" />
+          <divider/>
         </div>
 
         <div class="special-perks">
@@ -97,169 +98,173 @@
         </div>
       </div>
 
-      <div class="reservation flex">
-        <div class="reservation-container">
-          <div class="reservation-form-header">
-            <p>
-              <span class="cost">${{ stay.price }}</span> / night
-            </p>
-            <p>
-              {{ avgRating }}
-              <span class="reviews">({{ countReviews }} reviews)</span>
-            </p>
-          </div>
-
-          <div class="reservation-data">
-            <div class="date-picker">
-              <div class="date-input">
-                <label>CHECK IN</label>
-                <input value="Tue Sep 07 2021" />
+      <div class="reservation-section">
+        <div class="reservation flex">
+          <div class="reservation-container">
+            <div>
+              <div class="reservation-form-header">
+                <p>
+                  <span class="cost">${{ stay.price }}</span> / night
+                </p>
+                <p>
+                  {{ avgRating }}
+                  <span class="reviews">({{ countReviews }} reviews)</span>
+                </p>
               </div>
-              <div class="date-input">
-                <label>CHECK OUT</label>
-                <input value="Tue Sep 07 2021" />
+              <div class="reservation-data">
+                <div class="date-picker">
+                  <div class="date-input">
+                    <label>CHECK IN</label>
+                    <input value="Tue Sep 07 2021" />
+                  </div>
+                  <div class="date-input">
+                    <label>CHECK OUT</label>
+                    <input value="Tue Sep 07 2021" />
+                  </div>
+                </div>
+    
+                <div class="guest-input">
+                  <label>GUESTS</label>
+                  <input value="2" />
+                  <svg viewBox="0 0 320 512" width="100" title="angle-down">
+                    <path
+                      d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="btn-container">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="content">
+                  <button class="action-btn">
+                    <span>Reserve</span>
+                  </button>
+                </div>
               </div>
             </div>
-
-            <div class="guest-input">
-              <label>GUESTS</label>
-              <input value="2" />
-              <svg viewBox="0 0 320 512" width="100" title="angle-down">
-                <path
-                  d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
-                />
-              </svg>
-            </div>
-          </div>
-
-          <div class="btn-container">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="content">
-              <button class="action-btn">
-                <span>Reserve</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="reservation-summary">
-            <span>You won't be charged yet</span>
-
-            <div class="cost-breakdown flex column">
-                <div class="base-cost flex justify-between">
-                  <span>${{stay.price}} x {{totalNights}} nights</span>
-                  <span>${{(stay.price * totalNights)}}</span>
+  
+            <span class="reservation-txt flex column justify-between">You won't be charged yet</span>
+  
+            <div class="reservation-summary">
+              <div class="cost-breakdown flex column">
+                <div class="cost-details flex column">
+                  <div class="base-cost flex justify-between">
+                    <span>${{stay.price}} x {{totalNights}} nights</span>
+                    <span>${{(stay.price * totalNights)}}</span>
+                  </div>
+                  <div class="service-fee flex justify-between">
+                    <span>Service Fee</span>
+                    <span>${{(serviceFee * totalNights)}}</span>
+                  </div>
                 </div>
-                <div class="service-fee flex justify-between">
-                  <span>Service Fee</span>
-                  <span>${{(serviceFee * totalNights)}}</span>
-                </div>
-                <div class="cost-total flex justify-between">
-                  <span>Total</span>
-                  <span>${{(stay.price * totalNights)+(serviceFee * totalNights)}}</span>
-                </div>
+                  <div class="cost-total flex justify-between">
+                    <span>Total</span>
+                    <span>${{(stay.price * totalNights)+(serviceFee * totalNights)}}</span>
+                  </div>
+              </div>
+  
             </div>
-
+  
           </div>
-
         </div>
       </div>
     </div>
