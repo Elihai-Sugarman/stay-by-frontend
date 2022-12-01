@@ -12,7 +12,7 @@
       </div>
 
       <span class="superhost flex" v-if="stay.host.isSuperhost">
-        <icon-cmp iconType="bwBadge" />
+        <!-- <icon-cmp iconType="bwBadge" /> -->
         Superhost
       </span>
 
