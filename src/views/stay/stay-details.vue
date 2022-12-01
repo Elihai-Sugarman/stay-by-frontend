@@ -240,6 +240,26 @@
             </div>
           </div>
 
+          <div class="reservation-summary">
+            <span>You won't be charged yet</span>
+
+            <div class="cost-breakdown flex column">
+                <div class="base-cost flex justify-between">
+                  <span>${{stay.price}} x {{totalNights}} nights</span>
+                  <span>${{(stay.price * totalNights)}}</span>
+                </div>
+                <div class="service-fee flex justify-between">
+                  <span>Service Fee</span>
+                  <span>${{(serviceFee * totalNights)}}</span>
+                </div>
+                <div class="cost-total flex justify-between">
+                  <span>Total</span>
+                  <span>${{(stay.price * totalNights)+(serviceFee * totalNights)}}</span>
+                </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -293,6 +313,7 @@
 // import {userService} from '../services/user.service'
 import iconCmp from '../../cmps/icon-cmp.vue'
 import stayAmenity from '../../cmps/stay/stay-amenity.vue'
+import _random from 'lodash/random'
 import * as moment from 'moment'
 
 export default {
@@ -329,6 +350,12 @@ export default {
     imgsToDisplay() {
       // return this.stay.imgUrls.concat(this.stay.imgUrls.slice(0,2))
       return [...this.stay.imgUrls, ...this.stay.imgUrls.slice(0, 2)]
+    },
+    serviceFee() {
+      return _random(15, 40)
+    },
+    totalNights() {
+      return _random(2, 10)
     },
   },
   methods: {
