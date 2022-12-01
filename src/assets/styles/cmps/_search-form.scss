@@ -13,12 +13,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 25px;
     height: 66px;
     width: max-content;
     margin: 0;
-    padding-block: 15px;
-    padding-inline-start: 33px;
 
     background-clip: padding-box;
     border: 1px solid #DDDDDD;
@@ -26,12 +23,48 @@
   }
 
   & .form-control {
+    padding: 12px 33px;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
+    border: 1px solid transparent;
+
+    & .el-input__wrapper {
+      box-shadow: none;
+      padding: 0;
+      height: 18px;
+      background: transparent;
+    }
     
-    & label {
+    & div {
+      font-size: rem(12px);
       font-weight: 600;
     }
+
+    & span {
+      font-size: rem(14px);
+    }
+  }
+
+  & .form-control:hover {
+    border: 1px solid transparent;
+    border-radius: 32px;
+    background-color: #EBEBEB;
+  }
+
+  & .dates-container {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    height: 100%;
+  }
+
+  & .form-date-picker {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
   }
 }
 

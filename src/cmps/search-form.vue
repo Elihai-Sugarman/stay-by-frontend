@@ -2,41 +2,36 @@
   <el-form class="search-form" :model="form">
     <div class="container">
       <div class="form-control">
-        <label>Where</label>
-        <input type="text" v-model="form.where" placeholder="Search destinations">
+        <div>Where</div>
+        <!-- <input type="text" v-model="form.where" placeholder="Search destinations"> -->
         <!-- <el-input v-model="form.where" placeholder="Where" size="large" /> -->
-        <!-- <el-autocomplete
+        <el-autocomplete
           v-model="form.where"
           :fetch-suggestions="searchLocations"
-          placeholder="Where"
+          placeholder="Search destinations"
           @select="handleSelect"
           clearable
-        /> -->
+          style="width: 260px"
+        />
+      </div>
+
+      <span class="splitter"></span>
+
+      <div class="dates-container">
+        <div class="form-control" @click="openDatePicker">
+          <div>Check in</div>
+          <span>Add dates</span>
+        </div>
+  
+        <span class="splitter"></span>
+  
+        <div class="form-control" @click="openDatePicker">
+          <div>Check out</div>
+          <span>Add dates</span>
         </div>
 
-      <span class="splitter"></span>
-
-      <div class="form-control">
-        <label>Check in</label>
-        <span>Add dates</span>
-      </div>
-
-      <span class="splitter"></span>
-
-      <div class="form-control" @click="openDatePicker">
-        <label>Check out</label>
-        <span>Add dates</span>
-      </div>
-
-      <span class="splitter"></span>
-
-      <div class="form-control" @click="openDatePicker">
-        <label>Who</label>
-        <span>Add guests</span>
-      </div>
-
-      <el-date-picker
-          style="display: none"
+        <el-date-picker
+          class="form-date-picker"
           ref="datePicker"
           v-model="form.checkDates"
           type="daterange"
@@ -44,10 +39,20 @@
           end-placeholder="Check out"
           size="large"
         />
+      </div>
+
+
+      <span class="splitter"></span>
+
+      <div class="form-control">
+        <div>Who</div>
+        <span>Add guests</span>
+
+        <button type="button" @click="handleSearch">
+          <icon icon-type="search" />
+        </button>
+      </div>
   
-      <button type="button" @click="handleSearch">
-        <icon icon-type="search" />
-      </button>
     </div>
   </el-form>
 </template>
@@ -89,7 +94,7 @@ export default {
       this.form.where = item
     },
     openDatePicker() {
-      this.$refs.datePicker?.click()
+      this.$refs.datePicker?.handleOpen()
     }
   },
   computed: {
