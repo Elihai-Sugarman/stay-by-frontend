@@ -42,7 +42,10 @@
   margin-top: 34px; 
   font-size: 14px;
 
-  & hr { margin: 0 }
+  & hr {
+    margin: 0;
+    border: #dff0ea;
+  }
 
   & li {
     padding: 8px 12px;
