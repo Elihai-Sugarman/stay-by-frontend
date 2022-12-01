@@ -48,7 +48,9 @@ export const stayStore = {
         },
         // used for datalist on search-bar
         locations({ allStays }) {
-            return allStays.map(({ address }) => `${address.city}, ${address.country}`)
+            return allStays.map(
+                ({ address }) => `${address.city}, ${address.country}`
+            )
         },
     },
     mutations: {
