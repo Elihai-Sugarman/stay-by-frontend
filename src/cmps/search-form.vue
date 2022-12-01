@@ -1,46 +1,53 @@
 <template>
   <el-form class="search-form" :model="form">
     <div class="container">
-      <label>
+      <div class="form-control">
+        <label>Where</label>
+        <input type="text" v-model="form.where" placeholder="Search destinations">
         <!-- <el-input v-model="form.where" placeholder="Where" size="large" /> -->
-        <el-autocomplete
+        <!-- <el-autocomplete
           v-model="form.where"
           :fetch-suggestions="searchLocations"
           placeholder="Where"
           @select="handleSelect"
           clearable
+        /> -->
+        </div>
+
+      <span class="splitter"></span>
+
+      <div class="form-control">
+        <label>Check in</label>
+        <span>Add dates</span>
+      </div>
+
+      <span class="splitter"></span>
+
+      <div class="form-control" @click="openDatePicker">
+        <label>Check out</label>
+        <span>Add dates</span>
+      </div>
+
+      <span class="splitter"></span>
+
+      <div class="form-control" @click="openDatePicker">
+        <label>Who</label>
+        <span>Add guests</span>
+      </div>
+
+      <el-date-picker
+          style="display: none"
+          ref="datePicker"
+          v-model="form.checkDates"
+          type="daterange"
+          start-placeholder="Check in"
+          end-placeholder="Check out"
+          size="large"
         />
-      </label>
-
-      <span class="splitter"></span>
   
-      <div>
-        <el-date-picker
-            v-model="form.checkDates"
-            type="daterange"
-            start-placeholder="Check in"
-            end-placeholder="Check out"
-            size="large"
-          />
-      </div>
-
-      <span class="splitter"></span>
-  
-      <label>
-        Who
-        <select>
-          <option value="">1</option>
-          <option value="">2</option>
-          <option value="">3</option>
-        </select>
-      </label>
-  
-      <div>
-        <button type="button" @click="handleSearch">
-          <icon icon-type="search" />
-        </button>
-
-      </div>
+      <button type="button" @click="handleSearch">
+        <icon icon-type="search" />
+      </button>
     </div>
   </el-form>
 </template>
@@ -63,7 +70,14 @@ export default {
   },
   methods: {
     handleSearch() {
-      console.log('this.form', this.form)
+      const query = {
+        q: this.form.where,
+        checkIn: this.form.checkDates[0].getTime(),
+        checkOut: this.form.checkDates[1].getTime(),
+        guests: this.form.guests
+      }
+    
+      this.$router.push({ path: '/explore', query })
     },
     searchLocations(queryString, cb) {
       const regex = new RegExp(queryString, 'i')
@@ -73,6 +87,9 @@ export default {
     },
     handleSelect(item) {
       this.form.where = item
+    },
+    openDatePicker() {
+      this.$refs.datePicker?.click()
     }
   },
   computed: {

@@ -24,5 +24,14 @@
     border: 1px solid #DDDDDD;
     border-radius: 32px;
   }
+
+  & .form-control {
+    display: flex;
+    flex-direction: column;
+    
+    & label {
+      font-weight: 600;
+    }
+  }
 }
 
