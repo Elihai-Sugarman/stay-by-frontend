@@ -122,13 +122,15 @@
   }
   .reservation {
     justify-content: flex-end;
+    position: sticky;
+    top: 200px;
 
     .reservation-container {
       border: 1px solid rgb(221, 221, 221);
       border-radius: 12px;
       padding: 24px;
       box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-      height: 568px;
+      // height: 568px;
       width: 80%;
       min-width: 300px;
 
@@ -282,6 +284,20 @@
         font-size: 16px;
         line-height: 20px;
         font-family: sans-serif;
+      }
+
+      .reservation-txt {
+        align-items: center;
+        margin: 8px 0 0;
+      }
+
+      .cost-breakdown {
+        gap: 48px;
+        margin-top: 24px;
+      }
+
+      .cost-details {
+        gap: 16px;
       }
     }
   }
