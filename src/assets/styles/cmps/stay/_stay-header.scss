@@ -1,6 +1,7 @@
 .stay-header {
     position: sticky;
     top: 80px;
+    z-index: 2;
     background-color: $clr6;
     box-sizing: border-box;
     color: $clr9;
