@@ -13,12 +13,12 @@
 
   & .search-preview {
     background-color: white;
-    border: 1px solid #DDDDDD;
+    border: 1px solid $clr12;
     border-radius: 40px;
     box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
     transition: box-shadow 0.2s ease;
     align-items: center;
-    color: #222222;
+    color: $clr7;
     display: inline-flex;
     max-width: 100%;
     vertical-align: middle;
@@ -43,7 +43,7 @@
       cursor: inherit;
     }
     & button.guests-btn {
-      color: #717171;
+      color: $clr8;
       font-weight: 400;
     }
 
@@ -79,5 +79,5 @@
   flex: 0 0 1px;
   height: 24px;
   width: 1px;
-  background-color: #DDDDDD;
+  background-color: $clr12;
 }
