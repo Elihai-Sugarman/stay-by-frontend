@@ -37,9 +37,9 @@
             <div class="capacity-subtitle">{{ stay.capacity }} guests</div>
           </div>
           <img :src="stay.host.imgUrl" />
-          <divider/>
         </div>
-
+        <divider/>
+        
         <div class="special-perks">
           <div class="superhost flex" v-if="stay.host.isSuperhost">
             <icon-cmp iconType="bwBadge" />
@@ -84,9 +84,13 @@
           </div>
         </div>
 
+        <divider/>
+
         <div class="summary">
           {{ stay.summary }}
         </div>
+
+        <divider/>
 
         <div class="amenities">
           <h4>What this place offers</h4>
@@ -96,7 +100,9 @@
             </li>
           </div>
         </div>
+
       </div>
+
 
       <div class="reservation-section">
         <div class="reservation flex">
@@ -256,10 +262,15 @@
                     <span>${{(serviceFee * totalNights)}}</span>
                   </div>
                 </div>
+
+                <div class="total-wrapper">
+                  <divider/>
+
                   <div class="cost-total flex justify-between">
                     <span>Total</span>
                     <span>${{(stay.price * totalNights)+(serviceFee * totalNights)}}</span>
                   </div>
+                </div>
               </div>
   
             </div>
@@ -269,7 +280,10 @@
       </div>
     </div>
 
+    <divider/>
+
     <div class="reviews-and-map">
+
       <div class="reviews">
         <h1 class="flex">
           <div class="review flex">
@@ -301,16 +315,18 @@
         </div>
       </div>
 
+      <!-- <divider/>
+
       <div class="map">
         <h4>Where you'll be</h4>
         <span>{{ stay.address.street }}</span>
-      </div>
+      </div> -->
     </div>
 
-    <details>
+    <!-- <details>
       <summary>Full JSON</summary>
       <pre>{{ stay }}</pre>
-    </details>
+    </details> -->
   </section>
 </template>
 

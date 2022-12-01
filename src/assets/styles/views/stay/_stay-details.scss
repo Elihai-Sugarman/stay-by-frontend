@@ -67,6 +67,9 @@
       padding-bottom: 32px;
     }
 
+    .divider {
+      padding: 0;
+    }
     .heading {
       img {
         height: 56px;
@@ -292,8 +295,14 @@
       }
 
       .cost-breakdown {
-        gap: 48px;
+        // gap: 48px;
         margin-top: 24px;
+        .total-wrapper {
+          margin-top: 24px;
+        }
+        .cost-total {
+          padding-top: 24px;
+        }
       }
 
       .cost-details {
