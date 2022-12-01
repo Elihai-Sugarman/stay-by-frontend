@@ -7,5 +7,22 @@
   height: 80px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+
+  & .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    height: 66px;
+    width: max-content;
+    margin: 0;
+    padding-block: 15px;
+    padding-inline-start: 33px;
+
+    background-clip: padding-box;
+    border: 1px solid #DDDDDD;
+    border-radius: 32px;
+  }
 }
+
