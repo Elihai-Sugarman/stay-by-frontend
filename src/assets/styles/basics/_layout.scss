@@ -9,7 +9,14 @@
     max-width: 2520px;
     margin-inline: auto;
     & .stay-details {
-        max-width: 1280px;
+        max-width: $stay-details-layout;
+    }
+
+    .main-header.stay & {
+        grid-template-columns:
+            $layout-padding
+            $stay-details-layout
+            $layout-padding !important;
     }
 
     @include for-xl {

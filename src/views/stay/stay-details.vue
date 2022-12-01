@@ -12,7 +12,7 @@
       </div>
 
       <span class="superhost flex" v-if="stay.host.isSuperhost">
-        <!-- <icon-cmp iconType="bwBadge" /> -->
+        <icon-cmp iconType="bwBadge" />
         Superhost
       </span>
 
@@ -338,6 +338,7 @@ import _random from 'lodash/random'
 import * as moment from 'moment'
 
 export default {
+  name: 'stay-details',
   data() {
     return {
       stay: null,

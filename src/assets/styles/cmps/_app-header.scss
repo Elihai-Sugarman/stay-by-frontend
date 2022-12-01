@@ -5,8 +5,11 @@
     height: 80px;
     background-color: white;
     padding-inline: $layout-padding;
-    // position: relative;
     z-index: 200;
+
+    &.stay {
+        position: relative;
+    }
 
     &::after {
         position: absolute;
@@ -37,6 +40,11 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-block: 16px;
+
+    .main-header.stay & {
+        max-width: $stay-details-layout;
+        margin-inline: auto;
+    }
 }
 
 .main-nav .brand {

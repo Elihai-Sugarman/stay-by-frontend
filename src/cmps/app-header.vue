@@ -67,7 +67,13 @@ export default {
       return this.$store.getters.loggedinUser
     },
     searchOpenClass() {
-      return { open: this.isSearchOpen }
+      return { open: this.isSearchOpen, ...this.stayDetailsClass }
+    },
+    isInStayDetails() {
+      return this.$route.name === 'stay-details'
+    },
+    stayDetailsClass() {
+      return { stay: this.isInStayDetails }
     }
   }
 }
