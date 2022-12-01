@@ -11,7 +11,7 @@
         <span class="rev-count"> {{ countReviews }} reviews</span>
       </div>
 
-      <span class="superhost" v-if="stay.host.isSuperhost">
+      <span class="superhost flex" v-if="stay.host.isSuperhost">
         <icon-cmp iconType="bwBadge" />
         Superhost
       </span>
@@ -29,66 +29,217 @@
 
     <div class="mid-section flex">
       <div class="more-details">
-        <div class="heading">
-          <h2 class="title">
-            {{ stay.type }} hosted by {{ stay.host.fullname }}
-          </h2>
-          <div class="subtitle">{{ stay.capacity }} guests</div>
+        <div class="heading flex justify-between">
+          <div class="txt">
+            <h2 class="title">
+              {{ stay.type }} hosted by {{ stay.host.fullname }}
+            </h2>
+            <div class="capacity-subtitle">{{ stay.capacity }} guests</div>
+          </div>
           <img :src="stay.host.imgUrl" />
         </div>
 
         <div class="special-perks">
-          <div v-if="stay.host.isSuperhost">
+          <div class="superhost flex" v-if="stay.host.isSuperhost">
             <icon-cmp iconType="bwBadge" />
-            <h4>{{ stay.host.fullname }} is a Superhost</h4>
-            <span
-              >Superhosts are experienced, highly rated hosts who are committed
-              to providing great stays for guests.</span
-            >
-          </div>
-
-          <div>
-            <icon-cmp iconType="key" />
-            <h4>Great check-in experience</h4>
-            <span
-              >100% of recent guests gave the check-in process a 5-star
-              rating.</span
-            >
-          </div>
-
-          <div>
-            <icon-cmp iconType="locMarker" />
-            <h4>Great location</h4>
-            <span>90% of recent guests gave the location a 5-star rating.</span>
-          </div>
-
-          <div>
-            <icon-cmp iconType="greatComm" />
-            <h4>Great communication</h4>
-            <span
-              >100% of recent guests rated {{ stay.host.fullname }} 5-star in
-              communication.</span
-            >
-          </div>
-
-          <div>
-            {{ stay.summary }}
-          </div>
-
-          <div class="amenities">
-            <h4>What this place offers</h4>
-            <div>
-              <li v-for="amenity in stay.amenities">
-                <stayAmenity :amenity="amenity" />
-              </li>
+            <div class="txt">
+              <h4>{{ stay.host.fullname }} is a Superhost</h4>
+              <span class="subtitle">
+                Superhosts are experienced, highly rated hosts who are committed
+                to providing great stays for guests.
+              </span>
             </div>
+          </div>
+
+          <div class="flex">
+            <icon-cmp iconType="key" />
+            <div class="txt">
+              <h4>Great check-in experience</h4>
+              <span class="subtitle">
+                100% of recent guests gave the check-in process a 5-star rating.
+              </span>
+            </div>
+          </div>
+
+          <div class="flex">
+            <icon-cmp iconType="locMarker" />
+            <div class="txt">
+              <h4>Great location</h4>
+              <span class="subtitle"
+                >90% of recent guests gave the location a 5-star rating.</span
+              >
+            </div>
+          </div>
+
+          <div class="flex">
+            <icon-cmp iconType="greatComm" />
+            <div class="txt">
+              <h4>Great communication</h4>
+              <span class="subtitle">
+                100% of recent guests rated {{ stay.host.fullname }} 5-star in
+                communication.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary">
+          {{ stay.summary }}
+        </div>
+
+        <div class="amenities">
+          <h4>What this place offers</h4>
+          <div class="amenities-container">
+            <li v-for="amenity in stay.amenities">
+              <stayAmenity :amenity="amenity" />
+            </li>
           </div>
         </div>
       </div>
 
-      <div>
+      <div class="reservation flex">
         <div class="reservation-container">
-          
+          <div class="reservation-form-header">
+            <p>
+              <span class="cost">${{ stay.price }}</span> / night
+            </p>
+            <p>
+              {{ avgRating }}
+              <span class="reviews">({{ countReviews }} reviews)</span>
+            </p>
+          </div>
+
+          <div class="reservation-data">
+            <div class="date-picker">
+              <div class="date-input">
+                <label>CHECK IN</label>
+                <input value="Tue Sep 07 2021" />
+              </div>
+              <div class="date-input">
+                <label>CHECK OUT</label>
+                <input value="Tue Sep 07 2021" />
+              </div>
+            </div>
+
+            <div class="guest-input">
+              <label>GUESTS</label>
+              <input value="2" />
+              <svg viewBox="0 0 320 512" width="100" title="angle-down">
+                <path
+                  d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div class="btn-container">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="content">
+              <button class="action-btn">
+                <span>Reserve</span>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -96,16 +247,31 @@
     <div class="reviews-and-map">
       <div class="reviews">
         <h1 class="flex">
-          <icon-cmp iconType="star" />
-          {{ avgRating }}
-          • {{ countReviews }} reviews
+          <div class="review flex">
+            <span class="avg-rating flex">
+              <icon-cmp iconType="star" />
+              {{ avgRating }}
+            </span>
+            <span>•</span>
+            <span class="rev-count"> {{ countReviews }} reviews</span>
+          </div>
         </h1>
         <div class="reviews-container">
           <li v-for="review in stay.reviews">
-            <img :src="review.by.imgUrl" />
-            {{ review.by.fullname }}
-            {{ getFormattedReviewDate(review.at) }}
-            {{ review.txt }}
+            <div class="title flex">
+              <img :src="review.by.imgUrl" />
+              <div class="flex column">
+                <span>
+                  {{ review.by.fullname }}
+                </span>
+                <span class="subtitle fs14">
+                  {{ getFormattedReviewDate(review.at) }}
+                </span>
+              </div>
+            </div>
+            <div class="txt">
+              {{ review.txt }}
+            </div>
           </li>
         </div>
       </div>
