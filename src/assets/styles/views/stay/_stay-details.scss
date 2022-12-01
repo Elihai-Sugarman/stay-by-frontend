@@ -1,3 +1,56 @@
 .stay-details {
   margin-inline: auto;
+
+  .name-subtitle {
+    gap: 18px;
+  }
+  .review {
+    gap: 5px;
+  }
+
+  .images-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    // grid-template-columns: repeat(4, minmax(187px, 272px));
+    grid-template-rows: repeat(2, minmax(194px, 225px));
+    gap: 8px;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      // aspect-ratio: 1.053/1;
+      height: 100%;
+      // vertical-align: bottom;
+    }
+
+    :first-child {
+      grid-row: 1/3;
+      grid-column: 1/3;
+    }
+  }
+
+  .more-details {
+    .heading {
+      img {
+        height: 56px;
+        width: 56px;
+        border-radius: 50%;
+      }
+    }
+  }
+  .reviews {
+    img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
+  }
+
+  .reservation-container {
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    height: 568px;
+  }
 }

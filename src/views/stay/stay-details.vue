@@ -1,116 +1,118 @@
 <template>
-  <section v-if="stay">
+  <section v-if="stay" class="stay-details">
     <h1 class="name-title">{{ stay.name }}</h1>
-    <div class="name-subtitle">
-      <span class="avg-rating">
-        <!-- <font-awesome-icon icon="fa-solid fa-star" /> -->
-        <icon-cmp iconType="star" />
-        {{ avgRating }}
-      </span>
-      <span class="rev-count">{{ countReviews }} reviews</span>
+    <div class="name-subtitle flex">
+      <div class="review flex">
+        <span class="avg-rating flex">
+          <icon-cmp iconType="star" />
+          {{ avgRating }}
+        </span>
+        <span>•</span>
+        <span class="rev-count"> {{ countReviews }} reviews</span>
+      </div>
+
       <span class="superhost" v-if="stay.host.isSuperhost">
         <icon-cmp iconType="bwBadge" />
         Superhost
       </span>
+
+      <span>•</span>
       <span class="address">
-        {{ stay.address.street }}, {{ stay.address.country }}
+        {{ stay.address.street }}
       </span>
     </div>
     <div class="images-container">
-      <li v-for="img in imgsToDisplay">
-        <img :src="img" />
-      </li>
+      <!-- <li v-for="img in imgsToDisplay"> -->
+      <img :src="img" v-for="img in imgsToDisplay" />
+      <!-- </li> -->
     </div>
 
-    <div class="more-details">
-      <div class="heading">
-        <h2 class="title">
-          {{ stay.type }} hosted by {{ stay.host.fullname }}
-        </h2>
-        <div class="subtitle">{{ stay.capacity }} guests</div>
-        <img :src="stay.host.imgUrl" />
-      </div>
-
-      <div class="special-perks">
-        <div v-if="stay.host.isSuperhost">
-          <icon-cmp iconType="bwBadge" />
-          <h4>{{ stay.host.fullname }} is a Superhost</h4>
-          <span
-            >Superhosts are experienced, highly rated hosts who are committed to
-            providing great stays for guests.</span
-          >
+    <div class="mid-section flex">
+      <div class="more-details">
+        <div class="heading">
+          <h2 class="title">
+            {{ stay.type }} hosted by {{ stay.host.fullname }}
+          </h2>
+          <div class="subtitle">{{ stay.capacity }} guests</div>
+          <img :src="stay.host.imgUrl" />
         </div>
 
-        <div>
-          <icon-cmp iconType="key" />
-          <h4>Great check-in experience</h4>
-          <span
-            >100% of recent guests gave the check-in process a 5-star
-            rating.</span
-          >
-        </div>
-
-        <div>
-          <icon-cmp iconType="locMarker" />
-          <h4>Great location</h4>
-          <span>90% of recent guests gave the location a 5-star rating.</span>
-        </div>
-
-        <div>
-          <icon-cmp iconType="greatComm" />
-          <h4>Great communication</h4>
-          <span
-            >100% of recent guests rated {{ stay.host.fullname }} 5-star in
-            communication.</span
-          >
-        </div>
-
-        <div>
-          {{ stay.summary }}
-        </div>
-
-        <div class="amenities">
-          <h4>What this place offers</h4>
+        <div class="special-perks">
+          <div v-if="stay.host.isSuperhost">
+            <icon-cmp iconType="bwBadge" />
+            <h4>{{ stay.host.fullname }} is a Superhost</h4>
+            <span
+              >Superhosts are experienced, highly rated hosts who are committed
+              to providing great stays for guests.</span
+            >
+          </div>
 
           <div>
-            <li v-for="amenity in stay.amenities">
-              <stayAmenity :amenity="amenity"/>
-            </li>
+            <icon-cmp iconType="key" />
+            <h4>Great check-in experience</h4>
+            <span
+              >100% of recent guests gave the check-in process a 5-star
+              rating.</span
+            >
           </div>
 
-          <div v-if="stay.amenities.includes('Heating')">
-            <icon-cmp iconType="thermometer" />
-            <span>Heating</span>
+          <div>
+            <icon-cmp iconType="locMarker" />
+            <h4>Great location</h4>
+            <span>90% of recent guests gave the location a 5-star rating.</span>
           </div>
-          <div v-if="stay.amenities.includes('Bathroom essentials')">
-            <icon-cmp iconType="bathEssentials" />
-            <span>Bathroom essentials</span>
+
+          <div>
+            <icon-cmp iconType="greatComm" />
+            <h4>Great communication</h4>
+            <span
+              >100% of recent guests rated {{ stay.host.fullname }} 5-star in
+              communication.</span
+            >
           </div>
-          <div v-if="stay.amenities.includes('Cooking basics')">
-            <icon-cmp iconType="kitchen" />
-            <span>Cooking basics</span>
+
+          <div>
+            {{ stay.summary }}
           </div>
-          <div v-if="stay.amenities.includes('Bed linens')">
-            <icon-cmp iconType="linens" />
-            <span>Bed linens</span>
-          </div>
-          <div v-if="stay.amenities.includes('Hot water kettle')">
-            <icon-cmp iconType="kettle" />
-            <span>Hot water kettle</span>
-          </div>
-          <div v-if="stay.amenities.includes('Dishes and silverware')">
-            <icon-cmp iconType="dishes" />
-            <span>Dishes and silverware</span>
-          </div>
-          <div v-if="stay.amenities.includes('Washer')">
-            <icon-cmp iconType="washer" />
-            <span>Washer</span>
-          </div>
-          <div v-if="stay.amenities.includes('Dishwasher')">
-            <icon-cmp iconType="dishwasher" />
-            <span>Dishwasher</span>
+
+          <div class="amenities">
+            <h4>What this place offers</h4>
+            <div>
+              <li v-for="amenity in stay.amenities">
+                <stayAmenity :amenity="amenity" />
+              </li>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div>
+        <div class="reservation-container">
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-and-map">
+      <div class="reviews">
+        <h1 class="flex">
+          <icon-cmp iconType="star" />
+          {{ avgRating }}
+          • {{ countReviews }} reviews
+        </h1>
+        <div class="reviews-container">
+          <li v-for="review in stay.reviews">
+            <img :src="review.by.imgUrl" />
+            {{ review.by.fullname }}
+            {{ getFormattedReviewDate(review.at) }}
+            {{ review.txt }}
+          </li>
+        </div>
+      </div>
+
+      <div class="map">
+        <h4>Where you'll be</h4>
+        <span>{{ stay.address.street }}</span>
       </div>
     </div>
 
@@ -125,6 +127,7 @@
 // import {userService} from '../services/user.service'
 import iconCmp from '../../cmps/icon-cmp.vue'
 import stayAmenity from '../../cmps/stay/stay-amenity.vue'
+import * as moment from 'moment'
 
 export default {
   data() {
@@ -169,10 +172,13 @@ export default {
         stayId,
       })
     },
+    getFormattedReviewDate(dateString) {
+      return moment(dateString).format('MMM' + ' ' + 'YYYY')
+    },
   },
   components: {
     iconCmp,
-    stayAmenity
+    stayAmenity,
   },
 }
 </script>
