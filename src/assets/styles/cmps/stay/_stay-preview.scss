@@ -44,6 +44,12 @@
     }
 }
 
+.liked {
+    & svg {
+        fill: $brand-clr !important;
+    }
+}
+
 .preview-info {
     margin-top: 12px;
     display: grid;

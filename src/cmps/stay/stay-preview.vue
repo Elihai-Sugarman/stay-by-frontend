@@ -3,7 +3,7 @@
     <article class="stay-preview">
       <div class="stay-img-container">
         <img class="stay-img" :src="stay.imgUrls[0]"/>
-        <icon-cmp iconType="heart" class="stay-like" @click.prevent="likeStay"/>
+        <icon-cmp iconType="heart" class="stay-like" @click.prevent="likeStay" :class="{liked: liked}"/>
       </div>
       <div class="preview-info">
           <div class="preview-address">{{ stay.address.city }}, {{ stay.address.country }}</div>
@@ -40,6 +40,11 @@ export default {
   created() {
     
   },
+  data(){
+    return {
+      liked: false
+    }
+  },
   computed:{
     timeAgo(){
       return moment(this.stay.createdAt).fromNow()
@@ -64,6 +69,7 @@ export default {
   methods: {
     likeStay(){
       console.log('it works!')
+      this.liked = !this.liked
     },
     async removeStay(stayId) {
       try {
