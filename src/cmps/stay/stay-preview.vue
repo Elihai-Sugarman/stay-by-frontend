@@ -13,16 +13,18 @@
         <icon-cmp iconType="heart" class="stay-like" @click.prevent="likeStay" :class="{liked: liked}"/>
       </div>
       <div class="preview-info">
-          <div class="preview-address">{{ stay.address.city }}, {{ stay.address.country }}</div>
-          <span v-if="stay.reviews.length" class="preview-data-info flex">
-            <span class="preview-rate-icon">
-              <icon-cmp iconType="star"/>
-            </span>
-            <span class="preview-rate">
-              {{ rateInfo }}
-            </span>
+        <div class="preview-address">{{ stay.type }} in {{ stay.address.city }}</div>
+        <!-- <div class="preview-address">{{ stay.address.city }}, {{ stay.address.country }}</div> -->
+        <span v-if="stay.reviews.length" class="preview-data-info flex">
+          <span class="preview-rate-icon">
+            <icon-cmp iconType="star"/>
           </span>
-        <div class="preview-time-ago">Added {{ timeAgo }}</div>
+          <span class="preview-rate">
+            {{ rateInfo }}
+          </span>
+        </span>
+        <div class="preview-time-ago">{{ stay.name }}</div>
+        <!-- <div class="preview-time-ago">Added {{ timeAgo }}</div> -->
         <div class="preview-dates">{{ availableDates }}</div>
         <div class="preview-price"><span class="bold">${{ stay.price }}</span> / night</div>
     </div>
