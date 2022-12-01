@@ -6,7 +6,7 @@
     <nav class="main-nav">
       <router-link to="/">
         <div class="brand">
-          <font-awesome-icon icon="fa-brands fa-airbnb" />
+          <icon icon-type="airbnbLogo" />
           <span class="brand-txt">stayby</span>
         </div>
       </router-link>
@@ -28,11 +28,13 @@
 <script>
 import searchBar from './search-bar.vue'
 import userNav from './user-nav.vue'
+import icon from './icon-cmp.vue'
 
 export default {
   components:{
     searchBar,
-    userNav
+    userNav,
+    icon
   },
   data() {
     return {
