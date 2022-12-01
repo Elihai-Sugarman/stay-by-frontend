@@ -35,6 +35,60 @@
     display: inline-flex;
     max-width: 100%;
     vertical-align: middle;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+    }
+
+    & .splitter {
+      flex: 0 0 1px;
+      height: 24px;
+      width: 1px;
+      background-color: #DDDDDD;
+    }
+
+    & button {
+      background-color: transparent;
+      color: inherit;
+      font-size: rem(14px);
+      font-weight: 600;
+      line-height: 18px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      min-width: 80px;
+      cursor: inherit;
+    }
+    & button.guests-btn {
+      color: #717171;
+      font-weight: 400;
+    }
+
+    & button.search-btn {
+      min-width: unset;
+      color: white;
+      background-color: $brand-clr;
+
+      border-radius: 50%;
+      padding: 10px;
+      height: 32px;
+      width: 32px;
+
+      & .icon-svg {
+        padding: 0;
+        display: block;
+        fill: none;
+        height: 12px;
+        width: 12px;
+        overflow: visible;
+
+        & svg {
+          stroke-width: 5.33333 !important;
+          height: 12px !important;
+          width: 12px !important;
+        }
+      }
+    }
   }
-  // #717171
 }

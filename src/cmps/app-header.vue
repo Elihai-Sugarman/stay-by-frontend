@@ -14,7 +14,10 @@
 
       <search-bar
         :open="isSearchOpen"
-        @click="(isSearchOpen = true)" />
+        @click="openSearch"
+        @anyWhere="anyWhere"
+        @anyWeek="anyWeek"
+        @addGuests="addGuests" />
 
       <user-nav
         :open="isUserNavOpen"
@@ -40,6 +43,23 @@ export default {
   },
   created() {
     document.addEventListener('scroll', () => this.isSearchOpen = false)
+  },
+  methods: {
+    openSearch() {
+      this.isSearchOpen = true
+    },
+    anyWhere() {
+      this.openSearch()
+      console.log('anyWhere')
+    },
+    anyWeek() {
+      this.openSearch()
+      console.log('anyWeek')
+    },
+    addGuests() {
+      this.openSearch()
+      console.log('addGuests')
+    }
   },
   computed: {
     user() {
