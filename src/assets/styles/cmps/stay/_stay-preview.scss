@@ -16,6 +16,10 @@
     }
 }
 
+.stay-img-container {
+    position: relative;
+}
+
 .stay-img{
     object-fit: cover;
     width: 100%;
@@ -24,6 +28,20 @@
     vertical-align: bottom;
     box-sizing: border-box;
     border-radius: 5%;
+}
+
+.stay-like {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    box-sizing: border-box;
+    color: white;
+    border-radius: 50%;
+    & svg {
+        width: 24px !important;
+        height: 24px !important;
+        fill: rgba(0, 0, 0, 0.5) !important;
+    }
 }
 
 .preview-info {

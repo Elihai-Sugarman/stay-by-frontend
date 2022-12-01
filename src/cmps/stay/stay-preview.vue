@@ -1,7 +1,10 @@
 <template>
   <router-link class="li" :to="`/stay/${stay._id}`" target="_blank">
     <article class="stay-preview">
-      <img class="stay-img" :src="stay.imgUrls[0]"/>
+      <div class="stay-img-container">
+        <img class="stay-img" :src="stay.imgUrls[0]"/>
+        <icon-cmp iconType="heart" class="stay-like" @click.prevent="likeStay"/>
+      </div>
       <div class="preview-info">
           <div class="preview-address">{{ stay.address.city }}, {{ stay.address.country }}</div>
           <span v-if="stay.reviews.length" class="preview-data-info flex">
@@ -59,6 +62,9 @@ export default {
     },
   },
   methods: {
+    likeStay(){
+      console.log('it works!')
+    },
     async removeStay(stayId) {
       try {
         await this.$store.dispatch(getActionRemoveStay(stayId))
