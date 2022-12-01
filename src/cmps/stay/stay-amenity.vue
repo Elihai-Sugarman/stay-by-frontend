@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="amenity flex">
     <!-- {{camelizedAmenity}} -->
     <icon-cmp :iconType="camelizedAmenity" />
     <span>{{amenity}}</span>
