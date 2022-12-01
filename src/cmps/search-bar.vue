@@ -16,40 +16,22 @@
         <button type="button"><icon icon-type="search" /></button>
       </div>
     </div>
-    <form v-else @submit.prevent="" class="search-form">
-      <label>
-        Where?
-        <input type="text">
-      </label>
-      <label>
-        Where?
-        <input type="date">
-      </label>
-      <label>
-        Where?
-        <input type="date">
-      </label>
-      <label>
-        Where?
-        <select>
-          <option value="">1</option>
-          <option value="">2</option>
-          <option value="">3</option>
-        </select>
-      </label>
 
-      <button type="button"><icon icon-type="search" /></button>
-    </form>
+    <search-form v-else />
   </section>
 </template>
 
 <script>
 import icon from './icon-cmp.vue'
+import searchForm from './search-form.vue'
 
 export default {
   props: { open: Boolean },
   emits: ['click', 'anyWhere', 'anyWeek', 'addGuests'],
-  components: { icon },
+  components: {
+    icon,
+    searchForm
+  },
   data() {
     return {}
   },
