@@ -1,0 +1,14 @@
+.stay-filter {
+    background-color: transparent;
+    cursor: pointer;
+    border: 1px solid $clr12;
+    border-radius: 12px;
+    margin: 0;
+    padding: 7px 0;
+    display: inline-block;
+    outline: 0;
+    color: $clr7;
+    width: 90px;
+    height: 48px;
+    font-size: rem(12px);
+}
