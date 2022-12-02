@@ -4,6 +4,7 @@
     text-align: center;
     min-width: 56px;
     color: $clr11;
+    border-bottom: 2px solid transparent;
 
     &:hover {
         border-bottom: 2px solid $clr11;
