@@ -1,5 +1,6 @@
 import io from 'socket.io-client'
 import { userService } from './user.service'
+import { utilService } from './util.service'
 
 export const SOCKET_EVENT_ADD_MSG = 'chat-add-msg'
 export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
@@ -42,7 +43,7 @@ function createSocketService() {
       else socket.off(eventName, cb)
     },
     emit(eventName, data) {
-      data = JSON.parse(JSON.stringify(data))
+      data = utilService.deepCopy(data)
       socket.emit(eventName, data)
     },
     login(userId) {

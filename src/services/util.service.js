@@ -7,6 +7,7 @@ export const utilService = {
     randomPastTime,
     saveToStorage,
     loadFromStorage,
+    deepCopy
 }
 
 const month = [
@@ -115,4 +116,8 @@ function saveToStorage(key, value) {
 function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return data ? JSON.parse(data) : undefined
+}
+
+function deepCopy(any) {
+    return JSON.parse(JSON.stringify(any))
 }

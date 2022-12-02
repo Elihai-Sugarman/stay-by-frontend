@@ -14,6 +14,7 @@ import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import stayEdit from './stay-edit.vue'
 import stayList from '../../cmps/stay/stay-list.vue'
 import stayHeader from '../../cmps/stay/stay-header.vue'
+import { utilService } from '../../services/util.service'
 
 export default {
   components: {
@@ -71,7 +72,7 @@ export default {
     },
     filter(label){
       const filterBy = { label }
-      this.$store.commit({type: 'setFilterBy', filterBy: JSON.parse(JSON.stringify(filterBy))})
+      this.$store.commit({ type: 'setFilterBy', filterBy: utilService.deepCopy(filterBy) })
       this.$store.dispatch('loadStays')
     }
   }
