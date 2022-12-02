@@ -42,9 +42,9 @@
       margin-right: 3px;
     }
   }
-  .rating-review {
-    gap: 5px;
-  }
+  // .rating-review {
+  //   gap: 5px;
+  // }
 
   .images-container {
     display: grid;
@@ -132,12 +132,12 @@
       border-radius: 50%;
     }
     h1 .review {
-      .avg-rating {
-        align-items: baseline;
-      }
-      .icon-svg {
-        margin-right: 3px;
-      }
+      // .avg-rating {
+      //   align-items: baseline;
+      // }
+      // .icon-svg {
+      //   margin-right: 3px;
+      // }
     }
 
     .reviews-container {
@@ -244,15 +244,14 @@
       }
 
       span.cost {
-        color: black;
         font-size: 1.3em;
       }
 
-      span.reviews {
-        color: #00000070;
-        font-size: 0.85em;
-        text-decoration: underline;
-      }
+      // span.reviews {
+      //   color: #00000070;
+      //   font-size: 0.85em;
+      //   text-decoration: underline;
+      // }
 
       .btn-container {
         position: relative;

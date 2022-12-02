@@ -115,10 +115,12 @@
                 <p>
                   <span class="cost font-md">${{ stay.price }}</span> night
                 </p>
-                <p>
+                <!-- <p>
                   {{ avgRating }}
                   <span class="reviews">{{ countReviews }} reviews</span>
-                </p>
+                </p> -->
+                <ratingReview :stay="stay"/>
+
               </div>
               <div class="reservation-data">
                 <div class="date-picker">
