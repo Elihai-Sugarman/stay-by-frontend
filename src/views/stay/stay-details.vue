@@ -2,22 +2,25 @@
   <section v-if="stay" class="stay-details">
     <h1 class="name-title">{{ stay.name }}</h1>
     <div class="name-subtitle flex">
-      <div class="review flex">
-        <span class="avg-rating flex">
+      <!-- <div class="review flex">
+        <span class="avg-rating flex link">
           <icon-cmp iconType="star" />
           {{ avgRating }}
         </span>
         <span>•</span>
-        <span class="rev-count"> {{ countReviews }} reviews</span>
-      </div>
+        <span class="rev-count link font-md"> {{ countReviews }} reviews</span>
+      </div> -->
+      
+      <ratingReview :stay="stay"/>
 
+      <span v-if="stay.host.isSuperhost">•</span>
       <span class="superhost flex" v-if="stay.host.isSuperhost">
-        <icon-cmp iconType="bwBadge" />
+        <!-- <icon-cmp iconType="bwBadge" /> -->
         Superhost
       </span>
 
       <span>•</span>
-      <span class="address">
+      <span class="address link font-md">
         {{ stay.address.street }}
       </span>
     </div>
@@ -27,7 +30,7 @@
       <!-- </li> -->
     </div>
 
-    <div class="mid-section flex">
+    <div class="mid-section">
       <div class="more-details">
         <div class="heading flex justify-between">
           <div class="txt">
@@ -106,15 +109,15 @@
 
       <div class="reservation-section">
         <div class="reservation flex">
-          <div class="reservation-container">
+          <div class="reservation-container font-thin">
             <div>
               <div class="reservation-form-header">
                 <p>
-                  <span class="cost">${{ stay.price }}</span> / night
+                  <span class="cost font-md">${{ stay.price }}</span> night
                 </p>
                 <p>
                   {{ avgRating }}
-                  <span class="reviews">({{ countReviews }} reviews)</span>
+                  <span class="reviews">{{ countReviews }} reviews</span>
                 </p>
               </div>
               <div class="reservation-data">
@@ -254,11 +257,11 @@
               <div class="cost-breakdown flex column">
                 <div class="cost-details flex column">
                   <div class="base-cost flex justify-between">
-                    <span>${{stay.price}} x {{totalNights}} nights</span>
+                    <span class="link">${{stay.price}} x {{totalNights}} nights</span>
                     <span>${{(stay.price * totalNights)}}</span>
                   </div>
                   <div class="service-fee flex justify-between">
-                    <span>Service Fee</span>
+                    <span class="link">Service fee</span>
                     <span>${{(serviceFee * totalNights)}}</span>
                   </div>
                 </div>
@@ -266,7 +269,7 @@
                 <div class="total-wrapper">
                   <divider/>
 
-                  <div class="cost-total flex justify-between">
+                  <div class="cost-total flex justify-between font-md">
                     <span>Total</span>
                     <span>${{(stay.price * totalNights)+(serviceFee * totalNights)}}</span>
                   </div>
@@ -286,14 +289,16 @@
 
       <div class="reviews">
         <h1 class="flex">
-          <div class="review flex">
+          <!-- <div class="review flex">
             <span class="avg-rating flex">
               <icon-cmp iconType="star" />
               {{ avgRating }}
             </span>
             <span>•</span>
             <span class="rev-count"> {{ countReviews }} reviews</span>
-          </div>
+          </div> -->
+          <ratingReview :stay="stay"/>
+
         </h1>
         <div class="reviews-container">
           <li v-for="review in stay.reviews">
@@ -334,6 +339,7 @@
 // import {userService} from '../services/user.service'
 import iconCmp from '../../cmps/icon-cmp.vue'
 import stayAmenity from '../../cmps/stay/stay-amenity.vue'
+import ratingReview from './rating-review-cmp.vue'
 import _random from 'lodash/random'
 import * as moment from 'moment'
 
@@ -394,6 +400,7 @@ export default {
   components: {
     iconCmp,
     stayAmenity,
+    ratingReview
   },
 }
 </script>

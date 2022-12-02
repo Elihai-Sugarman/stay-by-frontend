@@ -1,9 +1,18 @@
 .stay-details {
+
+  letter-spacing: 0.007em; //do we need this everywhere???
+
   & > * {
     margin-top: 18px;
   }
-  .md {
+  .link {
+    text-decoration: underline;
+  }
+  .font-md {
     font-family: 'cereal-medium';
+  }
+  .font-thin {
+    font-family: 'cereal-light';
   }
 
   .name-title {
@@ -12,6 +21,7 @@
 
   .subtitle {
     color: $clr8;
+    font-family: 'cereal-light';
   }
   margin-inline: auto;
 
@@ -32,7 +42,7 @@
       margin-right: 3px;
     }
   }
-  .review {
+  .rating-review {
     gap: 5px;
   }
 
@@ -40,7 +50,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     // grid-template-columns: repeat(4, minmax(187px, 272px));
-    grid-template-rows: repeat(2, minmax(194px, 225px));
+    grid-template-rows: repeat(2, minmax(194px, 278px));
     gap: 8px;
 
     border-radius: 12px;
@@ -61,7 +71,10 @@
   }
 
   .mid-section {
-    gap: 50px;
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+
+    // gap: 50px;
   }
 
   .more-details {
@@ -84,10 +97,23 @@
       }
     }
 
-    .special-perks > * {
-      // gap: 16px;
-      gap: rem(16px);
+    .special-perks {
+
+      & > * {
+        // gap: 16px;
+        gap: rem(16px);
+        margin-bottom: rem(24px);
+        line-height: rem(20px);
+      }
+
+      h4 {
+        font-family: 'cereal-medium';
+      }
+      .subtitle {
+        font-size: rem(14px);
+      }
     }
+    
 
     .amenities-container {
       display: grid;
@@ -129,10 +155,15 @@
       }
     }
   }
+  .reservation-section {
+    margin-top: 32px;
+  }
   .reservation {
     justify-content: flex-end;
     position: sticky;
-    top: 200px;
+    top: 150px;
+    //should be -
+    //top: var(--navigation-bar-offset, 80px) !important
 
     .reservation-container {
       border: 1px solid rgb(221, 221, 221);
@@ -142,6 +173,10 @@
       // height: 568px;
       width: 80%;
       min-width: 300px;
+
+      .reservation-txt {
+        font-size: em(14px);
+      }
 
       .reservation-form-header {
         display: flex;
@@ -291,8 +326,8 @@
         padding: 0 0;
         margin: 0 0;
         font-size: 16px;
-        line-height: 20px;
-        font-family: sans-serif;
+        // line-height: 20px;
+        // font-family: sans-serif;
       }
 
       .reservation-txt {
