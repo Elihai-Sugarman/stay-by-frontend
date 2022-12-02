@@ -22,52 +22,6 @@
     border-radius: 32px;
   }
 
-  & .form-control:last-child {
-    width: 260px;
-    display: inline-flex;
-  }
-
-  & .form-control.submit {
-    flex-direction: row;
-    justify-content: space-between;
-
-    & > div {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    button {
-      margin: 0;
-    }
-  }
-
-  & .form-control {
-    padding: 12px 33px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid transparent;
-    border-radius: 32px;
-
-    &.active {
-      background-color: #FFFFFF;
-      box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.2);
-    }
-
-    & .el-input__wrapper {
-      box-shadow: none;
-      padding: 0;
-      height: 18px;
-      background: transparent;
-    }
-  }
-
-  & .form-control:hover:not(.active) {
-    border: 1px solid transparent;
-    background-color: #EBEBEB;
-  }
-
   & .dates-container {
     display: inline-flex;
     position: relative;
@@ -91,4 +45,75 @@
   & .subtitle {
     font-size: rem(14px);
   }
+}
+
+.search-form .container .form-control {
+  padding: 12px 33px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid transparent;
+  border-radius: 32px;
+
+  & .branded-btn {
+    width: 48px;
+    transition: width .3s;
+
+    & .content {
+      border-radius: 32px;
+    }
+  }
+
+  &.active {
+    background-color: #FFFFFF;
+    box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.2);
+
+    & .branded-btn {
+      width: 112px;
+    }
+  }
+
+  & .el-input__wrapper {
+    box-shadow: none;
+    padding: 0;
+    height: 18px;
+    background: transparent;
+  }
+
+  &:last-of-type {
+    padding: 12px 9px;
+  }
+
+  &:last-child {
+    width: 260px;
+    display: inline-flex;
+  }
+
+  &.submit {
+    flex-direction: row;
+    justify-content: space-between;
+
+    & > div:not(.branded-btn) {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    button {
+      margin: 0;
+    }
+  }
+
+  &:hover:not(.active) {
+    border: 1px solid transparent;
+    background-color: #EBEBEB;
+  }
+}
+
+.el-picker-panel__body {
+  background: var(--f-mkcy-f);
+  border-radius: 32px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 8px 16px rgb(0 0 0 / 15%);
+  margin-top: 12px;
+  padding: 16px 32px;
 }

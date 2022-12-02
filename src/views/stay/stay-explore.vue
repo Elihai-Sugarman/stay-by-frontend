@@ -1,11 +1,10 @@
 <template>
     <div class="container home">
-      <stay-list v-if="stays.length" :stays="stays" />
+      <stay-list v-if="searchedStays.length" :stays="searchedStays" />
     </div>
   </template>
   
   <script>
-  import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
   import stayList from '../../cmps/stay/stay-list.vue'
   
   export default {
@@ -16,57 +15,30 @@
       loggedInUser() {
         return this.$store.getters.loggedinUser
       },
-      stays() {
-        return this.$store.getters.stays
-      }
+      searchedStays() {
+        return this.$store.getters.searchedStays
+      },
     },
     created() {
       this.$store.dispatch({ type: 'loadStays' })
       this.$store.dispatch({ type: 'loadAllStays' })
+
+      this.filterByAddress()
     },
     methods: {
-      async removeStay(stayId) {
-        try {
-          await this.$store.dispatch(getActionRemoveStay(stayId))
-          showSuccessMsg('Stay removed')
-  
-        } catch (err) {
-          console.log(err)
-          showErrorMsg('Cannot remove stay')
+      filterByAddress() {
+        const address = {
+          city: this.$route.query.city,
+          country: this.$route.query.country
         }
-      },
-      async updateStay(stay) {
-        try {
-          stay = { ...stay }
-          stay.price = +prompt('New price?', stay.price)
-          await this.$store.dispatch(getActionUpdateStay(stay))
-          showSuccessMsg('Stay updated')
-  
-        } catch (err) {
-          console.log(err)
-          showErrorMsg('Cannot update stay')
-        }
-      },
-      async addStayMsg(stayId) {
-        try {
-          await this.$store.dispatch(getActionAddStayMsg(stayId))
-          showSuccessMsg('Stay msg added')
-        } catch (err) {
-          console.log(err)
-          showErrorMsg('Cannot add stay msg')
-        }
-      },
-      printStayToConsole(stay) {
-        console.log('Stay msgs:', stay.msgs)
-      },
-      filter(label){
-        const filterBy = { label }
-        this.$store.commit({type: 'setFilterBy', filterBy: JSON.parse(JSON.stringify(filterBy))})
-        this.$store.dispatch('loadStays')
+
+        setTimeout(() => {
+          this.$store.commit({ type: 'setFilterBy', filterBy: { address }})
+
+        }, 1000)
+        // this.$store.dispatch('loadStays')
       }
-    }
-  
-  
+    },
   }
   </script>
   

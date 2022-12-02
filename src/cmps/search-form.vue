@@ -5,9 +5,8 @@
         <div class="title">Where</div>
         <el-autocomplete
           v-model="form.where"
-          :fetch-suggestions="searchLocations"
+          :fetch-suggestions="getSearchLocations"
           placeholder="Search destinations"
-          @select="handleSelect"
           style="width: 260px"
           clearable
           ref="whereInput"
@@ -58,9 +57,10 @@
           <span class="subtitle">Add guests</span>
         </div>
 
-        <button type="button" @click="handleSearch">
+        <branded-btn @click="handleSearch">
           <icon icon-type="search" />
-        </button>
+          <span v-if="getActiveClass('who').active">Search</span>
+        </branded-btn>
       </div>
 
     </div>
@@ -92,23 +92,34 @@ export default {
   },
   methods: {
     handleSearch() {
+      const [city, country] = this.form.where.split(', ')
       const query = {
-        q: this.form.where,
-        checkIn: this.form.checkDates[0].getTime(),
-        checkOut: this.form.checkDates[1].getTime(),
+        city,
+        country,
+        checkIn: this.form.checkDates[0]?.getTime(),
+        checkOut: this.form.checkDates[1]?.getTime(),
         guests: this.form.guests
       }
 
       this.$router.push({ path: '/explore', query })
+      this.$refs.datePicker?.handleClose()
     },
-    searchLocations(queryString, cb) {
+    getSearchLocations(queryString, cb) {
       const regex = new RegExp(queryString, 'i')
-      const filteredLocs = this.AllLocations.filter(locString => regex.test(locString))
+      const filteredLocs = this.AllLocations
+        .filter(({ city, country }) => {
+          return regex.test(country) || regex.test(city)
+        })
+        // add value prop for the element-plus autocomplete
+        .map(address => {
+          const formattedValue = `${address.city}, ${address.country}`
+          return {
+            ...address,
+            value: formattedValue
+          }
+        })
 
-      cb(filteredLocs.map(locStr => ({ value: locStr })))
-    },
-    handleSelect(item) {
-      this.form.where = item
+      cb(filteredLocs)
     },
     openDatePicker(type) {
       this.setActive(type)

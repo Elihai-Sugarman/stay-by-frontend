@@ -37,6 +37,22 @@ export const stayStore = {
         stays(state) {
             return state.stays
         },
+        searchedStays({ stays, filterBy }) {
+            let filteredStays = []
+
+            if (filterBy?.address) {
+                const { city, country } = filterBy.address
+                const cityRegex = new RegExp(city, 'i')
+                const countRegex = new RegExp(country, 'i')
+
+                filteredStays = stays.filter(({ address }) =>
+                    countRegex.test(address.country) ||
+                    cityRegex.test(address.city)
+                )
+            }
+
+            return filteredStays
+        },
         labels(state) {
             const labels = []
             state.allStays.forEach((stay) => {
@@ -46,11 +62,9 @@ export const stayStore = {
             })
             return labels
         },
-        // used for datalist on search-bar
+        // used for autocomplete on search-bar
         locations({ allStays }) {
-            return allStays.map(
-                ({ address }) => `${address.city}, ${address.country}`
-            )
+            return allStays.map(({ address }) => address)
         },
     },
     mutations: {
