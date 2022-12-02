@@ -4,7 +4,7 @@
     class="main-header full divider"
     :class="searchOpenClass">
     <nav class="main-nav">
-      <router-link to="/">
+      <router-link to="/" @click="resetFilters">
         <div class="brand">
           <icon icon-type="airbnbLogo" />
           <span class="brand-txt">stayby</span>
@@ -60,6 +60,9 @@ export default {
     addGuests() {
       this.openSearch()
       console.log('addGuests')
+    },
+    resetFilters() {
+      this.$store.commit({ type: 'setFilterBy', filterBy: null })
     }
   },
   computed: {
