@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import stayApp from './views/stay/stay-app.vue'
 import stayDetails from './views/stay/stay-details.vue'
 import stayEdit from './views/stay/stay-edit.vue'
+import stayExplore from './views/stay/stay-explore.vue'
 
 import loginSignup from './views/login-signup.vue'
 import orderDetails from './views/order-details.vue'
@@ -36,7 +37,12 @@ const routes = [
         path: '/login',
         name: 'login-signup',
         component: loginSignup,
-    }
+    },
+    {
+        path: '/explore',
+        name: 'explore',
+        component: stayExplore,
+    },
 ]
 
 export const router = createRouter({

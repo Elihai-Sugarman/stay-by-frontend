@@ -1,13 +1,6 @@
 <template>
   <div class="container home">
     <stay-header @filter="filter" />
-    <!-- <div class="block text-center" m="t-4">
-    <el-carousel trigger="click" height="150px">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <h3 class="small justify-center" text="2xl">{{ item }}</h3>
-      </el-carousel-item>
-    </el-carousel>
-  </div> -->
     <stay-list v-if="stays.length" :stays="stays" />
     <!-- <hr /> -->
     <!-- <stay-edit /> -->
