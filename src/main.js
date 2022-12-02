@@ -7,6 +7,7 @@ import './assets/styles/setup/_typography.scss'
 import './assets/styles/main.scss'
 import rootCmp from './root-cmp.vue'
 import divider from './cmps/divider.vue'
+import brandedBtn from './cmps/branded-btn.vue'
 import { clickOutsideDirective, focusDirective, rainbowDirective } from './directives'
 
 import ElementPlus from 'element-plus'
@@ -18,6 +19,7 @@ app.directive('outside-click', clickOutsideDirective)
 app.directive('focus', focusDirective)
 app.directive('rainbow', rainbowDirective)
 app.component('divider', divider)
+app.component('branded-btn', brandedBtn)
 app.use(ElementPlus)
 app.use(router)
 app.use(store)
