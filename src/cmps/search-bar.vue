@@ -14,9 +14,10 @@
           </button>
         </div>
 
-        <div class="search-preview stay-details-search" v-else>
+        <div class="search-preview stay-details-search" v-else
+          @click="$emit('click')">
           <div>Start your search</div>
-          <button type="button" class="search-btn" @click="$emit('click')">
+          <button type="button" class="search-btn">
             <icon icon-type="search" />
           </button>
         </div>
