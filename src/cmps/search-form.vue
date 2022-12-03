@@ -147,12 +147,12 @@ export default {
     },
     getCheckIn() {
       return this.form.checkDates[0]
-        ? moment(this.form.checkDates[0]).format('MMM, YYYY')
+        ? moment(this.form.checkDates[0]).format('MMM DD')
         : 'Add dates'
     },
     getCheckout() {
       return this.form.checkDates[1]
-        ? moment(this.form.checkDates[1]).format('MMM, YYYY')
+        ? moment(this.form.checkDates[1]).format('MMM DD')
         : 'Add dates'
     }
   }
