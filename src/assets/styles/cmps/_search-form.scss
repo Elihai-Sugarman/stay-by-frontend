@@ -39,11 +39,12 @@
 
   & .title {
     font-size: rem(12px);
-    font-weight: 600;
+    font-family: cereal-medium;
   }
   
   & .subtitle {
     font-size: rem(14px);
+    font-family: cereal-light;
   }
 }
 
@@ -81,7 +82,8 @@
   }
 
   &:last-of-type {
-    padding: 12px 9px;
+    padding: 8px 24px;
+    padding-inline-end: 9px;
   }
 
   &:last-child {
