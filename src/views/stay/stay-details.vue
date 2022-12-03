@@ -110,11 +110,11 @@
               <div class="reservation-data">
                 <div class="date-picker">
                   <div class="date-input">
-                    <label>CHECK IN</label>
+                    <label>CHECK-IN</label>
                     <input value="Tue Sep 07 2021" />
                   </div>
                   <div class="date-input">
-                    <label>CHECK OUT</label>
+                    <label>CHECKOUT</label>
                     <input value="Tue Sep 07 2021" />
                   </div>
                 </div>
