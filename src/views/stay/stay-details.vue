@@ -2,20 +2,11 @@
   <section v-if="stay" class="stay-details">
     <h1 class="name-title">{{ stay.name }}</h1>
     <div class="name-subtitle flex">
-      <!-- <div class="review flex">
-        <span class="avg-rating flex link">
-          <icon-cmp iconType="star" />
-          {{ avgRating }}
-        </span>
-        <span>•</span>
-        <span class="rev-count link font-md"> {{ countReviews }} reviews</span>
-      </div> -->
       
-      <ratingReview :stay="stay"/>
+      <ratingReview :reviews="stay.reviews"/>
 
       <span v-if="stay.host.isSuperhost">•</span>
       <span class="superhost flex" v-if="stay.host.isSuperhost">
-        <!-- <icon-cmp iconType="bwBadge" /> -->
         Superhost
       </span>
 
@@ -25,16 +16,14 @@
       </span>
     </div>
     <div class="images-container">
-      <!-- <li v-for="img in imgsToDisplay"> -->
       <img :src="img" v-for="img in imgsToDisplay" />
-      <!-- </li> -->
     </div>
 
     <div class="mid-section">
       <div class="more-details">
         <div class="heading flex justify-between">
           <div class="txt">
-            <h2 class="title">
+            <h2 class="title subheading">
               {{ stay.type }} hosted by {{ stay.host.fullname }}
             </h2>
             <div class="capacity-subtitle">{{ stay.capacity }} guests</div>
@@ -96,7 +85,7 @@
         <divider/>
 
         <div class="amenities">
-          <h4>What this place offers</h4>
+          <h4 class="subheading">What this place offers</h4>
           <div class="amenities-container">
             <li v-for="amenity in stay.amenities">
               <stayAmenity :amenity="amenity" />
@@ -115,11 +104,7 @@
                 <p>
                   <span class="cost font-md">${{ stay.price }}</span> night
                 </p>
-                <!-- <p>
-                  {{ avgRating }}
-                  <span class="reviews">{{ countReviews }} reviews</span>
-                </p> -->
-                <ratingReview :stay="stay"/>
+                <ratingReview :reviews="stay.reviews"/>
 
               </div>
               <div class="reservation-data">
@@ -144,113 +129,9 @@
                   </svg>
                 </div>
               </div>
-              <div class="btn-container">
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="cell"></div>
-                <div class="content">
-                  <button class="action-btn">
-                    <span>Reserve</span>
-                  </button>
-                </div>
-              </div>
+
+              <branded-btn>{{callToActionBtnTxt}}</branded-btn>
+
             </div>
   
             <span class="reservation-txt flex column justify-between">You won't be charged yet</span>
@@ -290,35 +171,13 @@
     <div class="reviews-and-map">
 
       <div class="reviews">
-        <h1 class="flex">
-          <!-- <div class="review flex">
-            <span class="avg-rating flex">
-              <icon-cmp iconType="star" />
-              {{ avgRating }}
-            </span>
-            <span>•</span>
-            <span class="rev-count"> {{ countReviews }} reviews</span>
-          </div> -->
-          <ratingReview :stay="stay"/>
-
+        <h1 class="flex subheading">
+           <ratingReview :reviews="stay.reviews"/>
         </h1>
         <div class="reviews-container">
-          <li v-for="review in stay.reviews">
-            <div class="title flex">
-              <img :src="review.by.imgUrl" />
-              <div class="flex column">
-                <span>
-                  {{ review.by.fullname }}
-                </span>
-                <span class="subtitle fs14">
-                  {{ getFormattedReviewDate(review.at) }}
-                </span>
-              </div>
-            </div>
-            <div class="txt">
-              {{ review.txt }}
-            </div>
-          </li>
+          
+          <review-cmp :reviews="stay.reviews"/>
+    
         </div>
       </div>
 
@@ -341,15 +200,17 @@
 // import {userService} from '../services/user.service'
 import iconCmp from '../../cmps/icon-cmp.vue'
 import stayAmenity from '../../cmps/stay/stay-amenity.vue'
-import ratingReview from './rating-review-cmp.vue'
+import ratingReview from '../../cmps/stay/rating-review-cmp.vue'
+import reviewCmp from '../../cmps/stay/review-cmp.vue'
 import _random from 'lodash/random'
-import * as moment from 'moment'
 
 export default {
   name: 'stay-details',
   data() {
     return {
       stay: null,
+      checkInDate: null,
+      checkOutDate: null
     }
   },
   async created() {
@@ -379,13 +240,21 @@ export default {
     },
     imgsToDisplay() {
       // return this.stay.imgUrls.concat(this.stay.imgUrls.slice(0,2))
+
+      //THIS IS TEMP FOR WHILE WE ONLY HAVE 3 IMGS FOR EACH STAY!!
       return [...this.stay.imgUrls, ...this.stay.imgUrls.slice(0, 2)]
     },
     serviceFee() {
       return _random(15, 40)
     },
     totalNights() {
+
+      //this is temp while we don't get the dates from the user
       return _random(2, 10)
+    },
+    callToActionBtnTxt() {
+      return (!this.checkInDate || !this.checkOutDate)? 'Check availabilty' : 'Reserve'
+       
     },
   },
   methods: {
@@ -395,13 +264,15 @@ export default {
         stayId,
       })
     },
-    getFormattedReviewDate(dateString) {
-      return moment(dateString).format('MMM' + ' ' + 'YYYY')
-    },
+    
+    // getFormattedReviewDate(dateString) {
+    //   return moment(dateString).format('MMM' + ' ' + 'YYYY')
+    // },
   },
   components: {
     iconCmp,
     stayAmenity,
+    reviewCmp,
     ratingReview
   },
 }
