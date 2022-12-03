@@ -1,5 +1,5 @@
 <template>
-  <div class="search-backdrop" v-if="isSearchOpen" @click="() => (isSearchOpen = false)"></div>
+  <div class="search-backdrop" v-if="isSearchOpen" @click="closeSearch"></div>
   <header
     class="main-header full divider"
     :class="searchOpenClass">
@@ -43,11 +43,20 @@ export default {
     }
   },
   created() {
-    document.addEventListener('scroll', () => this.isSearchOpen = false)
+    document.addEventListener('scroll', this.closeSearch)
+    document.addEventListener('keydown', this.closeByEscape)
   },
   methods: {
     openSearch() {
       this.isSearchOpen = true
+    },
+    closeSearch() {
+      this.isSearchOpen = false
+    },
+    closeByEscape(event) {
+      if (event.key.toUpperCase() === 'ESCAPE' && this.isSearchOpen) {
+        this.closeSearch()
+      }
     },
     anyWhere() {
       this.openSearch()
