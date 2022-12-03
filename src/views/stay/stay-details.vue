@@ -217,6 +217,7 @@ export default {
     // const user = await userService.getById(id)
     let stayId = this.$route.params.id
     this.getStayById(stayId)
+    console.log('filterBy', this.$store.getters.filterBy);
   },
   // watch: {
   //   stayId: {
