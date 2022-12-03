@@ -13,6 +13,7 @@
 
       <search-bar
         :open="isSearchOpen"
+        @close="closeSearch"
         @click="openSearch"
         @anyWhere="anyWhere"
         @anyWeek="anyWeek"

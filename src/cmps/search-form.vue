@@ -21,9 +21,9 @@
           :class="getActiveClass('checkIn')"
           @click="openDatePicker('checkIn')">
           <div class="title">Check in</div>
-          <span class="subtitle">Add dates</span>
+          <span class="subtitle">{{ getCheckIn }}</span>
         </div>
-
+        
         <span class="splitter"></span>
 
         <div
@@ -31,7 +31,7 @@
           :class="getActiveClass('checkOut')"
           @click="openDatePicker('checkOut')">
           <div class="title">Check out</div>
-          <span class="subtitle">Add dates</span>
+          <span class="subtitle">{{ getCheckout }}</span>
         </div>
 
         <el-date-picker
@@ -68,7 +68,9 @@
 </template>
 
 <script>
+import * as moment from 'moment'
 import icon from './icon-cmp.vue'
+
 const initialActive = {
   where: false,
   checkIn: false,
@@ -101,8 +103,8 @@ export default {
         guests: this.form.guests
       }
 
-      this.$router.push({ path: '/explore', query })
       this.$refs.datePicker?.handleClose()
+      this.$emit('search', query)
     },
     getSearchLocations(queryString, cb) {
       const regex = new RegExp(queryString, 'i')
@@ -143,6 +145,16 @@ export default {
     AllLocations() {
       return this.$store.getters.locations
     },
+    getCheckIn() {
+      return this.form.checkDates[0]
+        ? moment(this.form.checkDates[0]).format('MMM, YYYY')
+        : 'Add dates'
+    },
+    getCheckout() {
+      return this.form.checkDates[1]
+        ? moment(this.form.checkDates[1]).format('MMM, YYYY')
+        : 'Add dates'
+    }
   }
 }
 </script>
