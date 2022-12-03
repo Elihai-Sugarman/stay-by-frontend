@@ -66,6 +66,15 @@ export default {
       }
       this.$router.push({ path: '/explore', query })
       this.$emit('close')
+
+      const filterBy = {
+        city: query.city,
+        country: query.country,
+        checkIn: query.checkIn,
+        checkOut: query.checkOut,
+        guests: query.guests
+      }
+      this.$store.commit({ type: 'setFilterBy', filterBy })
     }
   },
   computed: {

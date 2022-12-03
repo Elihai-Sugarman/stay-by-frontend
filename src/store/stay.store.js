@@ -90,7 +90,10 @@ export const stayStore = {
             stay.msgs.push(msg)
         },
         setFilterBy(state, { filterBy }) {
-            state.filterBy = filterBy
+            state.filterBy = {
+                ...state.filterBy,
+                ...filterBy
+            }
         },
     },
     actions: {
