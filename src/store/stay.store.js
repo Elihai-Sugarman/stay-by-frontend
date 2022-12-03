@@ -50,6 +50,9 @@ export const stayStore = {
         locations({ allStays }) {
             return allStays.map(({ address }) => address)
         },
+        filterBy(state) {
+            return state.filterBy
+        }
     },
     mutations: {
         setStays(state, { stays }) {
