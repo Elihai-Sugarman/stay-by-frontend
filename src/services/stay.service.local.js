@@ -21,18 +21,26 @@ async function query(filterBy = { txt: '', price: 0 }) {
         stays = staysArray
         utilService.saveToStorage(STORAGE_KEY, stays)
     }
+
     if (filterBy.label) {
         stays = stays.filter((stay) => stay.labels.includes(filterBy.label))
     }
-    if (filterBy.txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
-        stays = stays.filter(
-            (stay) => regex.test(stay.name) || regex.test(stay.description)
-        )
-    }
+
     if (filterBy.price) {
         stays = stays.filter((stay) => stay.price <= filterBy.price)
     }
+
+    if (filterBy?.address) {
+        const { city, country } = filterBy.address
+        const cityRegex = new RegExp(city, 'i')
+        const countRegex = new RegExp(country, 'i')
+
+        stays = stays.filter(({ address }) =>
+            countRegex.test(address.country) ||
+            cityRegex.test(address.city)
+        )
+    }
+
     return stays
 }
 

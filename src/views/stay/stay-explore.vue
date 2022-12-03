@@ -1,6 +1,6 @@
 <template>
     <div class="container home">
-      <stay-list v-if="searchedStays.length" :stays="searchedStays" />
+      <stay-list v-if="stays.length" :stays="stays" />
     </div>
   </template>
   
@@ -15,8 +15,8 @@
       loggedInUser() {
         return this.$store.getters.loggedinUser
       },
-      searchedStays() {
-        return this.$store.getters.searchedStays
+      stays() {
+        return this.$store.getters.stays
       },
     },
     created() {
@@ -32,11 +32,8 @@
           country: this.$route.query.country
         }
 
-        setTimeout(() => {
-          this.$store.commit({ type: 'setFilterBy', filterBy: { address }})
-
-        }, 1000)
-        // this.$store.dispatch('loadStays')
+        this.$store.commit({ type: 'setFilterBy', filterBy: { address }})
+        this.$store.dispatch({ type: 'loadStays' })
       }
     },
   }

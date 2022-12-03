@@ -37,22 +37,6 @@ export const stayStore = {
         stays(state) {
             return state.stays
         },
-        searchedStays({ stays, filterBy }) {
-            let filteredStays = []
-
-            if (filterBy?.address) {
-                const { city, country } = filterBy.address
-                const cityRegex = new RegExp(city, 'i')
-                const countRegex = new RegExp(country, 'i')
-
-                filteredStays = stays.filter(({ address }) =>
-                    countRegex.test(address.country) ||
-                    cityRegex.test(address.city)
-                )
-            }
-
-            return filteredStays
-        },
         labels(state) {
             const labels = []
             state.allStays.forEach((stay) => {
@@ -90,6 +74,7 @@ export const stayStore = {
             stay.msgs.push(msg)
         },
         setFilterBy(state, { filterBy }) {
+            if (!filterBy) state.filterBy = null
             state.filterBy = {
                 ...state.filterBy,
                 ...filterBy

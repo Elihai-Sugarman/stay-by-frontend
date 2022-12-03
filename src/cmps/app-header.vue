@@ -73,6 +73,7 @@ export default {
     },
     resetFilters() {
       this.$store.commit({ type: 'setFilterBy', filterBy: null })
+      this.$store.dispatch({ type: 'loadStays' })
     }
   },
   computed: {
