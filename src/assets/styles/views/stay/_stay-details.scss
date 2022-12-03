@@ -1,5 +1,4 @@
 .stay-details {
-
   letter-spacing: 0.007em; //do we need this everywhere???
 
   & > * {
@@ -17,6 +16,10 @@
 
   .name-title {
     font-size: rem(26px);
+  }
+  .subheading {
+    font-size: rem(22px);
+    font-family: 'cereal-medium';
   }
 
   .subtitle {
@@ -42,9 +45,6 @@
       margin-right: 3px;
     }
   }
-  // .rating-review {
-  //   gap: 5px;
-  // }
 
   .images-container {
     display: grid;
@@ -85,6 +85,7 @@
 
     .divider {
       padding: 0;
+      margin: 0 !important;
     }
     .heading {
       img {
@@ -98,7 +99,6 @@
     }
 
     .special-perks {
-
       & > * {
         // gap: 16px;
         gap: rem(16px);
@@ -113,8 +113,12 @@
         font-size: rem(14px);
       }
     }
-    
 
+    .amenities {
+      h4 {
+        margin-bottom: 24px;
+      }
+    }
     .amenities-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -125,25 +129,44 @@
     }
   }
 
+  .reviews-and-map {
+    margin: 0;
+  }
+
   .reviews {
+    padding: 48px 0;
     img {
       height: 40px;
       width: 40px;
       border-radius: 50%;
     }
-    h1 .review {
-      // .avg-rating {
-      //   align-items: baseline;
-      // }
-      // .icon-svg {
-      //   margin-right: 3px;
-      // }
+    h1 {
+      margin-bottom: 32px;
+      .rating-review {
+        font-size: rem(22px);
+        .rev-count {
+          text-decoration: none;
+        }
+      }
     }
 
     .reviews-container {
+      .show-all-btn {
+        border-radius: 8px;
+        border-width: 1px;
+        border-style: solid;
+        transition: box-shadow 0.2s ease, transform 0.1s ease;
+        border-color: $clr7;
+        padding: 13px 23px;
+        max-width: fit-content;
+      }
+    }
+
+    .reviews-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-gap: 40px 1px;
+      margin-bottom: 32px;
 
       li {
         max-width: 80%;
@@ -152,11 +175,18 @@
           gap: 10px;
           align-items: center;
         }
+        .txt {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
       }
     }
   }
   .reservation-section {
     margin-top: 32px;
+    margin-bottom: 32px;
   }
   .reservation {
     justify-content: flex-end;
@@ -182,10 +212,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 24px;
         width: 100%;
 
         p {
-          margin-top: 0;
+          margin: 0;
         }
       }
       .reservation-data {
@@ -253,81 +284,81 @@
       //   text-decoration: underline;
       // }
 
-      .btn-container {
-        position: relative;
-        width: 100%;
-        height: 48px;
-        padding: 0 0;
-        margin: 0 0;
-        cursor: pointer;
-        border: none;
-        display: grid;
-        grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+      // .btn-container {
+      //   position: relative;
+      //   width: 100%;
+      //   height: 48px;
+      //   padding: 0 0;
+      //   margin: 0 0;
+      //   cursor: pointer;
+      //   border: none;
+      //   display: grid;
+      //   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
 
-        @for $i from 0 to 10 {
-          .cell:nth-child(10n + #{$i + 1}):hover ~ .content {
-            --positionX: #{$i};
-          }
+      //   @for $i from 0 to 10 {
+      //     .cell:nth-child(10n + #{$i + 1}):hover ~ .content {
+      //       --positionX: #{$i};
+      //     }
 
-          .cell:nth-child(n + #{10 * $i + 1}):nth-child(
-              -n + #{10 * ($i + 1)}
-            ):hover
-            ~ .content {
-            --positionY: #{$i};
-          }
-        }
-      }
+      //     .cell:nth-child(n + #{10 * $i + 1}):nth-child(
+      //         -n + #{10 * ($i + 1)}
+      //       ):hover
+      //       ~ .content {
+      //       --positionY: #{$i};
+      //     }
+      //   }
+      // }
 
-      .cell {
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        // border: 1px solid rgba(128, 128, 128, 0.753);
-      }
+      // .cell {
+      //   width: 100%;
+      //   height: 100%;
+      //   z-index: 1;
+      //   // border: 1px solid rgba(128, 128, 128, 0.753);
+      // }
 
-      .content {
-        --positionX: 0;
-        --positionY: 5;
+      // .content {
+      //   --positionX: 0;
+      //   --positionY: 5;
 
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        border-radius: 8px;
+      //   position: absolute;
+      //   top: 0;
+      //   right: 0;
+      //   bottom: 0;
+      //   left: 0;
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      //   height: 100%;
+      //   border-radius: 8px;
 
-        background-image: radial-gradient(
-          circle at calc((0 + var(--positionX, 0)) * 10%)
-            calc((0 + var(--positionY, 0)) * 5%),
-          rgb(241, 37, 75) 0%,
-          rgb(230, 30, 77) 27.5%,
-          rgb(227, 28, 95) 40%,
-          rgb(215, 4, 102) 57.5%,
-          rgb(189, 30, 89) 75%,
-          rgb(189, 30, 89) 100%
-        );
-      }
+      //   background-image: radial-gradient(
+      //     circle at calc((0 + var(--positionX, 0)) * 10%)
+      //       calc((0 + var(--positionY, 0)) * 5%),
+      //     rgb(241, 37, 75) 0%,
+      //     rgb(230, 30, 77) 27.5%,
+      //     rgb(227, 28, 95) 40%,
+      //     rgb(215, 4, 102) 57.5%,
+      //     rgb(189, 30, 89) 75%,
+      //     rgb(189, 30, 89) 100%
+      //   );
+      // }
 
-      .action-btn {
-        padding: 0 0;
-        margin: 0 0;
-        width: 100%;
-        height: 100%;
-        background-color: transparent;
-        border: none;
-      }
+      // .action-btn {
+      //   padding: 0 0;
+      //   margin: 0 0;
+      //   width: 100%;
+      //   height: 100%;
+      //   background-color: transparent;
+      //   border: none;
+      // }
 
-      span {
-        padding: 0 0;
-        margin: 0 0;
-        font-size: 16px;
-        // line-height: 20px;
-        // font-family: sans-serif;
-      }
+      // span {
+      //   padding: 0 0;
+      //   margin: 0 0;
+      //   font-size: 16px;
+      //   // line-height: 20px;
+      //   // font-family: sans-serif;
+      // }
 
       .reservation-txt {
         align-items: center;

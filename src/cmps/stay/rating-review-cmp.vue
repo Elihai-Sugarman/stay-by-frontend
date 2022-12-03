@@ -1,5 +1,5 @@
 <template>
-  <div v-if="stay" class="rating-review flex">
+  <div v-if="reviews" class="rating-review flex">
     <span class="avg-rating flex font-md">
       <icon-cmp iconType="star" />
       {{ avgRating }}
@@ -9,12 +9,12 @@
   </div>
 </template>
 <script>
-import iconCmp from '../../cmps/icon-cmp.vue'
+import iconCmp from '../icon-cmp.vue'
 
 export default {
   name: 'rating-review',
   props: {
-    stay: Object,
+    reviews: Array,
   },
   data() {
     return {
@@ -24,12 +24,12 @@ export default {
   computed: {
     avgRating() {
       return +(
-        this.stay.reviews.reduce((acc, currRev) => acc + currRev.rate, 0) /
+        this.reviews.reduce((acc, currRev) => acc + currRev.rate, 0) /
         this.countReviews
       ).toFixed(2)
     },
     countReviews() {
-      return this.stay.reviews.length
+      return this.reviews.length
     },
   },
   components: {
