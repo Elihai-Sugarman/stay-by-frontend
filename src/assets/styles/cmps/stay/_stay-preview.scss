@@ -53,7 +53,7 @@
 .preview-info {
     margin-top: 12px;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2.296fr 1fr;
 
     > *{
         margin: 0;
@@ -95,7 +95,8 @@
 }
 
 .preview-time-ago, .preview-dates {
-    color: $clr8
+    color: $clr8;
+    padding: 0px;
 }
 
 .preview-time-ago {

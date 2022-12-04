@@ -54,6 +54,10 @@
         height: 20px;
         color: black;
     }
+
+    &:hover {
+        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
     
     &.carousel__prev--disabled, &.carousel__next--disabled {
         opacity: 0;

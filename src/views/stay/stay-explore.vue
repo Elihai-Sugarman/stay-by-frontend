@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <h4 class="stays-count">{{ stays.length }} homes</h4>
+    <div class="stays-count">
+      <h4>{{ stays.length }} homes</h4>
     </div>
     <div class="container home">
       <stay-list v-if="stays.length" :stays="stays" />
