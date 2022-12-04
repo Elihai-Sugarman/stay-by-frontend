@@ -1,4 +1,7 @@
 <template>
+    <div>
+      <h4 class="stays-count">{{ stays.length }} homes</h4>
+    </div>
     <div class="container home">
       <stay-list v-if="stays.length" :stays="stays" />
     </div>
