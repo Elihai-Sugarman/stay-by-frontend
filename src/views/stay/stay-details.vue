@@ -263,7 +263,8 @@ export default {
       // return this.stay.imgUrls.concat(this.stay.imgUrls.slice(0,2))
 
       //THIS IS TEMP FOR WHILE WE ONLY HAVE 3 IMGS FOR EACH STAY!!
-      return [...this.stay.imgUrls, ...this.stay.imgUrls.slice(0, 2)]
+      // return [...this.stay.imgUrls, ...this.stay.imgUrls.slice(0, 2)]
+      return this.stay.imgUrls.slice(0, 6)
     },
     serviceFee() {
       return _random(15, 40)
