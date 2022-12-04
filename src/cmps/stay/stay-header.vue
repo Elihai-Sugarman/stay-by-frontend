@@ -1,17 +1,18 @@
 <template>
     <section class="stay-header">
-        <!-- <div class="labels-container"> -->
-            <Carousel class="labels-container" :settings="settings" :breakpoints="breakpoints">
-                <Slide v-for="label in labels" :key="slide">
-                    <stay-label :label="label" @filter="filter" />
-                </Slide>
+        <Carousel class="labels-container" :settings="settings" :breakpoints="breakpoints">
+            <Slide v-for="label in labels" :key="label">
+                <stay-label :label="label" @filter="filter" />
+            </Slide>
 
-                 <template #addons>
-                    <Navigation />
-                </template>
-            </Carousel>
-            <!-- <stay-label v-for="label in labels" :label="label" @filter="filter" /> -->
-        <!-- </div> -->
+            <template #addons>
+                <Navigation />
+            </template>
+        </Carousel>
+
+        <!-- <div class="labels-container">
+            <stay-label v-for="label in labels" :label="label" @filter="filter" />
+        </div> -->
         <div class="flex justify-center align-center h-100">
             <stay-filter />
         </div>
@@ -25,6 +26,8 @@ import stayLabel from './stay-label.vue'
 import { defineComponent } from 'vue'
 import { Carousel, Navigation, Slide } from 'vue3-carousel'
 // import 'vue3-carousel/carousel.css'
+import 'vue3-carousel/dist/carousel.css'
+
 
     export default {
         components:{
