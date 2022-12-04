@@ -36,6 +36,38 @@
       justify-content: center;
       align-items: center;
       gap: 15px;
+
+      button {
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        display: inline-flex;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        border: 1px solid #b0b0b0;
+        color: #717171;
+        font-family: inherit !important;
+        outline: none !important;
+        touch-action: manipulation !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgb(255, 255, 255) !important;
+        border-radius: 50% !important;
+      }
+
+      button:disabled {
+        cursor: not-allowed !important;
+        color: rgb(235, 235, 235) !important;
+        border-color: rgb(235, 235, 235) !important;
+        background: rgb(255, 255, 255) !important;
+      }
+
+      button:hover {
+        color: rgb(34, 34, 34) !important;
+        border-color: rgb(34, 34, 34) !important;
+        background: rgb(255, 255, 255) !important;
+      }
     }
   }
 }
