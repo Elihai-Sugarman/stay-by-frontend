@@ -55,8 +55,8 @@ import 'vue3-carousel/dist/carousel.css'
             },
             // 1024 and up
             1024: {
-                itemsToShow: 5,
-                itemsToScroll: 5,
+                itemsToShow: 8,
+                itemsToScroll: 8,
                 snapAlign: 'start',
                 },
             },

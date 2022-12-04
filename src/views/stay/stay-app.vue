@@ -38,7 +38,7 @@ export default {
   },
   watch: {
     queryParams(query){
-        this.filter(query.label)
+        if (query.label) this.filter(query.label)
     }
   },
   created() {
