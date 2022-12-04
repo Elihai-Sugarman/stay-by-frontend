@@ -1,0 +1,41 @@
+.guest-modal {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 12px;
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 8px 16px rgb(0 0 0 / 15%);
+  margin-top: 12px;
+  padding: 16px 32px;
+
+
+  .guest-option {
+    display: flex;
+    justify-content: space-between;;
+    align-items: center;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    padding-right: 4px !important;
+
+    .description {
+      .title {
+        font-size: rem(16px);
+        color: $clr7;
+        padding-inline-end: 6px;
+      }
+      
+      .subtitle {
+        font-size: rem(14px);
+        color: $clr8;
+      }
+    }
+
+    .guest-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+  }
+}
