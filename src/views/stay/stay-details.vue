@@ -2,8 +2,7 @@
   <section v-if="stay" class="stay-details">
     <h1 class="name-title">{{ stay.name }}</h1>
     <div class="name-subtitle flex">
-      
-      <ratingReview :reviews="stay.reviews"/>
+      <ratingReview :reviews="stay.reviews" />
 
       <span v-if="stay.host.isSuperhost">•</span>
       <span class="superhost flex" v-if="stay.host.isSuperhost">
@@ -30,8 +29,8 @@
           </div>
           <img :src="stay.host.imgUrl" />
         </div>
-        <divider/>
-        
+        <divider />
+
         <div class="special-perks">
           <div class="superhost flex" v-if="stay.host.isSuperhost">
             <icon-cmp iconType="bwBadge" />
@@ -76,13 +75,13 @@
           </div>
         </div>
 
-        <divider/>
+        <divider />
 
         <div class="summary">
           {{ stay.summary }}
         </div>
 
-        <divider/>
+        <divider />
 
         <div class="amenities">
           <h4 class="subheading">What this place offers</h4>
@@ -92,9 +91,7 @@
             </li>
           </div>
         </div>
-
       </div>
-
 
       <div class="reservation-section">
         <div class="reservation flex">
@@ -104,21 +101,29 @@
                 <p>
                   <span class="cost font-md">${{ stay.price }}</span> night
                 </p>
-                <ratingReview :reviews="stay.reviews"/>
-
+                <ratingReview :reviews="stay.reviews" />
               </div>
               <div class="reservation-data">
                 <div class="date-picker">
+                  <!-- <el-date-picker
+                      class="form-date-picker"
+                      ref="datePicker"
+                      v-model="form.checkDates"
+                      type="daterange"
+                      start-placeholder="Check in"
+                      end-placeholder="Check out"
+                      size="large"
+                    /> -->
                   <div class="date-input">
                     <label>CHECK-IN</label>
-                    <input value="Tue Sep 07 2021" />
+                    <input value="12/01/2023" />
                   </div>
                   <div class="date-input">
                     <label>CHECKOUT</label>
-                    <input value="Tue Sep 07 2021" />
+                    <input value="15/01/2023" />
                   </div>
                 </div>
-    
+
                 <div class="guest-input">
                   <label>GUESTS</label>
                   <input value="2" />
@@ -130,63 +135,73 @@
                 </div>
               </div>
 
-              <branded-btn>{{callToActionBtnTxt}}</branded-btn>
-
+              <branded-btn>{{ callToActionBtnTxt }}</branded-btn>
             </div>
-  
-            <span class="reservation-txt flex column justify-between">You won't be charged yet</span>
-  
+
+            <span class="reservation-txt flex column justify-between"
+              >You won't be charged yet</span
+            >
+
             <div class="reservation-summary">
               <div class="cost-breakdown flex column">
                 <div class="cost-details flex column">
                   <div class="base-cost flex justify-between">
-                    <span class="link">${{stay.price}} x {{totalNights}} nights</span>
-                    <span>${{(stay.price * totalNights)}}</span>
+                    <span class="link"
+                      >${{ stay.price }} x {{ totalNights }} nights</span
+                    >
+                    <span>${{ stay.price * totalNights }}</span>
                   </div>
                   <div class="service-fee flex justify-between">
                     <span class="link">Service fee</span>
-                    <span>${{(serviceFee * totalNights)}}</span>
+                    <span>${{ serviceFee * totalNights }}</span>
                   </div>
                 </div>
 
                 <div class="total-wrapper">
-                  <divider/>
+                  <divider />
 
                   <div class="cost-total flex justify-between font-md">
                     <span>Total</span>
-                    <span>${{(stay.price * totalNights)+(serviceFee * totalNights)}}</span>
+                    <span
+                      >${{
+                        stay.price * totalNights + serviceFee * totalNights
+                      }}</span
+                    >
                   </div>
                 </div>
               </div>
-  
             </div>
-  
           </div>
         </div>
       </div>
     </div>
 
-    <divider/>
+    <divider />
 
     <div class="reviews-and-map">
-
       <div class="reviews">
         <h1 class="flex subheading">
-           <ratingReview :reviews="stay.reviews"/>
+          <ratingReview :reviews="stay.reviews" />
         </h1>
         <div class="reviews-container">
-          
-          <review-cmp :reviews="stay.reviews"/>
-    
+          <review-cmp @onOpenAllReviewsModal="openAllReviewsModal" :reviews="stay.reviews" :limit="6" />
         </div>
       </div>
 
-      <!-- <divider/>
+      <divider/>
 
       <div class="map">
-        <h4>Where you'll be</h4>
-        <span>{{ stay.address.street }}</span>
-      </div> -->
+        <h4 class="subheading">Where you'll be</h4>
+        <div class="address-txt">{{ stay.address.street }}</div>
+        <div class="map-container">
+          <stay-map :location="stay.address.location"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="all-reviews">
+      <all-reviews-modal :reviews="stay.reviews"/>
+
     </div>
 
     <!-- <details>
@@ -198,10 +213,11 @@
 
 <script>
 // import {userService} from '../services/user.service'
-import iconCmp from '../../cmps/icon-cmp.vue'
 import stayAmenity from '../../cmps/stay/stay-amenity.vue'
 import ratingReview from '../../cmps/stay/rating-review-cmp.vue'
 import reviewCmp from '../../cmps/stay/review-cmp.vue'
+import stayMap from '../../cmps/stay-map.vue'
+import allReviewsModal from '../../cmps/stay/all-reviews-modal.vue'
 import _random from 'lodash/random'
 
 export default {
@@ -210,14 +226,18 @@ export default {
     return {
       stay: null,
       checkInDate: null,
-      checkOutDate: null
+      checkOutDate: null,
+      form: {
+        checkDates: [],
+        guests: []
+      },
     }
   },
   async created() {
     // const user = await userService.getById(id)
     let stayId = this.$route.params.id
     this.getStayById(stayId)
-    console.log('filterBy', this.$store.getters.filterBy);
+    this.$store.dispatch({ type: 'loadAllStays' })
   },
   // watch: {
   //   stayId: {
@@ -249,13 +269,13 @@ export default {
       return _random(15, 40)
     },
     totalNights() {
-
       //this is temp while we don't get the dates from the user
       return _random(2, 10)
     },
     callToActionBtnTxt() {
-      return (!this.checkInDate || !this.checkOutDate)? 'Check availabilty' : 'Reserve'
-       
+      return !this.checkInDate || !this.checkOutDate
+        ? 'Check availabilty'
+        : 'Reserve'
     },
   },
   methods: {
@@ -265,16 +285,21 @@ export default {
         stayId,
       })
     },
-    
+    openAllReviewsModal(){
+      console.log('open reviews modal');
+
+    }
+
     // getFormattedReviewDate(dateString) {
     //   return moment(dateString).format('MMM' + ' ' + 'YYYY')
     // },
   },
   components: {
-    iconCmp,
     stayAmenity,
     reviewCmp,
-    ratingReview
+    ratingReview,
+    stayMap,
+    allReviewsModal
   },
 }
 </script>
