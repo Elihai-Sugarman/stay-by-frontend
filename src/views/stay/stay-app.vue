@@ -28,11 +28,18 @@ export default {
     },
     stays() {
       return this.$store.getters.stays
-      // return this.$store.state.stays
+    },
+    queryParams(){
+      return this.$route.query
     }
   },
-  mounted(){
+  mounted() {
     this.filter(this.$route.query.label)
+  },
+  watch: {
+    queryParams(query){
+        this.filter(query.label)
+    }
   },
   created() {
     this.$store.dispatch({ type: 'loadStays' })
@@ -75,7 +82,6 @@ export default {
     },
     filter(label){
       const filterBy = { label }
-      console.log(filterBy)
       this.$store.commit({ type: 'setFilterBy', filterBy: utilService.deepCopy(filterBy) })
       this.$store.dispatch('loadStays')
       this.$router.push({ path: '/stay', query: filterBy })
