@@ -10,6 +10,7 @@
     text-size-adjust: 100%;
     font-size: 0.75rem;
     font-weight: bold;
+    padding: 0;
 
     display: grid;
     grid-template-columns: auto;
@@ -36,6 +37,21 @@
 //         padding-left: 0;
 //     }
 // }
+
+.carousel {
+    // background-color: pink;
+    // position: relative;
+    // top: 0;
+    // margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding-top: 12px;
+
+    .stay-label p {
+        // background-color: pink;
+        margin-bottom: 4px;
+    }
+}
 
 .carousel__prev, .carousel__next {
     opacity: 1;
