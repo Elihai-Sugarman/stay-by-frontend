@@ -50,7 +50,9 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     // grid-template-columns: repeat(4, minmax(187px, 272px));
-    grid-template-rows: repeat(2, minmax(194px, 278px));
+    grid-template-rows: repeat(2, 1fr);
+    aspect-ratio: 2.6/1;
+    // grid-template-rows: repeat(2, minmax(194px, 278px));
     gap: 8px;
 
     border-radius: 12px;
@@ -88,6 +90,7 @@
       margin: 0 !important;
     }
     .heading {
+      padding-bottom: 24px;
       img {
         height: 56px;
         width: 56px;
@@ -131,15 +134,17 @@
 
   .reviews-and-map {
     margin: 0;
+    & > *:not(.divider) {
+      padding: 48px 0;
+    }
   }
 
   .reviews {
-    padding: 48px 0;
-    img {
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-    }
+    // img {
+    //   height: 40px;
+    //   width: 40px;
+    //   border-radius: 50%;
+    // }
     h1 {
       margin-bottom: 32px;
       .rating-review {
@@ -162,19 +167,7 @@
       }
     }
 
-    .reviews-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 40px 1px;
-      margin-bottom: 32px;
-
-      li {
-        max-width: 80%;
-
-        .title {
-          gap: 10px;
-          align-items: center;
-        }
+    .reviews-container .reviews-list {
         .txt {
           display: -webkit-box;
           -webkit-line-clamp: 3;
@@ -182,8 +175,19 @@
           overflow: hidden;
         }
       }
+
+  }
+
+  .map {
+    h4 {
+      margin: 0;
+      padding-bottom: 24px;
+    }
+    .address-txt {
+      margin-bottom: 24px;
     }
   }
+
   .reservation-section {
     margin-top: 32px;
     margin-bottom: 32px;
@@ -241,7 +245,6 @@
         &:last-of-type {
           border-left: 1px solid #00000050;
         }
-       
       }
 
       .guest-input {
