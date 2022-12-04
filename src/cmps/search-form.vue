@@ -98,6 +98,7 @@ export default {
       if (!this.form.where && !this.form.checkDates.length) return this.$emit('close')
 
       const query = {
+        ...this.$route.query,
         where: this.form.where,
         checkIn: this.form.checkDates[0]?.getTime(),
         checkOut: this.form.checkDates[1]?.getTime(),
