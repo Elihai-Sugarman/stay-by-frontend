@@ -50,7 +50,9 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     // grid-template-columns: repeat(4, minmax(187px, 272px));
-    grid-template-rows: repeat(2, 1fr);
+    // grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 50% 50%;
+
     aspect-ratio: 2.6/1;
     // grid-template-rows: repeat(2, minmax(194px, 278px));
     gap: 8px;
