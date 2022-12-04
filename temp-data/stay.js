@@ -151,3 +151,29 @@ const users = [
 //     }),
 //   }
 // })
+
+// .map(stay => {
+//     const reviews = stay.reviews.map(review => {
+//         const rndRate = +(Math.random() * (5 - 3.2) + 3.2).toFixed(2)
+//         return {
+//             ...review,
+//             rate: rndRate
+//         }
+//     })
+//     delete stay.loc.likedByUsers
+
+//     return {
+//         ...stay,
+//         labels: [stay.type],
+//         host: { ...stay.host, imgUrl: stay.host.pictureUrl },
+//         reviews,
+//         address: {
+//             ...stay.loc,
+//             street: stay.loc.street,
+//             location: {
+//                 lat: stay.loc.lat,
+//                 lan: stay.loc.lan
+//             }
+//         }
+//     }
+// })
