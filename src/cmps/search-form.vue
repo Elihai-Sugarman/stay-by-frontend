@@ -58,9 +58,16 @@
         </div>
 
         <branded-btn @click="handleSearch">
-          <icon icon-type="search" />
+          <icon-cmp icon-type="search" />
           <span v-if="getActiveClass('who').active">Search</span>
         </branded-btn>
+
+        <guest-modal class="search-guest-modal"
+          :open="isGuestsOpen"
+          :options="guestsOptions"
+          @increment="type => handleGuestSelect(type, true)"
+          @decrement="type => handleGuestSelect(type, false)"
+        />
       </div>
 
     </div>
@@ -69,7 +76,7 @@
 
 <script>
 import * as moment from 'moment'
-import icon from './icon-cmp.vue'
+import guestModal from './guest-modal.vue'
 
 const initialActive = {
   where: false,
@@ -79,9 +86,7 @@ const initialActive = {
 }
 
 export default {
-  components: {
-    icon
-  },
+  components: { guestModal },
   emits: ['close'],
   data() {
     return {
@@ -90,7 +95,30 @@ export default {
         checkDates: [],
         guests: []
       },
-      activeInput: { ...initialActive }
+      activeInput: { ...initialActive },
+      isGuestsOpen: false,
+      guestsOptions: {
+        Adults: {
+          subtitle: 'Ages 13 or above',
+          capacity: 0,
+          maxCapacity: 16
+        },
+        Children: {
+          subtitle: 'Ages 2–12',
+          capacity: 0,
+          maxCapacity: 15
+        },
+        Infants: {
+          subtitle: 'Under 2',
+          capacity: 0,
+          maxCapacity: 5
+        },
+        Pets: {
+          subtitle: 'Bringing a service animal?',
+          capacity: 0,
+          maxCapacity: 5
+        }
+      }
     }
   },
   methods: {
@@ -107,6 +135,12 @@ export default {
 
       this.$refs.datePicker?.handleClose()
       this.$emit('search', query)
+    },
+    handleGuestSelect(type, isIncrement) {
+      const guestOption = this.guestsOptions[type]
+
+      if (isIncrement) guestOption.capacity++
+      else guestOption.capacity--
     },
     getSearchLocations(queryString, cb) {
       const regex = new RegExp(queryString, 'i')
@@ -132,6 +166,10 @@ export default {
     setActive(type) {
       if (type === 'where' && !this.activeInput[type]) {
         this.$refs.whereInput?.focus()
+      }
+
+      if (type === 'who') {
+        this.isGuestsOpen = !this.activeInput[type]
       }
 
       this.activeInput = {
