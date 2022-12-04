@@ -9,7 +9,6 @@
   </div>
 </template>
 <script>
-import iconCmp from '../icon-cmp.vue'
 
 export default {
   name: 'rating-review',
@@ -31,9 +30,6 @@ export default {
     countReviews() {
       return this.reviews.length
     },
-  },
-  components: {
-    iconCmp,
   },
 }
 </script>
