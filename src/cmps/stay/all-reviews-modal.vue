@@ -1,7 +1,7 @@
 <template>
-  <div v-if="reviews" class="all-reviews-modal">
+  <div v-if="reviews" class="all-reviews-modal" :class="{open: isOpen}">
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span @click="(isOpen=false)" class="close">&times;</span>
       <h1 class="flex subheading">
         <ratingReview :reviews="reviews" />
       </h1>
@@ -21,7 +21,14 @@ export default {
     reviews: Array,
   },
   data() {
-    return {}
+    return {
+        isOpen: false
+    }
+  },
+  computed: {
+    isOpenToggle () {
+        this.isOpen = !this.isOpen
+    }
   },
   components: {
     ratingReview,
