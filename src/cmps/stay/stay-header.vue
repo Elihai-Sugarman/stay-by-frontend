@@ -13,9 +13,10 @@
         <!-- <div class="labels-container">
             <stay-label v-for="label in labels" :label="label" @filter="filter" />
         </div> -->
-        <div class="flex justify-center align-center h-100">
+
+        <!-- <div class="flex justify-center align-center h-100">
             <stay-filter />
-        </div>
+        </div> -->
     </section>
 </template>
 
@@ -37,30 +38,62 @@ import 'vue3-carousel/dist/carousel.css'
             Slide,
             Navigation,
         },
-        data: () => ({
-            // carousel settings
-            settings: {
-            itemsToShow: 3,
-            itemsToScroll: 1,
-            snapAlign: 'center',
-        },
-        // breakpoints are mobile first
-        // any settings not specified will fallback to the carousel settings
-        breakpoints: {
-            // 700px and up
-            700: {
-            itemsToShow: 4,
-            itemsToScroll: 4,
-            snapAlign: 'center',
-            },
-            // 1024 and up
-            1024: {
-                itemsToShow: 8,
-                itemsToScroll: 8,
-                snapAlign: 'start',
+        data(){
+            return {
+                // carousel settings
+                settings: {
+                    itemsToShow: 3,
+                    itemsToScroll: 3,
+                    snapAlign: 'center',
                 },
-            },
-        }),
+                // breakpoints are mobile first
+                // any settings not specified will fallback to the carousel settings
+                breakpoints: {
+                    // 500px and up
+                    500: {
+                        itemsToShow: 4,
+                        itemsToScroll: 4,
+                        snapAlign: 'center',
+                    },
+                    // 600px and up
+                    600: {
+                        itemsToShow: 5,
+                        itemsToScroll: 5,
+                        snapAlign: 'center',
+                    },
+                    // 700px and up
+                    700: {
+                        itemsToShow: 6,
+                        itemsToScroll: 6,
+                        snapAlign: 'center',
+                    },
+                    // 800px and up
+                    800: {
+                        itemsToShow: 7,
+                        itemsToScroll: 7,
+                        snapAlign: 'center',
+                    },
+                    // 900px and up
+                    900: {
+                        itemsToShow: 8,
+                        itemsToScroll: 8,
+                        snapAlign: 'center',
+                    },
+                    // 1000 and up
+                    1000: {
+                        itemsToShow: 9,
+                        itemsToScroll: 9,
+                        snapAlign: 'start',
+                    },
+                    // 1100 and up
+                    1100: {
+                        itemsToShow: 10,
+                        itemsToScroll: 10,
+                        snapAlign: 'start',
+                    },
+                },
+            }
+        },
         computed: {
             labels(){
                 return this.$store.getters.labels

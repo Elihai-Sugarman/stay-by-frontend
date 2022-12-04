@@ -25,17 +25,29 @@
     // box-shadow: 0px 1px $clr11;
 }
 
+// .carousel__viewport {
+//     border: 1px solid black;
+//     width: 90%;
+//     justify-self: center;
+
+//     > ol > :first-child {
+//         background-color: green;
+//         padding-left: 0;
+//     }
+// }
+
 .carousel__prev, .carousel__next {
     opacity: 1;
     transition: opacity 0.5s;
     border-radius: 50%;
     border: 1px solid $clr13;
+    background-color: white;
+    box-shadow: 0px 0px 20px 22px white;
 
     svg {
         width: 20px;
         height: 20px;
         color: black;
-        background-color: white;
     }
     
     &.carousel__prev--disabled, &.carousel__next--disabled {
