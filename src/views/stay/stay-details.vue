@@ -87,7 +87,7 @@
           <h4 class="subheading">What this place offers</h4>
           <div class="amenities-container">
             <li v-for="amenity in filteredAmenities">
-              <stayAmenity :amenity="amenity"/>
+              <stayAmenity :amenity="amenity" />
             </li>
           </div>
         </div>
@@ -184,24 +184,37 @@
           <ratingReview :reviews="stay.reviews" />
         </h1>
         <div class="reviews-container">
-          <review-cmp @onOpenAllReviewsModal="openAllReviewsModal" :reviews="stay.reviews" :limit="6" />
+          <review-cmp
+            @onOpenAllReviewsModal="openAllReviewsModal"
+            :reviews="stay.reviews"
+            :limit="6"
+          />
         </div>
       </div>
 
-      <divider/>
+      <divider />
 
       <div class="map">
         <h4 class="subheading">Where you'll be</h4>
         <div class="address-txt">{{ stay.address.street }}</div>
         <div class="map-container">
-          <stay-map :location="stay.address.location"/>
+          <stay-map :location="stay.address.location" />
         </div>
       </div>
     </div>
 
     <div class="all-reviews">
-      <!-- <all-reviews-modal :reviews="stay.reviews"/> -->
-
+      <Transition
+        name="custom-classes"
+        enter-active-class="animate__fadeInUpBig"
+        leave-active-class="animate__fadeOutDownBig"
+      >
+        <all-reviews-modal
+          @close-modal="isReviewsModalOpen = false"
+          :reviews="stay.reviews"
+          :isOpen="isReviewsModalOpen"
+        />
+      </Transition>
     </div>
 
     <!-- <details>
@@ -219,6 +232,7 @@ import reviewCmp from '../../cmps/stay/review-cmp.vue'
 import stayMap from '../../cmps/stay-map.vue'
 import allReviewsModal from '../../cmps/stay/all-reviews-modal.vue'
 import _random from 'lodash/random'
+import _camelCase from 'lodash/camelCase'
 
 export default {
   name: 'stay-details',
@@ -227,11 +241,64 @@ export default {
       stay: null,
       checkInDate: null,
       checkOutDate: null,
+      isReviewsModalOpen: false,
       form: {
         checkDates: [],
-        guests: []
+        guests: [],
       },
-      amenities: ['airbnbLogo', 'star', 'search', 'filter', 'heart', 'avatar', 'rightArrow', 'bwBadge', 'bars', 'key', 'greatComm', 'locMarker', 'heating', 'bathEssentials', 'kitchen', 'cookingBasics', 'bedLinens', 'hotWaterKettle', 'dishesAndSilverware', 'washer', 'dryer', 'dishwasher', 'selfCheckIn', 'cleaningBeforeCheckout', 'tv', 'firstAidKit', 'gym', 'iron', 'microwave', 'bodySoap', 'hairDryer', 'coffeeMaker', 'travelCrib', 'hotWater', 'beachfront', 'beachView', 'essentials', 'bathroomEssentials', 'lockbox', 'airConditioning', 'smokingAllowed', 'wifi', 'hangers', 'doorman', 'longTermStaysAllowed', 'stove', 'bathtub', 'extraPillowsAndBlankets', 'freeParkingOnPremises', 'paidParkingOnPremises', 'paidParkingOffPremises', 'bbqGrill', 'elevator', 'oven', 'fireExtinguisher', 'pool', 'petsAllowed', 'hotTub', 'refrigerator', 'privateEntrance', 'patioOrBalcony', 'minus', 'plus']
+      amenities: [
+        'heating',
+        'bathEssentials',
+        'kitchen',
+        'cookingBasics',
+        'bedLinens',
+        'hotWaterKettle',
+        'dishesAndSilverware',
+        'washer',
+        'dryer',
+        'dishwasher',
+        'selfCheckIn',
+        'cleaningBeforeCheckout',
+        'tv',
+        'firstAidKit',
+        'gym',
+        'iron',
+        'microwave',
+        'bodySoap',
+        'hairDryer',
+        'coffeeMaker',
+        'travelCrib',
+        'hotWater',
+        'beachfront',
+        'beachView',
+        'essentials',
+        'bathroomEssentials',
+        'lockbox',
+        'airConditioning',
+        'smokingAllowed',
+        'wifi',
+        'hangers',
+        'doorman',
+        'longTermStaysAllowed',
+        'stove',
+        'bathtub',
+        'extraPillowsAndBlankets',
+        'freeParkingOnPremises',
+        'paidParkingOnPremises',
+        'paidParkingOffPremises',
+        'bbqGrill',
+        'elevator',
+        'oven',
+        'fireExtinguisher',
+        'pool',
+        'petsAllowed',
+        'hotTub',
+        'refrigerator',
+        'privateEntrance',
+        'patioOrBalcony',
+        'minus',
+        'plus',
+      ],
     }
   },
   async created() {
@@ -279,9 +346,12 @@ export default {
         ? 'Check availabilty'
         : 'Reserve'
     },
-    filteredAmenities(){
-      return this.stay.amenities.slice(0).filter(amenity=>this.amenities.includes(amenity.charAt(0).toLowerCase()+amenity.slice(1)))
-    }
+    filteredAmenities() {
+      return this.stay.amenities
+        .slice(0)
+        .filter((amenity) => this.amenities.includes(_camelCase(amenity)))
+        .slice(0, 10)
+    },
   },
   methods: {
     async getStayById(stayId) {
@@ -290,9 +360,9 @@ export default {
         stayId,
       })
     },
-    openAllReviewsModal(){
-      console.log('open reviews modal');
-
+    openAllReviewsModal() {
+      console.log('open reviews modal')
+      this.isReviewsModalOpen = true
     },
 
     // getFormattedReviewDate(dateString) {
@@ -304,7 +374,7 @@ export default {
     reviewCmp,
     ratingReview,
     stayMap,
-    allReviewsModal
+    allReviewsModal,
   },
 }
 </script>
