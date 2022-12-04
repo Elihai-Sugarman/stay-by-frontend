@@ -1,15 +1,21 @@
 <template>
-  <div v-if="reviews" class="all-reviews-modal" :class="{open: isOpen}">
-    <div class="modal-content">
-      <span @click="(isOpen=false)" class="close">&times;</span>
-      <h1 class="flex subheading">
-        <ratingReview :reviews="reviews" />
-      </h1>
-      <div class="reviews-container">
-        <review-cmp :reviews="reviews" />
+  <Transition
+    name="custom-classes"
+    enter-active-class="animate__fadeInUpBig"
+    leave-active-class="animate__fadeOutDownBig"
+  >
+    <div v-if="isOpen" class="all-reviews-modal" @click.self="onCloseModal">
+      <div class="modal-content">
+        <span @click="onCloseModal" class="close">&times;</span>
+        <h1 class="flex subheading">
+          <ratingReview :reviews="reviews" />
+        </h1>
+        <div class="reviews-container">
+          <review-cmp :reviews="reviews" />
+        </div>
       </div>
     </div>
-  </div>
+  </Transition>
 </template>
 <script>
 import ratingReview from './rating-review-cmp.vue'
@@ -19,16 +25,16 @@ export default {
   name: 'all-reviews-modal',
   props: {
     reviews: Array,
+    isOpen: Boolean,
   },
+  emits: ['closeModal'],
   data() {
-    return {
-        isOpen: false
-    }
+    return {}
   },
-  computed: {
-    isOpenToggle () {
-        this.isOpen = !this.isOpen
-    }
+  methods: {
+    onCloseModal() {
+      this.$emit('closeModal')
+    },
   },
   components: {
     ratingReview,
