@@ -26,7 +26,7 @@
         <div class="preview-time-ago">{{ stay.name }}</div>
         <!-- <div class="preview-time-ago">Added {{ timeAgo }}</div> -->
         <div class="preview-dates">{{ availableDates }}</div>
-        <div class="preview-price"><span class="bold">${{ stay.price }}</span> / night</div>
+        <div class="preview-price"><span class="bold">${{ stay.price }}</span> night</div>
     </div>
   </article>
     </router-link>
