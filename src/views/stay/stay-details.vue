@@ -200,7 +200,7 @@
     </div>
 
     <div class="all-reviews">
-      <all-reviews-modal :reviews="stay.reviews"/>
+      <!-- <all-reviews-modal :reviews="stay.reviews"/> -->
 
     </div>
 
