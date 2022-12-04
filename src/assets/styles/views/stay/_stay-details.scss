@@ -235,11 +235,13 @@
         flex-direction: column;
         gap: 5px;
         padding: 7px 12px;
-        color: gray;
-        font-size: 0.75rem;
+        width: 50%;
+        // color: $clr7;
+        // font-size: 0.75rem;
         &:last-of-type {
           border-left: 1px solid #00000050;
         }
+       
       }
 
       .guest-input {
@@ -249,8 +251,8 @@
         gap: 5px;
         border-top: 1px solid #00000050;
         padding: 7px 12px;
-        color: gray;
-        font-size: 0.75rem;
+        // color: gray;
+        // font-size: 0.75rem;
 
         svg {
           position: absolute;
@@ -265,100 +267,20 @@
       input {
         border: none;
         padding: 0 0;
-        width: 50%;
+        // width: 50%;
         outline: none;
+        font-size: em(14px);
       }
 
       label {
-        font-weight: 600;
-        font-size: 0.75em;
+        // font-weight: 800;
+        font-family: 'cereal-bold';
+        font-size: em(10px);
       }
 
       span.cost {
         font-size: 1.3em;
       }
-
-      // span.reviews {
-      //   color: #00000070;
-      //   font-size: 0.85em;
-      //   text-decoration: underline;
-      // }
-
-      // .btn-container {
-      //   position: relative;
-      //   width: 100%;
-      //   height: 48px;
-      //   padding: 0 0;
-      //   margin: 0 0;
-      //   cursor: pointer;
-      //   border: none;
-      //   display: grid;
-      //   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
-
-      //   @for $i from 0 to 10 {
-      //     .cell:nth-child(10n + #{$i + 1}):hover ~ .content {
-      //       --positionX: #{$i};
-      //     }
-
-      //     .cell:nth-child(n + #{10 * $i + 1}):nth-child(
-      //         -n + #{10 * ($i + 1)}
-      //       ):hover
-      //       ~ .content {
-      //       --positionY: #{$i};
-      //     }
-      //   }
-      // }
-
-      // .cell {
-      //   width: 100%;
-      //   height: 100%;
-      //   z-index: 1;
-      //   // border: 1px solid rgba(128, 128, 128, 0.753);
-      // }
-
-      // .content {
-      //   --positionX: 0;
-      //   --positionY: 5;
-
-      //   position: absolute;
-      //   top: 0;
-      //   right: 0;
-      //   bottom: 0;
-      //   left: 0;
-      //   display: flex;
-      //   justify-content: center;
-      //   align-items: center;
-      //   height: 100%;
-      //   border-radius: 8px;
-
-      //   background-image: radial-gradient(
-      //     circle at calc((0 + var(--positionX, 0)) * 10%)
-      //       calc((0 + var(--positionY, 0)) * 5%),
-      //     rgb(241, 37, 75) 0%,
-      //     rgb(230, 30, 77) 27.5%,
-      //     rgb(227, 28, 95) 40%,
-      //     rgb(215, 4, 102) 57.5%,
-      //     rgb(189, 30, 89) 75%,
-      //     rgb(189, 30, 89) 100%
-      //   );
-      // }
-
-      // .action-btn {
-      //   padding: 0 0;
-      //   margin: 0 0;
-      //   width: 100%;
-      //   height: 100%;
-      //   background-color: transparent;
-      //   border: none;
-      // }
-
-      // span {
-      //   padding: 0 0;
-      //   margin: 0 0;
-      //   font-size: 16px;
-      //   // line-height: 20px;
-      //   // font-family: sans-serif;
-      // }
 
       .reservation-txt {
         align-items: center;

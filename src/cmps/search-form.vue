@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     handleSearch() {
-      if (!this.form.where || !this.form.checkDates.length) return this.$emit('close')
+      if (!this.form.where && !this.form.checkDates.length) return this.$emit('close')
 
       const query = {
         where: this.form.where,
