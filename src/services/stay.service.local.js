@@ -16,7 +16,7 @@ export const stayService = {
 window.cs = stayService
 
 async function query(filterBy = { txt: '', price: 0 }) {
-    var stays = await storageService.query(STORAGE_KEY)
+    var stays = (await storageService.query(STORAGE_KEY)).slice(0, 80)
     if (!stays.length) {
         stays = staysArray
         utilService.saveToStorage(STORAGE_KEY, stays)
