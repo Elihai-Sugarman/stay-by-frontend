@@ -11,6 +11,7 @@ import brandedBtn from './cmps/branded-btn.vue'
 import iconCmp from './cmps/icon-cmp.vue'
 import { clickOutsideDirective, focusDirective, rainbowDirective } from './directives'
 
+import 'animate.css'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
