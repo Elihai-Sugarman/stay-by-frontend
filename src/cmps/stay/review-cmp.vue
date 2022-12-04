@@ -17,7 +17,9 @@
       </div>
     </li>
   </div>
-  <div v-if="reviewsCount > 6" class="show-all-btn font-md btn">
+  <div v-if="(reviewsCount > limit)" 
+      @click="onOpenAllReviewsModal" 
+      class="show-all-btn font-md btn">
     Show all {{ reviewsCount }} reviews
   </div>
 </template>
@@ -27,17 +29,22 @@ import * as moment from 'moment'
 
 export default {
   name: 'review-cmp',
+  emits: ['onOpenAllReviewsModal'],
   props: {
     reviews: Array,
+    limit: Number
   },
   methods: {
     getFormattedReviewDate(dateString) {
       return moment(dateString).format('MMM' + ' ' + 'YYYY')
     },
+    onOpenAllReviewsModal(){
+      this.$emit('onOpenAllReviewsModal')
+    }
   },
   computed: {
     reviewsToShow() {
-      return this.reviews.length > 5 ? this.reviews.slice(0, 6) : this.reviews
+      return this.reviews.length > this.limit - 1 ? this.reviews.slice(0, this.limit) : this.reviews
     },
     reviewsCount() {
       return this.reviews.length
