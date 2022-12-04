@@ -18,18 +18,29 @@
       stays() {
         return this.$store.getters.stays
       },
+      queryParams() {
+        return this.$route.query
+      }
     },
     created() {
-      this.$store.dispatch({ type: 'loadStays' })
-      this.$store.dispatch({ type: 'loadAllStays' })
-
-      this.filterByAddress()
+      this.loadStays()
+    },
+    watch: {
+      queryParams() {
+        this.loadStays()
+      }
     },
     methods: {
+      loadStays() {
+        this.$store.dispatch({ type: 'loadStays' })
+        this.$store.dispatch({ type: 'loadAllStays' })
+
+        this.filterByAddress()
+      },
       filterByAddress() {
         const address = {
-          city: this.$route.query.city,
-          country: this.$route.query.country
+          city: this.queryParams.city,
+          country: this.queryParams.country
         }
 
         this.$store.commit({ type: 'setFilterBy', filterBy: { address }})
