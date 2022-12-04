@@ -27,7 +27,7 @@
 
     <Transition name="fade-in">
       <KeepAlive>
-        <search-form v-if="open" @search="handleSearch" />
+        <search-form v-if="open" @search="handleSearch" @close="$emit('close')" />
       </KeepAlive>
     </Transition>
   </section>
@@ -60,22 +60,24 @@ export default {
   methods: {
     handleSearch(query) {
       this.search = {
-        where: query.city + ',' + query.country,
+        where: query.where,
         checkIn: query?.checkIn ? moment(new Date(query.checkIn)).format('MMM, YYYY') : null,
         checkOut: query?.checkIn ? moment(new Date(query.checkOut)).format('MMM, YYYY') : null,
         guests: query.guests
       }
-      this.$router.push({ path: '/explore', query })
-      this.$emit('close')
 
+      const [city, country] = query.where.split(', ')
       const filterBy = {
-        city: query.city,
-        country: query.country,
         checkIn: query.checkIn,
         checkOut: query.checkOut,
         guests: query.guests
       }
+      if (city) filterBy.city = city
+      if (country) filterBy.country = country
+
       this.$store.commit({ type: 'setFilterBy', filterBy })
+      this.$router.push({ path: '/explore', query: filterBy })
+      this.$emit('close')
     }
   },
   computed: {

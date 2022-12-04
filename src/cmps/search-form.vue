@@ -82,6 +82,7 @@ export default {
   components: {
     icon
   },
+  emits: ['close'],
   data() {
     return {
       form: {
@@ -94,10 +95,10 @@ export default {
   },
   methods: {
     handleSearch() {
-      const [city, country] = this.form.where.split(', ')
+      if (!this.form.where || !this.form.checkDates.length) return this.$emit('close')
+
       const query = {
-        city,
-        country,
+        where: this.form.where,
         checkIn: this.form.checkDates[0]?.getTime(),
         checkOut: this.form.checkDates[1]?.getTime(),
         guests: this.form.guests
