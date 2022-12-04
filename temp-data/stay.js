@@ -169,7 +169,7 @@ const users = [
 //         reviews,
 //         address: {
 //             ...stay.loc,
-//             street: stay.loc.street,
+//             street: stay.loc.address,
 //             location: {
 //                 lat: stay.loc.lat,
 //                 lan: stay.loc.lan
