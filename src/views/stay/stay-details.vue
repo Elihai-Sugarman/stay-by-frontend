@@ -86,8 +86,8 @@
         <div class="amenities">
           <h4 class="subheading">What this place offers</h4>
           <div class="amenities-container">
-            <li v-for="amenity in stay.amenities">
-              <stayAmenity :amenity="amenity" />
+            <li v-for="amenity in filteredAmenities">
+              <stayAmenity :amenity="amenity"/>
             </li>
           </div>
         </div>
@@ -231,6 +231,7 @@ export default {
         checkDates: [],
         guests: []
       },
+      amenities: ['airbnbLogo', 'star', 'search', 'filter', 'heart', 'avatar', 'rightArrow', 'bwBadge', 'bars', 'key', 'greatComm', 'locMarker', 'heating', 'bathEssentials', 'kitchen', 'cookingBasics', 'bedLinens', 'hotWaterKettle', 'dishesAndSilverware', 'washer', 'dryer', 'dishwasher', 'selfCheckIn', 'cleaningBeforeCheckout', 'tv', 'firstAidKit', 'gym', 'iron', 'microwave', 'bodySoap', 'hairDryer', 'coffeeMaker', 'travelCrib', 'hotWater', 'beachfront', 'beachView', 'essentials', 'bathroomEssentials', 'lockbox', 'airConditioning', 'smokingAllowed', 'wifi', 'hangers', 'doorman', 'longTermStaysAllowed', 'stove', 'bathtub', 'extraPillowsAndBlankets', 'freeParkingOnPremises', 'paidParkingOnPremises', 'paidParkingOffPremises', 'bbqGrill', 'elevator', 'oven', 'fireExtinguisher', 'pool', 'petsAllowed', 'hotTub', 'refrigerator', 'privateEntrance', 'patioOrBalcony', 'minus', 'plus']
     }
   },
   async created() {
@@ -277,6 +278,9 @@ export default {
         ? 'Check availabilty'
         : 'Reserve'
     },
+    filteredAmenities(){
+      return this.stay.amenities.slice(0).filter(amenity=>this.amenities.includes(amenity.charAt(0).toLowerCase()+amenity.slice(1)))
+    }
   },
   methods: {
     async getStayById(stayId) {
@@ -288,7 +292,7 @@ export default {
     openAllReviewsModal(){
       console.log('open reviews modal');
 
-    }
+    },
 
     // getFormattedReviewDate(dateString) {
     //   return moment(dateString).format('MMM' + ' ' + 'YYYY')
