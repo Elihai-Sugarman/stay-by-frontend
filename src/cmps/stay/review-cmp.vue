@@ -4,7 +4,7 @@
       <div class="title flex">
         <img :src="review.by.imgUrl" />
         <div class="flex column">
-          <span>
+          <span class="name font-md">
             {{ review.by.fullname }}
           </span>
           <span class="subtitle fs14">
