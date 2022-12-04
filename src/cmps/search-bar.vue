@@ -67,11 +67,7 @@ export default {
       }
 
       const [city, country] = query.where.split(', ')
-      const filterBy = {
-        checkIn: query.checkIn,
-        checkOut: query.checkOut,
-        guests: query.guests
-      }
+      const filterBy = { ...query }
       if (city) filterBy.city = city
       if (country) filterBy.country = country
 

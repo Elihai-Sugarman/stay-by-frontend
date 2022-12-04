@@ -23,7 +23,6 @@ export default {
     },
     methods: {
         filter(){
-            // this.$router.push(`stay/${this.label}`)
             this.$emit('filter', this.label)
         },
     }

@@ -31,6 +31,9 @@ export default {
       // return this.$store.state.stays
     }
   },
+  mounted(){
+    this.filter(this.$route.query.label)
+  },
   created() {
     this.$store.dispatch({ type: 'loadStays' })
     this.$store.dispatch({ type: 'loadAllStays' })
@@ -72,8 +75,10 @@ export default {
     },
     filter(label){
       const filterBy = { label }
+      console.log(filterBy)
       this.$store.commit({ type: 'setFilterBy', filterBy: utilService.deepCopy(filterBy) })
       this.$store.dispatch('loadStays')
+      this.$router.push({ path: '/stay', query: filterBy })
     }
   }
 
