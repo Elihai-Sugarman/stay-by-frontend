@@ -21,7 +21,7 @@
           :class="getActiveClass('checkIn')"
           @click="openDatePicker('checkIn')">
           <div class="title">Check in</div>
-          <span class="subtitle">{{ getCheckIn }}</span>
+          <span class="subtitle">{{ checkInLabel }}</span>
         </div>
         
         <span class="splitter"></span>
@@ -31,7 +31,7 @@
           :class="getActiveClass('checkOut')"
           @click="openDatePicker('checkOut')">
           <div class="title">Check out</div>
-          <span class="subtitle">{{ getCheckout }}</span>
+          <span class="subtitle">{{ checkoutLabel }}</span>
         </div>
 
         <el-date-picker
@@ -54,7 +54,7 @@
         @click="setActive('who')">
         <div>
           <div class="title">Who</div>
-          <span class="subtitle">Add guests</span>
+          <span class="subtitle">{{ guestsLabel }}</span>
         </div>
 
         <branded-btn @click="handleSearch">
@@ -62,12 +62,11 @@
           <span v-if="getActiveClass('who').active">Search</span>
         </branded-btn>
 
-        <guest-modal class="search-guest-modal"
+        <guest-modal
+          class="search-guest-modal"
           :open="isGuestsOpen"
-          :options="guestsOptions"
-          @increment="type => handleGuestSelect(type, true)"
-          @decrement="type => handleGuestSelect(type, false)"
-        />
+          @change="handleGuestsChange"
+          @close="(isGuestsOpen = false)" />
       </div>
 
     </div>
@@ -96,37 +95,14 @@ export default {
         guests: []
       },
       activeInput: { ...initialActive },
-      isGuestsOpen: false,
-      guestsOptions: {
-        Adults: {
-          subtitle: 'Ages 13 or above',
-          capacity: 0,
-          maxCapacity: 16
-        },
-        Children: {
-          subtitle: 'Ages 2–12',
-          capacity: 0,
-          maxCapacity: 15
-        },
-        Infants: {
-          subtitle: 'Under 2',
-          capacity: 0,
-          maxCapacity: 5
-        },
-        Pets: {
-          subtitle: 'Bringing a service animal?',
-          capacity: 0,
-          maxCapacity: 5
-        }
-      }
+      isGuestsOpen: false
     }
   },
   methods: {
     handleSearch() {
       if (!this.form.where && !this.form.checkDates.length) return this.$emit('close')
 
-      const query = {
-        ...this.$route.query,
+      const form = {
         where: this.form.where,
         checkIn: this.form.checkDates[0]?.getTime(),
         checkOut: this.form.checkDates[1]?.getTime(),
@@ -134,13 +110,10 @@ export default {
       }
 
       this.$refs.datePicker?.handleClose()
-      this.$emit('search', query)
+      this.$emit('search', form)
     },
-    handleGuestSelect(type, isIncrement) {
-      const guestOption = this.guestsOptions[type]
-
-      if (isIncrement) guestOption.capacity++
-      else guestOption.capacity--
+    handleGuestsChange(guests) {
+      this.form.guests = guests
     },
     getSearchLocations(queryString, cb) {
       const regex = new RegExp(queryString, 'i')
@@ -185,15 +158,22 @@ export default {
     AllLocations() {
       return this.$store.getters.locations
     },
-    getCheckIn() {
+    checkInLabel() {
       return this.form.checkDates[0]
         ? moment(this.form.checkDates[0]).format('MMM DD')
         : 'Add dates'
     },
-    getCheckout() {
+    checkoutLabel() {
       return this.form.checkDates[1]
         ? moment(this.form.checkDates[1]).format('MMM DD')
         : 'Add dates'
+    },
+    guestsLabel() {
+      if (!this.form.guests.length) return 'Add guests'
+      const formattedLabel = this.form.guests
+          .map(({ type, capacity }) => `${capacity} ${type}`)
+          .join(', ')
+      return formattedLabel
     }
   }
 }

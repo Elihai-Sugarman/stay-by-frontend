@@ -58,20 +58,27 @@ export default {
     }
   },
   methods: {
-    handleSearch(query) {
+    handleSearch(form) {
       this.search = {
-        where: query.where,
-        checkIn: query?.checkIn ? moment(new Date(query.checkIn)).format('MMM, YYYY') : null,
-        checkOut: query?.checkIn ? moment(new Date(query.checkOut)).format('MMM, YYYY') : null,
-        guests: query.guests
+        where: form.where,
+        checkIn: form?.checkIn ? moment(new Date(form.checkIn)).format('MMM, YYYY') : null,
+        checkOut: form?.checkIn ? moment(new Date(form.checkOut)).format('MMM, YYYY') : null,
+        guests: form.guests
       }
 
-      const [city, country] = query.where.split(', ')
-      const filterBy = { ...query }
+      const [city, country] = form.where.split(', ')
+      let filterBy = { ...form }
       if (city) filterBy.city = city
       if (country) filterBy.country = country
 
       this.$store.commit({ type: 'setFilterBy', filterBy })
+
+      // just for the query params, build a query object to pass
+      filterBy.guests.forEach(({ type, capacity }) => {
+        filterBy[type] = capacity
+      })
+      delete filterBy.guests
+
       this.$router.push({ path: '/explore', query: filterBy })
       this.$emit('close')
     }

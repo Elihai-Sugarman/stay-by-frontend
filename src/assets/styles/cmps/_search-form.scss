@@ -45,6 +45,10 @@
     & .subtitle {
         font-size: rem(14px);
         font-family: cereal-light;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 100px;
     }
 }
 
