@@ -13,7 +13,7 @@
 // Components
 @import "cmps/app-header";
 @import "cmps/img-uploader";
-@import "cmps/review-list";
+@import "cmps/reviews-list";
 @import "cmps/user-msg";
 @import "cmps/user-nav";
 @import "cmps/search-bar";
@@ -28,6 +28,7 @@
 @import "cmps/stay/stay-list";
 @import "cmps/stay/stay-preview";
 @import "cmps/stay/rating-review";
+@import "cmps/stay/all-reviews-modal";
 
 // Views
 @import "views/login-signup";
