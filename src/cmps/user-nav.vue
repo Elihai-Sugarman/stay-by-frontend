@@ -3,6 +3,9 @@
     <template v-if="open">
       <section class="user-menu" v-outside-click="() => this.$emit('outside-click')">
         <ul v-if="user">
+          <li>My trips</li>
+          <li>Wishlist</li>
+          <divider />
           <li @click="logout">Logout</li>
         </ul>
         <ul v-else>
