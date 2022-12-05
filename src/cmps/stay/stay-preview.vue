@@ -55,21 +55,17 @@ export default {
         event.preventDefault()
       })
     })
-    console.log('1')
     if (!this.$store.getters.loggedinUser){
       this.liked = false
       return
     }
-    console.log('2')
     const currUser = utilService.deepCopy(this.$store.getters.loggedinUser)
     if (!currUser){
       this.liked = false
       return
     }
-    console.log('3')
     currUser.likedStays.includes(this.stay._id)
     this.liked = currUser.likedStays.includes(this.stay._id)
-    console.log('4')
   },
   data(){
     return {

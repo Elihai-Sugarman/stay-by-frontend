@@ -1,6 +1,6 @@
 <template>
-  <ul class="stay-list">
-    <stay-preview v-for="stayId in user.likedStays" :stay="getStay(stayId)"/>
+  <ul class="stay-list" v-if="user">
+    <stay-preview v-for="stayId in user.likedStays" :key="stayId" :stay="getStay(stayId)"/>
   </ul>
 </template>
 
@@ -10,17 +10,27 @@ export default {
   components:{
     stayPreview
   },
-  data(){
-    return {
-      user: this.$store.getters.loggedinUser
-    }
+  created() {
+    if (!this.stays.length) this.loadStays()
+  },
+  computed: {
+    user() {
+      return this.$store.getters.loggedinUser
+    },
+    stays() {
+      return this.$store.getters.stays
+    },
   },
   methods:{
     getStay(stayId){
       const stays = this.$store.getters.stays
       const idx = stays.findIndex(stay=>stay._id===stayId)
       return stays[idx]
-    }
+    },
+    loadStays() {
+        this.$store.dispatch({ type: 'loadStays' })
+        this.$store.dispatch({ type: 'loadAllStays' })
+      }
   }
 }
 </script>
