@@ -8,6 +8,11 @@ import stayExplore from './views/stay/stay-explore.vue'
 import loginSignup from './views/login-signup.vue'
 import orderDetails from './views/order-details.vue'
 
+import dashboard from './views/dashboard/dashboard.vue'
+import ordersCmp from './views/dashboard/order.vue'
+import wishlistCmp from './views/dashboard/wishlist.vue'
+import listingsCmp from './views/dashboard/listings.vue'
+
 const routes = [
     {
         path: '/',
@@ -49,6 +54,28 @@ const routes = [
         name: 'signup',
         component: loginSignup,
         props: { isLoginPage: false }
+    },
+    {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: dashboard,
+        children: [
+            {
+                path: 'order',
+                name: 'order',
+                component: ordersCmp
+            },
+            {
+                path: 'listings',
+                name: 'listings',
+                component: listingsCmp
+            }
+        ]
+    },
+    {
+        path: '/wishlist',
+        name: 'wishlist',
+        component: wishlistCmp
     },
 ]
 

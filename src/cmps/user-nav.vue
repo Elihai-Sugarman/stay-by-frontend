@@ -3,8 +3,18 @@
     <template v-if="open">
       <section class="user-menu" v-outside-click="() => this.$emit('outside-click')">
         <ul v-if="user">
-          <li>My trips</li>
-          <li>Wishlist</li>
+          <router-link to="/dashboard">
+            <li>Dashboard</li>
+          </router-link>
+          <router-link to="/dashboard/order">
+            <li>My orders</li>
+          </router-link>
+          <router-link to="/dashboard/listings">
+            <li>My listings</li>
+          </router-link>
+          <router-link to="/wishlist">
+            <li>My Wishlist</li>
+          </router-link>
           <divider />
           <li @click="logout">Logout</li>
         </ul>
@@ -16,7 +26,7 @@
             <li>Sign up</li>
           </router-link>
           <divider />
-          <li>Airbnb your home</li>
+          <li>Stayby your home</li>
         </ul>
       </section>
     </template>
