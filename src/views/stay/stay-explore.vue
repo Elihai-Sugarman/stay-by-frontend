@@ -27,11 +27,11 @@
       }
     },
     created() {
-      this.loadStays()
+      if (!this.stays.length) this.loadStays()
     },
     watch: {
       queryParams() {
-        this.loadStays()
+        this.filterByAddress()
       }
     },
     methods: {
