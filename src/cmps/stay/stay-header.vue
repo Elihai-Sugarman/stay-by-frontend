@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { eventBus } from '../../services/event-bus.service'
 import stayFilter from './stay-filter.vue'
 import stayLabel from './stay-label.vue'
 
@@ -42,6 +43,9 @@ import 'vue3-carousel/dist/carousel.css'
             console.log(this.$route.query)
             this.clickedLabel = this.$route.query.label
         },
+        created(){
+            eventBus.on('resetSearch', ()=>{this.clickedLabel=null})
+        },
         // mounted(){
         //     this.settings = {
         //             itemsToShow: 3,
@@ -51,7 +55,7 @@ import 'vue3-carousel/dist/carousel.css'
         // },
         data(){
             return {
-                clickedLabel: this.$route.query.label,
+                clickedLabel: null,
             //     settings: {
             //     itemsToShow: 11.5,
             //     itemsToScroll: 1,

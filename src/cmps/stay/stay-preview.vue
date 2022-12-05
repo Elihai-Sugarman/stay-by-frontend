@@ -9,12 +9,10 @@
             </el-carousel-item>
           </el-carousel>
         </div>
-        <!-- <img class="stay-img" :src="stay.imgUrls[0]"/> -->
         <icon-cmp iconType="heart" class="stay-like" @click.prevent="likeStay" :class="{liked: liked}"/>
       </div>
       <div class="preview-info">
         <div class="preview-address">{{ stay.roomType }} in {{ stay.address.city }}</div>
-        <!-- <div class="preview-address">{{ stay.address.city }}, {{ stay.address.country }}</div> -->
         <span v-if="stay.reviews.length" class="preview-data-info flex">
           <span class="preview-rate-icon">
             <icon-cmp iconType="star"/>
@@ -24,7 +22,6 @@
           </span>
         </span>
         <div class="preview-time-ago">{{ stay.name }}</div>
-        <!-- <div class="preview-time-ago">Added {{ timeAgo }}</div> -->
         <div class="preview-dates">{{ availableDates }}</div>
         <div class="preview-price"><span class="bold">${{ stay.price }}</span> night</div>
     </div>
@@ -125,11 +122,10 @@ export default {
       const currUser = utilService.deepCopy(this.$store.getters.loggedinUser)
       if (!currUser) return
       this.liked = !this.liked
-      const idx = currUser.likedStays.findIndex(id=>id===this.stay._id)
-      if (idx === -1) currUser.likedStays.push(this.stay._id)
-      else currUser.likedStays.splice(idx,1)
+      const stayIdx = currUser.likedStays.findIndex(id=>id===this.stay._id)
+      if (stayIdx === -1) currUser.likedStays.push(this.stay._id)
+      else currUser.likedStays.splice(stayIdx,1)
       this.$store.dispatch({type: 'updateUser', user: utilService.deepCopy(currUser)})
-      // this.$store.commit({ type: 'setLoggedinUser', user: utilService.deepCopy(currUser) })
     },
     async removeStay(stayId) {
       try {
@@ -168,5 +164,3 @@ export default {
   }
 }
 </script>
-
-<!-- <button type="button" class="el-carousel__arrow el-carousel__arrow--right carousel-arrow-right-enter-from carousel-arrow-right-enter-active" style=""><i class="el-icon"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M340.864 149.312a30.592 30.592 0 0 0 0 42.752L652.736 512 340.864 831.872a30.592 30.592 0 0 0 0 42.752 29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z"></path></svg></i></button> -->

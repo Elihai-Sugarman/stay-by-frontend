@@ -1,11 +1,15 @@
 <template>
-  <ul class="stay-list" v-if="user">
+  <ul class="stay-list" v-if="(user && likedStays)">
     <stay-preview
-      v-for="stay in likedStays"
-      :key="stay._id"
-      :stay="stay"
+    v-for="stay in likedStays"
+    :key="stay._id"
+    :stay="stay"
     />
   </ul>
+  <div class="empty-wishlist" v-else>
+    <h3>Nothing to see here...</h3>
+    <h1>Go make some wishes!</h1>
+  </div> 
 </template>
 
 <script>

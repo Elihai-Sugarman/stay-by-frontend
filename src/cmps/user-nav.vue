@@ -52,6 +52,8 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('logout')
+      this.$router.push('/stay')
+      // We need to refresh the page (in order to reset the hearts in each preview)
     }
   }
 }
