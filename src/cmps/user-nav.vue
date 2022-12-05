@@ -25,8 +25,6 @@
           <router-link to="/signup">
             <li>Sign up</li>
           </router-link>
-          <divider />
-          <li>Stayby your home</li>
         </ul>
       </section>
     </template>
