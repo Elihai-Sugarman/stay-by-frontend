@@ -61,8 +61,8 @@ export default {
     handleSearch(form) {
       this.search = {
         where: form.where,
-        checkIn: form?.checkIn ? moment(new Date(form.checkIn)).format('MMM, YYYY') : null,
-        checkOut: form?.checkIn ? moment(new Date(form.checkOut)).format('MMM, YYYY') : null,
+        checkIn: form?.checkIn ? moment(new Date(form.checkIn)).format('MMM DD, YYYY') : null,
+        checkOut: form?.checkIn ? moment(new Date(form.checkOut)).format('MMM DD, YYYY') : null,
         guests: form.guests
       }
 
@@ -87,12 +87,15 @@ export default {
     isInStayDetails() {
       return this.$route.name === 'stay-details'
     },
+    isInStayExplore() {
+      return this.$route.name === 'stay-explore'
+    },
     anywhere() {
-      return this.search.where || 'Anywhere'
+      return this.search.where && !this.isInStayExplore || 'Anywhere'
     },
     anyweek() {
       const formattedDate = `${this.search.checkIn} - ${this.search.checkOut}`
-      return this.search.checkIn && this.search.checkOut && formattedDate || 'Anyweek'
+      return this.search.checkIn && this.search.checkOut && !this.isInStayExplore && formattedDate || 'Anyweek'
     },
     anyguests() {
       // return this.search.guests || 'Add guests'

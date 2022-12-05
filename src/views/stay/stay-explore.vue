@@ -11,6 +11,7 @@
   import stayList from '../../cmps/stay/stay-list.vue'
   
   export default {
+    name: 'stay-explore',
     components: {
       stayList,
     },

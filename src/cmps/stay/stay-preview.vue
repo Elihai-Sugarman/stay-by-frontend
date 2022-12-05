@@ -1,5 +1,5 @@
 <template>
-  <router-link class="li" :to="`/stay/${stay._id}`" target="_blank">
+  <router-link class="li" :to="stayDetailsLink" target="_blank">
     <article class="stay-preview">
       <div class="stay-img-container">
         <div class="block text-center" m="t-4">
@@ -62,6 +62,27 @@ export default {
     }
   },
   computed:{
+    filterBy() {
+      return this.$store.getters.filterBy
+    },
+    stayDetailsLink() {
+      const guests = this.filterBy?.guests?.reduce((prev, curr) => {
+        return {
+          ...prev,
+          [curr.type.toLowerCase()]: curr.capacity
+        }
+      }, {})
+
+      const params = {
+        checkIn: this.filterBy?.checkIn?.getTime() || '',
+        checkOut: this.filterBy?.checkOut?.getTime() || '',
+        ...guests
+      }
+      const queryString = Object.keys(params)
+        .map(key => key + '=' + params[key])
+        .join('&');
+      return `/stay/${this.stay._id}?${queryString}`
+    },
     timeAgo(){
       return moment(this.stay.createdAt).fromNow()
     },

@@ -16,6 +16,7 @@
         height: 66px;
         width: max-content;
         margin: 0;
+        position: relative;
 
         background-clip: padding-box;
         border: 1px solid $clr12;
@@ -27,14 +28,6 @@
         position: relative;
         align-items: center;
         height: 100%;
-    }
-
-    & .form-date-picker {
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        visibility: hidden;
     }
 
     & .title {
