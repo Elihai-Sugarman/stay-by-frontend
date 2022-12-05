@@ -25,7 +25,7 @@ export const userService = {
 window.userService = userService
 
 async function loadUsersToStorage() {
-    const users = await storageService.query('user')
+    let users = await storageService.query('user')
     if (!users.length) {
         users = usersArray
         utilService.saveToStorage('user', users)
