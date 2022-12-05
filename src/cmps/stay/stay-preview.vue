@@ -110,7 +110,17 @@ export default {
   },
   methods: {
     likeStay(){
+      const currUser = this.$store.getters.loggedinUser
+      console.log(currUser)
+      if (!currUser) return
       this.liked = !this.liked
+      console.log(this.liked)
+        console.log(currUser.likedStays)
+      //   const idx = currUser.likedStays.findIndex(id=>id===this.stay._id)
+      //   if (idx===-1) currUser.likedStays.push(this.stay._id)
+      //   else currUser.likedStays.splice(idx,1)
+      // }
+      // console.log(currUser)
     },
     moveCarousel(){
       console.log('It works!')
