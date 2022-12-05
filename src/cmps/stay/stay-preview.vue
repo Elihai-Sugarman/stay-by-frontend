@@ -55,6 +55,21 @@ export default {
         event.preventDefault()
       })
     })
+    console.log('1')
+    if (!this.$store.getters.loggedinUser){
+      this.liked = false
+      return
+    }
+    console.log('2')
+    const currUser = utilService.deepCopy(this.$store.getters.loggedinUser)
+    if (!currUser){
+      this.liked = false
+      return
+    }
+    console.log('3')
+    currUser.likedStays.includes(this.stay._id)
+    this.liked = currUser.likedStays.includes(this.stay._id)
+    console.log('4')
   },
   data(){
     return {
@@ -110,17 +125,15 @@ export default {
   },
   methods: {
     likeStay(){
-      this.liked = !this.liked
-      console.log(this.$store.getters.loggedinUser===undefined)
       if (!this.$store.getters.loggedinUser) return
       const currUser = utilService.deepCopy(this.$store.getters.loggedinUser)
       if (!currUser) return
-      console.log(currUser.likedStays)
       this.liked = !this.liked
       const idx = currUser.likedStays.findIndex(id=>id===this.stay._id)
       if (idx === -1) currUser.likedStays.push(this.stay._id)
       else currUser.likedStays.splice(idx,1)
-      this.$store.commit({ type: 'setLoggedinUser', currUser: utilService.deepCopy(currUser) })
+      this.$store.dispatch({type: 'updateUser', user: utilService.deepCopy(currUser)})
+      // this.$store.commit({ type: 'setLoggedinUser', user: utilService.deepCopy(currUser) })
     },
     async removeStay(stayId) {
       try {

@@ -10,7 +10,7 @@ import orderDetails from './views/order-details.vue'
 
 import dashboard from './views/dashboard/dashboard.vue'
 import ordersCmp from './views/dashboard/order.vue'
-import wishlistCmp from './views/dashboard/wishlist.vue'
+import stayWishlist from './views/stay/stay-wishlist.vue'
 import listingsCmp from './views/dashboard/listings.vue'
 
 const routes = [
@@ -47,13 +47,13 @@ const routes = [
         path: '/login',
         name: 'login',
         component: loginSignup,
-        props: { isLoginPage: true }
+        props: { isLoginPage: true },
     },
     {
         path: '/signup',
         name: 'signup',
         component: loginSignup,
-        props: { isLoginPage: false }
+        props: { isLoginPage: false },
     },
     {
         path: '/dashboard',
@@ -63,19 +63,19 @@ const routes = [
             {
                 path: 'order',
                 name: 'order',
-                component: ordersCmp
+                component: ordersCmp,
             },
             {
                 path: 'listings',
                 name: 'listings',
-                component: listingsCmp
-            }
-        ]
+                component: listingsCmp,
+            },
+        ],
     },
     {
         path: '/wishlist',
         name: 'wishlist',
-        component: wishlistCmp
+        component: stayWishlist,
     },
 ]
 
