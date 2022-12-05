@@ -110,7 +110,10 @@ export default {
   },
   methods: {
     likeStay(){
-      const currUser = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
+      this.liked = !this.liked
+      console.log(this.$store.getters.loggedinUser===undefined)
+      if (!this.$store.getters.loggedinUser) return
+      const currUser = utilService.deepCopy(this.$store.getters.loggedinUser)
       if (!currUser) return
       console.log(currUser.likedStays)
       this.liked = !this.liked

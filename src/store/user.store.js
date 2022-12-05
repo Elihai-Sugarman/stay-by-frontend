@@ -42,9 +42,6 @@ export const userStore = {
         setUserScore(state, { score }) {
             state.loggedinUser.score = score
         },
-        setLoggedinUser(state, { currUser }) {
-            state.loggedinUser = currUser
-        },
     },
     actions: {
         async login({ commit }, { userCred }) {
@@ -126,6 +123,5 @@ export const userStore = {
         setWatchedUser({ commit }, payload) {
             commit(payload)
         },
-        async setLoggedinUser(context, { currUser }) {},
     },
 }
