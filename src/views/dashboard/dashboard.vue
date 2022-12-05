@@ -3,7 +3,7 @@
     <aside class="side-nav">
       <ul class="clean-list">
         <router-link to="/dashboard/edit">
-          <li>Add stay</li>
+          <li>Create listing</li>
         </router-link>
         <router-link to="/dashboard/listings">
           <li>My listings</li>
