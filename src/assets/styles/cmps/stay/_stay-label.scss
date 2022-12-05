@@ -5,7 +5,7 @@
     color: $clr11;
     border-bottom: 2px solid transparent;
 
-    &:hover {
+    &:hover, &.clicked-label {
         border-bottom: 2px solid $clr11;
         color: black;
 
@@ -13,6 +13,10 @@
             opacity: 1;
         }
     }
+}
+
+.clicked-label {
+    border-bottom: 2px solid black !important;
 }
 
 .label-img {

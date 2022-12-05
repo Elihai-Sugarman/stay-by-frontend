@@ -1,5 +1,5 @@
 <template>
-    <section @click="filter" class="stay-label">
+    <section @click="filter" class="stay-label" :class="{'clicked-label': clickedLabel===label}">
         <img class="label-img" :src="labelUrl"/>
         <p>{{ designedLabel }}</p>
     </section>
@@ -9,6 +9,7 @@
 export default {
     props:{
         label: String,
+        clickedLabel: String,
     },
     computed:{
         designedLabel(){

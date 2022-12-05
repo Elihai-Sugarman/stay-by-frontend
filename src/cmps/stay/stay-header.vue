@@ -2,7 +2,7 @@
     <section class="stay-header">
         <Carousel class="labels-container" :settings="settings" :breakpoints="breakpoints">
             <Slide v-for="label in labels" :key="label">
-                <stay-label :label="label" @filter="filter" />
+                <stay-label :label="label" @filter="filter" :clickedLabel="clickedLabel" />
             </Slide>
 
             <template #addons>
@@ -47,6 +47,7 @@ import 'vue3-carousel/dist/carousel.css'
         // },
         data(){
             return {
+                clickedLabel: null,
                 // carousel settings
                 settings: {
                     itemsToShow: 3,
@@ -114,6 +115,7 @@ import 'vue3-carousel/dist/carousel.css'
         },
         methods: {
             filter(label){
+                this.clickedLabel = label
                 this.$emit('filter', label)
             },
         }
