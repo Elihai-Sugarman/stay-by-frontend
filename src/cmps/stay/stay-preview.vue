@@ -110,18 +110,14 @@ export default {
   },
   methods: {
     likeStay(){
-      const currUser = this.$store.getters.loggedinUser
-      console.log(currUser)
+      const currUser = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
       if (!currUser) return
-      console.log(currUser.LikedStays)
+      console.log(currUser.likedStays)
       this.liked = !this.liked
-      // const idx = currUser.likedStays.findIndex(id=>id===this.stay._id)
-      // if (idx === -1) currUser.likedStays.push(this.stay._id)
-      // else currUser.likedStays.splice(idx,1)
-      // console.log(currUser)
-    },
-    moveCarousel(){
-      console.log('It works!')
+      const idx = currUser.likedStays.findIndex(id=>id===this.stay._id)
+      if (idx === -1) currUser.likedStays.push(this.stay._id)
+      else currUser.likedStays.splice(idx,1)
+      this.$store.commit({ type: 'setLoggedinUser', currUser: utilService.deepCopy(currUser) })
     },
     async removeStay(stayId) {
       try {
