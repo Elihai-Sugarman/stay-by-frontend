@@ -21,7 +21,7 @@
     & .labels-container {
         @extend .flex, .justify-center, .align-center;
         gap: 32px;
-        width: 100%;
+        min-width: 100%;
         overflow-x: hidden;
     }
     // box-shadow: 0px 1px $clr11;
@@ -31,26 +31,21 @@
 //     border: 1px solid black;
 //     width: 90%;
 //     justify-self: center;
-
-//     > ol > :first-child {
-//         background-color: green;
-//         padding-left: 0;
-//     }
 // }
 
 .carousel {
-    // background-color: pink;
-    // position: relative;
-    // top: 0;
-    // margin: 0;
     padding: 0;
     box-sizing: border-box;
     padding-top: 12px;
+    object-fit: cover;
 
     .stay-label p {
-        // background-color: pink;
         margin-bottom: 4px;
     }
+}
+
+.carousel__slide {
+    // max-width: 80px;
 }
 
 .carousel__prev, .carousel__next {

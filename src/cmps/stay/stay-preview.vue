@@ -13,7 +13,7 @@
         <icon-cmp iconType="heart" class="stay-like" @click.prevent="likeStay" :class="{liked: liked}"/>
       </div>
       <div class="preview-info">
-        <div class="preview-address">{{ stay.type }} in {{ stay.address.city }}</div>
+        <div class="preview-address">{{ stay.roomType }} in {{ stay.address.city }}</div>
         <!-- <div class="preview-address">{{ stay.address.city }}, {{ stay.address.country }}</div> -->
         <span v-if="stay.reviews.length" class="preview-data-info flex">
           <span class="preview-rate-icon">

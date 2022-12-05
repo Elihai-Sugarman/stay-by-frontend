@@ -38,6 +38,13 @@ import 'vue3-carousel/dist/carousel.css'
             Slide,
             Navigation,
         },
+        // mounted(){
+        //     this.settings = {
+        //             itemsToShow: 3,
+        //             itemsToScroll: 3,
+        //             snapAlign: 'center',
+        //         }
+        // },
         data(){
             return {
                 // carousel settings
@@ -49,46 +56,52 @@ import 'vue3-carousel/dist/carousel.css'
                 // breakpoints are mobile first
                 // any settings not specified will fallback to the carousel settings
                 breakpoints: {
-                    // 500px and up
-                    500: {
+                    // 400px and up
+                    400: {
                         itemsToShow: 4,
                         itemsToScroll: 4,
                         snapAlign: 'center',
                     },
-                    // 600px and up
-                    600: {
+                    // 500px and up
+                    500: {
                         itemsToShow: 5,
                         itemsToScroll: 5,
                         snapAlign: 'center',
                     },
-                    // 700px and up
-                    700: {
-                        itemsToShow: 6,
-                        itemsToScroll: 6,
-                        snapAlign: 'center',
-                    },
-                    // 800px and up
-                    800: {
+                    // 600px and up
+                    600: {
                         itemsToShow: 7,
                         itemsToScroll: 7,
                         snapAlign: 'center',
                     },
-                    // 900px and up
-                    900: {
+                    // 700px and up
+                    700: {
                         itemsToShow: 8,
                         itemsToScroll: 8,
                         snapAlign: 'center',
                     },
+                    // 800px and up
+                    800: {
+                        itemsToShow: 10,
+                        itemsToScroll: 10,
+                        snapAlign: 'center',
+                    },
+                    // 900px and up
+                    900: {
+                        itemsToShow: 11,
+                        itemsToScroll: 11,
+                        snapAlign: 'center',
+                    },
                     // 1000 and up
                     1000: {
-                        itemsToShow: 9,
-                        itemsToScroll: 9,
+                        itemsToShow: 12,
+                        itemsToScroll: 12,
                         snapAlign: 'start',
                     },
                     // 1100 and up
                     1100: {
-                        itemsToShow: 11,
-                        itemsToScroll: 11,
+                        itemsToShow: 13,
+                        itemsToScroll: 13,
                         snapAlign: 'start',
                     },
                 },
