@@ -1,0 +1,64 @@
+.dates-modal {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    margin-top: 12px;
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 8px 16px rgb(0 0 0 / 15%);
+    padding: 16px 32px;
+
+    & .choose {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ebebeb;
+        border-radius: 100px;
+        padding-left: 4px;
+        padding-right: 4px;
+        width: max-content;
+        margin-inline: auto;
+
+        & button {
+            border-radius: 100px;
+            font-size: 14px;
+            line-height: 18px;
+            border: none;
+            background: transparent;
+            color: rgb(34, 34, 34);
+            padding: 8px 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 4px 2px;
+            transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+            position: relative;
+            outline: none;
+            cursor: pointer;
+
+            // should be active class
+            cursor: default;
+            background: rgb(255, 255, 255);
+            color: rgb(34, 34, 34);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: rgb(0 0 0 / 8%) 0px 1px 2px, rgb(0 0 0 / 5%) 0px 4px 12px;
+        }
+    }
+
+    & .vc-container {
+        border: none;
+    }
+
+    & .vc-pane {
+        padding: 0 27px;
+    }
+
+    & .vc-header {
+        padding: 10px 16px;
+    }
+
+    & .highlights {
+        // background-color: $clr7;
+    }
+}
