@@ -1,0 +1,37 @@
+.login-signup {
+    border: 1px solid #B0B0B0;
+    border-radius: 12px;
+    position: relative;
+    max-width: 568px;
+    width: 100%;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    overflow: visible;
+    margin-inline: auto;
+
+    & .auth-header {
+        padding: 0 24px;
+        min-height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: cereal-bold;
+    }
+
+    & form {
+        padding: 32px;
+    }
+
+    & .submit-btn {
+        padding: 0;
+        background: transparent;
+        border: none;
+        color: white;
+        font-family: cereal-bold;
+    }
+    
+    & .el-divider {
+        margin:  16px 0;
+    }
+}

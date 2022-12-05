@@ -34,14 +34,21 @@ const routes = [
         component: stayDetails,
     },
     {
-        path: '/login',
-        name: 'login-signup',
-        component: loginSignup,
-    },
-    {
         path: '/explore',
         name: 'explore',
         component: stayExplore,
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: loginSignup,
+        props: { isLoginPage: true }
+    },
+    {
+        path: '/signup',
+        name: 'signup',
+        component: loginSignup,
+        props: { isLoginPage: false }
     },
 ]
 

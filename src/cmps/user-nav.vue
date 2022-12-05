@@ -3,11 +3,15 @@
     <template v-if="open">
       <section class="user-menu" v-outside-click="() => this.$emit('outside-click')">
         <ul v-if="user">
-          <li>Logout</li>
+          <li @click="logout">Logout</li>
         </ul>
         <ul v-else>
-          <li>Log in</li>
-          <li>Sign up</li>
+          <router-link to="/login">
+            <li>Log in</li>
+          </router-link>
+          <router-link to="/signup">
+            <li>Sign up</li>
+          </router-link>
           <divider />
           <li>Airbnb your home</li>
         </ul>
@@ -16,7 +20,8 @@
 
     <button>
       <icon iconType="bars" />
-      <icon iconType="avatar" class="profile-icon" />
+      <icon iconType="avatar" class="profile-icon" v-if="!user" />
+      <img :src="user.imgUrl" alt="user pic" class="profile-icon" v-else />
     </button>
   </section>
 </template>
@@ -31,6 +36,11 @@ export default {
   computed: {
     user() {
       return this.$store.getters.loggedinUser
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
     }
   }
 }

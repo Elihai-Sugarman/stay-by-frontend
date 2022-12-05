@@ -21,6 +21,7 @@
     "vue": "^3.2.37",
     "vue-router": "^4.1.2",
     "vue3-carousel": "^0.2.8",
+    "vue3-google-login": "^2.0.12",
     "vue3-google-map": "^0.15.0",
     "vuex": "^4.0.2"
   },

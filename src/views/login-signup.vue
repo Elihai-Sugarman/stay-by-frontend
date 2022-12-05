@@ -1,122 +1,110 @@
 <template>
-  <div class="container about">
-    <p>{{ msg }}</p>
+  <div class="login-signup">
+    <header class="auth-header divider">
+      <div>Log in or sign up</div>
+    </header>
 
-    <div v-if="loggedinUser">
-      <h3>
-        Loggedin User:
-        {{ loggedinUser.fullname }}
-        <button @click="doLogout">Logout</button>
-      </h3>
-    </div>
-    <div v-else>
-      <h2>Login</h2>
-      <form @submit.prevent="doLogin">
-        <select v-model="loginCred.username">
-          <option value="">Select User</option>
-          <option v-for="user in users" :key="user._id" :value="user.username">{{ user.fullname }}</option>
-        </select>
-        <!-- <input type="text" v-model="loginCred.username" placeholder="User name" />
-        <input
-          type="text"
-          v-model="loginCred.password"
-          placeholder="Password"
+    <div class="form-container">
+      <el-form :model="credentials" label-position="top">
+        <el-form-item label="Fullname" class="w-100" required v-if="!isLoginPage">
+          <el-input v-model="credentials.fullname" />
+        </el-form-item>
+  
+        <el-form-item label="Username" class="w-100" required>
+          <el-input v-model="credentials.username" />
+        </el-form-item>
+  
+        <el-form-item label="Password" class="w-100" required>
+          <el-input type="password" v-model="credentials.password" />
+        </el-form-item>
+  
+        <el-button @click="handleDemoLogin" v-if="isLoginPage">Log in as Demo User</el-button>
+  
+        <branded-btn @click="handleSubmit">
+          <el-button class="submit-btn">{{ submitBtnText }}</el-button>
+        </branded-btn>
+
+        <el-divider>or</el-divider>
+
+        <!-- <GoogleLogin
+          :client-id="googleClientId"
+          :callback="handleGoogleLogin"
+          :error="handleGoogleError"
         /> -->
-        <button>Login</button>
-      </form>
-      <p class="mute">user1 or admin, pass:123 </p>
-      <form @submit.prevent="doSignup">
-        <h2>Signup</h2>
-        <input type="text" v-model="signupCred.fullname" placeholder="Your full name" />
-        <input type="text" v-model="signupCred.password" placeholder="Password" />
-        <input type="text" v-model="signupCred.username" placeholder="Username" />
-        <img-uploader @uploaded="onUploaded"></img-uploader>
-        <button>Signup</button>
-      </form>
+
+      </el-form>
     </div>
-    <hr />
-    <details>
-      <summary>
-        Admin Section
-      </summary>
-      <ul>
-        <li v-for="user in users" :key="user._id">
-          <pre>{{ user }}</pre>
-          <button @click="removeUser(user._id)">x</button>
-        </li>
-      </ul>
-    </details>
   </div>
 </template>
 
 <script>
+import { ElMessage } from 'element-plus'
+import { GoogleLogin } from 'vue3-google-login'
+const GOOGLE_CLIENT_ID = ''
 
 import imgUploader from '../cmps/img-uploader.vue'
 
 export default {
   name: 'login-signup',
+  props: { isLoginPage: Boolean },
+  components: {
+    imgUploader,
+    GoogleLogin
+  },
   data() {
     return {
-      msg: '',
-      loginCred: { username: 'user1', password: '123' },
-      signupCred: { username: '', password: '', fullname: '', imgUrl : '' },
+      credentials: {
+        username: '',
+        password: '',
+        fullname: ''
+      },
+      isLoading: false
     }
   },
   computed: {
-    users() {
-      return this.$store.getters.users
+    submitBtnText() {
+      return this.isLoginPage ? 'Log in' : 'Sign up'
     },
-    loggedinUser() {
-      return this.$store.getters.loggedinUser
-    },
-  },
-  created() {
-    this.loadUsers()
+    googleClientId() {
+      return GOOGLE_CLIENT_ID
+    }
   },
   methods: {
-    async doLogin() {
-      if (!this.loginCred.username) {
-        this.msg = 'Please enter username/password'
-        return
+    handleSubmit() {
+      this.isLoginPage ? this.doLogin() : this.doSignup()
+    },
+    handleGoogleLogin(res) {
+      console.log('res', res)
+    },
+    handleGoogleError(err) {
+      console.log('err', err)
+    },
+    handleDemoLogin() {
+      this.credentials = {
+        username: 'Demo',
+        password: '123456'
       }
+
+      this.handleSubmit()
+    },
+    async doLogin() {
       try {
-        await this.$store.dispatch({ type: "login", userCred: this.loginCred })
+        await this.$store.dispatch({ type: 'login', userCred: this.credentials })
         this.$router.push('/')
       } catch (err) {
         console.log(err)
-        this.msg = 'Failed to login'
+        ElMessage.error('invalid username or password')
       }
-    },
-    doLogout() {
-      this.$store.dispatch({ type: 'logout' })
     },
     async doSignup() {
-      if (!this.signupCred.fullname || !this.signupCred.password || !this.signupCred.username) {
-        this.msg = 'Please fill up the form'
-        return
-      }
-      await this.$store.dispatch({ type: 'signup', userCred: this.signupCred })
-      this.$router.push('/')
-
-    },
-    loadUsers() {
-      this.$store.dispatch({ type: "loadUsers" })
-    },
-    async removeUser(userId) {
       try {
-        await this.$store.dispatch({ type: "removeUser", userId })
-        this.msg = 'User removed'
+        await this.$store.dispatch({ type: 'signup', userCred: this.credentials })
+        this.$router.push('/')
       } catch (err) {
-        this.msg = 'Failed to remove user'
+        console.log(err)
+        ElMessage.error('failed to signup')
       }
-    },
-    onUploaded(imgUrl) {
-      this.signupCred.imgUrl = imgUrl
     }
-
-  },
-  components: {
-    imgUploader
   }
 }
 </script>
