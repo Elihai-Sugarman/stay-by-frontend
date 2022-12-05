@@ -27,7 +27,7 @@
 
     <Transition name="fade-in">
       <KeepAlive>
-        <search-form v-if="open" @search="handleSearch" @close="$emit('close')" />
+        <search-form v-if="open" @searched="handleSearch" @close="$emit('close')" />
       </KeepAlive>
     </Transition>
   </section>
@@ -61,13 +61,14 @@ export default {
     handleSearch(form) {
       this.search = {
         where: form.where,
-        checkIn: form?.checkIn ? moment(new Date(form.checkIn)).format('MMM DD, YYYY') : null,
-        checkOut: form?.checkIn ? moment(new Date(form.checkOut)).format('MMM DD, YYYY') : null,
+        checkIn: form?.checkIn ? moment(form.checkIn).format('MMM DD, YYYY') : null,
+        checkOut: form?.checkIn ? moment(form.checkOut).format('MMM DD, YYYY') : null,
         guests: form.guests
       }
 
       const [city, country] = form.where.split(', ')
       let filterBy = { ...form }
+
       if (city) filterBy.city = city
       if (country) filterBy.country = country
 

@@ -73,15 +73,20 @@ export default {
         }
       }, {})
 
-      const params = {
-        checkIn: this.filterBy?.checkIn?.getTime() || '',
-        checkOut: this.filterBy?.checkOut?.getTime() || '',
-        ...guests
-      }
-      const queryString = Object.keys(params)
+      const params = { ...guests }
+
+      if (this.filterBy?.checkIn)
+        params.checkIn = this.filterBy.checkIn.getTime()
+
+      if (this.filterBy?.checkOut)
+        params.checkOut = this.filterBy.checkOut.getTime()
+      
+      let queryString = Object.keys(params)
         .map(key => key + '=' + params[key])
         .join('&');
-      return `/stay/${this.stay._id}?${queryString}`
+
+      if (queryString) queryString = '?' + queryString
+      return `/stay/${this.stay._id}${queryString}`
     },
     timeAgo(){
       return moment(this.stay.createdAt).fromNow()

@@ -86,7 +86,7 @@ export default {
     guestModal,
     datesModal
   },
-  emits: ['close'],
+  emits: ['close', 'searched'],
   data() {
     return {
       form: {
@@ -109,13 +109,13 @@ export default {
 
       const form = {
         where: this.form.where,
-        checkIn: this.form.checkIn?.getTime(),
-        checkOut: this.form.checkOut?.getTime(),
+        checkIn: this.form.checkIn,
+        checkOut: this.form.checkOut,
         guests: this.form.guests
       }
 
       this.isDatesOpen = false
-      this.$emit('search', form)
+      this.$emit('searched', form)
     },
     handleGuestsChange(guests) {
       this.form.guests = guests
