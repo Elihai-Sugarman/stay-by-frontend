@@ -1,16 +1,20 @@
 <template>
   <ul class="stay-list" v-if="user">
-    <stay-preview v-for="stayId in user.likedStays" :key="stayId" :stay="getStay(stayId)"/>
+    <stay-preview
+      v-for="stay in likedStays"
+      :key="stay._id"
+      :stay="stay"
+    />
   </ul>
 </template>
 
 <script>
 import stayPreview from '../../cmps/stay/stay-preview.vue'
+
 export default {
-  components:{
-    stayPreview
-  },
+  components: { stayPreview },
   created() {
+    // in case of user refresh page in wishlist page
     if (!this.stays.length) this.loadStays()
   },
   computed: {
@@ -20,17 +24,15 @@ export default {
     stays() {
       return this.$store.getters.stays
     },
+    likedStays() {
+      return this.stays.filter(stay => this.user.likedStays.includes(stay._id))
+    }
   },
-  methods:{
-    getStay(stayId){
-      const stays = this.$store.getters.stays
-      const idx = stays.findIndex(stay=>stay._id===stayId)
-      return stays[idx]
-    },
+  methods: {
     loadStays() {
-        this.$store.dispatch({ type: 'loadStays' })
-        this.$store.dispatch({ type: 'loadAllStays' })
-      }
+      this.$store.dispatch({ type: 'loadStays' })
+      this.$store.dispatch({ type: 'loadAllStays' })
+    }
   }
 }
 </script>
