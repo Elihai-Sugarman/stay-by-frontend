@@ -1,17 +1,23 @@
 <template>
   <section class="guest-modal" v-if="open" @click.stop v-outside-click="() => $emit('close')">
-    <div v-for="[title, guest] in Object.entries(guestsOptions)" :id="title" class="guest-option">
+    <div v-for="guest in guestsOptions" :id="guest.type" class="guest-option">
       <div class="description">
-        <div class="title">{{ title }}</div>
+        <div class="title">{{ guest.type }}</div>
         <div class="subtitle">{{ guest.subtitle }}</div>
       </div>
 
       <div class="guest-actions">
-        <button type="button" @click="handleGuestSelect(title, false)" :disabled="!guest.capacity">
+        <button
+          type="button"
+          @click="handleGuestSelect(guest.type, false)"
+          :disabled="(!guest.capacity || guest.capacity === initialAdultCapacity)">
           <icon-cmp icon-type="minus" />
         </button>
         <span>{{ guest.capacity }}</span>
-        <button type="button" @click="handleGuestSelect(title, true)" :disabled="(guest.capacity === guest.maxCapacity)">
+        <button
+          type="button"
+          @click="handleGuestSelect(guest.type, true)"
+          :disabled="(guest.capacity === guest.maxCapacity)">
           <icon-cmp icon-type="plus" />
         </button>
       </div>
@@ -23,30 +29,33 @@
 import { utilService } from '../services/util.service'
 
 export default {
-  props: { open: Boolean },
+  props: {
+    open: Boolean,
+    initialAdultCapacity: Number
+  },
   emits: ['change', 'close'],
   data() {
     return {
       guestsOptions: {
-        Adults: {
+        adults: {
           type: 'Adults',
           subtitle: 'Ages 13 or above',
-          capacity: 0,
+          capacity: this.initialAdultCapacity || 0,
           maxCapacity: 16
         },
-        Children: {
+        children: {
           type: 'Children',
           subtitle: 'Ages 2–12',
           capacity: 0,
           maxCapacity: 15
         },
-        Infants: {
+        infants: {
           type: 'Infants',
           subtitle: 'Under 2',
           capacity: 0,
           maxCapacity: 5
         },
-        Pets: {
+        pets: {
           type: 'Pets',
           subtitle: 'Bringing a service animal?',
           capacity: 0,
@@ -57,7 +66,7 @@ export default {
   },
   methods: {
     handleGuestSelect(type, isIncrement) {
-      const guestOption = this.guestsOptions[type]
+      const guestOption = this.guestsOptions[type.toLowerCase()];
 
       if (isIncrement) guestOption.capacity++
       else guestOption.capacity--
