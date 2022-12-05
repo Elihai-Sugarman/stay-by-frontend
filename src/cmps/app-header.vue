@@ -27,6 +27,7 @@
   </header>
 </template>
 <script>
+import { eventBus } from '../services/event-bus.service'
 import searchBar from './search-bar.vue'
 import userNav from './user-nav.vue'
 import icon from './icon-cmp.vue'
@@ -74,6 +75,7 @@ export default {
     resetFilters() {
       this.$store.commit({ type: 'setFilterBy', filterBy: null })
       this.$store.dispatch({ type: 'loadStays' })
+      eventBus.emit('resetSearch')
     }
   },
   computed: {

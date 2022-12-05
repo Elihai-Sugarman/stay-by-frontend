@@ -36,6 +36,7 @@
 <script>
 import { Transition } from 'vue'
 import * as moment from 'moment'
+import { eventBus } from '../services/event-bus.service'
 
 import icon from './icon-cmp.vue'
 import searchForm from './search-form.vue'
@@ -57,7 +58,18 @@ export default {
       }
     }
   },
+  created() {
+    eventBus.on('resetSearch', this.resetSearch)
+  },
   methods: {
+    resetSearch() {
+      this.search = {
+        where: '',
+        checkIn: '',
+        checkOut: '',
+        guests: ''
+      }
+    },
     handleSearch(form) {
       this.search = {
         where: form.where,
@@ -88,19 +100,20 @@ export default {
     isInStayDetails() {
       return this.$route.name === 'stay-details'
     },
-    isInStayExplore() {
-      return this.$route.name === 'stay-explore'
-    },
     anywhere() {
-      return this.search.where && !this.isInStayExplore || 'Anywhere'
+      return this.search.where || 'Anywhere'
     },
     anyweek() {
       const formattedDate = `${this.search.checkIn} - ${this.search.checkOut}`
-      return this.search.checkIn && this.search.checkOut && !this.isInStayExplore && formattedDate || 'Anyweek'
+      return this.search.checkIn && this.search.checkOut && formattedDate || 'Anyweek'
     },
     anyguests() {
-      // return this.search.guests || 'Add guests'
-      return 'Add guests'
+      if (!this.search.guests.length) return 'Add guests'
+      const formattedLabel = this.search.guests
+          .map(({ type, capacity }) => `${capacity} ${type}`)
+          .join(', ')
+
+      return formattedLabel
     }
   }
 }

@@ -59,6 +59,10 @@
     & button.guests-btn {
       color: $clr8;
       font-family: cereal-medium;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 100px;
     }
 
     & button.search-btn {
