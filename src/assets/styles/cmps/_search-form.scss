@@ -106,14 +106,6 @@
     }
 }
 
-.el-picker__popper {}
-
-.el-picker-panel .el-date-range-picker {}
-
-.el-picker-panel__body-wrapper {}
-
-.el-picker-panel__body {}
-
 .el-popper__arrow {
     display: none;
 }
@@ -141,23 +133,4 @@
 
 .search-guest-modal {
     width: 406px;
-}
-
-.el-date-table-cell:hover {
-    border: 1.5px solid $clr7 !important;
-}
-
-.el-date-table td.start-date .el-date-table-cell__text {}
-.el-date-table td.end-date .el-date-table-cell__text {}
-
-.el-date-table td.end-date .el-date-table-cell__text,
-.el-date-table td.start-date .el-date-table-cell__text {
-    background-color: $clr7 !important;
-    color: white !important;
-    width: 46px !important;
-    height: 46px !important;
-}
-
-.el-date-table td.in-range .el-date-table-cell {
-    background: #f7f7f7 !important;
 }
