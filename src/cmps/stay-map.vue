@@ -3,7 +3,7 @@
       api-key="AIzaSyCra0GSjxePg_5FSqOjkFeaqEpqrM0uONM"
       style="width: 100%; height: 500px"
       :center="center"
-      :zoom="9"
+      :zoom="13"
     >
       <Marker :options="marker" @click="moveMap(marker.position)" />
 
@@ -24,7 +24,8 @@
     },
     data() {
       return {
-        center: { lat: this.location.lat, lng: this.location.lan },
+        //the coordinates are backwards in the database, hence switching lat and lan here
+        center: { lat: this.location.lan, lng: this.location.lat },
         marker: [
           {
             title: 'Exact location provided after booking',
