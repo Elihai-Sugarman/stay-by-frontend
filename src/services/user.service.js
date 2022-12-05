@@ -68,6 +68,7 @@ async function update(user) {
 async function login(userCred) {
     const users = await storageService.query('user')
     const user = users.find(user => user.username === userCred.username && user.password === userCred.password)
+    if (!user) throw new Error('invalid username or password')
     // const user = await httpService.post('auth/login', userCred)
     if (user) {
         // socketService.login(user._id)
@@ -75,7 +76,6 @@ async function login(userCred) {
     }
 }
 async function signup(userCred) {
-    userCred.score = 10000
     if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
     const user = await storageService.post('user', userCred)
     // const user = await httpService.post('auth/signup', userCred)
@@ -98,7 +98,6 @@ async function changeScore(by) {
 
 
 function saveLocalUser(user) {
-    user = {_id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score}
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
