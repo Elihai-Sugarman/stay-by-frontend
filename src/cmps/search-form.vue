@@ -19,7 +19,7 @@
         <div
           class="form-control"
           :class="getActiveClass('checkIn')"
-          @click="openDatePicker('checkIn')">
+          @click="setActive('checkIn')">
           <div class="title">Check in</div>
           <span class="subtitle">{{ checkInLabel }}</span>
         </div>
@@ -29,7 +29,7 @@
         <div
           class="form-control"
           :class="getActiveClass('checkOut')"
-          @click="openDatePicker('checkOut')">
+          @click="setActive('checkOut')">
           <div class="title">Check out</div>
           <span class="subtitle">{{ checkoutLabel }}</span>
         </div>
@@ -54,16 +54,16 @@
 
         <guest-modal
           class="search-guest-modal"
-          :open="isGuestsOpen"
+          :open="getActiveClass('who').active"
           @change="handleGuestsChange"
-          @close="(isGuestsOpen = false)"
+          @close="setActive"
         />
       </div>
 
       <dates-modal
-        :open="isDatesOpen"
+        :open="(getActiveClass('checkIn').active || getActiveClass('checkOut').active)"
         @change="handleDatesChange"
-        @close="(isDatesOpen = false)"
+        @close="setActive"
       />
     </div>
   </el-form>
@@ -96,9 +96,7 @@ export default {
         checkDates: [],
         guests: []
       },
-      activeInput: { ...initialActive },
-      isGuestsOpen: false,
-      isDatesOpen: false
+      activeInput: { ...initialActive }
     }
   },
   methods: {
@@ -114,7 +112,6 @@ export default {
         guests: this.form.guests
       }
 
-      this.isDatesOpen = false
       this.$emit('searched', form)
     },
     handleGuestsChange(guests) {
@@ -146,18 +143,12 @@ export default {
 
       cb(filteredLocs)
     },
-    openDatePicker(type) {
-      this.isDatesOpen = true
-      this.setActive(type)
-    },
     setActive(type) {
       if (type === 'where' && !this.activeInput[type]) {
         this.$refs.whereInput?.focus()
       }
 
-      if (type === 'who') {
-        this.isGuestsOpen = !this.activeInput[type]
-      }
+      if (this.activeInput[type] && (type === 'checkIn' || type === 'checkOut')) return
 
       this.activeInput = {
         ...initialActive,
