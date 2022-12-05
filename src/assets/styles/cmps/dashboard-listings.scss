@@ -1,0 +1,24 @@
+.dashboard-listings {
+  max-width: 100%;
+
+  & .listing-title {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 10px;
+    margin-inline-end: 0;
+  }
+
+
+  & .listing-preview {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    & img {
+      width: 100px;
+      border-radius: 5px;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}

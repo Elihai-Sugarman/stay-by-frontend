@@ -1,9 +1,9 @@
 .dashboard {
-  width: 1280px;
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1440px;
   margin-inline: auto;
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 150px 1fr;
 
   & .side-nav ul {
     display: flex;
@@ -13,5 +13,10 @@
 
   & .side-nav ul a.router-link-exact-active {
     color: black;
+  }
+
+  & .dashboard-content {
+    max-width: 100%;
+    height: calc(100vh - 120px);
   }
 }
