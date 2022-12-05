@@ -23,7 +23,7 @@
         <div class="heading flex justify-between">
           <div class="txt">
             <h2 class="title subheading">
-              {{ stay.type }} hosted by {{ stay.host.fullname }}
+              {{ stay.roomType }} hosted by {{ stay.host.fullname }}
             </h2>
             <div class="capacity-subtitle">{{ stay.capacity }} guests</div>
           </div>
@@ -104,29 +104,38 @@
                 <ratingReview :reviews="stay.reviews" />
               </div>
               <div class="reservation-data">
-                <div class="date-picker">
-                  <!-- <el-date-picker
-                      class="form-date-picker"
-                      ref="datePicker"
-                      v-model="form.checkDates"
-                      type="daterange"
-                      start-placeholder="Check in"
-                      end-placeholder="Check out"
-                      size="large"
-                    /> -->
+                <div @click="openDatePicker()" class="date-picker">
+                  <dates-modal
+                    :open="isDatesOpen"
+                    @change="handleDatesChange"
+                    @close="isDatesOpen = false"
+                  />
                   <div class="date-input">
                     <label>CHECK-IN</label>
-                    <input value="12/01/2023" />
+                    <input
+                      :value="getFormattedDate(checkInDate)"
+                      :class="{ subtitle: !isDatesChosen }"
+                    />
                   </div>
                   <div class="date-input">
                     <label>CHECKOUT</label>
-                    <input value="15/01/2023" />
+                    <input
+                      :value="getFormattedDate(checkOutDate)"
+                      :class="{ subtitle: !isDatesChosen }"
+                    />
                   </div>
                 </div>
 
-                <div class="guest-input">
+                <div @click="openGuestPicker()" class="guest-input">
+                  <guest-modal
+                    class=""
+                    :initialAdultCapacity="1"
+                    :open="isGuestsOpen"
+                    @change="handleGuestsChange"
+                    @close="isGuestsOpen = false"
+                  />
                   <label>GUESTS</label>
-                  <input value="2" />
+                  <input :value="getFormattedGuests()" class="font-thin" />
                   <svg viewBox="0 0 320 512" width="100" title="angle-down">
                     <path
                       d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
@@ -138,35 +147,52 @@
               <branded-btn>{{ callToActionBtnTxt }}</branded-btn>
             </div>
 
-            <span class="reservation-txt flex column justify-between"
-              >You won't be charged yet</span
-            >
+            <div v-if="isDatesChosen">
+              <span class="reservation-txt flex column justify-between">
+                You won't be charged yet
+              </span>
 
-            <div class="reservation-summary">
-              <div class="cost-breakdown flex column">
-                <div class="cost-details flex column">
-                  <div class="base-cost flex justify-between">
-                    <span class="link"
-                      >${{ stay.price }} x {{ totalNights }} nights</span
-                    >
-                    <span>${{ stay.price * totalNights }}</span>
+              <div class="reservation-summary">
+                <div class="cost-breakdown flex column">
+                  <div class="cost-details flex column">
+                    <div class="base-cost flex justify-between">
+                      <span class="link">
+                        ${{ new Intl.NumberFormat().format(stay.price) }} x
+                        {{ totalNights }} nights
+                      </span>
+                      <span>
+                        ${{
+                          new Intl.NumberFormat().format(
+                            stay.price * totalNights
+                          )
+                        }}
+                      </span>
+                    </div>
+                    <div class="service-fee flex justify-between">
+                      <span class="link">Service fee</span>
+                      <span>
+                        ${{
+                          new Intl.NumberFormat().format(
+                            serviceFee * totalNights
+                          )
+                        }}
+                      </span>
+                    </div>
                   </div>
-                  <div class="service-fee flex justify-between">
-                    <span class="link">Service fee</span>
-                    <span>${{ serviceFee * totalNights }}</span>
-                  </div>
-                </div>
 
-                <div class="total-wrapper">
-                  <divider />
+                  <div class="total-wrapper">
+                    <divider />
 
-                  <div class="cost-total flex justify-between font-md">
-                    <span>Total</span>
-                    <span
-                      >${{
-                        stay.price * totalNights + serviceFee * totalNights
-                      }}</span
-                    >
+                    <div class="cost-total flex justify-between font-md">
+                      <span>Total</span>
+                      <span
+                        >${{
+                          new Intl.NumberFormat().format(
+                            stay.price * totalNights + serviceFee * totalNights
+                          )
+                        }}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -231,6 +257,9 @@ import ratingReview from '../../cmps/stay/rating-review-cmp.vue'
 import reviewCmp from '../../cmps/stay/review-cmp.vue'
 import stayMap from '../../cmps/stay-map.vue'
 import allReviewsModal from '../../cmps/stay/all-reviews-modal.vue'
+import guestModal from '../../cmps/guest-modal.vue'
+import datesModal from '../../cmps/dates-modal.vue'
+import * as moment from 'moment'
 import _random from 'lodash/random'
 import _camelCase from 'lodash/camelCase'
 
@@ -239,13 +268,13 @@ export default {
   data() {
     return {
       stay: null,
-      checkInDate: null,
-      checkOutDate: null,
+      checkInDate: '',
+      checkOutDate: '',
+      // checkDates: [],
+      guests: [],
+      isDatesOpen: false,
+      isGuestsOpen: false,
       isReviewsModalOpen: false,
-      form: {
-        checkDates: [],
-        guests: [],
-      },
       amenities: [
         'heating',
         'bathEssentials',
@@ -337,10 +366,13 @@ export default {
     serviceFee() {
       return _random(15, 40)
     },
-    totalNights() {
-      //this is temp while we don't get the dates from the user
-      return _random(2, 10)
+    isDatesChosen() {
+      return this.checkInDate || this.checkOutDate
     },
+    // totalNights() {
+    //   //this is temp while we don't get the dates from the user
+    //   return _random(2, 10)
+    // },
     callToActionBtnTxt() {
       return !this.checkInDate || !this.checkOutDate
         ? 'Check availabilty'
@@ -351,6 +383,13 @@ export default {
         .slice(0)
         .filter((amenity) => this.amenities.includes(_camelCase(amenity)))
         .slice(0, 10)
+    },
+    totalNights() {
+      if (!this.checkOutDate || !this.checkInDate) return 0
+      let checkin = new Date(this.checkInDate)
+      let checkout = new Date(this.checkOutDate)
+      let diff = checkout.getTime() - checkin.getTime()
+      return Math.floor(diff / 1000 / 60 / 60 / 24)
     },
   },
   methods: {
@@ -364,10 +403,40 @@ export default {
       console.log('open reviews modal')
       this.isReviewsModalOpen = true
     },
+    handleDatesChange(dates) {
+      this.checkInDate = dates.checkIn
+      this.checkOutDate = dates.checkOut
+      // console.log('checkin', this.getFormattedDate(this.checkInDate), 'checkout', this.checkOutDate.getTime());
+    },
+    handleGuestsChange(guests) {
+      this.guests = guests
+      console.log('guests', this.guests)
+    },
+    openDatePicker() {
+      this.isDatesOpen = true
+    },
+    openGuestPicker() {
+      this.isGuestsOpen = true
+    },
+    getFormattedDate(date) {
+      if (!date) return 'Add date'
+      return moment(date).format('MM' + '/' + 'DD' + '/' + 'YYYY')
+    },
+    getFormattedGuests() {
+      // if (!this.guests || this.guests.length === 0)
+      if (!this.guests.length) return '1 Adult'
 
-    // getFormattedReviewDate(dateString) {
-    //   return moment(dateString).format('MMM' + ' ' + 'YYYY')
-    // },
+      let adultObject = this.guests.find(guest => guest.type === 'Adults')
+      console.log('adult count', adultObject.capacity);
+      let adultCount = adultObject.capacity
+
+      // let guestCount = this.guests[0].capacity + this.guests[0].capacity
+      // let guestsTxt = ``
+
+      return this.guests
+        .map(({ type, capacity }) => `${capacity} ${type}`)
+        .join(', ')
+    },
   },
   components: {
     stayAmenity,
@@ -375,6 +444,8 @@ export default {
     ratingReview,
     stayMap,
     allReviewsModal,
+    guestModal,
+    datesModal,
   },
 }
 </script>

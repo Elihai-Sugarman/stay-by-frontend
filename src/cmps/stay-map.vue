@@ -19,9 +19,6 @@
         location: Object
     },
     components: { GoogleMap, Marker },
-    created() {
-      console.log('location', this.location, 'marker', this.marker);
-    },
     data() {
       return {
         //the coordinates are backwards in the database, hence switching lat and lan here

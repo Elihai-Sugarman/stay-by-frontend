@@ -236,6 +236,14 @@
       .date-picker {
         display: flex;
         justify-content: space-between;
+        position: relative;
+        .dates-modal {
+          z-index: 10;
+          margin-top: 2px;
+          right: -1px;
+          width: auto;
+        }
+
       }
 
       .date-input {
@@ -261,13 +269,18 @@
         // color: gray;
         // font-size: 0.75rem;
 
-        svg {
+        & > svg {
           position: absolute;
           height: 20px;
           width: 20px;
           top: 50%;
           right: 0;
           transform: translatex(-12px) translatey(-50%);
+        }
+
+        .guest-modal {
+          z-index: 10;
+          margin-top: 5px;
         }
       }
 
