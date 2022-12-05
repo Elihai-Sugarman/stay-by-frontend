@@ -1,0 +1,17 @@
+.dashboard {
+  width: 1280px;
+  max-width: 1280px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+
+  & .side-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  & .side-nav ul a.router-link-exact-active {
+    color: black;
+  }
+}
