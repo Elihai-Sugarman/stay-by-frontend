@@ -1,0 +1,56 @@
+.order-details {
+  .page-title {
+    padding-top: 64px;
+    padding-bottom: 16px;
+    gap: 32px;
+  }
+  .summary-card-section {
+    padding: 24px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    .stay-details {
+        padding-bottom: 24px;
+        .stay-desc {
+            padding-left: 12px;
+        }
+    }
+  }
+  .link {
+    text-decoration: underline;
+  }
+
+  .font-thin {
+    font-family: 'cereal-light';
+  }
+
+  .host {
+    img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
+  }
+  .rating-review {
+    align-items: baseline;
+    font-size: 12px;
+    .avg-rating {
+      font-family: cereal;
+    }
+    .rev-count {
+      text-decoration: none;
+      font-family: cereal;
+    }
+    .icon-svg svg {
+      height: 12px;
+      width: 12px;
+    }
+  }
+
+  .summary-card-section {
+    img {
+      height: 106px;
+      width: 124px;
+      border-radius: 8px;
+    }
+  }
+}
