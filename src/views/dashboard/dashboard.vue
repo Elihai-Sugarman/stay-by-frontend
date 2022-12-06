@@ -9,7 +9,7 @@
           <li>My listings</li>
         </router-link>
         <router-link to="/dashboard/order">
-          <li>Orders</li>
+          <li>Reservations</li>
         </router-link>
       </ul>
     </aside>

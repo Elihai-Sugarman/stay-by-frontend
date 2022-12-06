@@ -1,11 +1,11 @@
 <template>
   <section class="dashboard-listings">
     <div class="listing-title">
-      <div>{{ orders.length }} Order<span v-if="(orders.length>1)">s</span></div>
+      <div>{{ orders.length }} Reservation<span v-if="(orders.length>1)">s</span></div>
     </div>
-    <!-- <el-table :data="tableData" height="200">
+    <el-table :data="tableData" height="200">
 
-      <el-table-column label="LISTING" width="250">
+      <el-table-column label="RESERVATION" width="250">
         <template #default="scope">
           <div class="listing-preview">
             <img :src="scope.row.imgUrls[0]" alt="listing preview">
@@ -31,7 +31,7 @@
       <el-table-column :formatter="formatLocation" label="LOCATION" align="center" />      
 
       <el-table-column prop="createdAt" width="150" label="DATE ADDED" />
-    </el-table> -->
+    </el-table>
   </section>
 </template>
 
