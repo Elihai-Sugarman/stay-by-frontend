@@ -29,9 +29,19 @@
         border: none;
         color: white;
         font-family: cereal-bold;
+        background-color: transparent !important;
+    }
+    & .submit-btn::before {
+        background-color: transparent !important;
     }
     
     & .el-divider {
         margin:  16px 0;
+    }
+
+    & .demo-btn {
+        color: black;
+        width: 100%;
+        font-family: 'cereal-medium';
     }
 }
