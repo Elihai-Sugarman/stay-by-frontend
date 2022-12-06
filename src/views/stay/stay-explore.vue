@@ -28,6 +28,7 @@
     },
     created() {
       if (!this.stays.length) this.loadStays()
+      else this.filterByAddress()
     },
     watch: {
       queryParams() {
