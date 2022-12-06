@@ -12,6 +12,7 @@ import dashboard from './views/dashboard/dashboard.vue'
 import ordersCmp from './views/dashboard/order.vue'
 import stayWishlist from './views/stay/stay-wishlist.vue'
 import listingsCmp from './views/dashboard/listings.vue'
+import tripsCmp from './views/trips.vue'
 
 const routes = [
     {
@@ -76,6 +77,11 @@ const routes = [
         path: '/wishlist',
         name: 'wishlist',
         component: stayWishlist,
+    },
+    {
+        path: '/trip',
+        name: 'trips',
+        component: tripsCmp,
     },
 ]
 

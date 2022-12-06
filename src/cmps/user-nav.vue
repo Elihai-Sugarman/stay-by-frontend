@@ -3,6 +3,13 @@
     <template v-if="open">
       <section class="user-menu" v-outside-click="() => this.$emit('outside-click')">
         <ul v-if="user">
+          <router-link to="/wishlist">
+            <li>My wishlist</li>
+          </router-link>
+          <router-link to="/trip">
+            <li>My trips</li>
+          </router-link>
+          <divider />
           <router-link to="/dashboard">
             <li>Dashboard</li>
           </router-link>
@@ -11,9 +18,6 @@
           </router-link>
           <router-link to="/dashboard/listings">
             <li>My listings</li>
-          </router-link>
-          <router-link to="/wishlist">
-            <li>My Wishlist</li>
           </router-link>
           <divider />
           <li @click="logout">Logout</li>
@@ -52,8 +56,8 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('logout')
-      this.$router.push('/stay')
-      // We need to refresh the page (in order to reset the hearts in each preview)
+      // this.$router.push('/stay')
+      location.reload()
     }
   }
 }

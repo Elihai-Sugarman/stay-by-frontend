@@ -127,8 +127,8 @@ import 'vue3-carousel/dist/carousel.css'
                     },
                     // 1100 and up
                     1100: {
-                        itemsToShow: 13,
-                        itemsToScroll: 13,
+                        itemsToShow: 14,
+                        itemsToScroll: 14,
                         snapAlign: 'start',
                     },
                 },
