@@ -6,7 +6,7 @@
           <li>Create listing</li>
         </router-link>
         <router-link to="/dashboard/listings">
-          <li>My listings</li>
+          <li>Listings</li>
         </router-link>
         <router-link to="/dashboard/reservation">
           <li>Reservations</li>
