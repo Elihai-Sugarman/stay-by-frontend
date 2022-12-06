@@ -1,43 +1,45 @@
 <template>
   <section v-if="stay" class="order-details">
-    
     <div class="page-title flex">
       <icon-cmp @click="$router.back()" iconType="leftArrow" class="btn" />
       <h2 class="fs32">Request to book</h2>
     </div>
-    
+
     <div class="order-content flex justify-between">
       <div class="details-section">
-  
         <div class="trip-details">
           <h3>Your trip</h3>
           <div class="flex justify-between">
-            <h3>Dates</h3>
+            <h4>Dates</h4>
             <h4>
               {{ getFormattedDate(checkInDate) }} -
               {{ getFormattedDate(checkOutDate) }}
             </h4>
           </div>
           <div class="flex justify-between">
-            <h3>Guests</h3>
+            <h4>Guests</h4>
             <h4>{{ getFormattedGuests() }}</h4>
           </div>
         </div>
-  
-        <div class="host">
+
+        <divider />
+
+        <!-- <div class="host">
           <h3>Your host</h3>
           <img :src="stay.host.imgUrl" />
           <h4>{{ stay.host.fullname }}</h4>
-        </div>
-  
-        <branded-btn v-if="loggedinUser">Request to book</branded-btn>
+        </div> -->
+
+        <branded-btn @click="addOrder()" v-if="loggedinUser">Request to book</branded-btn>
         <div v-else>
-          <h2>Please login to book</h2>
-          <login-signup :isLoginPage="true" :redirectOnSuccess="false"/>
+          <h3 class="login-msg">Please login to book</h3>
+          <login-signup
+            :isLoginPage="true"
+            :redirectOnSuccess="false"
+          />
         </div>
-  
       </div>
-  
+
       <div class="summary-card-section">
         <div class="stay-details flex">
           <img :src="stay.imgUrls[0]" alt="listing image" />
@@ -49,7 +51,7 @@
             <ratingReview :reviews="stay.reviews" />
           </div>
         </div>
-        <divider/>
+        <divider />
         <div class="price-details">
           <h3>Price details</h3>
           <div class="cost-breakdown flex column">
@@ -66,14 +68,14 @@
               <div class="service-fee flex justify-between">
                 <span class="link">Service fee</span>
                 <span>
-                  ${{ new Intl.NumberFormat().format(serviceFee * totalNights) }}
+                  ${{
+                    new Intl.NumberFormat().format(serviceFee * totalNights)
+                  }}
                 </span>
               </div>
             </div>
-  
+            <divider />
             <div class="total-wrapper">
-              <divider />
-  
               <div class="cost-total flex justify-between font-md">
                 <span>Total</span>
                 <span>${{ totalPrice }}</span>
@@ -81,10 +83,8 @@
             </div>
           </div>
         </div>
-  
       </div>
     </div>
-
   </section>
 </template>
 
@@ -141,6 +141,37 @@ export default {
         .map(({ type, capacity }) => `${capacity} ${type}`)
         .join(', ')
     },
+    addOrder() {
+
+      let guestsOrder = this.guests.reduce((prev, curr) => {
+        return {
+          ...prev,
+          [curr.type.toLowerCase()]: +curr.capacity
+        }
+      }, {})
+
+      let order = {
+        hostId: this.hostId,
+        createdAt: Date.now(),
+        buyer: {
+          _id: this.loggedinUser._id,
+          fullname: this.loggedinUser.fullname,
+        },
+        totalPrice: +this.totalPrice,
+        startDate: +this.checkInDate,
+        endDate: +this.checkOutDate,
+        guests: guestsOrder,
+        stay: {
+          _id: this.stay._id,
+          name: this.stay.name,
+          price: this.stay.price,
+        },
+        msgs: [],
+        status: 'pending', // pending, approved
+      }
+
+      this.$store.dispatch(getActionAddOrder(order))
+    },
   },
   computed: {
     loggedinUser() {
@@ -158,7 +189,7 @@ export default {
   },
   components: {
     ratingReview,
-    loginSignup
+    loginSignup,
   },
 }
 </script>
