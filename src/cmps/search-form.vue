@@ -167,9 +167,25 @@ export default {
     },
     guestsLabel() {
       if (!this.form.guests.length) return 'Add guests'
-      const formattedLabel = this.form.guests
+
+      const guestKeys = ['Adults', 'Children']
+      const totalGuests = this.form.guests
+        .reduce((prev, { type, capacity }) => {
+        if (guestKeys.includes(type)) prev += capacity
+        return prev
+      }, 0)
+
+      const guestObj = { type: 'guests', capacity: totalGuests }
+      if (totalGuests === 1) guestObj.type = 'guest'
+
+      const filteredGuests = this.form.guests
+          .filter(({ type }) => !guestKeys.includes(type))
+      if (totalGuests > 0) filteredGuests.unshift(guestObj)
+
+      const formattedLabel = filteredGuests
           .map(({ type, capacity }) => `${capacity} ${type}`)
           .join(', ')
+
       return formattedLabel
     }
   }

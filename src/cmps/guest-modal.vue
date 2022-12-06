@@ -71,19 +71,12 @@ export default {
       if (isIncrement) guestOption.capacity++
       else guestOption.capacity--
 
-      const totalGuests = this.guestsOptions.adults.capacity + this.guestsOptions.children.capacity
-      const guestsToChange = utilService.deepCopy(this.guestsOptions)
-      if (totalGuests > 1) guestsToChange.guests = { type: 'guests', capacity: totalGuests }
-      else guestsToChange.guest = { type: 'guest', capacity: totalGuests}
-      delete guestsToChange.adults
-      delete guestsToChange.children
-      // guestsToChange { guest: 1 || guests: > 1, children, ..etc }
-
       // [{ type, capacity }, ...etc]
-      const mappedGuests = Object.keys(guestsToChange)
-        .filter(key => guestsToChange[key].capacity > 0)
-        .map(key => guestsToChange[key])
+      const mappedGuests = Object.keys(this.guestsOptions)
+        .filter(key => this.guestsOptions[key].capacity > 0)
+        .map(key => this.guestsOptions[key])
         .map(({ type, capacity }) => ({ type, capacity }))
+        .sort((a, b) => a.type < b.type ? -1 : 1)
 
       this.$emit('change', utilService.deepCopy(mappedGuests))
     }
