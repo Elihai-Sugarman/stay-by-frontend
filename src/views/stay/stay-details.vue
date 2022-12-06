@@ -239,10 +239,10 @@
       </Transition>
     </div>
 
-    <!-- <details>
+    <details>
       <summary>Full JSON</summary>
       <pre>{{ stay }}</pre>
-    </details> -->
+    </details>
   </section>
 </template>
 
@@ -269,7 +269,7 @@ export default {
         checkInDate: '',
         checkOutDate: '',
         // checkDates: [],
-        guests: [{type: 'Adults', capacity: 1}],
+        guests: [],
         basePrice: 0,
         serviceFee: 0,
       },
@@ -455,21 +455,21 @@ export default {
     },
     getFormattedGuests() {
       // if (!this.order.guests || this.order.guests.length === 0)
-      if (!this.order.guests.length) return '1 guest'
+      // if (!this.order.guests.length) return '1 guest'
 
-      let adultObject = this.order.guests.find((guest) => guest.type === 'Adults')
-      // console.log('adult count', adultObject.capacity);
-      let adultCount = adultObject.capacity
+      // let adultObject = this.order.guests.find((guest) => guest.type === 'Adults')
+      // // console.log('adult count', adultObject.capacity);
+      // let adultCount = adultObject.capacity
 
-      let childrenObject = this.order.guests.find(
-        (guest) => guest.type === 'Children'
-      )
-      // console.log('children count', childrenObject?.capacity);
-      let childrenCount = adultObject.capacity
+      // let childrenObject = this.order.guests.find(
+      //   (guest) => guest.type === 'Children'
+      // )
+      // // console.log('children count', childrenObject?.capacity);
+      // let childrenCount = adultObject.capacity
 
-      // let guestCount = this.order.guests[0].capacity + this.order.guests[0].capacity
-      // let guestsTxt = ``
-      let totalGuests = adultCount + childrenCount
+      // // let guestCount = this.order.guests[0].capacity + this.order.guests[0].capacity
+      // // let guestsTxt = ``
+      // let totalGuests = adultCount + childrenCount
 
       // return (totalGuests > 1) ? `${totalGuests} guests` : '1 guest'
       return this.order.guests
@@ -487,10 +487,6 @@ export default {
         })
         delete order.guests
 
-        order.stayId = this.stay._id
-        order.stayName = this.stay.name
-        order.hostId = this.stay.host._id
-        
         this.$router.push({name:'order-details', query: order})
       }
     },
