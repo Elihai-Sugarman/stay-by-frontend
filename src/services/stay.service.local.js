@@ -82,8 +82,27 @@ async function addStayMsg(stayId, txt) {
 
 function getEmptyStay() {
     return {
-        name: 'House -' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+        name: '',
+        address: {
+            city: '',
+            country: '',
+            street: '',
+            location: {
+                lat: 0,
+                lan: 0
+            }
+        },
+        imgUrls: [],
+        capacity: 0,
+        price: 0,
+        roomType: '',
+        type: '',
+        summary: '',
+        amenities: [],
+        bathrooms: 0,
+        bedrooms: 0,
+        reviews: [],
+        labels: []
     }
 }
 

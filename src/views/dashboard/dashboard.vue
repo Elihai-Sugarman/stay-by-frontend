@@ -2,7 +2,7 @@
   <section class="dashboard">
     <section class="dashboard-nav">
       <ul class="clean-list">
-        <router-link to="/stay/edit">
+        <router-link to="/dashboard/stay/edit">
           <li>Create listing</li>
         </router-link>
         <router-link to="/dashboard/listings">

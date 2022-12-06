@@ -25,11 +25,6 @@ const routes = [
         component: stayApp,
     },
     {
-        path: '/stay/edit/:id?',
-        name: 'stay-edit',
-        component: stayEdit,
-    },
-    {
         path: '/stay/:id/order',
         name: 'order-details',
         component: orderDetails,
@@ -68,14 +63,19 @@ const routes = [
             {
                 path: 'reservation',
                 name: 'reservation',
-                component: ordersCmp,
+                component: ordersCmp
             },
             {
                 path: 'listings',
                 name: 'listings',
-                component: listingsCmp,
+                component: listingsCmp
             },
-        ],
+            {
+                path: 'stay/edit/:id?',
+                name: 'stay-edit',
+                component: stayEdit
+            }
+        ]
     },
     {
         path: '/wishlist',
