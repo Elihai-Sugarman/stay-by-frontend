@@ -113,14 +113,14 @@
                   <div class="date-input">
                     <label>CHECK-IN</label>
                     <input
-                      :value="getFormattedDate(checkInDate)"
+                      :value="getFormattedDate(order.checkInDate)"
                       :class="{ subtitle: !isDatesChosen }"
                     />
                   </div>
                   <div class="date-input">
                     <label>CHECKOUT</label>
                     <input
-                      :value="getFormattedDate(checkOutDate)"
+                      :value="getFormattedDate(order.checkOutDate)"
                       :class="{ subtitle: !isDatesChosen }"
                     />
                   </div>
@@ -144,7 +144,9 @@
                 </div>
               </div>
 
-              <branded-btn>{{ callToActionBtnTxt }}</branded-btn>
+              <branded-btn @click="callToActionClicked()">{{
+                callToActionBtnTxt
+              }}</branded-btn>
             </div>
 
             <div v-if="isDatesChosen">
@@ -163,7 +165,7 @@
                       <span>
                         ${{
                           new Intl.NumberFormat().format(
-                            stay.price * totalNights
+                            order.basePrice
                           )
                         }}
                       </span>
@@ -172,9 +174,8 @@
                       <span class="link">Service fee</span>
                       <span>
                         ${{
-                          new Intl.NumberFormat().format(
-                            serviceFee * totalNights
-                          )
+                          new Intl.NumberFormat()
+                          .format(order.serviceFee * totalNights)
                         }}
                       </span>
                     </div>
@@ -185,14 +186,9 @@
 
                     <div class="cost-total flex justify-between font-md">
                       <span>Total</span>
-                      <span
-                        >${{
-                          new Intl.NumberFormat().format(
-                            stay.price * totalNights + serviceFee * totalNights
-                          )
-                        }}
-                      </span>
+                      <span>${{totalPrice}}</span>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -262,16 +258,21 @@ import datesModal from '../../cmps/dates-modal.vue'
 import * as moment from 'moment'
 import _random from 'lodash/random'
 import _camelCase from 'lodash/camelCase'
+import { utilService } from '../../services/util.service'
 
 export default {
   name: 'stay-details',
   data() {
     return {
       stay: null,
-      checkInDate: '',
-      checkOutDate: '',
-      // checkDates: [],
-      guests: [],
+      order: {
+        checkInDate: '',
+        checkOutDate: '',
+        // checkDates: [],
+        guests: [{type: 'Adults', capacity: 1}],
+        basePrice: 0,
+        serviceFee: 0,
+      },
       isDatesOpen: false,
       isGuestsOpen: false,
       isReviewsModalOpen: false,
@@ -335,6 +336,22 @@ export default {
     let stayId = this.$route.params.id
     this.getStayById(stayId)
     this.$store.dispatch({ type: 'loadAllStays' })
+    
+    this.order.checkInDate = +this.$route.query.checkIn
+    this.order.checkOutDate = +this.$route.query.checkOut
+
+    const adultCount = this.$route.query.adults
+    const childCount = this.$route.query.children
+    const infantCount = this.$route.query.infants
+    const petCount = this.$route.query.pets
+
+    if (adultCount) this.order.guests = [{type: 'Adults', capacity: adultCount}]
+    if (childCount) this.order.guests.push({type: 'Children', capacity: childCount})
+    if (infantCount) this.order.guests.push({type: 'Infants', capacity: infantCount})
+    if (petCount) this.order.guests.push({type: 'Pets', capacity: petCount})
+
+    // console.log('guests', this.order.guests);
+
   },
   // watch: {
   //   stayId: {
@@ -363,18 +380,18 @@ export default {
       // return [...this.stay.imgUrls, ...this.stay.imgUrls.slice(0, 2)]
       return this.stay.imgUrls.slice(0, 6)
     },
-    serviceFee() {
-      return _random(15, 40)
+    getServiceFee() {
+      return _random(this.stay.price/5, (this.stay.price/5)*2)
     },
     isDatesChosen() {
-      return this.checkInDate || this.checkOutDate
+      return this.order.checkInDate || this.order.checkOutDate
     },
     // totalNights() {
     //   //this is temp while we don't get the dates from the user
     //   return _random(2, 10)
     // },
     callToActionBtnTxt() {
-      return !this.checkInDate || !this.checkOutDate
+      return !this.order.checkInDate || !this.order.checkOutDate
         ? 'Check availabilty'
         : 'Reserve'
     },
@@ -385,12 +402,14 @@ export default {
         .slice(0, 10)
     },
     totalNights() {
-      if (!this.checkOutDate || !this.checkInDate) return 0
-      let checkin = new Date(this.checkInDate)
-      let checkout = new Date(this.checkOutDate)
-      let diff = checkout.getTime() - checkin.getTime()
+      if (!this.order.checkOutDate || !this.order.checkInDate) return 0
+      let diff = this.order.checkOutDate - this.order.checkInDate
       return Math.floor(diff / 1000 / 60 / 60 / 24)
     },
+    totalPrice() {
+     return new Intl.NumberFormat()
+        .format(this.stay.price * this.totalNights + this.order.serviceFee * this.totalNights)
+    }
   },
   methods: {
     async getStayById(stayId) {
@@ -398,19 +417,31 @@ export default {
         type: 'getStayById',
         stayId,
       })
+      this.setBasePrice()
+      this.setServiceFee()
+    },
+    setBasePrice() {
+      this.order.basePrice = this.stay.price
+    },
+    setServiceFee() {
+      this.order.serviceFee = this.getServiceFee
     },
     openAllReviewsModal() {
       console.log('open reviews modal')
       this.isReviewsModalOpen = true
     },
     handleDatesChange(dates) {
-      this.checkInDate = dates.checkIn
-      this.checkOutDate = dates.checkOut
-      // console.log('checkin', this.getFormattedDate(this.checkInDate), 'checkout', this.checkOutDate.getTime());
+      this.order.checkInDate = Date.parse(dates.checkIn)
+      this.order.checkOutDate = Date.parse(dates.checkOut)
+
+      this.order.basePrice = this.stay.price * this.totalNights
+      this.order.serviceFee = this.getServiceFee
+
     },
     handleGuestsChange(guests) {
-      this.guests = guests
-      console.log('guests', this.guests)
+      // console.log('guest from modal', guests);
+      this.order.guests = guests
+      // console.log('guests', this.order.guests)
     },
     openDatePicker() {
       this.isDatesOpen = true
@@ -423,19 +454,45 @@ export default {
       return moment(date).format('MM' + '/' + 'DD' + '/' + 'YYYY')
     },
     getFormattedGuests() {
-      // if (!this.guests || this.guests.length === 0)
-      if (!this.guests.length) return '1 Adult'
+      // if (!this.order.guests || this.order.guests.length === 0)
+      if (!this.order.guests.length) return '1 guest'
 
-      let adultObject = this.guests.find(guest => guest.type === 'Adults')
-      console.log('adult count', adultObject.capacity);
+      let adultObject = this.order.guests.find((guest) => guest.type === 'Adults')
+      // console.log('adult count', adultObject.capacity);
       let adultCount = adultObject.capacity
 
-      // let guestCount = this.guests[0].capacity + this.guests[0].capacity
-      // let guestsTxt = ``
+      let childrenObject = this.order.guests.find(
+        (guest) => guest.type === 'Children'
+      )
+      // console.log('children count', childrenObject?.capacity);
+      let childrenCount = adultObject.capacity
 
-      return this.guests
+      // let guestCount = this.order.guests[0].capacity + this.order.guests[0].capacity
+      // let guestsTxt = ``
+      let totalGuests = adultCount + childrenCount
+
+      // return (totalGuests > 1) ? `${totalGuests} guests` : '1 guest'
+      return this.order.guests
         .map(({ type, capacity }) => `${capacity} ${type}`)
         .join(', ')
+    },
+    callToActionClicked() {
+      if (!this.order.checkInDate || !this.order.checkOutDate) this.isDatesOpen = true
+      else {
+        console.log('order:', this.order)
+        const order = utilService.deepCopy(this.order)
+        
+        order.guests.forEach(({type, capacity})=>{
+          order[type] = capacity
+        })
+        delete order.guests
+
+        order.stayId = this.stay._id
+        order.stayName = this.stay.name
+        order.hostId = this.stay.host._id
+        
+        this.$router.push({name:'order-details', query: order})
+      }
     },
   },
   components: {
