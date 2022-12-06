@@ -3,43 +3,54 @@
     <div class="listing-title">
       <div>{{ orders.length }} Reservation<span v-if="(orders.length>1)">s</span></div>
     </div>
-    <el-table :data="tableData" height="200">
+    <div class="dashboard-table">
+    <el-table :data="tableData" height="250" style="width: 100%">
 
-      <el-table-column label="RESERVATION" width="250">
-        <template #default="scope">
-          <div class="listing-preview">
-            <img :src="scope.row.imgUrls[0]" alt="listing preview">
-            <h3>{{ scope.row.name }}</h3>
-          </div>
-        </template>
+      <el-table-column fixed label="Guest" width="100" prop="buyer.fullname">
+        <!-- <template #default="scope">
+          {{ scope.row.buyer.fullname }}
+        </template> -->
       </el-table-column>
 
-      <el-table-column label="TODO">
-        <template #default>
-          <el-button plain>Update</el-button>
-        </template>
-      </el-table-column>
-
-      <el-table-column prop="capacity" label="CAPACITY" width="120" align="center" sortable />
-
-      <el-table-column prop="bathrooms" label="ROOMS" align="center" sortable />
+      <!-- <el-table-column prop="status" label="Status" width="120" align="center"/> -->
       
-      <el-table-column prop="bedrooms" label="BEDROOMS" width="140" align="center" sortable />
+      <el-table-column prop="startDate" label="Check-in" sortable/>
 
-      <el-table-column prop="price" :formatter="formatCurrency" label="PRICE" sortable />
-
-      <el-table-column :formatter="formatLocation" label="LOCATION" align="center" />      
-
-      <el-table-column prop="createdAt" width="150" label="DATE ADDED" />
+      <el-table-column prop="endDate" label="Checkout" sortable/>
+      
+      <el-table-column prop="createdAt" label="Booked" sortable/>
+      
+      <el-table-column prop="stay.name" label="Listing"/>
+      
+      <el-table-column prop="totalPrice" :formatter="formatCurrency" label="Toal Payout" sortable />
+      
+      <el-table-column label="Status" sortable>
+        <template #default="scope">
+          <span class="order-status" :class="colorClass">
+            {{ scope.row.status }}
+          </span>
+        </template>
+      </el-table-column>
+      
+      <el-table-column prop="status">
+        <template #default="scope">
+          <el-button class="approve-btn status-btn" @click="handleOrder(scope.row, 'approve')" v-if="scope.row.status==='pending'">Approve</el-button>
+          <el-button class="reject-btn status-btn" @click="handleOrder(scope.row, 'reject')" v-if="scope.row.status==='pending'">Reject</el-button>
+          <span v-else></span>
+        </template>
+      </el-table-column>
     </el-table>
+    </div>
   </section>
 </template>
 
 <script>
+import { utilService } from '../../services/util.service'
 export default {
   data() {
     return {
-      tableData: []
+      tableData: [],
+      colorClass: ''
     }
   },
   created() {
@@ -50,7 +61,6 @@ export default {
   computed: {
     orders(){
       const filteredOreders = this.$store.getters.orders
-      console.log(filteredOreders)
       return filteredOreders
     },
     user() {
@@ -63,17 +73,26 @@ export default {
   methods: {
     loadOrdersData() {
       const data = this.orders
-      this.tableData = data
-      console.log('tableData', this.tableData)
+      this.tableData = utilService.deepCopy(data)
     },
     formatLocation({ address }) {
       return `${address.city}, ${address.country}`
     },
-    formatCurrency({ price }) {
+    formatCurrency({ totalPrice }) {
       return new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'
-      }).format(price)
+      }).format(totalPrice)
+    },
+    handleOrder(order, command){
+      if (order.status !== 'pending') return
+      order.status = command === 'approve' ? 'approved' : 'rejected'
+      this.colorClass = order.status === 'approved' ? 'color-green' : 'color-red'
+      const newOrder = JSON.parse(JSON.stringify(order))
+      this.$store.dispatch({type: 'updateOrder', order: newOrder})
+      // const colorClass = newOrder.status === 'approved' ? 'color-green' : 'color-red'
+      // document.querySelector('.order-status').classList.add(colorClass)
+      // document.querySelectorAll('.status-btn').forEach(btn => btn.style.display = 'none')
     }
   }
 }

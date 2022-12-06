@@ -78,7 +78,7 @@ import 'vue3-carousel/dist/carousel.css'
                     itemsToShow: 3,
                     itemsToScroll: 3,
                     snapAlign: 'center',
-                    // wrapAround: true,
+                    wrapAround: true,
                 },
                 // breakpoints are mobile first
                 // any settings not specified will fallback to the carousel settings

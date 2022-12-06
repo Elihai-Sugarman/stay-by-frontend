@@ -2,7 +2,7 @@ export const ordersArray = [
     {
         _id: 'o1225',
         hostId: '622f3403e36c59e6164faf93',
-        createdAt: 9898989,
+        createdAt: '2022/12/06',
         buyer: {
             _id: '622f3401e36c59e6164fab4e',
             fullname: 'Leo',
