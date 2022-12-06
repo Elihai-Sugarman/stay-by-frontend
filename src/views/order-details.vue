@@ -1,8 +1,12 @@
 <template>
   <section v-if="stay" class="order-details">
-    <div class="page-title flex">
+
+    <div v-if="!isBooked" class="page-title flex">
       <icon-cmp @click="$router.back()" iconType="leftArrow" class="btn" />
       <h2 class="fs32">Request to book</h2>
+    </div>
+    <div v-else class="page-title">
+      <h2 class="fs32">Reservation success!</h2>
     </div>
 
     <div class="order-content flex justify-between">
@@ -30,14 +34,17 @@
           <h4>{{ stay.host.fullname }}</h4>
         </div> -->
 
-        <branded-btn @click="addOrder()" v-if="loggedinUser">Request to book</branded-btn>
-        <div v-else>
-          <h3 class="login-msg">Please login to book</h3>
-          <login-signup
-            :isLoginPage="true"
-            :redirectOnSuccess="false"
-          />
+        <div v-if="!isBooked">
+          <branded-btn v-if="loggedinUser" @click="addOrder()">Request to book</branded-btn>
+          <div v-else>
+            <h3 class="login-msg">Please login to book</h3>
+            <login-signup
+              :isLoginPage="true"
+              :redirectOnSuccess="false"
+            />
+          </div>
         </div>
+        
       </div>
 
       <div class="summary-card-section">
@@ -102,7 +109,7 @@ export default {
       basePrice: 0,
       serviceFee: 0,
       stay: null,
-      // user: null
+      isBooked: false
     }
   },
   created() {
@@ -141,7 +148,7 @@ export default {
         .map(({ type, capacity }) => `${capacity} ${type}`)
         .join(', ')
     },
-    addOrder() {
+    async addOrder() {
 
       let guestsOrder = this.guests.reduce((prev, curr) => {
         return {
@@ -170,7 +177,12 @@ export default {
         status: 'pending', // pending, approved
       }
 
-      this.$store.dispatch(getActionAddOrder(order))
+      try {
+        await this.$store.dispatch(getActionAddOrder(order))
+        this.isBooked = true
+      } catch (error) {
+        console.log('Cannot make reservation', error);
+      }
     },
   },
   computed: {
