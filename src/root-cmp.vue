@@ -10,6 +10,7 @@
 
 <script>
 import { userService } from './services/user.service'
+import { orderService } from './services/order.service'
 import { store } from './store/store'
 
 import appHeader from './cmps/app-header.vue'
@@ -24,6 +25,8 @@ export default {
   },
   created() {
     userService.loadUsersToStorage()
+    store.dispatch({type: 'loadOrders'})
+    // orderService.query()
     console.log('Vue App created')
     const user = userService.getLoggedinUser()
     if (user) store.commit({ type: 'setLoggedinUser', user })

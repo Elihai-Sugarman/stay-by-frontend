@@ -1,11 +1,11 @@
 <template>
   <div class="login-signup">
     <header class="auth-header divider">
-      <div>Log in or sign up</div>
+      <div>{{ submitBtnText }}</div>
     </header>
 
     <div class="form-container">
-      <el-form :model="credentials" label-position="top">
+      <el-form :model="credentials" label-position="top" :disabled="isLoading">
         <el-form-item label="Fullname" class="w-100" required v-if="!isLoginPage">
           <el-input v-model="credentials.fullname" />
         </el-form-item>
@@ -17,14 +17,14 @@
         <el-form-item label="Password" class="w-100" required>
           <el-input type="password" v-model="credentials.password" />
         </el-form-item>
-  
-        <el-button @click="handleDemoLogin" v-if="isLoginPage">Log in as Demo User</el-button>
-  
+    
         <branded-btn @click="handleSubmit">
-          <el-button class="submit-btn">{{ submitBtnText }}</el-button>
+          <el-button class="submit-btn" :loading="isLoading">{{ submitBtnText }}</el-button>
         </branded-btn>
 
         <el-divider>or</el-divider>
+
+        <el-button @click="handleDemoLogin" v-if="isLoginPage" class="demo-btn" :loading="isLoading">Log in as Demo User</el-button>
 
         <!-- <GoogleLogin
           :client-id="googleClientId"
@@ -70,8 +70,12 @@ export default {
     }
   },
   methods: {
-    handleSubmit() {
-      this.isLoginPage ? this.doLogin() : this.doSignup()
+    async handleSubmit() {
+      this.isLoading = true
+      const action = this.isLoginPage ? this.doLogin : this.doSignup
+      await action()
+
+      this.isLoading = false
     },
     handleGoogleLogin(res) {
       console.log('res', res)

@@ -14,7 +14,7 @@
             <li>Dashboard</li>
           </router-link>
           <router-link to="/dashboard/order">
-            <li>My orders</li>
+            <li>My resevations</li>
           </router-link>
           <router-link to="/dashboard/listings">
             <li>My listings</li>
