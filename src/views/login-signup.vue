@@ -25,6 +25,14 @@
         <el-divider>or</el-divider>
 
         <el-button @click="handleDemoLogin" v-if="isLoginPage" class="demo-btn" :loading="isLoading">Log in as Demo User</el-button>
+        
+        <router-link to="/login" v-if="!isLoginPage">
+          <el-button class="w-100">Log in</el-button>
+        </router-link>
+
+        <router-link to="/signup" v-else>
+          <el-button class="w-100">Sign up</el-button>
+        </router-link>
 
         <!-- <GoogleLogin
           :client-id="googleClientId"
@@ -46,7 +54,13 @@ import imgUploader from '../cmps/img-uploader.vue'
 
 export default {
   name: 'login-signup',
-  props: { isLoginPage: Boolean },
+  props: {
+    isLoginPage: Boolean,
+    redirectOnSuccess: {
+      default: true,
+      type: Boolean
+    }
+  },
   components: {
     imgUploader,
     GoogleLogin
@@ -94,7 +108,7 @@ export default {
     async doLogin() {
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.credentials })
-        this.$router.push('/')
+        this.redirectOnSuccess && this.$router.push('/')
       } catch (err) {
         console.log(err)
         ElMessage.error('invalid username or password')
@@ -103,7 +117,7 @@ export default {
     async doSignup() {
       try {
         await this.$store.dispatch({ type: 'signup', userCred: this.credentials })
-        this.$router.push('/')
+        this.redirectOnSuccess && this.$router.push('/')
       } catch (err) {
         console.log(err)
         ElMessage.error('failed to signup')
