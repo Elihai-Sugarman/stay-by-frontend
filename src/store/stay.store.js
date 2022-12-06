@@ -48,7 +48,18 @@ export const stayStore = {
         },
         // used for autocomplete on search-bar
         locations({ allStays }) {
-            return allStays.map(({ address }) => address)
+            let allLocs = allStays
+                .map(({ address }) => address)
+                .map(address => {
+                    const formattedValue = `${address.city}, ${address.country}`
+                    return formattedValue
+                })
+            const filteredLocs = []
+            allLocs.forEach(value => {
+                if (!filteredLocs.includes(value)) filteredLocs.push(value)
+            })
+
+            return filteredLocs
         },
         filterBy(state) {
             return state.filterBy
