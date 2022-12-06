@@ -1,7 +1,7 @@
 <template>
   <section v-if="stay" class="order-details">
     
-    <div class="page-title flex fs32">
+    <div class="page-title flex">
       <icon-cmp @click="$router.back()" iconType="leftArrow" class="btn" />
       <h2 class="fs32">Request to book</h2>
     </div>
@@ -11,14 +11,14 @@
   
         <div class="trip-details">
           <h3>Your trip</h3>
-          <div>
+          <div class="flex justify-between">
             <h3>Dates</h3>
             <h4>
               {{ getFormattedDate(checkInDate) }} -
               {{ getFormattedDate(checkOutDate) }}
             </h4>
           </div>
-          <div>
+          <div class="flex justify-between">
             <h3>Guests</h3>
             <h4>{{ getFormattedGuests() }}</h4>
           </div>
@@ -113,10 +113,13 @@ export default {
     // this.$store.dispatch({ type: 'loadAllStays' })
     this.checkInDate = +this.$route.query.checkInDate
     this.checkOutDate = +this.$route.query.checkOutDate
-    const guestCount = this.$route.query.guests || 1
+    const adultCount = this.$route.query.Adults || 1
+    const childrenCount = this.$route.query.Children
     const infantCount = this.$route.query.Infants
     const petCount = this.$route.query.Pets
-    this.guests = [{ type: 'Guests', capacity: guestCount }]
+    this.guests.push({ type: 'Adults', capacity: adultCount })
+    if (childrenCount)
+      this.guests.push({ type: 'Children', capacity: childrenCount })
     if (infantCount)
       this.guests.push({ type: 'Infants', capacity: infantCount })
     if (petCount) this.guests.push({ type: 'Pets', capacity: petCount })
