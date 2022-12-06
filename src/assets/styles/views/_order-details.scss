@@ -3,16 +3,56 @@
     padding-top: 64px;
     padding-bottom: 16px;
     gap: 32px;
+    align-items: baseline;
   }
+
+  .details-section {
+    min-width: 40%;
+    .trip-details {
+      & > * {
+        padding-bottom: 24px;
+      }
+      h3 {
+        font-size: rem(22px);
+        margin: 0;
+      }
+      h4 {
+        font-size: rem(16px);
+      }
+    }
+    .divider {
+        margin-bottom: 24px;
+    }
+    .login-msg {
+        text-align: center;
+    }
+  }
+
   .summary-card-section {
     padding: 24px;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
+    height: fit-content;
+    min-height: 40%;
     .stay-details {
-        padding-bottom: 24px;
-        .stay-desc {
-            padding-left: 12px;
-        }
+      padding-bottom: 24px;
+      .stay-desc {
+        padding-left: 12px;
+      }
+    }
+    .price-details {
+      h3 {
+        padding: 24px 0;
+        font-size: rem(22px);
+        margin: 0;
+      }
+      .cost-details .base-cost {
+        margin-bottom: 16px;
+      }
+      .divider {
+        margin: 24px 0;
+
+      }
     }
   }
   .link {

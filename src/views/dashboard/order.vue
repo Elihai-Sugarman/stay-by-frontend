@@ -3,28 +3,25 @@
     <div class="listing-title">
       <div>{{ orders.length }} Reservation<span v-if="(orders.length>1)">s</span></div>
     </div>
-    <div class="dashboard-table">
-    <el-table :data="tableData" height="250" style="width: 100%">
+    <el-table :data="tableData" align="center">
 
-      <el-table-column fixed label="Guest" width="100" prop="buyer.fullname">
+      <el-table-column fixed label="Guest" min-width="100" prop="renter.fullname" align="center">
         <!-- <template #default="scope">
-          {{ scope.row.buyer.fullname }}
+          {{ scope.row.renter.fullname }}
         </template> -->
       </el-table-column>
+      
+      <el-table-column prop="startDate" min-width="100" label="Check-in" align="center" sortable/>
 
-      <!-- <el-table-column prop="status" label="Status" width="120" align="center"/> -->
+      <el-table-column prop="endDate" min-width="100" label="Checkout" align="center" sortable/>
       
-      <el-table-column prop="startDate" label="Check-in" sortable/>
-
-      <el-table-column prop="endDate" label="Checkout" sortable/>
+      <el-table-column prop="createdAt" min-width="100" label="Booked" align="center" sortable/>
       
-      <el-table-column prop="createdAt" label="Booked" sortable/>
+      <el-table-column prop="stay.name" min-width="250" label="Listing" align="center"/>
       
-      <el-table-column prop="stay.name" label="Listing"/>
+      <el-table-column prop="totalPrice" min-width="100" :formatter="formatCurrency" label="Toal Payout" align="center" sortable />
       
-      <el-table-column prop="totalPrice" :formatter="formatCurrency" label="Toal Payout" sortable />
-      
-      <el-table-column label="Status" sortable>
+      <el-table-column label="Status" align="center" min-width="100" sortable>
         <template #default="scope">
           <span class="order-status" :class="getStatusClass(scope.row)">
             {{ capitalize(scope.row.status) }}
@@ -32,15 +29,16 @@
         </template>
       </el-table-column>
       
-      <el-table-column prop="status">
+      <el-table-column prop="status" label="To do" min-width="200" align="center">
         <template #default="scope">
-          <el-button class="approve-btn status-btn" @click="handleOrder(scope.row, 'approve')" v-if="scope.row.status==='pending'">Approve</el-button>
-          <el-button class="reject-btn status-btn" @click="handleOrder(scope.row, 'reject')" v-if="scope.row.status==='pending'">Reject</el-button>
-          <span v-else></span>
+          <div class="status-btns">
+            <el-button class="approve-btn status-btn" @click="handleOrder(scope.row, 'approve')" v-if="scope.row.status!=='approved'">Approve</el-button>
+            <el-button class="reject-btn status-btn" @click="handleOrder(scope.row, 'reject')" v-if="scope.row.status!=='rejected'">Reject</el-button>
+            <!-- <span v-else></span> -->
+          </div>
         </template>
       </el-table-column>
     </el-table>
-    </div>
   </section>
 </template>
 
@@ -103,7 +101,7 @@ export default {
       }).format(totalPrice)
     },
     handleOrder(order, command){
-      if (order.status !== 'pending') return
+      // if (order.status !== 'pending') return
       order.status = command === 'approve' ? 'approved' : 'rejected'
       this.colorClass = order.status === 'approved' ? 'color-green' : 'color-red'
       const newOrder = utilService.deepCopy(order)

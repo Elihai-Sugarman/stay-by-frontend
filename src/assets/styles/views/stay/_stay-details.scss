@@ -8,7 +8,8 @@
     text-decoration: underline;
   }
   .font-md {
-    font-family: 'cereal-medium';
+    font-family: 'cereal';
+    font-weight: 600;
     // font-weight: bold;
   }
   .font-thin {
@@ -20,7 +21,8 @@
   }
   .subheading {
     font-size: rem(22px);
-    font-family: 'cereal-medium';
+    // font-family: 'cereal-medium';
+    font-weight: 600;
     // font-weight: bold;
   }
 
@@ -114,7 +116,8 @@
       }
 
       h4 {
-        font-family: 'cereal-medium';
+        // font-family: 'cereal-medium';
+        font-weight: 600;
       }
       .subtitle {
         font-size: rem(14px);

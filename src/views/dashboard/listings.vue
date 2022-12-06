@@ -4,34 +4,34 @@
       <div>{{ tableData.length }} Listing<span v-if="(tableData.length>1)">s</span></div>
       <el-button plain><icon-cmp icon-type="plus" /> Create listing</el-button>
     </div>
-    <el-table :data="tableData" height="200">
+    <el-table :data="tableData" align="center">
 
-      <el-table-column label="LISTING" width="250">
+      <el-table-column label="LISTING" min-width="250" align="center">
         <template #default="scope">
           <div class="listing-preview">
             <img :src="scope.row.imgUrls[0]" alt="listing preview">
-            <h3>{{ scope.row.name }}</h3>
+            <h4 class="listing-name">{{ scope.row.name }}</h4>
           </div>
         </template>
       </el-table-column>
+      
+      <el-table-column prop="capacity" label="CAPACITY" align="center" sortable min-width="100"/>
+      
+      <el-table-column prop="bedrooms" label="ROOMS" align="center" sortable min-width="100"/>
+      
+      <el-table-column prop="bathrooms" label="BATHS" align="center" sortable />
+      
+      <el-table-column prop="price" :formatter="formatCurrency" label="PRICE" sortable min-width="100"/>
+      
+      <el-table-column :formatter="formatLocation" label="LOCATION" align="center" min-width="150"/>      
+      
+      <el-table-column prop="createdAt" label="DATE ADDED"  min-width="100"/>
 
-      <el-table-column label="TODO">
+      <el-table-column label="TODO" min-width="100" align="center">
         <template #default>
           <el-button plain>Update</el-button>
         </template>
       </el-table-column>
-
-      <el-table-column prop="capacity" label="CAPACITY" width="120" align="center" sortable />
-
-      <el-table-column prop="bathrooms" label="ROOMS" align="center" sortable />
-      
-      <el-table-column prop="bedrooms" label="BEDROOMS" width="140" align="center" sortable />
-
-      <el-table-column prop="price" :formatter="formatCurrency" label="PRICE" sortable />
-
-      <el-table-column :formatter="formatLocation" label="LOCATION" align="center" />      
-
-      <el-table-column prop="createdAt" width="150" label="DATE ADDED" />
     </el-table>
   </section>
 </template>
