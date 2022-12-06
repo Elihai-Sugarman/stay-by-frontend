@@ -21,7 +21,7 @@
     components: { GoogleMap, Marker },
     data() {
       return {
-        //the coordinates are backwards in the database, hence switching lat and lan here
+        //the coordinates are backwards in the database provided by CODING ACADEMY, hence switching lat and lan here
         center: { lat: this.location.lan, lng: this.location.lat },
         marker: [
           {
