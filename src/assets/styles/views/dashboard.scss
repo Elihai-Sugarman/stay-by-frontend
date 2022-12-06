@@ -3,20 +3,32 @@
   max-width: 1440px;
   margin-inline: auto;
   display: grid;
-  grid-template-columns: 150px 1fr;
-
-  & .side-nav ul {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  & .side-nav ul a.router-link-exact-active {
-    color: black;
-  }
+  grid-template-columns: 1fr;
 
   & .dashboard-content {
     max-width: 100%;
     height: calc(100vh - 120px);
+  }
+}
+
+.dashboard .dashboard-nav {
+  margin: 32px;
+  
+  & ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  & ul li {
+    padding: 5px 10px;
+    // box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
+    border-radius: 10px;
+    transition: box-shadow .3s;
+    color: black !important;
+  }
+  
+  & ul a.router-link-exact-active li {
+    color: $brand-clr !important;
   }
 }

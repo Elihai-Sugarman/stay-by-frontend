@@ -51,18 +51,6 @@ export const orderStore = {
         removeOrder(state, { orderId }) {
             state.orders = state.orders.filter((order) => order._id !== orderId)
         },
-        addOrderMsg(state, { orderId, msg }) {
-            const order = state.orders.find((order) => order._id === orderId)
-            if (!order.msgs) order.msgs = []
-            order.msgs.push(msg)
-        },
-        setFilterBy(state, { filterBy }) {
-            if (!filterBy) state.filterBy = null
-            state.filterBy = {
-                ...state.filterBy,
-                ...filterBy,
-            }
-        },
     },
     actions: {
         async addOrder(context, { order }) {

@@ -1,18 +1,18 @@
 <template>
   <section class="dashboard">
-    <aside class="side-nav">
+    <section class="dashboard-nav">
       <ul class="clean-list">
-        <router-link to="/dashboard/edit">
+        <router-link to="/stay/edit">
           <li>Create listing</li>
         </router-link>
         <router-link to="/dashboard/listings">
-          <li>My listings</li>
+          <li>Listings</li>
         </router-link>
-        <router-link to="/dashboard/order">
+        <router-link to="/dashboard/reservation">
           <li>Reservations</li>
         </router-link>
       </ul>
-    </aside>
+    </section>
 
     <section class="dashboard-content">
       <router-view></router-view>

@@ -129,17 +129,9 @@ export default {
     getSearchLocations(queryString, cb) {
       const regex = new RegExp(queryString, 'i')
       const filteredLocs = this.AllLocations
-        .filter(({ city, country }) => {
-          return regex.test(country) || regex.test(city)
-        })
+        .filter(location => regex.test(location))
         // add value prop for the element-plus autocomplete
-        .map(address => {
-          const formattedValue = `${address.city}, ${address.country}`
-          return {
-            ...address,
-            value: formattedValue
-          }
-        })
+        .map(location => ({ value: location }))
 
       cb(filteredLocs)
     },

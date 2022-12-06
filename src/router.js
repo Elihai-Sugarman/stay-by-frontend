@@ -58,12 +58,16 @@ const routes = [
     },
     {
         path: '/dashboard',
+        redirect: '/dashboard/reservation',
+    },
+    {
+        path: '/dashboard',
         name: 'dashboard',
         component: dashboard,
         children: [
             {
-                path: 'order',
-                name: 'order',
+                path: 'reservation',
+                name: 'reservation',
                 component: ordersCmp,
             },
             {

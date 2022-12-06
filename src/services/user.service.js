@@ -96,7 +96,7 @@ async function signup(userCred) {
     return saveLocalUser(user)
 }
 async function logout() {
-    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+    localStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     socketService.logout()
     // return await httpService.post('auth/logout')
 }
@@ -110,12 +110,12 @@ async function changeScore(by) {
 }
 
 function saveLocalUser(user) {
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    localStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
 
 function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+    return JSON.parse(localStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
 // ;(async ()=>{

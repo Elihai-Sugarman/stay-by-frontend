@@ -44,4 +44,15 @@
         width: 100%;
         font-family: 'cereal-medium';
     }
+    
+    & a {
+        margin: 0;
+        width: auto;
+
+        & button {
+            color: black;
+            font-family: 'cereal-medium';
+            margin-inline: 0;
+        }
+    }
 }
