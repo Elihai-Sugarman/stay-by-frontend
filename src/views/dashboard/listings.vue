@@ -1,7 +1,7 @@
 <template>
   <section class="dashboard-listings">
     <div class="listing-title">
-      <div>{{ tableData.length }} Listings</div>
+      <div>{{ tableData.length }} Listing<span v-if="(tableData.length>1)">s</span></div>
       <el-button plain><icon-cmp icon-type="plus" /> Create listing</el-button>
     </div>
     <el-table :data="tableData" height="200">

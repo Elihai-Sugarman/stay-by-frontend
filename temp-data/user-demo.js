@@ -48939,6 +48939,14 @@ export const usersArray = [
         _id: '622f3408e36c59e6164fc08a',
         likedStays: [],
     },
+    {
+        fullname: 'me',
+        imgUrl: 'https://res.cloudinary.com/dgzyxjapv/image/upload/v1670318861/stayby/avatars/demo.png',
+        username: 'Demo',
+        password: '123456',
+        _id: 'sIHWt',
+        likedStays: [],
+    },
 ]
 
 // .map(user => {

@@ -1,5 +1,5 @@
 <template>
-  <ul class="stay-list" v-if="(user && likedStays)">
+  <ul class="stay-list" v-if="(user && likedStays.length)">
     <stay-preview
     v-for="stay in likedStays"
     :key="stay._id"
