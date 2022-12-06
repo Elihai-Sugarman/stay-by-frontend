@@ -108,9 +108,6 @@ export default {
       this.colorClass = order.status === 'approved' ? 'color-green' : 'color-red'
       const newOrder = utilService.deepCopy(order)
       this.$store.dispatch({type: 'updateOrder', order: newOrder})
-      // const colorClass = newOrder.status === 'approved' ? 'color-green' : 'color-red'
-      // document.querySelector('.order-status').classList.add(colorClass)
-      // document.querySelectorAll('.status-btn').forEach(btn => btn.style.display = 'none')
     }
   }
 }
