@@ -39,12 +39,12 @@
 export default {
   data() {
     return {
-      // tableData: []
+      tableData: []
     }
   },
   created() {
-    // this.$store.dispatch({ type: 'loadStays' })
-    // .then(() => this.loadListingsData())
+    this.$store.dispatch({ type: 'loadOrders' })
+    .then(() => this.loadOrdersData())
     
   },
   computed: {
@@ -52,28 +52,29 @@ export default {
       const filteredOreders = this.$store.getters.orders
       console.log(filteredOreders)
       return filteredOreders
+    },
+    user() {
+      return this.$store.getters.loggedinUser
+    },
+    orders() {
+      return this.$store.getters.orders
     }
-    // user() {
-    //   return this.$store.getters.loggedinUser
-    // },
-    // stays() {
-    //   return this.$store.getters.stays
-    // }
   },
   methods: {
-  //   loadListingsData() {
-  //     const data = this.stays.filter(stay => stay.host._id === this.user._id)
-  //     this.tableData = data
-  //   },
-  //   formatLocation({ address }) {
-  //     return `${address.city}, ${address.country}`
-  //   },
-  //   formatCurrency({ price }) {
-  //     return new Intl.NumberFormat('en-US', {
-  //       style: 'currency',
-  //       currency: 'USD'
-  //     }).format(price)
-  //   }
+    loadOrdersData() {
+      const data = this.orders
+      this.tableData = data
+      console.log('tableData', this.tableData)
+    },
+    formatLocation({ address }) {
+      return `${address.city}, ${address.country}`
+    },
+    formatCurrency({ price }) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      }).format(price)
+    }
   }
 }
 </script>
