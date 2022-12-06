@@ -8,7 +8,7 @@
         <router-link to="/dashboard/listings">
           <li>My listings</li>
         </router-link>
-        <router-link to="/dashboard/order">
+        <router-link to="/dashboard/reservation">
           <li>Reservations</li>
         </router-link>
       </ul>

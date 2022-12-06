@@ -4,20 +4,20 @@
       <section class="user-menu" v-outside-click="() => this.$emit('outside-click')">
         <ul v-if="user">
           <router-link to="/wishlist">
-            <li>My wishlist</li>
+            <li>Wishlist</li>
           </router-link>
           <router-link to="/trip">
-            <li>My trips</li>
+            <li>Trips</li>
           </router-link>
           <divider />
           <router-link to="/dashboard">
             <li>Dashboard</li>
           </router-link>
-          <router-link to="/dashboard/order">
+          <!-- <router-link to="/dashboard/order">
             <li>My resevations</li>
-          </router-link>
+          </router-link> -->
           <router-link to="/dashboard/listings">
-            <li>My listings</li>
+            <li>Listings</li>
           </router-link>
           <divider />
           <li @click="logout">Logout</li>
