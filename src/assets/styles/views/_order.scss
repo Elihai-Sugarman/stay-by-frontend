@@ -1,6 +1,11 @@
-.color-green {
-    color: green;
-}
-.color-red {
-    color: red;
+.order-status {
+    &.pending {}
+
+    &.approved {
+        color: green;
+    }
+
+    &.rejected {
+        color: red;
+    }
 }

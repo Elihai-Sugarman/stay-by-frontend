@@ -26,8 +26,8 @@
       
       <el-table-column label="Status" sortable>
         <template #default="scope">
-          <span class="order-status" :class="colorClass">
-            {{ scope.row.status }}
+          <span class="order-status" :class="getStatusClass(scope.row)">
+            {{ capitalize(scope.row.status) }}
           </span>
         </template>
       </el-table-column>
@@ -45,12 +45,13 @@
 </template>
 
 <script>
+import { capitalize } from 'lodash'
 import { utilService } from '../../services/util.service'
+
 export default {
   data() {
     return {
-      tableData: [],
-      colorClass: ''
+      tableData: []
     }
   },
   created() {
@@ -71,6 +72,23 @@ export default {
     }
   },
   methods: {
+    getStatusClass({ status }) {
+      let statusClass = 'pending'
+      switch (status) {
+        case 'approved':
+          statusClass = 'approved'
+          break;
+        case 'rejected':
+          statusClass = 'rejected'
+          break;
+      }
+      return {
+        [statusClass]: true
+      }
+    },
+    capitalize(value) {
+      return capitalize(value)
+    },
     loadOrdersData() {
       const data = this.orders
       this.tableData = utilService.deepCopy(data)
@@ -88,7 +106,7 @@ export default {
       if (order.status !== 'pending') return
       order.status = command === 'approve' ? 'approved' : 'rejected'
       this.colorClass = order.status === 'approved' ? 'color-green' : 'color-red'
-      const newOrder = JSON.parse(JSON.stringify(order))
+      const newOrder = utilService.deepCopy(order)
       this.$store.dispatch({type: 'updateOrder', order: newOrder})
       // const colorClass = newOrder.status === 'approved' ? 'color-green' : 'color-red'
       // document.querySelector('.order-status').classList.add(colorClass)
