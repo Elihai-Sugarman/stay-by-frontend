@@ -10,7 +10,7 @@
         <button
           type="button"
           @click="handleGuestSelect(guest.type, false)"
-          :disabled="(!guest.capacity || guest.capacity === initialAdultCapacity)">
+          :disabled="(!guest.capacity || (guest.capacity === initialAdultCapacity && guest.type === 'Adults'))">
           <icon-cmp icon-type="minus" />
         </button>
         <span>{{ guest.capacity }}</span>
