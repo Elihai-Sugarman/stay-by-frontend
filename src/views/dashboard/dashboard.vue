@@ -1,8 +1,8 @@
 <template>
   <section class="dashboard">
-    <aside class="side-nav">
+    <section class="dashboard-nav">
       <ul class="clean-list">
-        <router-link to="/dashboard/edit">
+        <router-link to="/stay/edit">
           <li>Create listing</li>
         </router-link>
         <router-link to="/dashboard/listings">
@@ -12,7 +12,7 @@
           <li>Reservations</li>
         </router-link>
       </ul>
-    </aside>
+    </section>
 
     <section class="dashboard-content">
       <router-view></router-view>
