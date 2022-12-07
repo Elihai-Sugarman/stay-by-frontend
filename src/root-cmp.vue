@@ -1,5 +1,5 @@
 <template>
-  <section class="main-layout">
+  <section class="main-layout" :class="pageClassLayout">
     <app-header />
     <router-view />
     <!-- <app-footer />  -->
@@ -30,6 +30,16 @@ export default {
     console.log('Vue App created')
     const user = userService.getLoggedinUser()
     if (user) store.commit({ type: 'setLoggedinUser', user })
+  },
+  computed: {
+    pageClassLayout() {
+      console.log('route', this.$route.name);
+      return {
+        'stay-layout': this.$route.name === 'stay-app',
+        'smaller-layout': this.$route.name === 'stay-details' || 
+                          this.$route.name === 'order-details'
+      }
+    }
   }
 }
 </script>

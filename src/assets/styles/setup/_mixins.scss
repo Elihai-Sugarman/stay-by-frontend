@@ -1,7 +1,12 @@
 /* Breakpoint mixins */
 
 @mixin for-xl {
-    @media (min-width: 1400px) {
+    @media (min-width: 1440px) {
+        @content;
+    }
+}
+@mixin for-smlr {
+    @media (min-width: 1127px) {
         @content;
     }
 }

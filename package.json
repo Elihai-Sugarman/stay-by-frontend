@@ -12,6 +12,7 @@
   "dependencies": {
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
+    "chart.js": "^3.9.1",
     "element-plus": "^2.2.25",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
@@ -19,6 +20,7 @@
     "socket.io-client": "^4.5.1",
     "v-calendar": "^3.0.0-alpha.8",
     "vue": "^3.2.37",
+    "vue-chart-3": "^3.1.8",
     "vue-router": "^4.1.2",
     "vue3-carousel": "^0.2.8",
     "vue3-google-login": "^2.0.12",
