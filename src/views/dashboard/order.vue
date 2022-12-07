@@ -3,6 +3,13 @@
     <div class="listing-title">
       <div>{{ orders.length }} Reservation<span v-if="(orders.length > 1)">s</span></div>
     </div>
+
+    <div class="charts">
+      <div class="avg-payout-chart">
+        <chart v-if="orders" :data="avgPayoutByMonthData" chartType="bar" />
+      </div>
+    </div>
+
     <el-table :data="tableData" align="center">
 
       <el-table-column fixed label="Guest" min-width="150" prop="renter.fullname" align="center">
@@ -50,6 +57,7 @@
 import * as moment from 'moment'
 import { capitalize } from 'lodash'
 import { utilService } from '../../services/util.service'
+import chart from '../../cmps/chart.vue'
 
 export default {
   data() {
@@ -72,6 +80,17 @@ export default {
     },
     user() {
       return this.$store.getters.loggedinUser
+    },
+    avgPayoutByMonthData() {
+      return {
+        labels: ['Nov', 'Dec', 'Jan'],
+        datasets: [
+          {
+            data: [4560, 10918, 11542],
+            backgroundColor: ['#77CEFF', '#0079AF', '#123E6B'],
+          },
+        ],
+      }
     },
   },
   methods: {
@@ -121,6 +140,9 @@ export default {
     getFormattedBookedDate({ createdAt }) {
       return moment(createdAt).format('MM/DD/YYYY')
     },
+  },
+  components: {
+    chart
   }
   
 }

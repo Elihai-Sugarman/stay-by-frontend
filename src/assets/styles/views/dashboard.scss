@@ -9,6 +9,9 @@
     max-width: 100%;
     height: calc(100vh - 200px);
   }
+  .avg-payout-chart {
+    width: 25%;
+  }
 }
 
 .dashboard .dashboard-nav {
@@ -31,4 +34,6 @@
   & ul a.router-link-exact-active li {
     color: $brand-clr !important;
   }
+
+  
 }
