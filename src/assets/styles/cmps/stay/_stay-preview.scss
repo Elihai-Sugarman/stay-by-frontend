@@ -54,11 +54,23 @@
     margin-top: 12px;
     display: grid;
     grid-template-columns: auto auto;
+    gap: 2px 8px;
 
-    > *{
+    > * {
+        // line-height: 19px;
         margin: 0;
         padding: 0;
     }
+    // .preview-data-info {
+    //     & > * {
+    //        line-height: 24px;
+    //    }
+    //    svg {
+    //     height: 12px; 
+    //     width: 12px;
+    //    }
+
+    // }
 }
 
 .preview-first-row {
@@ -88,18 +100,19 @@
     text-align: right;
 }
 
-.preview-address, .preview-time-ago, .preview-dates, .preview-price {
+.preview-address, .preview-name, .preview-dates, .preview-price {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    line-height: 19px;
 }
 
-.preview-time-ago, .preview-dates {
+.preview-name, .preview-dates {
     color: $clr8;
     padding: 0px;
 }
 
-.preview-time-ago {
+.preview-name {
     grid-row: 2;
     grid-column: 1;
 }
