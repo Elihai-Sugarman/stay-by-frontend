@@ -2,7 +2,7 @@
   <section v-if="stay" class="stay-details">
     <h1 class="name-title">{{ stay.name }}</h1>
     <div class="name-subtitle flex">
-      <ratingReview :reviews="stay.reviews" />
+      <ratingReview @goToReviews="openAllReviewsModal" :reviews="stay.reviews" />
 
       <span v-if="stay.host.isSuperhost">•</span>
       <span class="superhost flex" v-if="stay.host.isSuperhost">
@@ -10,7 +10,7 @@
       </span>
 
       <span>•</span>
-      <span class="address link font-md">
+      <span @click="scrollToMap" class="address link font-md">
         {{ stay.address.street }}
       </span>
     </div>
@@ -101,7 +101,7 @@
                 <p>
                   <span class="cost font-md">${{ stay.price }}</span> night
                 </p>
-                <ratingReview :reviews="stay.reviews" />
+                <ratingReview @goToReviews="openAllReviewsModal" :reviews="stay.reviews" />
               </div>
               <div class="reservation-data">
                 <div @click="openDatePicker()" class="date-picker">
@@ -216,7 +216,7 @@
 
       <divider />
 
-      <div class="map">
+      <div ref="mapSection" class="map">
         <h4 class="subheading">Where you'll be</h4>
         <div class="address-txt">{{ stay.address.street }}</div>
         <div class="map-container">
@@ -426,6 +426,10 @@ export default {
     setServiceFee() {
       this.order.serviceFee = this.getServiceFee
     },
+    scrollToMap(){
+      const el = this.$refs.mapSection
+      el.scrollIntoView({behavior: 'smooth'})
+    },
     openAllReviewsModal() {
       console.log('open reviews modal')
       this.isReviewsModalOpen = true
@@ -436,10 +440,8 @@ export default {
 
       this.order.basePrice = this.stay.price * this.totalNights
       this.order.serviceFee = this.getServiceFee
-
     },
     handleGuestsChange(guests) {
-      // console.log('guest from modal', guests);
       let chosenGuests = guests.reduce((prev, curr) => {
         return {
           ...prev,
@@ -459,30 +461,17 @@ export default {
       return moment(date).format('MM' + '/' + 'DD' + '/' + 'YYYY')
     },
     getFormattedGuests() {
-      
-
-      // return this.order.guests
-      //   .map(({ type, capacity }) => `${capacity} ${type}`)
-      //   .join(', ')
       const {adults, children, infants, pets} = this.order.guests
-
       const adultsAndChildren = (children) ? adults + children : adults
-
       const guestsStr = (adultsAndChildren < 2) ? ' guest' : ' guests'
-
       const infntStr = (infants > 0) ? ((infants<2) ? ', 1 infant' : `, ${infants} infants`) : ''
-
       const petStr = (pets > 0) ? ((pets<2) ? ', 1 pet' : `, ${pets} pets`) : ''
-
       return adultsAndChildren + guestsStr + infntStr + petStr
-  
     },
     callToActionClicked() {
       if (!this.order.checkInDate || !this.order.checkOutDate) this.isDatesOpen = true
       else {
-        // console.log('order:', this.order)
         const order = utilService.deepCopy(this.order)
-
         for (const type in order.guests) {
           order[type] = order.guests[type]
         }

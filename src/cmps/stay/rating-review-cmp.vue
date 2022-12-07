@@ -5,7 +5,7 @@
       {{ avgRating }}
     </span>
     <span>•</span>
-    <span class="rev-count link font-md"> {{ countReviews }} reviews</span>
+    <span @click="onGoToReviews()" class="rev-count link font-md"> {{ countReviews }} reviews</span>
   </div>
 </template>
 <script>
@@ -31,5 +31,10 @@ export default {
       return this.reviews.length
     },
   },
+  methods: {
+    onGoToReviews(){
+      this.$emit('goToReviews')
+    }
+  }
 }
 </script>

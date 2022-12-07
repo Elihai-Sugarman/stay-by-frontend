@@ -41,6 +41,10 @@
     gap: rem(9px);
     font-size: rem(14px);
     margin-top: 0%;
+    .rev-count, .address {
+      cursor: pointer;
+    }
+   
 
     .avg-rating {
       align-items: baseline;
@@ -231,6 +235,9 @@
 
         p {
           margin: 0;
+        }
+        .rev-count {
+          cursor: pointer;
         }
       }
       .reservation-data {

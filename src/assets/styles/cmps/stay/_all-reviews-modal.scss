@@ -22,6 +22,9 @@
     width: 50%; 
     max-height: 75%;
     overflow-y: scroll;
+    h1 {
+      margin-bottom: 32px;
+    }
     .reviews-list {
         grid-template-columns: 1fr;
         li {
@@ -34,7 +37,7 @@
   color: #aaa;
   float: right;
   font-size: 28px;
-//   font-weight: bold;
+  line-height: 0.5;
 
   &:hover,
   &:focus {
