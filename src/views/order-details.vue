@@ -144,19 +144,12 @@ export default {
       return moment(date).format('MMM' + ' ' + 'DD')
     },
     getFormattedGuests() {
-  
       const {adults, children, infants, pets} = this.guests
-
       const adultsAndChildren = (children) ? adults + children : adults
-
       const guestsStr = (adultsAndChildren < 2) ? ' guest' : ' guests'
-
       const infntStr = (infants > 0) ? ((infants<2) ? ', 1 infant' : `, ${infants} infants`) : ''
-
       const petStr = (pets > 0) ? ((pets<2) ? ', 1 pet' : `, ${pets} pets`) : ''
-
       return adultsAndChildren + guestsStr + infntStr + petStr
-  
     },
     async addOrder() {
       
