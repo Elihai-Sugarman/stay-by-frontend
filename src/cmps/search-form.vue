@@ -184,11 +184,11 @@ export default {
 
       const formattedLabel = filteredGuests
           .map(({ type, capacity }) => {
-            if (capacity === 1){
+            if (capacity === 1) {
               if (type === 'Infants') type = 'Infant'
               else if (type === 'Pets') type = 'Pet'
             }
-            return `${capacity} ${type}`
+            return `${capacity} ${type.toLowerCase()}`
           })
           .join(', ')
 

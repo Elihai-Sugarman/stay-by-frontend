@@ -5,6 +5,17 @@
     </div>
     <el-table :data="tableData" align="center">
 
+      <el-table-column label="Destination" min-width="250" align="center" fixed>
+        <template #default="scope">
+          <router-link :to="('/stay/' + scope.row.stay._id)">
+            <div class="listing-preview">
+              <img :src="scope.row.stay.imgUrl" alt="listing preview">
+              <h3 class="listing-name">{{ scope.row.stay.name }}</h3>
+            </div>
+          </router-link>
+        </template>
+      </el-table-column>
+
       <el-table-column fixed label="Host" min-width="150" align="center">
         <template #default="scope">
           <h3 class="renter-fullname handle-overflow">{{ scope.row.host.fullname }}</h3>
@@ -17,13 +28,7 @@
       
       <el-table-column prop="createdAt" min-width="100" :formatter="getFormattedBookedDate"  label="Booked" align="center" sortable/>
       
-      <el-table-column prop="stay.name" min-width="250" label="Listing" align="center">
-        <template #default="scope">
-          <span class="handle-overflow">{{ scope.row.stay.name }}</span>
-        </template>
-      </el-table-column>
-      
-      <el-table-column prop="totalPrice" min-width="110" :formatter="formatCurrency" label="Total Payout" align="center" sortable />
+      <el-table-column prop="totalPrice" min-width="110" :formatter="formatCurrency" label="Total Price" align="center" sortable />
       
       <el-table-column label="Status" align="center" min-width="100" sortable>
         <template #default="scope">

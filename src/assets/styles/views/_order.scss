@@ -1,4 +1,9 @@
 .order-status {
+    font-weight: 800;
+    
+    &.pending {
+        color: orange;
+    }
     
     &.approved {
         color: green;
@@ -21,8 +26,9 @@
 }
 
 .renter-fullname {
-    color: black;
+    // color: black;
     margin: 0;
+    line-height: 2;
 }
 
 .handle-overflow {
