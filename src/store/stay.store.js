@@ -1,4 +1,5 @@
-import { stayService } from '../services/stay.service.local'
+import { stayService } from '../services/stay.service'
+// import { stayService } from '../services/stay.service.local'
 import { staysArray } from '../../temp-data/stay-demo.js'
 
 export function getActionRemoveStay(stayId) {
@@ -37,14 +38,22 @@ export const stayStore = {
         stays(state) {
             return state.stays
         },
-        labels(state) {
-            const labels = []
-            state.allStays.forEach((stay) => {
-                stay.labels.forEach((label) => {
-                    if (!labels.includes(label)) labels.push(label)
-                })
-            })
-            return labels
+        labels() {
+            return [
+                "National-parks",
+                "Campers",
+                "Surfing",
+                "Amazing-views",
+                "Beach",
+                "Castles",
+                "Islands",
+                "Caves",
+                "OMG!",
+                "Lakefront",
+                "Beachfront",
+                "Design",
+                "Cabins"
+              ]            
         },
         // used for autocomplete on search-bar
         locations({ allStays }) {
