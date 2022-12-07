@@ -35,6 +35,7 @@ export default {
       if (query.label) {
         const filterBy = { label: query.label }
         this.$store.commit({ type: 'setFilterBy', filterBy })
+        this.$store.dispatch({ type: 'loadStays' })
       }
     }
   },

@@ -82,6 +82,7 @@ export const stayService = {
     getLocations,
     getEmptyStay,
     addStayMsg,
+    getLikedStays,
     labels,
     amenities
 }
@@ -103,6 +104,10 @@ async function query(filterBy = { txt: '', price: 0 }) {
 function getById(stayId) {
     // return storageService.get(STORAGE_KEY, stayId)
     return httpService.get(`stay/${stayId}`)
+}
+
+function getLikedStays() {
+    return httpService.get(`stay/liked`)
 }
 
 function getLocations(q) {

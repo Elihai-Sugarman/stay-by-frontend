@@ -125,12 +125,10 @@
 import { ElMessage } from 'element-plus'
 import { UploadFilled } from '@element-plus/icons-vue'
 
-import { stayService } from '../../services/stay.service.local'
+import { stayService } from '../../services/stay.service'
 import { utilService } from '../../services/util.service'
 import { uploadService } from '../../services/upload.service'
 import { getActionAddStay, getActionUpdateStay } from '../../store/stay.store'
-import { amenitiesArray } from '../../../temp-data/amenities'
-import { labelsArray } from '../../../temp-data/labels'
 
 export default {
   components: { UploadFilled },
@@ -149,10 +147,10 @@ export default {
       return this.$store.getters.loggedInUser
     },
     amenitiesOptions() {
-      return amenitiesArray
+      return stayService.amenities
     },
     labelOptions() {
-      return labelsArray
+      return stayService.labels
     }
   },
   created() {
