@@ -126,6 +126,10 @@ export default {
       if (stayIdx === -1) currUser.likedStays.push(this.stay._id)
       else currUser.likedStays.splice(stayIdx,1)
       this.$store.dispatch({type: 'updateUser', user: utilService.deepCopy(currUser)})
+        .then(() => {
+          // remove stay on wishlist
+          if (!this.liked) this.$emit('disliked', this.stay._id)
+        })
     },
     async removeStay(stayId) {
       try {
