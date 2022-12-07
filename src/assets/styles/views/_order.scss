@@ -25,3 +25,9 @@
     color: black;
     margin: 0;
 }
+
+.handle-overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
