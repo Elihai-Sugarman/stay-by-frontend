@@ -1,13 +1,13 @@
 <template>
   <section v-if="stay" class="stay-details">
-    <header class="full">
+    <!-- <header class="full">
       <div>
         <span>Photos</span>
         <span>Amenities</span>
         <span>Reviews</span>
         <span>Location</span>
       </div>
-    </header>
+    </header> -->
 
     <h1 class="name-title">{{ stay.name }}</h1>
     <div class="name-subtitle flex">
