@@ -38,8 +38,8 @@ async function save(order) {
     if (order._id) {
         savedOrder = await storageService.put(STORAGE_KEY, order)
     } else {
-        // Later, buyer is set by the backend
-        order.buyer = userService.getLoggedinUser()
+        // Later, renter is set by the backend
+        order.renter = userService.getLoggedinUser()
         savedOrder = await storageService.post(STORAGE_KEY, order)
     }
     return savedOrder
