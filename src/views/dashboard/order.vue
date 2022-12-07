@@ -6,9 +6,9 @@
     <el-table :data="tableData" align="center">
 
       <el-table-column fixed label="Guest" min-width="100" prop="renter.fullname" align="center">
-        <!-- <template #default="scope">
-          {{ scope.row.renter.fullname }}
-        </template> -->
+        <template #default="scope">
+          <h3 class="renter-fullname">{{ scope.row.renter.fullname }}</h3>
+        </template>
       </el-table-column>
       
       <el-table-column prop="startDate" min-width="100" label="Check-in" align="center" sortable/>

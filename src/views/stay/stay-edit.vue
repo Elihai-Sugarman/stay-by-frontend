@@ -1,6 +1,6 @@
 <template>
   <section class="stay-edit">
-    <el-form :model="stayToEdit" label-width="200">
+    <el-form :model="stayToEdit" label-position="top" :disabled="isLoading">
 
       <el-form-item label="Name" class="w-100">
         <el-input v-model="stayToEdit.name" placeholder="Name" />
@@ -22,36 +22,74 @@
       <!-- Upload -->
       <el-form-item class="w-100">
         <el-upload class="w-100"
-          action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-          drag
-          multiple>
+          :http-request="handleImgUpload"
+          :on-remove="handleImgRemove"
+          list-type="picture"
+          v-model:file-list="uploadedImgs"
+          drag multiple>
           <el-icon class="el-icon--upload"><upload-filled /></el-icon>
           <div class="el-upload__text">
             Drop file here or <em>click to upload</em>
           </div>
-          <template #tip>
-            <div class="el-upload__tip">
-              jpg/png files with a size less than 500kb
-            </div>
-          </template>
         </el-upload>
       </el-form-item>
 
-      <!-- Test -->
-      <el-form-item label="Test" class="w-100">
-        <el-col :span="12">
-          <el-input v-model="stayToEdit.capacity" placeholder="Capacity" />
+      <!-- Capacity, Bedrooms, Bathrooms -->
+      <el-row class="w-100">
+
+        <el-col :span="8">
+          <el-form-item label="Capacity">
+            <el-input type="number" v-model="stayToEdit.capacity" />
+          </el-form-item>
         </el-col>
-        <el-col :offset="1" :span="11">
-          <el-input v-model="stayToEdit.bedrooms" placeholder="Bedrooms" />
+
+        <el-col :offset="1" :span="7">
+          <el-form-item label="Bedrooms">
+            <el-input type="number" v-model="stayToEdit.bedrooms" />
+          </el-form-item>
         </el-col>
-        <el-col :span="12">
-          <el-input v-model="stayToEdit.bathrooms" placeholder="Bathrooms" />
+
+        <el-col :offset="1" :span="7">
+          <el-form-item label="Bathrooms">
+            <el-input type="number" v-model="stayToEdit.bathrooms" />
+          </el-form-item>
         </el-col>
-        <el-col :offset="1" :span="11">
-          <el-input v-model="stayToEdit.price" placeholder="Price" />
+
+      </el-row>
+
+      <!--  -->
+      <el-row class="w-100">
+
+        <el-col :span="8">
+          <el-form-item label="Labels" class="w-100">
+            <el-select
+              placeholder="Select labels"
+              class="w-100"
+              v-model="stayToEdit.labels"
+              multiple>
+              <el-option
+                v-for="label in labelOptions"
+                :key="label"
+                :label="label"
+                :value="label"
+              />
+            </el-select>
+          </el-form-item>
         </el-col>
-      </el-form-item>
+
+        <el-col :offset="1" :span="7">
+          <el-form-item label="Property type">
+            <el-input v-model="stayToEdit.roomType" />
+          </el-form-item>
+        </el-col>
+
+        <el-col :offset="1" :span="7">
+          <el-form-item label="Price">
+            <el-input type="number" v-model="stayToEdit.price" />
+          </el-form-item>
+        </el-col>
+
+      </el-row>
 
       <!-- Amenities -->
       <el-form-item label="Amenities" class="w-100">
@@ -69,27 +107,16 @@
         </el-select>
       </el-form-item>
 
-      <!-- Labels -->
-      <el-form-item label="Labels" class="w-100">
-        <el-select
-          placeholder="Select labels"
-          class="w-100"
-          v-model="stayToEdit.labels"
-          multiple>
-          <el-option
-            v-for="label in labelOptions"
-            :key="label"
-            :label="label"
-            :value="label"
-          />
-        </el-select>
-      </el-form-item>
-
       <!-- Description -->
       <el-form-item label="Description" class="w-100">
-        <el-input type="textarea" v-model="stayToEdit.summary" placeholder="Description" />
+        <el-input type="textarea" v-model="stayToEdit.summary" placeholder="Description" rows="5" />
       </el-form-item>
     
+      <div class="w-100 flex justify-center">
+        <el-button type="success" class="w-50" @click="saveStay">
+          Save
+        </el-button>
+      </div>
     </el-form>
   </section>
 </template>
@@ -100,15 +127,18 @@ import { UploadFilled } from '@element-plus/icons-vue'
 
 import { stayService } from '../../services/stay.service.local'
 import { utilService } from '../../services/util.service'
+import { uploadService } from '../../services/upload.service'
 import { getActionAddStay, getActionUpdateStay } from '../../store/stay.store'
 import { amenitiesArray } from '../../../temp-data/amenities'
+import { labelsArray } from '../../../temp-data/labels'
 
 export default {
   components: { UploadFilled },
   data() {
     return {
       stayToEdit: stayService.getEmptyStay(),
-      isLoading: false
+      isLoading: false,
+      uploadedImgs: []
     }
   },
   computed: {
@@ -122,7 +152,7 @@ export default {
       return amenitiesArray
     },
     labelOptions() {
-      return this.$store.getters.labels
+      return labelsArray
     }
   },
   created() {
@@ -132,7 +162,11 @@ export default {
     loadStay() {
       this.isLoading = true
       stayService.getById(this.stayId)
-        .then(stay => this.stayToEdit = stay)
+        .then(stay => {
+          this.stayToEdit = stay
+          this.uploadedImgs = stay.imgUrls
+            .map((url, idx) => ({ name: idx + 1, url }))
+        })
         .catch(() => ElMessage.error('Failed to load listing!'))
         .finally(() => this.isLoading = false)
     },
@@ -143,7 +177,8 @@ export default {
       if (this.stayId) action = this.updateStay
 
       try {
-        await action()
+        const res = await action()
+        console.log('res', res)
         ElMessage.success('The listing saved successfully!')
         this.$router.push('/dashboard/listings')
 
@@ -160,6 +195,28 @@ export default {
     },
     updateStay() {
       return this.$store.dispatch(getActionUpdateStay(this.stayToEdit))
+    },
+    handleImgUpload({ file }) {
+      return uploadService.uploadImg(file)
+        .then(({ url }) => {
+          // remove the added file
+          const idx = this.uploadedImgs.findIndex(({ uid }) => file.uid === uid)
+          this.uploadedImgs.splice(idx, 1)
+
+          // push the new uploaded file
+          const lastIdx = this.uploadedImgs.length + 1
+          this.uploadedImgs.push({ name: lastIdx, url })
+
+          // save url to stayToEdit
+          this.stayToEdit.imgUrls.push(url)
+        })
+    },
+    handleImgRemove({ url, uid }) {
+      const idx = this.uploadedImgs.findIndex(img => img.uid === uid)
+      this.uploadedImgs.splice(idx, 1)
+
+      const stayImgIdx = this.stayToEdit.imgUrls.indexOf(url)
+      this.stayToEdit.imgUrls.splice(stayImgIdx, 1)
     }
   }
 }

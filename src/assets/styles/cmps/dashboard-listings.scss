@@ -20,6 +20,10 @@
       height: auto;
       object-fit: cover;
     }
+
+    & h3 {
+      color: black;
+    }
   }
 }
 
@@ -27,4 +31,5 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  margin: 0;
 }
