@@ -135,7 +135,7 @@
                     @close="isGuestsOpen = false"
                   />
                   <label>GUESTS</label>
-                  <input :value="getFormattedGuests()" class="font-thin" />
+                  <input :value="getFormattedGuests()" class="font-thin" placeholder="1 Adult" />
                   <svg viewBox="0 0 320 512" width="100" title="angle-down">
                     <path
                       d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
@@ -473,7 +473,15 @@ export default {
 
       // return (totalGuests > 1) ? `${totalGuests} guests` : '1 guest'
       return this.order.guests
-        .map(({ type, capacity }) => `${capacity} ${type}`)
+        .map(({ type, capacity }) =>{
+          if (capacity === 1){
+            if (type === 'Children') type = 'Child'
+            else if (type === 'Adults') type = 'Adult'
+            else if (type === 'Infants') type = 'Infant'
+            else if (type === 'Pets') type = 'Pet'
+          }
+          return `${capacity} ${type}`
+        })
         .join(', ')
     },
     callToActionClicked() {
