@@ -2,14 +2,11 @@
   <div class="container home">
     <stay-header @filter="filter" />
     <stay-list v-if="stays.length" :stays="stays" />
-    <!-- <hr /> -->
-    <!-- <stay-edit /> -->
   </div>
 </template>
 
 <script>
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
-// import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/test.store'
 
 import stayEdit from './stay-edit.vue'
 import stayList from '../../cmps/stay/stay-list.vue'
@@ -33,17 +30,16 @@ export default {
       return this.$route.query
     }
   },
-  mounted() {
-    this.filter(this.$route.query.label)
-  },
   watch: {
     queryParams(query){
-        if (query.label) this.filter(query.label)
+      if (query.label) {
+        const filterBy = { label: query.label }
+        this.$store.commit({ type: 'setFilterBy', filterBy })
+      }
     }
   },
   created() {
     this.$store.dispatch({ type: 'loadStays' })
-    this.$store.dispatch({ type: 'loadAllStays' })
   },
   methods: {
     async removeStay(stayId) {
@@ -77,13 +73,8 @@ export default {
         showErrorMsg('Cannot add stay msg')
       }
     },
-    printStayToConsole(stay) {
-      console.log('Stay msgs:', stay.msgs)
-    },
     filter(label){
       const filterBy = { label }
-      this.$store.commit({ type: 'setFilterBy', filterBy: utilService.deepCopy(filterBy) })
-      this.$store.dispatch('loadStays')
       this.$router.push({ path: '/stay', query: filterBy })
     }
   }

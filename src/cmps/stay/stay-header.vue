@@ -22,12 +22,11 @@
 
 <script>
 import { eventBus } from '../../services/event-bus.service'
+import { stayService } from '../../services/stay.service'
 import stayFilter from './stay-filter.vue'
 import stayLabel from './stay-label.vue'
 
-import { defineComponent } from 'vue'
 import { Carousel, Navigation, Slide } from 'vue3-carousel'
-// import 'vue3-carousel/carousel.css'
 import 'vue3-carousel/dist/carousel.css'
 
 
@@ -136,7 +135,7 @@ import 'vue3-carousel/dist/carousel.css'
         },
         computed: {
             labels(){
-                return this.$store.getters.labels
+                return stayService.labels
             },
         },
         methods: {

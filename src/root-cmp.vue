@@ -24,8 +24,7 @@ export default {
     userMsg
   },
   created() {
-    userService.loadUsersToStorage()
-    store.dispatch({type: 'loadOrders'})
+    // store.dispatch({type: 'loadOrders'})
     // orderService.query()
     console.log('Vue App created')
     const user = userService.getLoggedinUser()
