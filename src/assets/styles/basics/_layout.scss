@@ -11,19 +11,34 @@
     & .stay-details {
         max-width: $stay-details-layout;
     }
+    & .order-details {
+        max-width: $stay-details-layout;
+    }
 
-    .main-header.stay & {
+        
+    .main-header.smaller & {
         grid-template-columns:
             $layout-padding
             $stay-details-layout
             $layout-padding !important;
     }
 
+   
+
     @include for-xl {
         grid-template-columns:
             calc($layout-padding * 2)
             1fr
             calc($layout-padding * 2);
+    }
+
+    &.smaller-layout {
+        @include for-smlr {
+            grid-template-columns:
+            calc($layout-padding * 2)
+            1fr
+            calc($layout-padding * 2);
+        }
     }
 
     > * {

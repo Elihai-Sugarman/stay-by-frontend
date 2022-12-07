@@ -41,7 +41,7 @@
     align-items: center;
     margin-block: 16px;
 
-    .main-header.stay & {
+    .main-header.smaller & {
         max-width: $stay-details-layout;
         margin-inline: auto;
     }
