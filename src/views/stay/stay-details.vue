@@ -381,7 +381,7 @@ export default {
       return this.stay.imgUrls.slice(0, 6)
     },
     getServiceFee() {
-      return _random(this.stay.price/5, (this.stay.price/5)*2)
+      return _random(this.stay.price/10, this.stay.price*15/100).toFixed()
     },
     isDatesChosen() {
       return this.order.checkInDate || this.order.checkOutDate
