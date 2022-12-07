@@ -170,6 +170,7 @@ export default {
           _id: this.stay._id,
           name: this.stay.name,
           price: this.stay.price,
+          imgUrl: this.stay.imgUrls[0]
         },
         msgs: [],
         status: 'pending', // pending, approved
