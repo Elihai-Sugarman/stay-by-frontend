@@ -21,7 +21,7 @@
     <div class="mid-section">
       <div class="more-details">
         <div class="heading flex justify-between">
-          <div class="txt">
+          <div class="txt column flex justify-between">
             <h2 class="title subheading">
               {{ stay.roomType }} hosted by {{ stay.host.fullname }}
             </h2>
