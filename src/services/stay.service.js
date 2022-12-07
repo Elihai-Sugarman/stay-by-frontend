@@ -11,7 +11,7 @@ const labels = [
     "Castles",
     "Islands",
     "Caves",
-    "OMG!",
+    "omg",
     "Lakefront",
     "Beachfront",
     "Design",
