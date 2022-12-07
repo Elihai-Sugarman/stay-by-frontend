@@ -39,10 +39,13 @@
           <div v-else>
             <h3 class="login-msg">Please login to book</h3>
             <login-signup
-              :isLoginPage="true"
-              :redirectOnSuccess="false"
+            :isLoginPage="true"
+            :redirectOnSuccess="false"
             />
           </div>
+        </div>
+        <div v-else>
+          <branded-btn v-if="loggedinUser" @click="goToHomepage()">Look for more places to stay</branded-btn>
         </div>
         
       </div>
@@ -65,11 +68,11 @@
             <div class="cost-details flex column">
               <div class="base-cost flex justify-between">
                 <span class="link">
-                  ${{ new Intl.NumberFormat().format(basePrice) }} x
+                  ${{ new Intl.NumberFormat().format(stay.price) }} x
                   {{ totalNights }} nights
                 </span>
                 <span>
-                  ${{ new Intl.NumberFormat().format(basePrice * totalNights) }}
+                  ${{ new Intl.NumberFormat().format(stay.price * totalNights) }}
                 </span>
               </div>
               <div class="service-fee flex justify-between">
@@ -100,14 +103,14 @@ import * as moment from 'moment'
 import ratingReview from '../cmps/stay/rating-review-cmp.vue'
 import loginSignup from '../views/login-signup.vue'
 import { getActionAddOrder } from '../store/order.store'
+import { utilService } from '../services/util.service'
 
 export default {
   data() {
     return {
       checkInDate: '',
       checkOutDate: '',
-      guests: [],
-      basePrice: 0,
+      guests: null,
       serviceFee: 0,
       stay: null,
       isBooked: false
@@ -121,17 +124,13 @@ export default {
     // this.$store.dispatch({ type: 'loadAllStays' })
     this.checkInDate = +this.$route.query.checkInDate
     this.checkOutDate = +this.$route.query.checkOutDate
-    const adultCount = this.$route.query.Adults || 1
-    const childrenCount = this.$route.query.Children
-    const infantCount = this.$route.query.Infants
-    const petCount = this.$route.query.Pets
-    this.guests.push({ type: 'Adults', capacity: adultCount })
-    if (childrenCount)
-      this.guests.push({ type: 'Children', capacity: childrenCount })
-    if (infantCount)
-      this.guests.push({ type: 'Infants', capacity: infantCount })
-    if (petCount) this.guests.push({ type: 'Pets', capacity: petCount })
-    this.basePrice = +this.$route.query.basePrice
+    
+    const adults = +this.$route.query.adults
+    const children = +this.$route.query.children || 0
+    const infants = +this.$route.query.infants || 0
+    const pets = +this.$route.query.pets || 0
+    this.guests = {adults, children, infants, pets}
+
     this.serviceFee = +this.$route.query.serviceFee
   },
   methods: {
@@ -145,25 +144,30 @@ export default {
       return moment(date).format('MMM' + ' ' + 'DD')
     },
     getFormattedGuests() {
-      return this.guests
-        .map(({ type, capacity }) => `${capacity} ${type}`)
-        .join(', ')
+  
+      const {adults, children, infants, pets} = this.guests
+
+      const adultsAndChildren = (children) ? adults + children : adults
+
+      const guestsStr = (adultsAndChildren < 2) ? ' guest' : ' guests'
+
+      const infntStr = (infants > 0) ? ((infants<2) ? ', 1 infant' : `, ${infants} infants`) : ''
+
+      const petStr = (pets > 0) ? ((pets<2) ? ', 1 pet' : `, ${pets} pets`) : ''
+
+      return adultsAndChildren + guestsStr + infntStr + petStr
+  
     },
     async addOrder() {
-
-      let guestsOrder = this.guests.reduce((prev, curr) => {
-        return {
-          ...prev,
-          [curr.type.toLowerCase()]: +curr.capacity
-        }
-      }, {})
+      
+      let guestsOrder = utilService.deepCopy(this.guests)
 
       let order = {
         hostId: this.hostId,
         createdAt: Date.now(),
-        buyer: {
-          _id: this.loggedinUser._id,
-          fullname: this.loggedinUser.fullname,
+        host: {
+          _id: this.stay.host._id,
+          fullname: this.stay.host.fullname,
         },
         totalPrice: +this.totalPrice,
         startDate: +this.checkInDate,
@@ -185,6 +189,9 @@ export default {
         console.log('Cannot make reservation', error);
       }
     },
+    goToHomepage() {
+      this.$router.push('/stay')
+    }
   },
   computed: {
     loggedinUser() {
@@ -196,7 +203,7 @@ export default {
     },
     totalPrice() {
       return new Intl.NumberFormat().format(
-        this.basePrice * this.totalNights + this.serviceFee * this.totalNights
+        this.stay.price * this.totalNights + this.serviceFee * this.totalNights
       )
     },
   },

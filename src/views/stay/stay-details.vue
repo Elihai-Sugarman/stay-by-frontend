@@ -239,10 +239,10 @@
       </Transition>
     </div>
 
-    <details>
+    <!-- <details>
       <summary>Full JSON</summary>
       <pre>{{ stay }}</pre>
-    </details>
+    </details> -->
   </section>
 </template>
 
@@ -269,7 +269,7 @@ export default {
         checkInDate: '',
         checkOutDate: '',
         // checkDates: [],
-        guests: [],
+        guests: {adults:1},
         basePrice: 0,
         serviceFee: 0,
       },
@@ -440,8 +440,13 @@ export default {
     },
     handleGuestsChange(guests) {
       // console.log('guest from modal', guests);
-      this.order.guests = guests
-      // console.log('guests', this.order.guests)
+      let chosenGuests = guests.reduce((prev, curr) => {
+        return {
+          ...prev,
+          [curr.type.toLowerCase()]: +curr.capacity
+        }
+      }, {})
+      this.order.guests = chosenGuests
     },
     openDatePicker() {
       this.isDatesOpen = true
@@ -454,37 +459,33 @@ export default {
       return moment(date).format('MM' + '/' + 'DD' + '/' + 'YYYY')
     },
     getFormattedGuests() {
-      // if (!this.order.guests || this.order.guests.length === 0)
-      // if (!this.order.guests.length) return '1 guest'
+      
 
-      // let adultObject = this.order.guests.find((guest) => guest.type === 'Adults')
-      // // console.log('adult count', adultObject.capacity);
-      // let adultCount = adultObject.capacity
+      // return this.order.guests
+      //   .map(({ type, capacity }) => `${capacity} ${type}`)
+      //   .join(', ')
+      const {adults, children, infants, pets} = this.order.guests
 
-      // let childrenObject = this.order.guests.find(
-      //   (guest) => guest.type === 'Children'
-      // )
-      // // console.log('children count', childrenObject?.capacity);
-      // let childrenCount = adultObject.capacity
+      const adultsAndChildren = (children) ? adults + children : adults
 
-      // // let guestCount = this.order.guests[0].capacity + this.order.guests[0].capacity
-      // // let guestsTxt = ``
-      // let totalGuests = adultCount + childrenCount
+      const guestsStr = (adultsAndChildren < 2) ? ' guest' : ' guests'
 
-      // return (totalGuests > 1) ? `${totalGuests} guests` : '1 guest'
-      return this.order.guests
-        .map(({ type, capacity }) => `${capacity} ${type}`)
-        .join(', ')
+      const infntStr = (infants > 0) ? ((infants<2) ? ', 1 infant' : `, ${infants} infants`) : ''
+
+      const petStr = (pets > 0) ? ((pets<2) ? ', 1 pet' : `, ${pets} pets`) : ''
+
+      return adultsAndChildren + guestsStr + infntStr + petStr
+  
     },
     callToActionClicked() {
       if (!this.order.checkInDate || !this.order.checkOutDate) this.isDatesOpen = true
       else {
-        console.log('order:', this.order)
+        // console.log('order:', this.order)
         const order = utilService.deepCopy(this.order)
-        
-        order.guests.forEach(({type, capacity})=>{
-          order[type] = capacity
-        })
+
+        for (const type in order.guests) {
+          order[type] = order.guests[type]
+        }
         delete order.guests
 
         this.$router.push({name:'order-details', query: order})
