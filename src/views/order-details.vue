@@ -152,12 +152,7 @@ export default {
       return adultsAndChildren + guestsStr + infntStr + petStr
     },
     async addOrder() {
-      
-      let guestsOrder = utilService.deepCopy(this.guests)
-
-      let order = {
-        hostId: this.hostId,
-        createdAt: Date.now(),
+      const order = {
         host: {
           _id: this.stay.host._id,
           fullname: this.stay.host.fullname,
@@ -165,7 +160,7 @@ export default {
         totalPrice: +this.totalPrice,
         startDate: +this.checkInDate,
         endDate: +this.checkOutDate,
-        guests: guestsOrder,
+        guests: this.guests,
         stay: {
           _id: this.stay._id,
           name: this.stay.name,
@@ -173,7 +168,7 @@ export default {
           imgUrl: this.stay.imgUrls[0]
         },
         msgs: [],
-        status: 'pending', // pending, approved
+        status: 'pending' // pending, approved or rejected
       }
 
       try {
