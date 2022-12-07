@@ -47,7 +47,7 @@
           <span class="subtitle">{{ guestsLabel }}</span>
         </div>
 
-        <branded-btn @click="handleSearch">
+        <branded-btn @click.stop="handleSearch">
           <icon-cmp icon-type="search" />
           <span v-if="getActiveClass('who').active">Search</span>
         </branded-btn>
@@ -183,7 +183,13 @@ export default {
       if (totalGuests > 0) filteredGuests.unshift(guestObj)
 
       const formattedLabel = filteredGuests
-          .map(({ type, capacity }) => `${capacity} ${type}`)
+          .map(({ type, capacity }) => {
+            if (capacity === 1){
+              if (type === 'Infants') type = 'Infant'
+              else if (type === 'Pets') type = 'Pet'
+            }
+            return `${capacity} ${type}`
+          })
           .join(', ')
 
       return formattedLabel

@@ -24,14 +24,7 @@
         min-width: 100%;
         overflow-x: hidden;
     }
-    // box-shadow: 0px 1px $clr11;
 }
-
-// .carousel__viewport {
-//     border: 1px solid black;
-//     width: 90%;
-//     justify-self: center;
-// }
 
 .carousel {
     padding: 0;
@@ -44,10 +37,6 @@
     .stay-label p {
         margin-bottom: 4px;
     }
-}
-
-.carousel__slide {
-    // max-width: 80px;
 }
 
 .carousel__prev, .carousel__next {
