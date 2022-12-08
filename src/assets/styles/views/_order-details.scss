@@ -3,9 +3,21 @@
   width: 100%;
   .page-title {
     padding-top: 64px;
-    padding-bottom: 16px;
+    padding-bottom: 64px;
     gap: 32px;
-    align-items: baseline;
+    align-items: center;
+    .icon-svg {
+      width: 35px;
+      line-height: 1;
+      padding: 0;
+      margin-right: 12px;
+    }
+    h2 {
+      margin: 0;
+    }
+    .success-title {
+      align-items: center;
+    }
   }
 
   .details-section {
@@ -27,6 +39,19 @@
     }
     .login-msg {
         text-align: center;
+    }
+    .success-msg {
+      // text-align: center;
+      margin-bottom: 24px;
+    }
+    .success-txt {
+      margin: 24px auto ;
+    }
+    .icon-svg {
+      width: 25px;
+      line-height: 1;
+      padding: 0;
+      margin-right: 16px;
     }
   }
 

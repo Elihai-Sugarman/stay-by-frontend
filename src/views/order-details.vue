@@ -1,12 +1,14 @@
 <template>
   <section v-if="stay" class="order-details">
-
-    <div v-if="!isBooked" class="page-title flex">
+    <div class="page-title flex">
       <icon-cmp @click="$router.back()" iconType="leftArrow" class="btn" />
-      <h2 class="fs32">Request to book</h2>
-    </div>
-    <div v-else class="page-title">
-      <h2 class="fs32">Reservation success!</h2>
+      <div v-if="!isBooked">
+        <h2 class="fs32">Request to book</h2>
+      </div>
+      <div v-else class="success-title flex">
+        <icon-cmp iconType="greenCheck" />
+        <h2 class="fs32">Reservation success!</h2>
+      </div>
     </div>
 
     <div class="order-content flex justify-between">
@@ -35,19 +37,23 @@
         </div> -->
 
         <div v-if="!isBooked">
-          <branded-btn v-if="loggedinUser" @click="addOrder()">Request to book</branded-btn>
+          <branded-btn v-if="loggedinUser" @click="addOrder()"
+            >Request to book</branded-btn
+          >
           <div v-else>
             <h3 class="login-msg">Please login to book</h3>
-            <login-signup
-            :isLoginPage="true"
-            :redirectOnSuccess="false"
-            />
+            <login-signup :isLoginPage="true" :redirectOnSuccess="false" />
           </div>
         </div>
         <div v-else>
+          <icon-cmp />
+            <h3 class="success-msg">We look forward to hosting you!</h3> 
           <branded-btn v-if="loggedinUser" @click="goToHomepage()">Look for more places to stay</branded-btn>
+          <div class="success-txt flex">
+            <icon-cmp iconType="greenCheck" />
+            <h4 class="fs24">Reservation success!</h4>
+          </div>
         </div>
-        
       </div>
 
       <div class="summary-card-section">
@@ -72,7 +78,9 @@
                   {{ totalNights }} nights
                 </span>
                 <span>
-                  ${{ new Intl.NumberFormat().format(stay.price * totalNights) }}
+                  ${{
+                    new Intl.NumberFormat().format(stay.price * totalNights)
+                  }}
                 </span>
               </div>
               <div class="service-fee flex justify-between">
@@ -114,22 +122,19 @@ export default {
       guests: null,
       serviceFee: 0,
       stay: null,
-      isBooked: false
+      isBooked: false,
     }
   },
   created() {
     this.loadStay()
-    // const hostId = this.$route.query.hostId
-    // this.getHostById(hostId)
-    // this.$store.dispatch({ type: 'loadAllStays' })
     this.checkInDate = +this.$route.query.checkInDate
     this.checkOutDate = +this.$route.query.checkOutDate
-    
+
     const adults = +this.$route.query.adults
     const children = +this.$route.query.children || 0
     const infants = +this.$route.query.infants || 0
     const pets = +this.$route.query.pets || 0
-    this.guests = {adults, children, infants, pets}
+    this.guests = { adults, children, infants, pets }
 
     this.serviceFee = +this.$route.query.serviceFee
   },
@@ -142,11 +147,12 @@ export default {
       return moment(date).format('MMM' + ' ' + 'DD')
     },
     getFormattedGuests() {
-      const {adults, children, infants, pets} = this.guests
-      const adultsAndChildren = (children) ? adults + children : adults
-      const guestsStr = (adultsAndChildren < 2) ? ' guest' : ' guests'
-      const infntStr = (infants > 0) ? ((infants<2) ? ', 1 infant' : `, ${infants} infants`) : ''
-      const petStr = (pets > 0) ? ((pets<2) ? ', 1 pet' : `, ${pets} pets`) : ''
+      const { adults, children, infants, pets } = this.guests
+      const adultsAndChildren = children ? adults + children : adults
+      const guestsStr = adultsAndChildren < 2 ? ' guest' : ' guests'
+      const infntStr =
+        infants > 0 ? (infants < 2 ? ', 1 infant' : `, ${infants} infants`) : ''
+      const petStr = pets > 0 ? (pets < 2 ? ', 1 pet' : `, ${pets} pets`) : ''
       return adultsAndChildren + guestsStr + infntStr + petStr
     },
     async addOrder() {
@@ -163,25 +169,24 @@ export default {
           _id: this.stay._id,
           name: this.stay.name,
           price: this.stay.price,
-          imgUrl: this.stay.imgUrls[0]
+          imgUrl: this.stay.imgUrls[0],
         },
         msgs: [],
-        status: 'pending' // pending, approved or rejected
+        status: 'pending', // pending, approved or rejected
       }
 
       try {
         await this.$store.dispatch(getActionAddOrder(order))
         this.isBooked = true
-        console.log('final order', order);
-      } catch (error) {
-      }
+        console.log('final order', order)
+      } catch (error) {}
     },
     goToHomepage() {
       this.$router.push('/stay')
     },
-    formattedPrice (price) {
+    formattedPrice(price) {
       return new Intl.NumberFormat().format(price)
-    }
+    },
   },
   computed: {
     loggedinUser() {
@@ -196,7 +201,6 @@ export default {
         this.stay.price * this.totalNights + this.serviceFee * this.totalNights
       )
     },
-    
   },
   components: {
     ratingReview,
