@@ -59,6 +59,7 @@ import { capitalize } from 'lodash'
 import { utilService } from '../../services/util.service'
 import chart from '../../cmps/chart.vue'
 import { orderService } from '../../services/order.service'
+import { socketService, SOCKET_EVENT_ORDER_ADD } from '../../services/socket.service'
 
 export default {
   data() {
@@ -68,6 +69,7 @@ export default {
   },
   created() {
     this.loadOrdersData()
+    socketService.on(SOCKET_EVENT_ORDER_ADD, this.addOrder)
   },
   computed: {
     avgPayoutByMonthData() {
@@ -83,6 +85,9 @@ export default {
     },
   },
   methods: {
+    addOrder(order) {
+      this.tableData.unshift(order)
+    },
     getStatusClass({ status }) {
       let statusClass = 'pending'
       switch (status) {
