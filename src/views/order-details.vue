@@ -88,7 +88,7 @@
             <div class="total-wrapper">
               <div class="cost-total flex justify-between font-md">
                 <span>Total</span>
-                <span>${{ totalPrice }}</span>
+                <span>${{ formattedPrice(totalPrice) }}</span>
               </div>
             </div>
           </div>
@@ -172,12 +172,15 @@ export default {
       try {
         await this.$store.dispatch(getActionAddOrder(order))
         this.isBooked = true
+        console.log('final order', order);
       } catch (error) {
-        console.log('Cannot make reservation', error);
       }
     },
     goToHomepage() {
       this.$router.push('/stay')
+    },
+    formattedPrice (price) {
+      return new Intl.NumberFormat().format(price)
     }
   },
   computed: {
@@ -189,10 +192,11 @@ export default {
       return Math.floor(diff / 1000 / 60 / 60 / 24)
     },
     totalPrice() {
-      return new Intl.NumberFormat().format(
+      return (
         this.stay.price * this.totalNights + this.serviceFee * this.totalNights
       )
     },
+    
   },
   components: {
     ratingReview,
