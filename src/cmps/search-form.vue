@@ -144,10 +144,6 @@ export default {
         checkOut: dates.checkOut
       }})
     },
-    async getSearchLocations(queryString, cb) {
-      const locations = await stayService.getLocations(queryString)
-      cb(locations.map(loc => ({ value: loc })))
-    },
     async fetchSuggestedLocations(queryString = '') {
       this.hideRegion = true
       const locations = await stayService.getLocations(queryString)
