@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import { stayService } from '../../services/stay.service'
+
 export default {
   data() {
     return {
@@ -51,21 +53,11 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({ type: 'loadStays' })
-    .then(() => this.loadListingsData())
-    
-  },
-  computed: {
-    user() {
-      return this.$store.getters.loggedinUser
-    },
-    stays() {
-      return this.$store.getters.stays
-    }
+    this.loadListingsData()
   },
   methods: {
-    loadListingsData() {
-      const data = this.stays.filter(stay => stay.host._id === this.user._id)
+    async loadListingsData() {
+      const data = await stayService.getListings()
       this.tableData = data
     },
     formatLocation({ address }) {

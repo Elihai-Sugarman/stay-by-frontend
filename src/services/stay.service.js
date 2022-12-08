@@ -83,6 +83,7 @@ export const stayService = {
     getEmptyStay,
     addStayMsg,
     getLikedStays,
+    getListings,
     labels,
     amenities
 }
@@ -112,6 +113,10 @@ function getLikedStays() {
 
 function getLocations(q) {
     return httpService.get('stay/locations?q=' + q)
+}
+
+function getListings() {
+    return httpService.get('stay/listings')
 }
 
 async function remove(stayId) {

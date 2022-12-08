@@ -12,6 +12,7 @@ export const orderService = {
     save,
     remove,
     addOrderMsg,
+    getUserOrders
 }
 window.cs = orderService
 
@@ -22,6 +23,10 @@ async function query(filterBy = {}) {
     //     utilService.saveToStorage(STORAGE_KEY, orders)
     // }
     return httpService.get('order', filterBy)
+}
+
+async function getUserOrders() {
+    return httpService.get('order/user')
 }
 
 function getById(orderId) {
@@ -36,6 +41,7 @@ function remove(orderId) {
 
 async function save(order) {
     var savedOrder
+    console.log('order', order)
     if (order._id) {
         savedOrder = await httpService.put('order/' + order._id, order)
     } else {
