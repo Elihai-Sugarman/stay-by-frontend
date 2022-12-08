@@ -1,6 +1,6 @@
 <template>
   <el-form class="search-form" :model="form">
-    <div class="container" v-outside-click="setActive">
+    <div class="container" :class="activeBgColor" v-outside-click="setActive">
       <div class="form-control form-box" :class="getActiveClass('where')" @click="setActive('where')">
         <div class="title">Where</div>
         <el-autocomplete
@@ -75,12 +75,21 @@ import guestModal from './guest-modal.vue'
 import datesModal from './dates-modal.vue'
 
 import { stayService } from '../services/stay.service'
+import { eventBus } from '../services/event-bus.service'
 
 const initialActive = {
   where: false,
   checkIn: false,
   checkOut: false,
   who: false
+}
+
+const initialForm = {
+  where: '',
+  checkIn: null,
+  checkOut: null,
+  checkDates: [],
+  guests: []
 }
 
 export default {
@@ -91,15 +100,12 @@ export default {
   emits: ['close', 'searched'],
   data() {
     return {
-      form: {
-        where: '',
-        checkIn: null,
-        checkOut: null,
-        checkDates: [],
-        guests: []
-      },
+      form: { ...initialForm },
       activeInput: { ...initialActive }
     }
+  },
+  created() {
+    eventBus.on('resetSearch', () => this.form = { ...initialForm })
   },
   methods: {
     handleSearch() {
@@ -137,18 +143,23 @@ export default {
         this.$refs.whereInput?.focus()
       }
 
-      if (this.activeInput[type] && (type === 'checkIn' || type === 'checkOut')) return
+      // if (this.activeInput[type] && (type === 'checkIn' || type === 'checkOut')) return
 
-      this.activeInput = {
-        ...initialActive,
-        [type]: !this.activeInput[type]
-      }
+      this.activeInput = { ...initialActive }
+      if (type) this.activeInput[type] = !this.activeInput[type]
     },
     getActiveClass(type) {
       return { active: this.activeInput[type] }
     }
   },
   computed: {
+    activeBgColor() {
+      const isAnyActive = Object.keys(this.activeInput)
+        .some(key => this.activeInput[key] === true)
+      return {
+        active: isAnyActive
+      }
+    },
     checkInLabel() {
       return this.form.checkIn
         ? moment(this.form.checkIn).format('MMM DD')
