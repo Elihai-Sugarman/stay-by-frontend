@@ -32,13 +32,6 @@
         }
     }
 
-    & .dates-container {
-        display: inline-flex;
-        position: relative;
-        align-items: center;
-        height: 100%;
-    }
-
     & .title {
         font-size: rem(12px);
         font-family: cereal-medium;
@@ -167,4 +160,19 @@
 
 .vc-container {
     right: 20px;
+}
+
+.el-autocomplete__popper {
+    z-index: 200 !important;
+    inset: 154px auto auto 288px !important;
+    border-radius: 32px !important;
+    padding: 16px 32px !important;
+}
+
+.el-autocomplete-suggestion__wrap {}
+
+.el-autocomplete-suggestion li {
+    padding: 8px 32px 8px 24px !important;
+    font-family: cereal-medium;
+    font-size: 16px;
 }
