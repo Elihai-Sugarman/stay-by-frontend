@@ -21,6 +21,11 @@
         padding: .2em;
         margin: .2em;
     }
+
+    @media screen and (max-width: 800px) {
+        margin-bottom: 100px;
+        
+    }
 }
 
 .container.home {

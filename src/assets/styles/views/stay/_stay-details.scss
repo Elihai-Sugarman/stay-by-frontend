@@ -326,6 +326,16 @@
           margin-top: 2px;
           right: -1px;
           width: auto;
+          
+          @media screen and (max-width: 800px) {
+            position: fixed;
+            top: 200px;
+            width: 90%;
+            right: 5%;
+            // left: 20px;
+            // bottom: 200px;
+            // margin: auto;
+          }
         }
 
       }
@@ -367,6 +377,18 @@
           margin-top: 4px;
           width: 101%;
           right: -1px;
+
+          @media screen and (max-width: 800px) {
+            position: fixed;
+            top: 200px;
+            width: 80%;
+            right: 10%;
+
+            > *{
+              padding-top: 12px !important;
+              padding-bottom: 12px !important;
+            }
+          }
         }
       }
 

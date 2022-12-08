@@ -12,9 +12,12 @@
 
     <el-table :data="tableData" align="center">
 
-      <el-table-column fixed label="Guest" min-width="150" prop="renter.fullname" align="center">
+      <el-table-column fixed label="Guest" min-width="150" prop="renter.fullname" align="left">
         <template #default="scope">
-          <h3 class="renter-fullname handle-overflow">{{ scope.row.renter.fullname }}</h3>
+          <div class="listing-preview">
+            <img :src="scope.row.renter.imgUrl"/>
+            <h3 class="renter-fullname handle-overflow">{{ scope.row.renter.fullname }}</h3>
+          </div>
         </template>
       </el-table-column>
       
@@ -24,7 +27,7 @@
       
       <el-table-column prop="createdAt" min-width="100" :formatter="getFormattedBookedDate"  label="Booked" align="center" sortable/>
       
-      <el-table-column prop="stay.name" min-width="250" label="Listing" align="center">
+      <el-table-column prop="stay.name" min-width="250" label="Listing" align="left">
         <template #default="scope">
           <span class="handle-overflow">{{ scope.row.stay.name }}</span>
         </template>
@@ -43,8 +46,8 @@
       <el-table-column prop="status" label="To do" min-width="200" align="center">
         <template #default="scope">
           <div class="status-btns">
-            <el-button class="approve-btn status-btn" @click="handleOrder(scope.row, 'approve')" v-if="scope.row.status!=='approved'">Approve</el-button>
-            <el-button class="reject-btn status-btn" @click="handleOrder(scope.row, 'reject')" v-if="scope.row.status!=='rejected'">Reject</el-button>
+            <el-button class="approve-btn status-btn" @click="handleOrder(scope.row, 'approve')" :class="{'disabled-btn': scope.row.status=='approved'}">Approve</el-button>
+            <el-button class="reject-btn status-btn" @click="handleOrder(scope.row, 'reject')" :class="{'disabled-btn': scope.row.status=='rejected'}">Reject</el-button>
             <!-- <span v-else></span> -->
           </div>
         </template>
@@ -102,7 +105,7 @@ export default {
     },
     async loadOrdersData() {
       const data = await orderService.getHostOrders()
-      this.tableData = data
+      this.tableData = data.reverse()
     },
     formatLocation({ address }) {
       return `${address.city}, ${address.country}`
