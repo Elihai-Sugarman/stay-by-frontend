@@ -3,38 +3,42 @@
     <div class="container" :class="activeBgColor" v-outside-click="setActive">
       <div class="form-control form-box" :class="getActiveClass('where')" @click="setActive('where')">
         <div class="title">Where</div>
-        <el-autocomplete
+        <el-input
           v-model="form.where"
-          :fetch-suggestions="getSearchLocations"
           placeholder="Search destinations"
           style="width: 260px"
-          clearable
           ref="whereInput"
+          @input="fetchSuggestedLocations"
+          @blur="(hideRegion = false)"
+        />
+        <locations-modal
+          :open="getActiveClass('where').active"
+          :locations="locations"
+          :hideRegion="hideRegion"
+          @change="handleLocationSelect"
+          @close="setActive"
         />
       </div>
 
       <span class="splitter"></span>
 
-      <div class="dates-container">
-        <div
-          class="form-control"
-          :class="getActiveClass('checkIn')"
-          @click="setActive('checkIn')">
-          <div class="title">Check in</div>
-          <span class="subtitle">{{ checkInLabel }}</span>
-        </div>
-        
-        <span class="splitter"></span>
-
-        <div
-          class="form-control"
-          :class="getActiveClass('checkOut')"
-          @click="setActive('checkOut')">
-          <div class="title">Check out</div>
-          <span class="subtitle">{{ checkoutLabel }}</span>
-        </div>
+      <div
+        class="form-control"
+        :class="getActiveClass('checkIn')"
+        @click="setActive('checkIn')">
+        <div class="title">Check in</div>
+        <span class="subtitle">{{ checkInLabel }}</span>
       </div>
+      
+      <span class="splitter"></span>
 
+      <div
+        class="form-control"
+        :class="getActiveClass('checkOut')"
+        @click="setActive('checkOut')">
+        <div class="title">Check out</div>
+        <span class="subtitle">{{ checkoutLabel }}</span>
+      </div>
 
       <span class="splitter"></span>
 
@@ -73,6 +77,7 @@
 import * as moment from 'moment'
 import guestModal from './guest-modal.vue'
 import datesModal from './dates-modal.vue'
+import locationsModal from './locations-modal.vue'
 
 import { stayService } from '../services/stay.service'
 import { eventBus } from '../services/event-bus.service'
@@ -95,17 +100,22 @@ const initialForm = {
 export default {
   components: {
     guestModal,
-    datesModal
+    datesModal,
+    locationsModal
   },
   emits: ['close', 'searched'],
   data() {
     return {
       form: { ...initialForm },
-      activeInput: { ...initialActive }
+      activeInput: { ...initialActive },
+      locations: [],
+      hideRegion: false
     }
   },
   created() {
     eventBus.on('resetSearch', () => this.form = { ...initialForm })
+    eventBus.on('setSearchFocus', type => this.setActive(type))
+    this.fetchSuggestedLocations()
   },
   methods: {
     handleSearch() {
@@ -137,6 +147,14 @@ export default {
     async getSearchLocations(queryString, cb) {
       const locations = await stayService.getLocations(queryString)
       cb(locations.map(loc => ({ value: loc })))
+    },
+    async fetchSuggestedLocations(queryString = '') {
+      this.hideRegion = true
+      const locations = await stayService.getLocations(queryString)
+      this.locations = locations
+    },
+    handleLocationSelect(location) {
+      this.form.where = location
     },
     setActive(type) {
       if (type === 'where' && !this.activeInput[type]) {

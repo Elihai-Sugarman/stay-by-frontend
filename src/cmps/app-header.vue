@@ -4,7 +4,7 @@
     <nav class="main-nav">
       <router-link to="/" @click="resetFilters">
         <div class="brand">
-          <icon icon-type="airbnbLogo" />
+          <icon-cmp icon-type="airbnbLogo" />
           <span class="brand-txt">stayby</span>
         </div>
       </router-link>
@@ -30,13 +30,11 @@
 import { eventBus } from '../services/event-bus.service'
 import searchBar from './search-bar.vue'
 import userNav from './user-nav.vue'
-import icon from './icon-cmp.vue'
 
 export default {
   components: {
     searchBar,
-    userNav,
-    icon,
+    userNav
   },
   data() {
     return {
@@ -62,15 +60,17 @@ export default {
     },
     anyWhere() {
       this.openSearch()
-      console.log('anyWhere')
+      eventBus.emit('setSearchFocus', 'where')
+      
     },
     anyWeek() {
       this.openSearch()
-      console.log('anyWeek')
+      eventBus.emit('setSearchFocus', 'checkIn')
+
     },
     addGuests() {
       this.openSearch()
-      console.log('addGuests')
+      eventBus.emit('setSearchFocus', 'who')
     },
     resetFilters() {
       this.$store.commit({ type: 'setFilterBy', filterBy: null })
