@@ -101,7 +101,7 @@ export default {
       return capitalize(value)
     },
     async loadOrdersData() {
-      const data = await orderService.getUserOrders()
+      const data = await orderService.getHostOrders()
       this.tableData = data
     },
     formatLocation({ address }) {

@@ -12,7 +12,8 @@ export const orderService = {
     save,
     remove,
     addOrderMsg,
-    getUserOrders
+    getRenterOrders,
+    getHostOrders
 }
 window.cs = orderService
 
@@ -25,8 +26,12 @@ async function query(filterBy = {}) {
     return httpService.get('order', filterBy)
 }
 
-async function getUserOrders() {
-    return httpService.get('order/user')
+async function getRenterOrders() {
+    return httpService.get('order/renter')
+}
+
+async function getHostOrders() {
+    return httpService.get('order/host')
 }
 
 function getById(orderId) {
