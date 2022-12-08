@@ -1,5 +1,5 @@
 import { orderService } from '../services/order.service'
-import { socketService, SOCKET_EMIT_ORDER_ADD } from '../services/socket.service'
+import { socketService, SOCKET_EMIT_ORDER_ADD, SOCKET_EMIT_ORDER_STATUS } from '../services/socket.service'
 import { ordersArray } from '../../temp-data/order-demo.js'
 export function getActionRemoveOrder(orderId) {
     return {
@@ -76,6 +76,7 @@ export const orderStore = {
             try {
                 order = await orderService.save(order)
                 context.commit(getActionUpdateOrder(order))
+                socketService.emit(SOCKET_EMIT_ORDER_STATUS, order)
                 return order
             } catch (err) {
                 console.log('orderStore: Error in updateOrder', err)
