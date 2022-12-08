@@ -12,20 +12,20 @@
 
     <el-table :data="tableData" align="center">
 
-      <el-table-column fixed label="Guest" min-width="150" prop="renter.fullname" align="left">
+      <el-table-column fixed label="Guest" min-width="100" prop="renter.fullname" align="left">
         <template #default="scope">
-          <div class="listing-preview">
+          <div class="order-preview">
             <img :src="scope.row.renter.imgUrl"/>
             <h3 class="renter-fullname handle-overflow">{{ scope.row.renter.fullname }}</h3>
           </div>
         </template>
       </el-table-column>
       
-      <el-table-column prop="startDate" min-width="100" :formatter="getFormattedStartDate"  label="Check-in" align="center" sortable/>
+      <el-table-column prop="startDate" min-width="110" :formatter="getFormattedStartDate"  label="Check-in" align="center" sortable/>
 
-      <el-table-column prop="endDate" min-width="100" :formatter="getFormattedEndDate"  label="Checkout" align="center" sortable/>
+      <el-table-column prop="endDate" min-width="110" :formatter="getFormattedEndDate"  label="Checkout" align="center" sortable/>
       
-      <el-table-column prop="createdAt" min-width="100" :formatter="getFormattedBookedDate"  label="Booked" align="center" sortable/>
+      <el-table-column prop="createdAt" min-width="110" :formatter="getFormattedBookedDate"  label="Booked" align="center" sortable/>
       
       <el-table-column prop="stay.name" min-width="250" label="Listing" align="left">
         <template #default="scope">
