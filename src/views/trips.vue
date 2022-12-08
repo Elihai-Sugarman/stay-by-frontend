@@ -77,7 +77,7 @@ export default {
     },
     async loadOrdersData() {
       const data = await orderService.getRenterOrders()
-      this.tableData = data
+      this.tableData = data.reverse()
     },
     formatLocation({ address }) {
       return `${address.city}, ${address.country}`
