@@ -4,6 +4,7 @@
     v-for="stay in likedStays"
     :key="stay._id"
     :stay="stay"
+    @disliked="removeStay"
     />
   </ul>
   <div class="empty-wishlist" v-else>
@@ -14,28 +15,30 @@
 
 <script>
 import stayPreview from '../../cmps/stay/stay-preview.vue'
+import { stayService } from '../../services/stay.service'
 
 export default {
   components: { stayPreview },
+  data() {
+    return {
+      likedStays: []
+    }
+  },
   created() {
-    // in case of user refresh page in wishlist page
-    if (!this.stays.length) this.loadStays()
+    this.loadStays()
   },
   computed: {
     user() {
       return this.$store.getters.loggedinUser
-    },
-    stays() {
-      return this.$store.getters.stays
-    },
-    likedStays() {
-      return this.stays.filter(stay => this.user.likedStays.includes(stay._id))
     }
   },
   methods: {
-    loadStays() {
-      this.$store.dispatch({ type: 'loadStays' })
-      this.$store.dispatch({ type: 'loadAllStays' })
+    async loadStays() {
+      this.likedStays = await stayService.getLikedStays()
+    },
+    removeStay(stayId) {
+      const idx = this.likedStays.findIndex(stay => stay._id === stayId)
+      this.likedStays.splice(idx, 1)
     }
   }
 }

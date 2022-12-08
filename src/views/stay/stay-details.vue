@@ -275,6 +275,7 @@ import * as moment from 'moment'
 import _random from 'lodash/random'
 import _camelCase from 'lodash/camelCase'
 import { utilService } from '../../services/util.service'
+import { stayService } from '../../services/stay.service'
 
 export default {
   name: 'stay-details',
@@ -349,9 +350,7 @@ export default {
   },
   async created() {
     // const user = await userService.getById(id)
-    let stayId = this.$route.params.id
-    this.getStayById(stayId)
-    this.$store.dispatch({ type: 'loadAllStays' })
+    this.loadStay()
     
     this.order.checkInDate = +this.$route.query.checkIn
     this.order.checkOutDate = +this.$route.query.checkOut
@@ -431,11 +430,9 @@ export default {
     }
   },
   methods: {
-    async getStayById(stayId) {
-      this.stay = await this.$store.dispatch({
-        type: 'getStayById',
-        stayId,
-      })
+    async loadStay() {
+      const stayId = this.$route.params.id
+      this.stay = await stayService.getById(stayId)
       this.setBasePrice()
       this.setServiceFee()
     },

@@ -1,7 +1,7 @@
 <template>
   <section class="dashboard-listings">
     <div class="listing-title">
-      <div>{{ orders.length }} Trip<span v-if="(orders.length > 1)">s</span></div>
+      <div>{{ tableData.length }} Trip<span v-if="(tableData.length > 1)">s</span></div>
     </div>
     <el-table :data="tableData" align="left">
 
@@ -46,6 +46,7 @@
 import * as moment from 'moment'
 import { capitalize } from 'lodash'
 import { utilService } from '../services/util.service'
+import { orderService } from '../services/order.service'
 
 export default {
   data() {
@@ -54,21 +55,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({ type: 'loadOrders' })
-    .then(() => this.loadOrdersData())
-    
-  },
-  computed: {
-    orders(){
-      const filteredOreders = this.$store.getters.orders
-      .filter(order => {
-        return order.renter._id === this.$store.getters.loggedinUser._id
-      })
-      return filteredOreders
-    },
-    user() {
-      return this.$store.getters.loggedinUser
-    },
+    this.loadOrdersData()
   },
   methods: {
     getStatusClass({ status }) {
@@ -88,9 +75,9 @@ export default {
     capitalize(value) {
       return capitalize(value)
     },
-    loadOrdersData() {
-      const data = this.orders
-      this.tableData = utilService.deepCopy(data)
+    async loadOrdersData() {
+      const data = await orderService.getRenterOrders()
+      this.tableData = data
     },
     formatLocation({ address }) {
       return `${address.city}, ${address.country}`
@@ -118,6 +105,5 @@ export default {
       return moment(createdAt).format('MM/DD/YYYY')
     },
   }
-  
 }
 </script>

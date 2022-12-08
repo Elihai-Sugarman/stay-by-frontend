@@ -88,7 +88,7 @@
             <div class="total-wrapper">
               <div class="cost-total flex justify-between font-md">
                 <span>Total</span>
-                <span>${{ totalPrice }}</span>
+                <span>${{ formattedPrice(totalPrice) }}</span>
               </div>
             </div>
           </div>
@@ -104,6 +104,7 @@ import ratingReview from '../cmps/stay/rating-review-cmp.vue'
 import loginSignup from '../views/login-signup.vue'
 import { getActionAddOrder } from '../store/order.store'
 import { utilService } from '../services/util.service'
+import { stayService } from '../services/stay.service'
 
 export default {
   data() {
@@ -117,8 +118,7 @@ export default {
     }
   },
   created() {
-    let stayId = this.$route.params.id
-    this.getStayById(stayId)
+    this.loadStay()
     // const hostId = this.$route.query.hostId
     // this.getHostById(hostId)
     // this.$store.dispatch({ type: 'loadAllStays' })
@@ -134,11 +134,9 @@ export default {
     this.serviceFee = +this.$route.query.serviceFee
   },
   methods: {
-    async getStayById(stayId) {
-      this.stay = await this.$store.dispatch({
-        type: 'getStayById',
-        stayId,
-      })
+    async loadStay() {
+      const stayId = this.$route.params.id
+      this.stay = await stayService.getById(stayId)
     },
     getFormattedDate(date) {
       return moment(date).format('MMM' + ' ' + 'DD')
@@ -174,12 +172,15 @@ export default {
       try {
         await this.$store.dispatch(getActionAddOrder(order))
         this.isBooked = true
+        console.log('final order', order);
       } catch (error) {
-        console.log('Cannot make reservation', error);
       }
     },
     goToHomepage() {
       this.$router.push('/stay')
+    },
+    formattedPrice (price) {
+      return new Intl.NumberFormat().format(price)
     }
   },
   computed: {
@@ -191,10 +192,11 @@ export default {
       return Math.floor(diff / 1000 / 60 / 60 / 24)
     },
     totalPrice() {
-      return new Intl.NumberFormat().format(
+      return (
         this.stay.price * this.totalNights + this.serviceFee * this.totalNights
       )
     },
+    
   },
   components: {
     ratingReview,

@@ -1,12 +1,12 @@
 <template>
   <section class="dashboard-listings">
     <div class="listing-title">
-      <div>{{ orders.length }} Reservation<span v-if="(orders.length > 1)">s</span></div>
+      <div>{{ tableData.length }} Reservation<span v-if="(tableData.length > 1)">s</span></div>
     </div>
 
     <div class="charts">
       <div class="avg-payout-chart">
-        <chart v-if="orders" :data="avgPayoutByMonthData" chartType="bar" />
+        <chart v-if="tableData.length" :data="avgPayoutByMonthData" chartType="bar" />
       </div>
     </div>
 
@@ -58,6 +58,7 @@ import * as moment from 'moment'
 import { capitalize } from 'lodash'
 import { utilService } from '../../services/util.service'
 import chart from '../../cmps/chart.vue'
+import { orderService } from '../../services/order.service'
 
 export default {
   data() {
@@ -66,21 +67,9 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({ type: 'loadOrders' })
-    .then(() => this.loadOrdersData())
-    
+    this.loadOrdersData()
   },
   computed: {
-    orders(){
-      const filteredOreders = this.$store.getters.orders
-      .filter(order => {
-        return order.hostId === this.$store.getters.loggedinUser._id
-      })
-      return filteredOreders
-    },
-    user() {
-      return this.$store.getters.loggedinUser
-    },
     avgPayoutByMonthData() {
       return {
         labels: ['Nov', 'Dec', 'Jan'],
@@ -111,9 +100,9 @@ export default {
     capitalize(value) {
       return capitalize(value)
     },
-    loadOrdersData() {
-      const data = this.orders
-      this.tableData = utilService.deepCopy(data)
+    async loadOrdersData() {
+      const data = await orderService.getHostOrders()
+      this.tableData = data
     },
     formatLocation({ address }) {
       return `${address.city}, ${address.country}`
@@ -144,6 +133,5 @@ export default {
   components: {
     chart
   }
-  
 }
 </script>

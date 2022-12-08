@@ -27,28 +27,21 @@
       }
     },
     created() {
-      if (!this.stays.length) this.loadStays()
-      else this.filterByAddress()
+      this.loadStays()
     },
     watch: {
       queryParams() {
-        this.filterByAddress()
+        this.loadStays()
       }
     },
     methods: {
       loadStays() {
-        this.$store.dispatch({ type: 'loadStays' })
-        this.$store.dispatch({ type: 'loadAllStays' })
-
-        this.filterByAddress()
-      },
-      filterByAddress() {
-        const address = {
+        const location = {
           city: this.queryParams.city,
           country: this.queryParams.country
         }
 
-        this.$store.commit({ type: 'setFilterBy', filterBy: { address }})
+        this.$store.commit({ type: 'setFilterBy', filterBy: location })
         this.$store.dispatch({ type: 'loadStays' })
       }
     },

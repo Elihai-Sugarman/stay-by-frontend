@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 import { staysArray } from '../../temp-data/stay-demo.js'
-import { ordersArray } from '../../temp-data/order-demo.js'
+import { httpService } from './http.service'
 
 const STORAGE_KEY = 'order'
 
@@ -11,36 +11,48 @@ export const orderService = {
     getById,
     save,
     remove,
-    getEmptyOrder,
     addOrderMsg,
+    getRenterOrders,
+    getHostOrders
 }
 window.cs = orderService
 
-async function query() {
-    var orders = await storageService.query(STORAGE_KEY)
-    if (!orders.length) {
-        orders = ordersArray
-        utilService.saveToStorage(STORAGE_KEY, orders)
-    }
-    return orders
+async function query(filterBy = {}) {
+    // var orders = await storageService.query(STORAGE_KEY)
+    // if (!orders.length) {
+    //     orders = ordersArray
+    //     utilService.saveToStorage(STORAGE_KEY, orders)
+    // }
+    return httpService.get('order', filterBy)
+}
+
+async function getRenterOrders() {
+    return httpService.get('order/renter')
+}
+
+async function getHostOrders() {
+    return httpService.get('order/host')
 }
 
 function getById(orderId) {
-    return storageService.get(STORAGE_KEY, orderId)
+    // return storageService.get(STORAGE_KEY, orderId)
+    return httpService.get('order', orderId)
 }
 
-async function remove(orderId) {
-    await storageService.remove(STORAGE_KEY, orderId)
+function remove(orderId) {
+    // storageService.remove(STORAGE_KEY, orderId)
+    return httpService.delete('order/' + orderId)
 }
 
 async function save(order) {
     var savedOrder
+    console.log('order', order)
     if (order._id) {
-        savedOrder = await storageService.put(STORAGE_KEY, order)
+        savedOrder = await httpService.put('order/' + order._id, order)
     } else {
         // Later, renter is set by the backend
-        order.renter = userService.getLoggedinUser()
-        savedOrder = await storageService.post(STORAGE_KEY, order)
+        // order.renter = userService.getLoggedinUser()
+        savedOrder = await httpService.post('order', order)
     }
     return savedOrder
 }
@@ -59,13 +71,6 @@ async function addOrderMsg(orderId, txt) {
     await storageService.put(STORAGE_KEY, order)
 
     return msg
-}
-
-function getEmptyOrder() {
-    return {
-        name: 'House -' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
-    }
 }
 
 // TEST DATA

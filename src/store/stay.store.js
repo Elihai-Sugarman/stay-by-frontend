@@ -1,5 +1,5 @@
-import { stayService } from '../services/stay.service.local'
-import { staysArray } from '../../temp-data/stay-demo.js'
+import { stayService } from '../services/stay.service'
+// import { stayService } from '../services/stay.service.local'
 
 export function getActionRemoveStay(stayId) {
     return {
@@ -30,36 +30,11 @@ export function getActionAddStayMsg(stayId) {
 export const stayStore = {
     state: {
         stays: [],
-        allStays: [],
         filterBy: null,
     },
     getters: {
         stays(state) {
             return state.stays
-        },
-        labels(state) {
-            const labels = []
-            state.allStays.forEach((stay) => {
-                stay.labels.forEach((label) => {
-                    if (!labels.includes(label)) labels.push(label)
-                })
-            })
-            return labels
-        },
-        // used for autocomplete on search-bar
-        locations({ allStays }) {
-            let allLocs = allStays
-                .map(({ address }) => address)
-                .map(address => {
-                    const formattedValue = `${address.city}, ${address.country}`
-                    return formattedValue
-                })
-            const filteredLocs = []
-            allLocs.forEach(value => {
-                if (!filteredLocs.includes(value)) filteredLocs.push(value)
-            })
-
-            return filteredLocs
         },
         filterBy(state) {
             return state.filterBy
@@ -68,9 +43,6 @@ export const stayStore = {
     mutations: {
         setStays(state, { stays }) {
             state.stays = stays
-        },
-        setAllStays(state, { stays }) {
-            state.allStays = stays
         },
         addStay(state, { stay }) {
             state.stays.push(stay)
@@ -106,13 +78,6 @@ export const stayStore = {
                 throw err
             }
         },
-        async getStayById(context, { stayId }) {
-            try {
-                return stayService.getById(stayId)
-            } catch (err) {
-                console.log(err)
-            }
-        },
         async updateStay(context, { stay }) {
             try {
                 stay = await stayService.save(stay)
@@ -130,15 +95,6 @@ export const stayStore = {
                 context.commit({ type: 'setStays', stays })
             } catch (err) {
                 console.log('stayStore: Error in loadStays', err)
-                throw err
-            }
-        },
-        async loadAllStays(context) {
-            try {
-                const stays = await stayService.query()
-                context.commit({ type: 'setAllStays', stays })
-            } catch (err) {
-                console.log('stayStore: Error in loadAllStays', err)
                 throw err
             }
         },

@@ -74,6 +74,8 @@ import * as moment from 'moment'
 import guestModal from './guest-modal.vue'
 import datesModal from './dates-modal.vue'
 
+import { stayService } from '../services/stay.service'
+
 const initialActive = {
   where: false,
   checkIn: false,
@@ -126,14 +128,9 @@ export default {
         checkOut: dates.checkOut
       }})
     },
-    getSearchLocations(queryString, cb) {
-      const regex = new RegExp(queryString, 'i')
-      const filteredLocs = this.AllLocations
-        .filter(location => regex.test(location))
-        // add value prop for the element-plus autocomplete
-        .map(location => ({ value: location }))
-
-      cb(filteredLocs)
+    async getSearchLocations(queryString, cb) {
+      const locations = await stayService.getLocations(queryString)
+      cb(locations.map(loc => ({ value: loc })))
     },
     setActive(type) {
       if (type === 'where' && !this.activeInput[type]) {
@@ -152,9 +149,6 @@ export default {
     }
   },
   computed: {
-    AllLocations() {
-      return this.$store.getters.locations
-    },
     checkInLabel() {
       return this.form.checkIn
         ? moment(this.form.checkIn).format('MMM DD')
