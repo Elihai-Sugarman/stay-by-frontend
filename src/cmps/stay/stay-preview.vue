@@ -1,5 +1,5 @@
 <template>
-  <router-link class="li" :to="stayDetailsLink" target="_blank">
+  <router-link class="li" :to="stayDetailsLink" :target="blankOrNot">
     <article class="stay-preview">
       <div class="stay-img-container">
         <div class="block text-center" m="t-4">
@@ -70,6 +70,9 @@ export default {
     }
   },
   computed:{
+    blankOrNot() {
+      return window.innerWidth < 800 ? '' : '_blank'
+    },
     filterBy() {
       return this.$store.getters.filterBy
     },
