@@ -355,17 +355,11 @@ export default {
     this.order.checkInDate = +this.$route.query.checkIn
     this.order.checkOutDate = +this.$route.query.checkOut
 
-    const adultCount = this.$route.query.adults
-    const childCount = this.$route.query.children
-    const infantCount = this.$route.query.infants
-    const petCount = this.$route.query.pets
-
-    if (adultCount) this.order.guests = [{type: 'Adults', capacity: adultCount}]
-    if (childCount) this.order.guests.push({type: 'Children', capacity: childCount})
-    if (infantCount) this.order.guests.push({type: 'Infants', capacity: infantCount})
-    if (petCount) this.order.guests.push({type: 'Pets', capacity: petCount})
-
-    // console.log('guests', this.order.guests);
+    const adults = +this.$route.query.adults
+    const children = +this.$route.query.children || 0
+    const infants = +this.$route.query.infants || 0
+    const pets = +this.$route.query.pets || 0
+    this.guests = {adults, children, infants, pets}
 
   },
   // watch: {
