@@ -10,8 +10,9 @@
 </template>
 
 <script>
+import { ElNotification } from 'element-plus'
 import { userService } from './services/user.service'
-import { orderService } from './services/order.service'
+import { socketService, SOCKET_EVENT_ORDER_ADD } from './services/socket.service'
 import { store } from './store/store'
 
 import appHeader from './cmps/app-header.vue'
@@ -27,11 +28,14 @@ export default {
     mobileFooter
   },
   created() {
-    // store.dispatch({type: 'loadOrders'})
-    // orderService.query()
     console.log('Vue App created')
     const user = userService.getLoggedinUser()
     if (user) store.commit({ type: 'setLoggedinUser', user })
+
+    // add listener in delay
+    setTimeout(() => {
+      socketService.on(SOCKET_EVENT_ORDER_ADD, this.notifyHost)
+    }, 1000)
   },
   computed: {
     pageClassLayout() {
@@ -42,6 +46,16 @@ export default {
                           this.$route.name === 'order-details'
       }
     }
+  },
+  methods: {
+    notifyHost(order) {
+      console.log('order', order)
+      ElNotification({
+        title: 'Order',
+        message: `New order recivied from ${order.renter.fullname}`,
+        type: 'info'
+      })
+    },
   }
 }
 </script>
