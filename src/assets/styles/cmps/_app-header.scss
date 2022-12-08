@@ -41,6 +41,10 @@
     align-items: center;
     margin-block: 16px;
 
+    @media screen and (max-width: 800px) {
+        justify-content: center;
+    }
+
     .main-header.smaller & {
         max-width: $stay-details-layout;
         margin-inline: auto;
@@ -52,7 +56,6 @@
     font-size: rem(36px);
     display: flex;
     justify-items: center;
-    gap: 5px;
 
     & .icon-svg svg {
         width: 32px;
@@ -61,7 +64,7 @@
 
     & .brand-txt {
         display: none;
-        font-weight: bold;
+        font-weight: 1000;
         font-size: rem(24px);
         
         @media (min-width: 1127px) {
@@ -78,4 +81,10 @@
     z-index: 99;
     height: 100vh;
     width: 100%;
+}
+
+.main-nav a:not(.mobile-footer .main-nav a)  {
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
 }

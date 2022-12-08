@@ -8,6 +8,10 @@
   & .dashboard-content {
     max-width: 100%;
     height: calc(100vh - 200px);
+
+    @media screen and (max-width: 800px){
+      width: calc(100vw - 48px)
+    }
   }
   .avg-payout-chart {
     width: 25%;
@@ -16,6 +20,12 @@
 
 .dashboard .dashboard-nav {
   margin: 32px;
+
+  @media screen and (max-width: 800px) {
+    max-width: 100%;
+    overflow-x: scroll;
+    margin: 20px;
+  }
   
   & ul {
     display: flex;

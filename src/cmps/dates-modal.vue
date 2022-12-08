@@ -1,13 +1,13 @@
 <template>
   <section class="dates-modal" v-if="open" @click.stop v-outside-click="() => $emit('close')">
 
-    <div class="choose">
+    <!-- <div class="choose">
       <button>Choose dates</button>
-    </div>
+    </div> -->
 
     <v-date-picker
       v-model="checkDates"
-      :columns="2"
+      :columns="columnsNum"
       is-range
       is-expanded
       :masks="masks"
@@ -21,6 +21,7 @@ export default {
   emits: ['change', 'close'],
   data() {
     return {
+      columnsNum: 1,
       checkDates: {},
       masks: { weekdays: 'WW' }
     }
@@ -35,6 +36,9 @@ export default {
       },
       deep: true
     }
-  }
+  },
+  created(){
+    if (window.innerWidth > 800) this.columnsNum = 2
+  },
 }
 </script>

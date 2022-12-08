@@ -3,9 +3,9 @@
     <div class="listing-title">
       <div>{{ orders.length }} Trip<span v-if="(orders.length > 1)">s</span></div>
     </div>
-    <el-table :data="tableData" align="center">
+    <el-table :data="tableData" align="left">
 
-      <el-table-column label="Destination" min-width="250" align="center" fixed>
+      <el-table-column label="Destination" min-width="250" align="left">
         <template #default="scope">
           <router-link :to="('/stay/' + scope.row.stay._id)">
             <div class="listing-preview">
@@ -16,21 +16,21 @@
         </template>
       </el-table-column>
 
-      <el-table-column fixed label="Host" min-width="150" align="center">
+      <el-table-column label="Host" min-width="100" align="left">
         <template #default="scope">
           <h3 class="renter-fullname handle-overflow">{{ scope.row.host.fullname }}</h3>
         </template>
       </el-table-column>
       
-      <el-table-column prop="startDate" min-width="100" :formatter="getFormattedStartDate"  label="Check-in" align="center" sortable/>
+      <el-table-column prop="startDate" min-width="100" :formatter="getFormattedStartDate"  label="Check-in" align="left" sortable/>
 
-      <el-table-column prop="endDate" min-width="100" :formatter="getFormattedEndDate"  label="Checkout" align="center" sortable/>
+      <el-table-column prop="endDate" min-width="100" :formatter="getFormattedEndDate"  label="Checkout" align="left" sortable/>
       
-      <el-table-column prop="createdAt" min-width="100" :formatter="getFormattedBookedDate"  label="Booked" align="center" sortable/>
+      <el-table-column prop="createdAt" min-width="100" :formatter="getFormattedBookedDate"  label="Booked" align="left" sortable/>
       
-      <el-table-column prop="totalPrice" min-width="110" :formatter="formatCurrency" label="Total Price" align="center" sortable />
+      <el-table-column prop="totalPrice" min-width="110" :formatter="formatCurrency" label="Total Price" align="left" sortable />
       
-      <el-table-column label="Status" align="center" min-width="100" sortable>
+      <el-table-column label="Status" align="left" min-width="100" sortable>
         <template #default="scope">
           <span class="order-status" :class="getStatusClass(scope.row)">
             {{ capitalize(scope.row.status) }}

@@ -1,7 +1,7 @@
 <template>
   <el-form class="search-form" :model="form">
     <div class="container" v-outside-click="setActive">
-      <div class="form-control" :class="getActiveClass('where')" @click="setActive('where')">
+      <div class="form-control form-box" :class="getActiveClass('where')" @click="setActive('where')">
         <div class="title">Where</div>
         <el-autocomplete
           v-model="form.where"
@@ -39,7 +39,7 @@
       <span class="splitter"></span>
 
       <div
-        class="form-control submit"
+        class="form-control submit form-box"
         :class="getActiveClass('who')"
         @click="setActive('who')">
         <div>

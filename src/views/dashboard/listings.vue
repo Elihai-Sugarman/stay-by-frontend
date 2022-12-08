@@ -20,7 +20,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="TODO">
+      <el-table-column label="TODO" min-width="100">
         <template #default="scope">
           <router-link :to="('/dashboard/stay/edit/' + scope.row._id)">
             <el-button plain>Update</el-button>
@@ -28,17 +28,17 @@
         </template>
       </el-table-column>
 
-      <el-table-column prop="capacity" label="CAPACITY" min-width="120" align="center" sortable />
+      <el-table-column prop="capacity" label="CAPACITY" min-width="120" align="left" sortable />
 
-      <el-table-column prop="bathrooms" label="ROOMS" align="center" sortable />
+      <el-table-column prop="bathrooms" label="ROOMS" align="left" sortable min-width="100" />
       
-      <el-table-column prop="bedrooms" label="BEDROOMS" min-width="140" align="center" sortable />
+      <el-table-column prop="bedrooms" label="BEDROOMS" min-width="140" align="left" sortable />
 
-      <el-table-column prop="price" :formatter="formatCurrency" label="PRICE" sortable />
+      <el-table-column prop="price" :formatter="formatCurrency" label="PRICE" sortable min-width="120" />
 
-      <el-table-column :formatter="formatLocation" label="LOCATION" align="center" />      
+      <el-table-column :formatter="formatLocation" label="LOCATION" align="left" min-width="150" />      
 
-      <el-table-column prop="createdAt" min-width="150" label="DATE ADDED" />
+      <!-- <el-table-column prop="createdAt" min-width="150" label="DATE ADDED" /> -->
     </el-table>
   </section>
 </template>

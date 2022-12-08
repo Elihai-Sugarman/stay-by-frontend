@@ -1,5 +1,6 @@
 <template>
   <section v-if="stay" class="stay-details">
+
     <!-- <header class="full">
       <div>
         <span>Photos</span>
@@ -8,6 +9,12 @@
         <span>Location</span>
       </div>
     </header> -->
+
+    <el-carousel trigger="click" :autoplay="false" :loop="false" class="full mobile-only">
+      <el-carousel-item v-for="img in stay.imgUrls" :key="img">
+        <img class="stay-img" :src="img"/>
+      </el-carousel-item>
+    </el-carousel>
 
     <h1 class="name-title">{{ stay.name }}</h1>
     <div class="name-subtitle flex">
@@ -418,6 +425,9 @@ export default {
     totalPrice() {
      return new Intl.NumberFormat()
         .format(this.stay.price * this.totalNights + this.order.serviceFee * this.totalNights)
+    },
+    windowWidth(){
+      return window.innerWidth
     }
   },
   methods: {

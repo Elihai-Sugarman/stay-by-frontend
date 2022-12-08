@@ -20,8 +20,17 @@
     border-radius: 12px;
     box-shadow: rgb(0 0 0 / 28%) 0px 8px 28px;
     width: 50%; 
-    max-height: 75%;
-    overflow-y: scroll;
+    margin-top: 150px;
+    margin-bottom: 100px;
+
+    @media screen and (max-width: 800px) {
+      width: 90%;
+      margin-top: 150px;
+      margin-bottom: 130px;
+    }
+
+    // max-height: 75%;
+    // overflow-y: scroll;
     h1 {
       margin-bottom: 32px;
     }

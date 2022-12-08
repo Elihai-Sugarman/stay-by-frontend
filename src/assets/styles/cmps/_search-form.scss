@@ -1,4 +1,9 @@
 .search-form {
+
+    @media screen and (max-width: 800px){
+        height: 190px;
+    }
+
     position: fixed;
     top: 80px;
     left: 0;
@@ -133,4 +138,29 @@
 
 .search-guest-modal {
     width: 406px;
+}
+
+.container {
+    @media screen and (max-width: 800px) {
+        flex-direction: column !important;
+        gap: 10px !important;
+        margin: 20px !important;
+    }
+}
+
+.form-box {
+    @media screen and (max-width: 800px) {
+        border: 1px #e0e0e0 solid !important;
+        width: 330px !important;
+    }
+}
+
+.search-preview {
+    @media screen and (max-width: 800px) {
+        max-width: calc(100vw - 90px) !important;
+    }
+}
+
+.vc-container {
+    right: 20px;
 }

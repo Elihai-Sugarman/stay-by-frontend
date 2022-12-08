@@ -1,13 +1,17 @@
 .search-bar {
-  display: flex;
-  align-items: center;
-  width: auto;
-  height: 48px;
-  padding: 0 24px;
-  margin-right: auto;
+  // display: none;
 
-  @media (min-width: 950px) {
-    margin-right: unset;
+  @media screen and (min-width: 800px){
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 48px;
+    padding: 0 24px;
+    margin-right: auto;
+    
+    @media (min-width: 950px) {
+      margin-right: unset;
+    }
   }
 }
 
@@ -74,6 +78,8 @@
       padding: 10px;
       height: 32px;
       width: 32px;
+
+      // margin: 7px 7px 7px 0;
 
       & .icon-svg {
         padding: 0;

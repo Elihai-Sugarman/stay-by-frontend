@@ -1,6 +1,11 @@
 .dashboard-listings {
   max-width: 100%;
 
+  @media screen and (max-width: 800px){
+    max-width: 100%;
+    overflow-x: scroll;
+  }
+
   & .listing-title {
     display: flex;
     justify-content: space-between;
@@ -32,4 +37,5 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   margin: 0;
+  line-height: 2;
 }
