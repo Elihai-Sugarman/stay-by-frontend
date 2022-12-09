@@ -1,13 +1,35 @@
 <template>
   <section class="dashboard-listings">
-    <div class="listing-title">
-      <div>{{ tableData.length }} Reservation<span v-if="(tableData.length > 1)">s</span></div>
+
+    <div class="charts flex justify-between">
+      <div class="info-container">
+        <h3 class="info-title">Revenue / month</h3>
+        <div class="avg-payout-chart">
+          <chart v-if="tableData.length" :data="avgPayoutByMonthData" chartType="bar" />
+        </div>
+      </div>
+      <div class="info-container">
+        <h3 class="info-title">Revenue / month</h3>
+        <div class="avg-payout-chart">
+          <chart v-if="tableData.length" :data="avgPayoutByMonthData" chartType="bar" />
+        </div>
+      </div>
+      <div class="info-container">
+        <h3 class="info-title">Reservations / listing</h3>
+        <div class="avg-payout-chart">
+          <chart v-if="tableData.length" :data="reservationsPerListingData" chartType="pie" />
+        </div>
+      </div>
+      <div class="info-container">
+        <h3 class="info-title">Revenue / month</h3>
+        <div class="avg-payout-chart">
+          <chart v-if="tableData.length" :data="avgPayoutByMonthData" chartType="bar" />
+        </div>
+      </div>
     </div>
 
-    <div class="charts">
-      <div class="avg-payout-chart">
-        <chart v-if="tableData.length" :data="avgPayoutByMonthData" chartType="bar" />
-      </div>
+    <div class="listing-title">
+      <div>{{ tableData.length }} Reservation<span v-if="(tableData.length > 1)">s</span></div>
     </div>
 
     <el-table :data="tableData" align="center">
@@ -53,6 +75,7 @@
         </template>
       </el-table-column>
     </el-table>
+
   </section>
 </template>
 
@@ -77,14 +100,27 @@ export default {
   computed: {
     avgPayoutByMonthData() {
       return {
-        labels: ['Nov', 'Dec', 'Jan'],
+        labels: ['Sept', 'Oct', 'Nov', 'Dec', 'Jan'],
         datasets: [
           {
-            data: [4560, 10918, 11542],
+            data: [3000, 2000, 4560, 8918, 7542],
             backgroundColor: ['#77CEFF', '#0079AF', '#123E6B'],
           },
         ],
       }
+    },
+    reservationsPerListingData() {
+      const data = {
+        labels: ['Lemon Garden', 'Moshes house', 'BOUTIQUE Rental', 'GuestReady'],
+        datasets: [
+          {
+            data: [30, 10, 20, 15],
+            backgroundColor: ['#FF385C', '#BFFF38', '#38FFDB', '#7838FF'],
+          },
+        ]
+      }
+      console.log('data', data);
+      return data
     },
   },
   methods: {
