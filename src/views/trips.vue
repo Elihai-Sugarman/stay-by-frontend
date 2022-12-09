@@ -62,6 +62,9 @@ export default {
     this.loadOrdersData()
     socketService.on(SOCKET_EVENT_ORDER_STATUS, this.changeTripStatus)
   },
+  unmounted() {
+    socketService.off(SOCKET_EVENT_ORDER_STATUS)
+  },
   methods: {
     getStatusClass({ status }) {
       let statusClass = 'pending'

@@ -38,6 +38,10 @@ export default {
       socketService.on(SOCKET_EVENT_ORDER_STATUS, this.notifyStatus)
     }, 1000)
   },
+  unmounted() {
+    socketService.off(SOCKET_EVENT_ORDER_ADD)
+    socketService.off(SOCKET_EVENT_ORDER_STATUS)
+  },
   computed: {
     pageClassLayout() {
       console.log('route', this.$route.name);

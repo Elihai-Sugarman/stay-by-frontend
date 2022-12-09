@@ -97,6 +97,9 @@ export default {
     this.loadOrdersData()
     socketService.on(SOCKET_EVENT_ORDER_ADD, this.addOrder)
   },
+  unmounted() {
+    socketService.off(SOCKET_EVENT_ORDER_ADD)
+  },
   computed: {
     avgPayoutByMonthData() {
       return {
@@ -160,6 +163,7 @@ export default {
     async loadOrdersData() {
       const data = await orderService.getHostOrders()
       this.tableData = data.reverse()
+      console.log('tableData', data)
     },
     formatLocation({ address }) {
       return `${address.city}, ${address.country}`

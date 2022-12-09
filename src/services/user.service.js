@@ -52,8 +52,8 @@ async function getById(userId) {
     const user = await httpService.get(`user/${userId}`)
 
     // socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
-    socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
-    socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
+    // socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
+    // socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
 
     return user
 }
