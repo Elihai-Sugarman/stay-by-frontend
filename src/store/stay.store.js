@@ -31,6 +31,7 @@ export const stayStore = {
     state: {
         stays: [],
         filterBy: null,
+        isLoading: false
     },
     getters: {
         stays(state) {
@@ -38,9 +39,15 @@ export const stayStore = {
         },
         filterBy(state) {
             return state.filterBy
+        },
+        isStaysLoading(state) {
+            return state.isLoading
         }
     },
     mutations: {
+        setIsLoading(state, { isLoading }) {
+            state.isLoading = isLoading
+        },
         setStays(state, { stays }) {
             state.stays = stays
         },
@@ -89,6 +96,7 @@ export const stayStore = {
             }
         },
         async loadStays(context) {
+            context.commit({ type: 'setIsLoading', isLoading: true })
             try {
                 let filterBy = context.state.filterBy || ''
                 const stays = await stayService.query(filterBy)
@@ -96,6 +104,8 @@ export const stayStore = {
             } catch (err) {
                 console.log('stayStore: Error in loadStays', err)
                 throw err
+            } finally {
+                context.commit({ type: 'setIsLoading', isLoading: false })
             }
         },
         async removeStay(context, { stayId }) {

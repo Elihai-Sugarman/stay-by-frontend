@@ -1,7 +1,7 @@
 <template>
   <div class="container home">
     <stay-header @filter="filter" />
-    <stay-list v-if="stays.length" :stays="stays" />
+    <stay-list :stays="stays" />
   </div>
 </template>
 

@@ -33,3 +33,17 @@
         margin: 0 !important;
     }
 }
+
+.skeleton-preview {
+    width: 350px;
+
+    & .skeleton-img {
+        width: 100%;
+        height: 100%;
+        & svg {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+        }
+    }
+}
