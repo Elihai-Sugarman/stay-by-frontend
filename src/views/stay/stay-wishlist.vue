@@ -7,10 +7,10 @@
     @disliked="removeStay"
     />
   </ul>
-  <div class="empty-wishlist" v-else>
+  <!-- <div class="empty-wishlist" v-else>
     <h3>Nothing to see here...</h3>
     <h1>Go make some wishes!</h1>
-  </div> 
+  </div>  -->
 </template>
 
 <script>
