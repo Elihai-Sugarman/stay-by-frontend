@@ -1,7 +1,26 @@
 .dashboard-listings {
   max-width: 100%;
+  padding: 0;
 
-  @media screen and (max-width: 800px){
+  .page-title {
+    // margin-left: 10px;
+    h1 {
+      font-size: rem(32px);
+      padding-bottom: 24px;
+      padding-top: 36px;
+    }
+  }
+
+  .el-table .cell {
+    padding-left: 0;
+  }
+  .el-table_4_column_31, .el-table_5_column_39, .el-table_21_column_165 {
+    .cell {
+      padding-right: 0;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
     max-width: 100%;
     overflow-x: scroll;
     // margin-bottom: 100px;
@@ -10,10 +29,9 @@
   & .listing-title {
     display: flex;
     justify-content: space-between;
-    margin: 20px 10px;
-    margin-inline-end: 0;
+    margin-top: 20px;
+    font-size: rem(24px);
   }
-
 
   & .listing-preview {
     display: flex;

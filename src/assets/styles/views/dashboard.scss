@@ -4,8 +4,10 @@
   margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr;
+  padding: 0;
 
   & .dashboard-content {
+    padding: 0;
     max-width: 100%;
     height: calc(100vh - 200px);
 
