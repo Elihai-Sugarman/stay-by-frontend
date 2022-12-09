@@ -17,19 +17,28 @@
     </el-carousel>
 
     <h1 class="name-title">{{ stay.name }}</h1>
-    <div class="name-subtitle flex">
-      <ratingReview @goToReviews="openAllReviewsModal" :reviews="stay.reviews" />
 
-      <span v-if="stay.host.isSuperhost">•</span>
-      <span class="superhost flex" v-if="stay.host.isSuperhost">
-        Superhost
-      </span>
+    <div class="flex justify-between">
+      <div class="name-subtitle flex">
+        <ratingReview @goToReviews="openAllReviewsModal" :reviews="stay.reviews" />
+  
+        <span v-if="stay.host.isSuperhost">•</span>
+        <span class="superhost flex" v-if="stay.host.isSuperhost">
+          Superhost
+        </span>
+  
+        <span>•</span>
+        <span @click="scrollToMap" class="address link font-md">
+          {{ stay.address.street }}
+        </span>
+      </div>
+      <div class="save-stay flex btn">
+        <icon-cmp iconType="heart" />
+        <span class="link fs14">Save</span>
+      </div>
 
-      <span>•</span>
-      <span @click="scrollToMap" class="address link font-md">
-        {{ stay.address.street }}
-      </span>
     </div>
+
     <div class="images-container">
       <img :src="img" v-for="img in imgsToDisplay" />
     </div>
@@ -41,7 +50,15 @@
             <h2 class="title subheading">
               {{ stay.roomType }} hosted by {{ stay.host.fullname }}
             </h2>
-            <div class="capacity-subtitle">{{ stay.capacity }} guests</div>
+            <div class="flex capacity-details">
+              <div class="capacity-subtitle">{{ stay.capacity }} guests</div>
+              <span>•</span>
+              <div class="capacity-subtitle">{{ stay.bedrooms }} bedroom<span v-if="(+stay.bedrooms>1)">s</span> </div>
+              <span>•</span>
+              <div class="capacity-subtitle">{{ +stay.bedrooms*2 }} beds </div>
+              <span>•</span>
+              <div class="capacity-subtitle">{{ stay.bathrooms }} bath<span v-if="(+stay.bathrooms>1)">s</span> </div>
+            </div>
           </div>
           <img :src="stay.host.imgUrl" />
         </div>
@@ -255,10 +272,10 @@
       </Transition>
     </div>
 
-    <!-- <details>
+    <details>
       <summary>Full JSON</summary>
       <pre>{{ stay }}</pre>
-    </details> -->
+    </details>
   </section>
 </template>
 
