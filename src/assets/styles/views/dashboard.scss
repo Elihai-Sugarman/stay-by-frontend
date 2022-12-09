@@ -9,12 +9,26 @@
     max-width: 100%;
     height: calc(100vh - 200px);
 
-    @media screen and (max-width: 800px){
-      width: calc(100vw - 48px)
+    @media screen and (max-width: 800px) {
+      width: calc(100vw - 48px);
     }
   }
-  .avg-payout-chart {
-    width: 25%;
+  .charts {
+    gap: 16px;
+    margin-bottom: 24px;
+    .info-container {
+      box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+      padding: 24px;
+      border-radius: 12px;
+      .info-title {
+        font-size: rem(16px);
+      }
+      .chart {
+        canvas {
+          height: 200px;
+        }
+      }
+    }
   }
 }
 
@@ -26,24 +40,22 @@
     overflow-x: scroll;
     margin: 20px;
   }
-  
+
   & ul {
     display: flex;
     justify-content: center;
     gap: 10px;
   }
-  
+
   & ul li {
     padding: 5px 10px;
     // box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
     border-radius: 10px;
-    transition: box-shadow .3s;
+    transition: box-shadow 0.3s;
     color: black !important;
   }
-  
+
   & ul a.router-link-exact-active li {
     color: $brand-clr !important;
   }
-
-  
 }
