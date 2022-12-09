@@ -18,16 +18,21 @@
         @addGuests="addGuests"
       />
 
-      <user-nav
-        :open="isUserNavOpen"
-        @click="isUserNavOpen = !isUserNavOpen"
-        @outside-click="isUserNavOpen = false"
-      />
+      <div class="nav-txt flex">
+        <span class="txt btn" @click="goToHost">Become a host</span>
+        <user-nav
+          :open="isUserNavOpen"
+          @click="isUserNavOpen = !isUserNavOpen"
+          @outside-click="isUserNavOpen = false"
+        />
+      </div>
+
     </nav>
   </header>
 </template>
 <script>
 import { eventBus } from '../services/event-bus.service'
+import { userService } from '../services/user.service'
 import searchBar from './search-bar.vue'
 import userNav from './user-nav.vue'
 
@@ -61,12 +66,10 @@ export default {
     anyWhere() {
       this.openSearch()
       eventBus.emit('setSearchFocus', 'where')
-      
     },
     anyWeek() {
       this.openSearch()
       eventBus.emit('setSearchFocus', 'checkIn')
-
     },
     addGuests() {
       this.openSearch()
@@ -77,6 +80,10 @@ export default {
       this.$store.dispatch({ type: 'loadStays' })
       eventBus.emit('resetSearch')
     },
+    goToHost() {
+      if (!this.user) this.$router.push('/login')
+      else this.$router.push('/dashboard/stay/edit')
+    }
   },
   computed: {
     user() {

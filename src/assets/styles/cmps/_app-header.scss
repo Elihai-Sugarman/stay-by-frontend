@@ -49,6 +49,14 @@
         max-width: $stay-details-layout;
         margin-inline: auto;
     }
+    .nav-txt {
+        align-items: center;
+        gap: 24px;
+        .txt {
+            font-size: rem(14px);
+            font-weight: 600;
+        }
+    }
 }
 
 .main-nav .brand {
