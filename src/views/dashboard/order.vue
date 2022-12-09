@@ -21,15 +21,15 @@
         </div>
       </div>
       <div class="info-container">
-        <h3 class="info-title">Revenue / month</h3>
+        <h3 class="info-title">Current reservation status</h3>
         <div class="avg-payout-chart">
-          <chart v-if="tableData.length" :data="avgPayoutByMonthData" chartType="bar" />
+          <chart v-if="tableData.length" :data="reservationStatusData" chartType="doughnut" />
         </div>
       </div>
     </div>
 
     <div class="listing-title">
-      <div>{{ tableData.length }} Reservation<span v-if="(tableData.length > 1)">s</span></div>
+      <div>{{ tableData.length }} reservation<span v-if="(tableData.length > 1)">s</span></div>
     </div>
 
     <el-table :data="tableData" align="center">
@@ -104,7 +104,7 @@ export default {
         datasets: [
           {
             data: [3000, 2000, 4560, 8918, 7542],
-            backgroundColor: ['#77CEFF', '#0079AF', '#123E6B'],
+            backgroundColor: ['#6C26FC', '#1D28DE', '#2D83F5', '#1DB9DE', '#21FFD3'],
           },
         ],
       }
@@ -115,7 +115,20 @@ export default {
         datasets: [
           {
             data: [30, 10, 20, 15],
-            backgroundColor: ['#FF385C', '#BFFF38', '#38FFDB', '#7838FF'],
+            backgroundColor: ['#E85B41', '#FF5373', '#E841D7', '#BF40FF'],
+          },
+        ]
+      }
+      console.log('data', data);
+      return data
+    },
+    reservationStatusData() {
+      const data = {
+        labels: ['Aprroved', 'Pending', 'Rejected'],
+        datasets: [
+          {
+            data: [10, 12, 15],
+            backgroundColor: ['#008000', '#ffa500', '#ff0000'],
           },
         ]
       }

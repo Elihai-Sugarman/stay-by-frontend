@@ -1,7 +1,7 @@
 <template>
   <section class="chart">
     <BarChart v-if="chartType === 'bar'" :chartData="data" :options="options" />
-    <DoughnutChart v-if="chartType === 'doughnut'" :chartData="data" :options="options"/>
+    <DoughnutChart v-if="chartType === 'doughnut'" :chartData="data" :options="pieOptions"/>
     <PieChart v-if="chartType === 'pie'" :chartData="data" :options="pieOptions"/>
   </section>
 </template>
@@ -20,10 +20,6 @@ export default {
     data: Object,
     chartType: String,
   },
-  created() {
-    console.log('chart type', this.chartType)
-  },
-
   components: { BarChart, DoughnutChart, PieChart },
   data() {
     return {
