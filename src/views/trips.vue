@@ -1,7 +1,10 @@
 <template>
   <section class="dashboard-listings">
+    <div class="page-title">
+      <h1>Trips</h1>
+    </div>
     <div class="listing-title">
-      <div>{{ tableData.length }} Trip<span v-if="(tableData.length > 1)">s</span></div>
+      <div>{{ tableData.length }} trip<span v-if="(tableData.length > 1)">s</span></div>
     </div>
     <el-table :data="tableData" align="left">
 
@@ -28,9 +31,9 @@
       
       <el-table-column prop="createdAt" min-width="100" :formatter="getFormattedBookedDate"  label="Booked" align="left" sortable/>
       
-      <el-table-column prop="totalPrice" min-width="110" :formatter="formatCurrency" label="Total Price" align="left" sortable />
+      <el-table-column prop="totalPrice" min-width="100" :formatter="formatCurrency" label="Total Price" align="left" sortable />
       
-      <el-table-column label="Status" align="left" min-width="100" sortable>
+      <el-table-column label="Status" align="right" min-width="100" sortable>
         <template #default="scope">
           <span class="order-status" :class="getStatusClass(scope.row)">
             {{ capitalize(scope.row.status) }}
