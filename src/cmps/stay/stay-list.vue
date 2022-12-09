@@ -1,10 +1,10 @@
 <template>
   <ul class="stay-list">
     <stay-preview v-for="stay in stays" :stay="stay" :key="stay._id" />
-    <el-skeleton class="skeleton-preview" v-for="n in 30" :loading="isLoading" animated>
+    <el-skeleton class="stay-preview" v-for="n in 30" :loading="isLoading" animated>
       <template #template>
-        <div style="padding: 14px">
-          <el-skeleton-item variant="image" class="skeleton-img" />
+        <div>
+          <el-skeleton-item variant="rect" style="height: 250px;" />
           <div class="flex justify-between" style="margin-top: 10px;">
             <el-skeleton-item variant="text" style="width: 60%;" />
             <el-skeleton-item variant="text" style="width: 20%;" />
@@ -23,7 +23,6 @@
 
 <script>
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
-// import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/test.store'
 import stayPreview from './stay-preview.vue'
 
 export default {
@@ -33,12 +32,22 @@ export default {
   components: {
     stayPreview
   },
+  created() {
+    window.addEventListener('scroll', () => {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        this.loadMoreStays()
+      }
+    })
+  },
   computed: {
     isLoading() {
       return this.$store.getters.isStaysLoading
     }
   },
   methods: {
+    loadMoreStays() {
+      this.$store.dispatch({ type: 'loadMoreStays', skip: this.stays.length })
+    },
     async removeStay(stayId) {
       try {
         await this.$store.dispatch(getActionRemoveStay(stayId))

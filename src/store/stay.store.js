@@ -51,6 +51,9 @@ export const stayStore = {
         setStays(state, { stays }) {
             state.stays = stays
         },
+        addMoreStays(state, { stays }) {
+            state.stays.push(...stays)
+        },
         addStay(state, { stay }) {
             state.stays.push(stay)
         },
@@ -98,11 +101,24 @@ export const stayStore = {
         async loadStays(context) {
             context.commit({ type: 'setIsLoading', isLoading: true })
             try {
-                let filterBy = context.state.filterBy || ''
+                let filterBy = context.state.filterBy || {}
                 const stays = await stayService.query(filterBy)
                 context.commit({ type: 'setStays', stays })
             } catch (err) {
                 console.log('stayStore: Error in loadStays', err)
+                throw err
+            } finally {
+                context.commit({ type: 'setIsLoading', isLoading: false })
+            }
+        },
+        async loadMoreStays(context, { skip }) {
+            context.commit({ type: 'setIsLoading', isLoading: true })
+            try {
+                let filterBy = context.state.filterBy || {}
+                const stays = await stayService.query({ ...filterBy, skip })
+                context.commit({ type: 'addMoreStays', stays })
+            } catch (err) {
+                console.log('stayStore: Error in loadMoreStays', err)
                 throw err
             } finally {
                 context.commit({ type: 'setIsLoading', isLoading: false })

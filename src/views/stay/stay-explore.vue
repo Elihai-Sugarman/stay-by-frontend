@@ -3,7 +3,7 @@
       <h4>Found {{ stays.length }} homes for you!</h4>
     </div>
     <div class="container home">
-      <stay-list v-if="stays.length" :stays="stays" />
+      <stay-list :stays="stays" />
     </div>
   </template>
   
