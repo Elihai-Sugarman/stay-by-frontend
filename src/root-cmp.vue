@@ -41,6 +41,7 @@ export default {
   unmounted() {
     socketService.off(SOCKET_EVENT_ORDER_ADD)
     socketService.off(SOCKET_EVENT_ORDER_STATUS)
+    socketService.terminate()
   },
   computed: {
     pageClassLayout() {
