@@ -8,6 +8,9 @@ export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
 export const SOCKET_EMIT_ORDER_ADD = 'order-add'
 export const SOCKET_EVENT_ORDER_ADD = 'order-added'
 
+export const SOCKET_EMIT_ORDER_STATUS = 'order-status'
+export const SOCKET_EVENT_ORDER_STATUS = 'order-status-changed'
+
 export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
 export const SOCKET_EMIT_USER_WATCH = 'user-watch'
 export const SOCKET_EVENT_USER_UPDATED = 'user-updated'

@@ -12,7 +12,7 @@
 <script>
 import { ElNotification } from 'element-plus'
 import { userService } from './services/user.service'
-import { socketService, SOCKET_EVENT_ORDER_ADD } from './services/socket.service'
+import { socketService, SOCKET_EVENT_ORDER_ADD, SOCKET_EVENT_ORDER_STATUS } from './services/socket.service'
 import { store } from './store/store'
 
 import appHeader from './cmps/app-header.vue'
@@ -35,6 +35,7 @@ export default {
     // add listener in delay
     setTimeout(() => {
       socketService.on(SOCKET_EVENT_ORDER_ADD, this.notifyHost)
+      socketService.on(SOCKET_EVENT_ORDER_STATUS, this.notifyStatus)
     }, 1000)
   },
   computed: {
@@ -48,12 +49,19 @@ export default {
     }
   },
   methods: {
-    notifyHost(order) {
-      console.log('order', order)
+    notifyHost({ renter }) {
       ElNotification({
-        title: 'Order',
-        message: `New order recivied from ${order.renter.fullname}`,
+        title: 'Reservation',
+        message: 'New reservation received from ' + renter.fullname,
         type: 'info'
+      })
+    },
+    notifyStatus({ status, host, stay }) {
+      const type = status === 'approved' ? 'success' : 'warning'
+      ElNotification({
+        title: 'Trip status',
+        message: `${host.fullname} ${status} your trip at ${stay.name}`,
+        type
       })
     },
   }

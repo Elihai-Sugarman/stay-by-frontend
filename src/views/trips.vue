@@ -47,6 +47,7 @@ import * as moment from 'moment'
 import { capitalize } from 'lodash'
 import { utilService } from '../services/util.service'
 import { orderService } from '../services/order.service'
+import { socketService, SOCKET_EVENT_ORDER_STATUS } from '../services/socket.service'
 
 export default {
   data() {
@@ -56,6 +57,7 @@ export default {
   },
   created() {
     this.loadOrdersData()
+    socketService.on(SOCKET_EVENT_ORDER_STATUS, this.changeTripStatus)
   },
   methods: {
     getStatusClass({ status }) {
@@ -88,12 +90,16 @@ export default {
         currency: 'USD'
       }).format(totalPrice)
     },
-    handleOrder(order, command){
+    handleOrder(order, command) {
       // if (order.status !== 'pending') return
       order.status = command === 'approve' ? 'approved' : 'rejected'
       this.colorClass = order.status === 'approved' ? 'color-green' : 'color-red'
       const newOrder = utilService.deepCopy(order)
       this.$store.dispatch({type: 'updateOrder', order: newOrder})
+    },
+    changeTripStatus(order) {
+      const orderToChange = this.tableData.find(({ _id }) => _id === order._id)
+      if (orderToChange) orderToChange.status = order.status
     },
     getFormattedStartDate({ startDate }) {
       return moment(startDate).format('MM/DD/YYYY')
