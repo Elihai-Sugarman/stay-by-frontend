@@ -137,6 +137,7 @@ export default {
       return data
     },
     reservationStatusData() {
+
       const data = {
         labels: ['Aprroved', 'Pending', 'Rejected'],
         datasets: [
@@ -162,6 +163,9 @@ export default {
           break;
         case 'rejected':
           statusClass = 'rejected'
+          break;
+        case 'completed':
+          statusClass = 'completed'
           break;
       }
       return {
