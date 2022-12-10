@@ -66,6 +66,18 @@
       .stay-desc {
         padding-left: 12px;
       }
+
+      @media screen and (max-width: 800px) {
+        img {
+          width: 100%;
+          height: 100%;
+          margin-bottom: 10px;
+        }
+
+        .stay-desc {
+          margin-top: 30px;
+        }
+      }
     }
     .price-details {
       h3 {
