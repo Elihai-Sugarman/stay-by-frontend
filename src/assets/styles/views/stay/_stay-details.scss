@@ -111,6 +111,10 @@
     &:hover {
       background: #f7f7f7;
     }
+
+    @media (max-width: 800px) {
+      display: none;
+    }
   }
 
   .images-container {
