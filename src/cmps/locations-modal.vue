@@ -1,7 +1,7 @@
 <template>
   <section class="locations-modal" v-if="open" @click.stop v-outside-click="() => $emit('close')">
 
-    <ul class="location-list">
+    <ul class="location-list" v-if="!loading">
       <li v-for="loc in locations" @click="handleSelect(loc)">
         <div class="icon-wrapper">
           <icon-cmp icon-type="location" />
@@ -9,6 +9,9 @@
         <span>{{ loc }}</span>
       </li>
     </ul>
+    <div class="location-spinner-container" v-else>
+      <div class="location-spinner"></div>
+    </div>
 
     <div class="region-container" v-if="!hideRegion">
       <div class="title">Search by region</div>
@@ -28,7 +31,8 @@ export default {
   props: {
     open: Boolean,
     locations: Array,
-    hideRegion: Boolean
+    hideRegion: Boolean,
+    loading: Boolean
   },
   emits: ['change', 'close'],
   data() {

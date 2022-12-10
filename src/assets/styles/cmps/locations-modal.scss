@@ -11,6 +11,8 @@
     box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 8px 16px rgb(0 0 0 / 15%);
     padding: 16px 32px;
     cursor: auto;
+    min-width: 100%;
+    min-height: 400px;
 
     & .region-container {
         padding: 16px 8px 24px;
@@ -43,7 +45,7 @@
 
     & .region img {
         border: 1px solid #dddddd;
-        transition-property:  border-color;
+        transition-property: border-color;
         transition-duration: 0.15s;
         transition-timing-function: ease-in-out;
         border-radius: 12px;
@@ -84,5 +86,33 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+}
+
+.location-spinner-container {
+    display: flex;
+    min-width: 300px;
+    min-height: 400px;
+}
+
+.location-spinner {
+    margin: auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 3px solid #0088ff;
+    border-right: 3px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
