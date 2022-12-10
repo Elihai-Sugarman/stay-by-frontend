@@ -3,29 +3,40 @@
 
     <div class="charts flex justify-between">
       <div class="info-container">
-        <h3 class="info-title">Revenue / month</h3>
-        <div class="avg-payout-chart">
+        <h3 class="info-title avg-payout">Revenue / month</h3>
+        <div class="chart">
           <chart v-if="tableData.length" :data="avgPayoutByMonthData" chartType="bar" />
         </div>
       </div>
-      <div class="info-container">
-        <h3 class="info-title">Revenue / month</h3>
-        <div class="avg-payout-chart">
-          <chart v-if="tableData.length" :data="avgPayoutByMonthData" chartType="bar" />
+      <div class="info-container res-status">
+        <h3 class="info-title">Reservations status</h3>
+        <div class="chart">
+          <div class="status-info">
+            <span class="status-name">Pending</span>
+            <span class="status-count pending">3</span>
+          </div>
+          <div class="status-info">
+            <span class="status-name">Approved</span>
+            <span class="status-count approved">10</span>
+          </div>
+          <div class="status-info">
+            <span class="status-name">Rejected</span>
+            <span class="status-count rejected">5</span>
+          </div>
         </div>
       </div>
-      <div class="info-container">
+      <div class="info-container res-listing">
         <h3 class="info-title">Reservations / listing</h3>
-        <div class="avg-payout-chart">
+        <div class="chart">
           <chart v-if="tableData.length" :data="reservationsPerListingData" chartType="pie" />
         </div>
       </div>
-      <div class="info-container">
+      <!-- <div class="info-container">
         <h3 class="info-title">Current reservation status</h3>
-        <div class="avg-payout-chart">
+        <div class="chart">
           <chart v-if="tableData.length" :data="reservationStatusData" chartType="doughnut" />
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="listing-title">
@@ -118,7 +129,7 @@ export default {
         datasets: [
           {
             data: [30, 10, 20, 15],
-            backgroundColor: ['#E85B41', '#FF5373', '#E841D7', '#BF40FF'],
+            backgroundColor: ['#6C26FC', '#1D28DE', '#2D83F5', '#1DB9DE'],
           },
         ]
       }

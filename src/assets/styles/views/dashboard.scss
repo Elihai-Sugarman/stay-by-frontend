@@ -18,16 +18,43 @@
   .charts {
     gap: 16px;
     margin-bottom: 24px;
+    font-size: rem(18px);
     .info-container {
       box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
       padding: 24px;
       border-radius: 12px;
+      // width: 300px;
+      max-height: 250px;
+      width: 100%;
       .info-title {
-        font-size: rem(16px);
+        // font-size: rem(16px);
+        font-family: cereal-medium;
       }
       .chart {
         canvas {
-          height: 200px;
+          height: 180px;
+          // width: 300px;
+        }
+      }
+    }
+    .res-status {
+      .chart {
+        margin-top: 24px;
+      }
+      .status-info {
+        display: flex;
+        justify-content: space-between;
+        margin: 16px 0;
+        .status-count {
+          &.pending {
+            color: orange;
+          }
+          &.approved {
+            color: green;
+          }
+          &.rejected {
+            color: red;
+          }
         }
       }
     }

@@ -28,7 +28,8 @@ export default {
           Pie: {
             plugins: {
               legend: {
-                display: false,
+                display: true,
+                position: 'bottom'
               },
             },
           },
@@ -61,7 +62,11 @@ export default {
       pieOptions: {
         plugins: {
           legend: {
-            display: false,
+            // display: false,
+            position: 'left',
+            title: {
+              padding: 0
+            }
           },
         },
         scales: {
