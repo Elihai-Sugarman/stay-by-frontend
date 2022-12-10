@@ -45,7 +45,7 @@
 
 <script>
 import { stayService } from '../../services/stay.service'
-import * as moment from 'moment'
+import moment from 'moment'
 
 export default {
   data() {

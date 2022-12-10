@@ -33,7 +33,7 @@
 import {showErrorMsg, showSuccessMsg} from '../../services/event-bus.service'
 import { getActionRemoveStay, getActionUpdateStay, getActionAddStayMsg } from '../../store/stay.store'
 import { utilService } from '../../services/util.service'
-import * as moment from 'moment'
+import moment from 'moment'
 import iconCmp from '../icon-cmp.vue'
 
 export default {

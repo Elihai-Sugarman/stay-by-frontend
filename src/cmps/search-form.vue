@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import * as moment from 'moment'
+import moment from 'moment'
 import guestModal from './guest-modal.vue'
 import datesModal from './dates-modal.vue'
 import locationsModal from './locations-modal.vue'
