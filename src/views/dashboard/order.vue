@@ -13,15 +13,15 @@
         <div class="chart">
           <div class="status-info">
             <span class="status-name">Pending</span>
-            <span class="status-count pending">3</span>
+            <span class="status-count pending">{{ getStatusCount('pending') }}</span>
           </div>
           <div class="status-info">
             <span class="status-name">Approved</span>
-            <span class="status-count approved">10</span>
+            <span class="status-count approved">{{ getStatusCount('approved') }}</span>
           </div>
           <div class="status-info">
             <span class="status-name">Rejected</span>
-            <span class="status-count rejected">5</span>
+            <span class="status-count rejected">{{ getStatusCount('rejected') }}</span>
           </div>
         </div>
       </div>
@@ -152,6 +152,12 @@ export default {
     },
   },
   methods: {
+    getStatusCount(status) {
+      return this.tableData.reduce((prev, order) => {
+        if (order.status === status) prev++
+        return prev
+      }, 0)
+    },
     addOrder(order) {
       this.tableData.unshift(order)
     },
