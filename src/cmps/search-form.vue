@@ -1,7 +1,13 @@
 <template>
   <el-form class="search-form" :model="form">
     <div class="container" :class="activeBgColor" v-outside-click="setActive">
-      <div class="form-control form-box" :class="getActiveClass('where')" @click="setActive('where')">
+      <div
+        class="form-control form-box"
+        :class="getActiveClass('where')"
+        @click="() => {
+          setActive('where')
+          this.hideRegion = false
+        }">
         <div class="title">Where</div>
         <el-input
           v-model="form.where"
@@ -9,10 +15,10 @@
           style="width: 260px"
           ref="whereInput"
           @input="fetchSuggestedLocations"
-          @blur="(hideRegion = false)"
         />
         <locations-modal
           :open="getActiveClass('where').active"
+          :loading="isLocationLoading"
           :locations="locations"
           :hideRegion="hideRegion"
           @change="handleLocationSelect"
@@ -111,7 +117,8 @@ export default {
       locations: [],
       hideRegion: false,
       resetSearchListener: null,
-      searchFocusListener: null
+      searchFocusListener: null,
+      isLocationLoading: false
     }
   },
   created() {
@@ -152,8 +159,10 @@ export default {
     },
     async fetchSuggestedLocations(queryString = '') {
       this.hideRegion = true
+      this.isLocationLoading = true
       const locations = await stayService.getLocations(queryString)
       this.locations = locations
+      this.isLocationLoading = false
     },
     handleLocationSelect(location) {
       this.form.where = location

@@ -96,7 +96,7 @@ import { capitalize } from 'lodash'
 import { utilService } from '../../services/util.service'
 import chart from '../../cmps/chart.vue'
 import { orderService } from '../../services/order.service'
-import { socketService, SOCKET_EVENT_ORDER_ADD } from '../../services/socket.service'
+import { socketService, SOCKET_EVENT_ORDER_ADD, SOCKET_EMIT_ORDER_STATUS } from '../../services/socket.service'
 
 export default {
   data() {
@@ -174,7 +174,6 @@ export default {
     async loadOrdersData() {
       const data = await orderService.getHostOrders()
       this.tableData = data.reverse()
-      console.log('tableData', data)
     },
     formatLocation({ address }) {
       return `${address.city}, ${address.country}`
@@ -185,12 +184,14 @@ export default {
         currency: 'USD'
       }).format(totalPrice)
     },
-    handleOrder(order, command){
+    async handleOrder(order, command){
       // if (order.status !== 'pending') return
       order.status = command === 'approve' ? 'approved' : 'rejected'
       this.colorClass = order.status === 'approved' ? 'color-green' : 'color-red'
+
       const newOrder = utilService.deepCopy(order)
-      this.$store.dispatch({type: 'updateOrder', order: newOrder})
+      await this.$store.dispatch({ type: 'updateOrder', order: newOrder })
+      socketService.emit(SOCKET_EMIT_ORDER_STATUS, newOrder)
     },
     getFormattedStartDate({ startDate }) {
       return moment(startDate).format('MM/DD/YYYY')
