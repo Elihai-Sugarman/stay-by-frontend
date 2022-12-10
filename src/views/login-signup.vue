@@ -24,7 +24,7 @@
 
         <el-divider>or</el-divider>
 
-        <el-button @click="handleDemoLogin" v-if="isLoginPage" class="demo-btn" :loading="isLoading">Log in as Demo User</el-button>
+        <el-button @click="handleDemoLogin" v-if="isLoginPage" class="demo-btn" :loading="isLoading">Log in as Moshe</el-button>
         
         <router-link to="/login" v-if="!isLoginPage">
           <el-button class="w-100">Log in</el-button>
@@ -99,8 +99,8 @@ export default {
     },
     handleDemoLogin() {
       this.credentials = {
-        username: 'Demo',
-        password: '123456'
+        username: 'moshene',
+        password: '36133410'
       }
 
       this.handleSubmit()
