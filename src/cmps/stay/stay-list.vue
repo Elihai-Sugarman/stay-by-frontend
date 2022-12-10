@@ -33,11 +33,10 @@ export default {
     stayPreview
   },
   created() {
-    window.addEventListener('scroll', () => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        this.loadMoreStays()
-      }
-    })
+    // window.addEventListener('scroll', this.onScrollDown, true)
+  },
+  unmounted() {
+    // window.removeEventListener('scroll', this.onScrollUp, true)
   },
   computed: {
     isLoading() {
@@ -45,6 +44,11 @@ export default {
     }
   },
   methods: {
+    onScrollDown() {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        this.loadMoreStays()
+      }
+    },
     loadMoreStays() {
       this.$store.dispatch({ type: 'loadMoreStays', skip: this.stays.length })
     },
