@@ -84,7 +84,7 @@ export default {
       return capitalize(value)
     },
     async loadOrdersData() {
-      const data = (await orderService.getRenterOrders()).reverse()
+      const data = (await orderService.getRenterOrders())
       this.tableData = data.reverse()
     },
     formatLocation({ address }) {
