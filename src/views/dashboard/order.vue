@@ -79,8 +79,14 @@
       <el-table-column prop="status" label="To do" min-width="200" align="center">
         <template #default="scope">
           <div class="status-btns">
-            <el-button class="approve-btn status-btn" @click="handleOrder(scope.row, 'approve')" :class="{'disabled-btn': scope.row.status=='approved'}">Approve</el-button>
-            <el-button class="reject-btn status-btn" @click="handleOrder(scope.row, 'reject')" :class="{'disabled-btn': scope.row.status=='rejected'}">Reject</el-button>
+            <el-button
+              class="approve-btn status-btn"
+              @click="handleOrder(scope.row, 'approve')"
+              :class="{'disabled-btn': scope.row.status=='approved'}">Approve</el-button>
+            <el-button
+              class="reject-btn status-btn"
+              @click="handleOrder(scope.row, 'reject')"
+              :class="{'disabled-btn': scope.row.status=='rejected'}">Reject</el-button>
             <!-- <span v-else></span> -->
           </div>
         </template>
@@ -124,11 +130,23 @@ export default {
       }
     },
     reservationsPerListingData() {
+      const labels = ['Lemon Garden', 'Moshe\'s house', 'BOUTIQUE Rental', 'GuestReady']
+      const staysMap = this.tableData.reduce((prev, { stay }) => {
+        if (prev[stay.name]) prev[stay.name]++
+        else prev[stay.name] = 1
+        return prev
+      }, {})
+
       const data = {
-        labels: ['Lemon Garden', 'Moshes house', 'BOUTIQUE Rental', 'GuestReady'],
+        labels,
         datasets: [
           {
-            data: [30, 10, 20, 15],
+            data: [
+              staysMap['Lemon Garden'],
+              staysMap['Moshe\'s house'],
+              staysMap['BOUTIQUE Rental-THE ALMA Apt'],
+              staysMap['GuestReady - Colorful Apt']
+            ],
             backgroundColor: ['#6C26FC', '#1D28DE', '#2D83F5', '#1DB9DE'],
           },
         ]
