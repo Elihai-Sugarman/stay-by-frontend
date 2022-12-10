@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import * as moment from 'moment'
+import moment from 'moment'
 import { capitalize } from 'lodash'
 import { utilService } from '../../services/util.service'
 import chart from '../../cmps/chart.vue'

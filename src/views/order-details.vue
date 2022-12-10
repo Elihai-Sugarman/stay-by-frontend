@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import * as moment from 'moment'
+import moment from 'moment'
 import ratingReview from '../cmps/stay/rating-review-cmp.vue'
 import loginSignup from '../views/login-signup.vue'
 import { getActionAddOrder } from '../store/order.store'

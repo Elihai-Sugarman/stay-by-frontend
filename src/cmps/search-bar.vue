@@ -35,7 +35,7 @@
 
 <script>
 import { Transition } from 'vue'
-import * as moment from 'moment'
+import moment from 'moment'
 import { eventBus } from '../services/event-bus.service'
 
 import icon from './icon-cmp.vue'
