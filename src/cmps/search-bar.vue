@@ -55,11 +55,15 @@ export default {
         checkIn: '',
         checkOut: '',
         guests: ''
-      }
+      },
+      resetSearchListener: null
     }
   },
   created() {
     eventBus.on('resetSearch', this.resetSearch)
+  },
+  unmounted() {
+    this.resetSearchListener && this.resetSearchListener()
   },
   methods: {
     resetSearch() {

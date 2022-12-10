@@ -109,13 +109,19 @@ export default {
       form: { ...initialForm },
       activeInput: { ...initialActive },
       locations: [],
-      hideRegion: false
+      hideRegion: false,
+      resetSearchListener: null,
+      searchFocusListener: null
     }
   },
   created() {
-    eventBus.on('resetSearch', () => this.form = { ...initialForm })
-    eventBus.on('setSearchFocus', type => this.setActive(type))
+    this.resetSearchListener = eventBus.on('resetSearch', () => this.form = { ...initialForm })
+    this.searchFocusListener = eventBus.on('setSearchFocus', type => this.setActive(type))
     this.fetchSuggestedLocations()
+  },
+  unmounted() {
+    this.resetSearchListener && this.resetSearchListener()
+    this.searchFocusListener && this.searchFocusListener()
   },
   methods: {
     handleSearch() {

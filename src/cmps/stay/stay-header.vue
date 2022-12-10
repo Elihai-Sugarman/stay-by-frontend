@@ -43,7 +43,10 @@ import 'vue3-carousel/dist/carousel.css'
             this.clickedLabel = this.$route.query.label
         },
         created(){
-            eventBus.on('resetSearch', ()=>{this.clickedLabel=null})
+            this.resetSearchListener = eventBus.on('resetSearch', ()=>{this.clickedLabel=null})
+        },
+        unmounted() {
+            this.resetSearchListener && this.resetSearchListener()
         },
         // mounted(){
         //     this.settings = {
@@ -54,6 +57,7 @@ import 'vue3-carousel/dist/carousel.css'
         // },
         data(){
             return {
+                resetSearchListener: null,
                 clickedLabel: null,
             //     settings: {
             //     itemsToShow: 11.5,
