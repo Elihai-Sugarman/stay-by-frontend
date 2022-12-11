@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 .main-layout {
     display: grid;
     grid-template-columns:
@@ -5,7 +9,7 @@
         1fr
         $layout-padding;
     padding: 0;
-    overflow-x: hidden;
+    // overflow-x: hidden;
 
     @media screen and (max-width: 800px) {
         grid-template-columns:
