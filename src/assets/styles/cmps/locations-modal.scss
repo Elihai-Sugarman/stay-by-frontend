@@ -63,18 +63,38 @@
         object-fit: cover;
     }
 
-    & .location-list li {
-        cursor: pointer;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        padding: 8px 32px 8px 24px;
+    & .location-list {
+        padding-block-start: 8px;
+        max-height: 425px;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar,
+        &::-webkit-scrollbar-thumb {
+            width: 26px;
+            border-radius: 13px;
+            background-clip: padding-box;
+            border: 10px solid transparent;
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        &::-webkit-scrollbar-thumb {        
+            box-shadow: inset 0 0 0 10px;
+        }
+
+        & li {
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 8px 32px 8px 12px;
+        }
+    
+        & li:hover {
+            background-color: #f7f7f7;
+            border-color: #f7f7f7;
+        }
     }
 
-    & .location-list li:hover {
-        background-color: #f7f7f7;
-        border-color: #f7f7f7;
-    }
 
     & .icon-wrapper {
         font-size: 17px;
