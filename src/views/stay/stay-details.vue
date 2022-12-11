@@ -272,10 +272,10 @@
       </Transition>
     </div>
 
-    <details>
+    <!-- <details>
       <summary>Full JSON</summary>
       <pre>{{ stay }}</pre>
-    </details>
+    </details> -->
   </section>
 </template>
 
