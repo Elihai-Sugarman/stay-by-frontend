@@ -3,9 +3,10 @@
       api-key="AIzaSyCra0GSjxePg_5FSqOjkFeaqEpqrM0uONM"
       style="width: 100%; height: 500px"
       :center="center"
-      :zoom="13"
-    >
-      <Marker :options="marker" @click="moveMap(marker.position)" />
+      :zoom="16"
+      ref="googleMap"
+      language="en">
+      <Marker :options="marker" />
 
     </GoogleMap>
   </template>
@@ -15,27 +16,15 @@
   
   export default {
     name: 'stay-map',
-    props: {
-        location: Object
-    },
+    props: { location: Object },
     components: { GoogleMap, Marker },
     data() {
       return {
-        //the coordinates are backwards in the database provided by CODING ACADEMY, hence switching lat and lan here
+        // the coordinates are backwards in the database provided by CODING ACADEMY, hence switching lat and lan here
         center: { lat: this.location.lan, lng: this.location.lat },
-        marker: [
-          {
-            title: 'Exact location provided after booking',
-            label: 'You stay here',
-            position: this.center,
-          },
-        ],
-      }
-    },
-    methods: {
-      moveMap(pos) {
-        this.center = pos
-        // GoogleMap.zoom = 12
+        marker: {
+          position: { lat: this.location.lan, lng: this.location.lat },
+        },
       }
     }
   }
