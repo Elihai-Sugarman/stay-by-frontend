@@ -247,6 +247,9 @@
     }
 
     .reviews-container .reviews-list {
+      .title {
+        margin-bottom: 16px;
+      }
       .txt {
         display: -webkit-box;
         -webkit-line-clamp: 3;
