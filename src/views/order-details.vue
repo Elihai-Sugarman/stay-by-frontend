@@ -12,19 +12,31 @@
     </div>
 
     <div class="order-content flex justify-between">
-      <div class="details-section">
-        <div class="trip-details">
-          <h3>Your trip</h3>
-          <div class="flex justify-between">
-            <h4>Dates</h4>
-            <h4>
-              {{ getFormattedDate(checkInDate) }} -
-              {{ getFormattedDate(checkOutDate) }}
-            </h4>
+      <div class="details-section flex column justify-between">
+        <div>
+          <div class="rare-find flex justify-between">
+            <div>
+              <h4>This is a rare find</h4>
+              <h5>{{stay.host.fullname}}'s place is usually booked.</h5>
+            </div>
+            <div>
+              <icon-cmp iconType="rareDiamond" />
+            </div>
+  
           </div>
-          <div class="flex justify-between">
-            <h4>Guests</h4>
-            <h4>{{ getFormattedGuests() }}</h4>
+          <div class="trip-details">
+            <h3>Your trip</h3>
+            <div class="flex justify-between">
+              <h4>Dates</h4>
+              <h5>
+                {{ getFormattedDate(checkInDate) }} -
+                {{ getFormattedDate(checkOutDate) }}
+              </h5>
+            </div>
+            <div class="flex justify-between">
+              <h4>Guests</h4>
+              <h5>{{ getFormattedGuests() }}</h5>
+            </div>
           </div>
         </div>
 
@@ -38,7 +50,7 @@
 
         <div v-if="!isBooked">
           <branded-btn v-if="loggedinUser" @click="addOrder()"
-            >Request to book</branded-btn
+            >Confirm</branded-btn
           >
           <div v-else>
             <h3 class="login-msg">Please login to book</h3>
