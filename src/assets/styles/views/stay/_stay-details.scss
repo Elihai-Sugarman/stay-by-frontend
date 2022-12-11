@@ -283,7 +283,8 @@
     }
 
     .reservation-container {
-      width: 300px;
+      // width: 300px;
+      width: 100%;
       border: 1px solid rgb(221, 221, 221);
       border-radius: 12px;
       padding: 24px;
@@ -291,6 +292,7 @@
 
       @media screen and (min-width: 800px) {
         // height: 568px;
+        // width: 80%;
         width: 80%;
         min-width: 300px;
       }
