@@ -1,6 +1,5 @@
 <template>
   <ul class="stay-list">
-    <stay-preview v-for="stay in stays" :stay="stay" :key="stay._id" />
     <el-skeleton class="stay-preview" v-for="n in 30" :loading="isLoading" animated>
       <template #template>
         <div style="border-radius: 5%;">
@@ -18,6 +17,7 @@
         </div>
       </template>
     </el-skeleton>
+    <stay-preview v-for="stay in stays" :stay="stay" :key="stay._id" />
   </ul>
 </template>
 

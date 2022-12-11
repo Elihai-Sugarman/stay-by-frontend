@@ -57,7 +57,7 @@
 
       </el-row>
 
-      <!--  -->
+      <!-- Labels -->
       <el-row class="w-100">
 
         <el-col :span="8">
@@ -79,7 +79,13 @@
 
         <el-col :offset="1" :span="7">
           <el-form-item label="Property type">
-            <el-input v-model="stayToEdit.roomType" />
+            <el-select
+              placeholder="Select room type"
+              class="w-100"
+              v-model="stayToEdit.roomType">
+              <el-option value="Private room" label="Private room" />
+              <el-option value="Entire home/apt" label="Entire home/apt" />
+            </el-select>
           </el-form-item>
         </el-col>
 
@@ -113,9 +119,9 @@
       </el-form-item>
     
       <div class="w-100 flex justify-center">
-        <el-button type="success" class="w-50" @click="saveStay">
-          Save
-        </el-button>
+        <div class="w-25">
+          <branded-btn @click="saveStay">Save</branded-btn>
+        </div>
       </div>
     </el-form>
   </section>
