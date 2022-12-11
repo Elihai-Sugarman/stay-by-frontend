@@ -55,11 +55,15 @@
   }
 
   & li {
-    padding: 8px 12px;
+    padding: 10px 12px;
     color: $clr7;
 
     &:hover {
       background-color: #F7F7F7;
     }
+  }
+
+  & .divider {
+    margin: 5px 0px;
   }
 }
