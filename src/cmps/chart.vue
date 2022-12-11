@@ -64,8 +64,11 @@ export default {
           legend: {
             // display: false,
             position: 'left',
-            title: {
-              padding: 0
+            // fullSize: true,
+            maxWidth: 300,
+            labels: {
+              boxWidth: 15,
+              boxHeight: 15
             }
           },
         },
