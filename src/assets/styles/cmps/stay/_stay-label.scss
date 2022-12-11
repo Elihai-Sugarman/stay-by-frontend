@@ -6,7 +6,7 @@
     border-bottom: 2px solid transparent;
 
     &:hover, &.clicked-label {
-        border-bottom: 2px solid rgb(193 193 193);
+        border-bottom: 3px solid #ddd1d1;
         color: black;
 
         .label-img {
@@ -16,7 +16,7 @@
 }
 
 .clicked-label {
-    border-bottom: 2px solid black !important;
+    border-bottom: 3px solid black !important;
 }
 
 .label-img {
