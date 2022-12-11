@@ -27,11 +27,13 @@
       border: 1px solid rgb(221, 221, 221);
       border-radius: 12px;
       height: fit-content;
-      margin-bottom: 24px;
+      margin-bottom: 48px;
       h5 {
         font-size: rem(16px);
         font-family: cereal-light;
         margin-top: 1px;
+        margin-bottom: 0;
+        font-weight: unset;
       }
     }
     .trip-details {
@@ -49,6 +51,7 @@
       h5 {
         font-size: rem(16px);
         font-family: cereal-light;
+        font-weight: unset;
       }
     }
     .divider {

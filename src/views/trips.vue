@@ -8,7 +8,17 @@
     </div>
     <el-table :data="tableData" align="left">
 
-      <el-table-column label="Destination" min-width="250" align="left">
+      <!-- <el-table-column label="" min-width="90">
+        <template #default="scope">
+          <router-link :to="('/stay/' + scope.row.stay._id)">
+            <div class="listing-preview">
+              <img :src="scope.row.stay.imgUrl" alt="listing preview">
+            </div>
+          </router-link>
+        </template>
+      </el-table-column> -->
+
+      <el-table-column label="Destination" min-width="350" align="left">
         <template #default="scope">
           <router-link :to="('/stay/' + scope.row.stay._id)">
             <div class="listing-preview">
@@ -19,7 +29,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="Host" min-width="100" align="left">
+      <el-table-column label="Host" min-width="150" align="left">
         <template #default="scope">
           <h3 class="renter-fullname handle-overflow">{{ scope.row.host.fullname }}</h3>
         </template>
@@ -31,9 +41,9 @@
       
       <el-table-column prop="createdAt" min-width="100" :formatter="getFormattedBookedDate"  label="Booked" align="left" sortable/>
       
-      <el-table-column prop="totalPrice" min-width="100" :formatter="formatCurrency" label="Total Price" align="left" sortable />
+      <el-table-column prop="totalPrice" min-width="110" :formatter="formatCurrency" label="Total Price" align="left" sortable />
       
-      <el-table-column label="Status" align="right" min-width="100">
+      <el-table-column label="Status" align="right" min-width="80">
         <template #default="scope">
           <span class="order-status" :class="getStatusClass(scope.row)">
             {{ capitalize(scope.row.status) }}
