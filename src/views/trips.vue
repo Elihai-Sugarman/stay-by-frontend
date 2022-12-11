@@ -33,7 +33,7 @@
       
       <el-table-column prop="totalPrice" min-width="100" :formatter="formatCurrency" label="Total Price" align="left" sortable />
       
-      <el-table-column label="Status" align="right" min-width="100" sortable>
+      <el-table-column label="Status" align="right" min-width="100">
         <template #default="scope">
           <span class="order-status" :class="getStatusClass(scope.row)">
             {{ capitalize(scope.row.status) }}

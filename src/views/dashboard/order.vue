@@ -54,11 +54,11 @@
         </template>
       </el-table-column>
       
-      <el-table-column prop="startDate" min-width="110" :formatter="getFormattedStartDate"  label="Check-in" align="center" sortable/>
+      <el-table-column prop="startDate" min-width="110" :formatter="getFormattedStartDate"  label="Check-in" align="left" sortable/>
 
-      <el-table-column prop="endDate" min-width="110" :formatter="getFormattedEndDate"  label="Checkout" align="center" sortable/>
+      <el-table-column prop="endDate" min-width="110" :formatter="getFormattedEndDate"  label="Checkout" align="left" sortable/>
       
-      <el-table-column prop="createdAt" min-width="110" :formatter="getFormattedBookedDate"  label="Booked" align="center" sortable/>
+      <el-table-column prop="createdAt" min-width="110" :formatter="getFormattedBookedDate"  label="Booked" align="left" sortable/>
       
       <el-table-column prop="stay.name" min-width="250" label="Listing" align="left">
         <template #default="scope">
@@ -66,9 +66,9 @@
         </template>
       </el-table-column>
       
-      <el-table-column prop="totalPrice" min-width="150" :formatter="formatCurrency" label="Total Payout" align="center" sortable />
+      <el-table-column prop="totalPrice" min-width="150" :formatter="formatCurrency" label="Total Payout" align="left" sortable />
       
-      <el-table-column label="Status" align="center" min-width="100" sortable>
+      <el-table-column label="Status" align="left" min-width="100" sortable>
         <template #default="scope">
           <span class="order-status" :class="getStatusClass(scope.row)">
             {{ capitalize(scope.row.status) }}
