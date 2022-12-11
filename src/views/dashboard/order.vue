@@ -58,7 +58,7 @@
 
       <el-table-column prop="endDate" min-width="110" :formatter="getFormattedEndDate"  label="Checkout" align="center" sortable/>
       
-      <el-table-column prop="createdAt" min-width="110" :formatter="getFormattedBookedDate"  label="Booked" align="right" sortable/>
+      <el-table-column prop="createdAt" min-width="110" :formatter="getFormattedBookedDate"  label="Booked" align="center" sortable/>
       
       <el-table-column prop="stay.name" min-width="250" label="Listing" align="left">
         <template #default="scope">
