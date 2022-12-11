@@ -49,9 +49,7 @@
         </div> -->
 
         <div v-if="!isBooked">
-          <branded-btn v-if="loggedinUser" @click="addOrder()"
-            >Confirm</branded-btn
-          >
+          <branded-btn v-if="loggedinUser" @click="addOrder()">Confirm</branded-btn>
           <div v-else>
             <h3 class="login-msg">Please login to book</h3>
             <login-signup :isLoginPage="true" :redirectOnSuccess="false" />
@@ -60,7 +58,7 @@
         <div v-else>
           <icon-cmp />
             <h3 class="success-msg">We look forward to hosting you!</h3> 
-          <branded-btn v-if="loggedinUser" @click="goToHomepage()">Look for more places to stay</branded-btn>
+          <branded-btn v-if="loggedinUser" @click="goToTrips()">Review Trips</branded-btn>
           <div class="success-txt flex">
             <icon-cmp iconType="greenCheck" />
             <h4 class="fs24">Reservation success!</h4>
@@ -193,8 +191,8 @@ export default {
         console.log('final order', order)
       } catch (error) {}
     },
-    goToHomepage() {
-      this.$router.push('/stay')
+    goToTrips() {
+      this.$router.push('/trip')
     },
     formattedPrice(price) {
       return new Intl.NumberFormat().format(price)
