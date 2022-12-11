@@ -31,6 +31,8 @@
         font-family: cereal-medium;
       }
       .chart {
+        padding: 0;
+        padding-block: 5px;
         canvas {
           height: 180px;
           // width: 300px;
