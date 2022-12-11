@@ -39,10 +39,18 @@ export default {
         plugins: {
           legend: {
             display: false,
+            font: {
+              size: 24
+            }
           },
         },
         scales: {
           x: {
+            ticks: {
+              font: {
+                size: 16
+              }
+            },
             grid: {
               display: false,
               drawBorder: false,
@@ -67,8 +75,13 @@ export default {
             // fullSize: true,
             maxWidth: 300,
             labels: {
-              boxWidth: 15,
-              boxHeight: 15
+              // boxWidth: 20,
+              // boxHeight: 20,
+              font: {
+                size: 16
+              },
+              usePointStyle: true,
+              pointStyle: 'rectRounded'
             }
           },
         },
