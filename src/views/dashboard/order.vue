@@ -54,11 +54,11 @@
         </template>
       </el-table-column>
       
-      <el-table-column prop="startDate" min-width="110" :formatter="getFormattedStartDate"  label="Check-in" align="center" sortable/>
+      <el-table-column prop="startDate" min-width="110" :formatter="getFormattedStartDate"  label="Check-in" align="left" sortable/>
 
-      <el-table-column prop="endDate" min-width="110" :formatter="getFormattedEndDate"  label="Checkout" align="center" sortable/>
+      <el-table-column prop="endDate" min-width="110" :formatter="getFormattedEndDate"  label="Checkout" align="left" sortable/>
       
-      <el-table-column prop="createdAt" min-width="110" :formatter="getFormattedBookedDate"  label="Booked" align="center" sortable/>
+      <el-table-column prop="createdAt" min-width="110" :formatter="getFormattedBookedDate"  label="Booked" align="left" sortable/>
       
       <el-table-column prop="stay.name" min-width="250" label="Listing" align="left">
         <template #default="scope">
@@ -66,9 +66,9 @@
         </template>
       </el-table-column>
       
-      <el-table-column prop="totalPrice" min-width="150" :formatter="formatCurrency" label="Total Payout" align="center" sortable />
+      <el-table-column prop="totalPrice" min-width="150" :formatter="formatCurrency" label="Total Payout" align="left" sortable />
       
-      <el-table-column label="Status" align="center" min-width="100" sortable>
+      <el-table-column label="Status" align="left" min-width="100" sortable>
         <template #default="scope">
           <span class="order-status" :class="getStatusClass(scope.row)">
             {{ capitalize(scope.row.status) }}
@@ -80,10 +80,14 @@
         <template #default="scope">
           <div class="status-btns">
             <el-button
+              type="success"
+              plain
               class="approve-btn status-btn"
               @click="handleOrder(scope.row, 'approve')"
               :class="{'disabled-btn': scope.row.status=='approved'}">Approve</el-button>
             <el-button
+              plain
+              type="danger"
               class="reject-btn status-btn"
               @click="handleOrder(scope.row, 'reject')"
               :class="{'disabled-btn': scope.row.status=='rejected'}">Reject</el-button>

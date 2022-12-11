@@ -3,8 +3,8 @@
     <stay-preview v-for="stay in stays" :stay="stay" :key="stay._id" />
     <el-skeleton class="stay-preview" v-for="n in 30" :loading="isLoading" animated>
       <template #template>
-        <div>
-          <el-skeleton-item variant="rect" style="height: 250px;" />
+        <div style="border-radius: 5%;">
+          <el-skeleton-item variant="rect" style="height: 250px; border-radius: 5%;" />
           <div class="flex justify-between" style="margin-top: 10px;">
             <el-skeleton-item variant="text" style="width: 60%;" />
             <el-skeleton-item variant="text" style="width: 20%;" />
@@ -33,10 +33,10 @@ export default {
     stayPreview
   },
   created() {
-    // window.addEventListener('scroll', this.onScrollDown, true)
+    // window.addEventListener('scroll', this.onScrollDown)
   },
   unmounted() {
-    // window.removeEventListener('scroll', this.onScrollUp, true)
+    // window.removeEventListener('scroll', this.onScrollUp)
   },
   computed: {
     isLoading() {
