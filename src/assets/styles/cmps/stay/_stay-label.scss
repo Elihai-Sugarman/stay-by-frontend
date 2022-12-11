@@ -6,7 +6,7 @@
     border-bottom: 2px solid transparent;
 
     &:hover, &.clicked-label {
-        border-bottom: 2px solid $clr11;
+        border-bottom: 2px solid rgb(193 193 193);
         color: black;
 
         .label-img {
