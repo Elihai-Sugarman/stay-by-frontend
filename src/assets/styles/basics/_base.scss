@@ -2,11 +2,6 @@
     box-sizing: border-box;
 }
 
-::selection {
-    background-color: $clr1;
-    color: $clr6;
-}
-
 html {
     font-family: cereal, sans-serif;
     line-height: 1.6;
