@@ -75,6 +75,9 @@ export default {
         case 'rejected':
           statusClass = 'rejected'
           break;
+        case 'completed':
+          statusClass = 'completed'
+          break;
       }
       return {
         [statusClass]: true
