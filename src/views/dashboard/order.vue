@@ -80,10 +80,14 @@
         <template #default="scope">
           <div class="status-btns">
             <el-button
+              type="success"
+              plain
               class="approve-btn status-btn"
               @click="handleOrder(scope.row, 'approve')"
               :class="{'disabled-btn': scope.row.status=='approved'}">Approve</el-button>
             <el-button
+              plain
+              type="danger"
               class="reject-btn status-btn"
               @click="handleOrder(scope.row, 'reject')"
               :class="{'disabled-btn': scope.row.status=='rejected'}">Reject</el-button>
