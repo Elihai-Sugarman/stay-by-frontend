@@ -197,9 +197,7 @@
                       </span>
                       <span>
                         ${{
-                          new Intl.NumberFormat().format(
-                            order.basePrice
-                          )
+                          new Intl.NumberFormat().format(order.basePrice)
                         }}
                       </span>
                     </div>
@@ -448,7 +446,7 @@ export default {
       this.setServiceFee()
     },
     setBasePrice() {
-      this.order.basePrice = this.stay.price
+      this.order.basePrice = (this.order.checkInDate && this.order.checkOutDate) ? this.stay.price * this.totalNights : this.stay.price
     },
     setServiceFee() {
       this.order.serviceFee = this.getServiceFee
