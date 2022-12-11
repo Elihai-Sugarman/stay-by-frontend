@@ -8,6 +8,7 @@
     <v-date-picker
       v-model="checkDates"
       :columns="columnsNum"
+      color="gray"
       is-range
       is-expanded
       :masks="masks"
