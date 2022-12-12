@@ -58,7 +58,8 @@ export default {
       ElNotification({
         title: 'Reservation',
         message: 'New reservation received from ' + renter.fullname,
-        type: 'info'
+        type: 'success',
+        duration: 0
       })
     },
     notifyStatus({ status, host, stay }) {
@@ -66,7 +67,8 @@ export default {
       ElNotification({
         title: 'Trip status',
         message: `${host.fullname} ${status} your trip at ${stay.name}`,
-        type
+        type,
+        duration: 0
       })
     },
   }
