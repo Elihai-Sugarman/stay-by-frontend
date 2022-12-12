@@ -220,6 +220,10 @@
     margin: 0;
     & > *:not(.divider) {
       padding: 48px 0;
+
+      @media screen and (max-width: 800px) {
+        margin-bottom: 50px;
+      }
     }
   }
 
