@@ -12,7 +12,12 @@
 <script>
 import { ElNotification } from 'element-plus'
 import { userService } from './services/user.service'
-import { socketService, SOCKET_EVENT_ORDER_ADD, SOCKET_EVENT_ORDER_STATUS } from './services/socket.service'
+import {
+  socketService,
+  SOCKET_EVENT_ORDER_ADD,
+  SOCKET_EVENT_ORDER_STATUS,
+  SOCKET_EVENT_USER_UPDATED
+} from './services/socket.service'
 import { store } from './store/store'
 
 import appHeader from './cmps/app-header.vue'
@@ -30,12 +35,18 @@ export default {
   created() {
     console.log('Vue App created')
     const user = userService.getLoggedinUser()
-    if (user) store.commit({ type: 'setLoggedinUser', user })
+    if (user) {
+      // Get most updated user
+      userService.getById(user._id)
+        .then(updatedUser => store.commit({ type: 'setLoggedinUser', user: updatedUser }))
+        .catch(() => console.log('Failed to load updated user!'))
+    }
 
     // add listener in delay
     setTimeout(() => {
       socketService.on(SOCKET_EVENT_ORDER_ADD, this.notifyHost)
       socketService.on(SOCKET_EVENT_ORDER_STATUS, this.notifyStatus)
+      socketService.on(SOCKET_EVENT_USER_UPDATED, user => store.commit({ type: 'setLoggedinUser', user }))
     }, 1000)
   },
   unmounted() {

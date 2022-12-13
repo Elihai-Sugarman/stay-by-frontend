@@ -11,9 +11,11 @@ export const SOCKET_EVENT_ORDER_ADD = 'order-added'
 export const SOCKET_EMIT_ORDER_STATUS = 'order-status'
 export const SOCKET_EVENT_ORDER_STATUS = 'order-status-changed'
 
+export const SOCKET_EMIT_USER_UPDATE = 'user-update'
+export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
+
 export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
 export const SOCKET_EMIT_USER_WATCH = 'user-watch'
-export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
 export const SOCKET_EVENT_REVIEW_ADDED = 'review-added'
 export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
 
@@ -98,9 +100,6 @@ function createDummySocketService() {
     // Functions for easy testing of pushed data
     testChatMsg() {
       this.emit(SOCKET_EVENT_ADD_MSG, { from: 'Someone', txt: 'Aha it worked!' })
-    },
-    testUserUpdate() {
-      this.emit(SOCKET_EVENT_USER_UPDATED, {...userService.getLoggedinUser(), score: 555})
     },
   }
   window.listenersMap = listenersMap;

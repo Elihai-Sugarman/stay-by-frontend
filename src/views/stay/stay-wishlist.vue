@@ -4,7 +4,6 @@
     v-for="stay in likedStays"
     :key="stay._id"
     :stay="stay"
-    @disliked="removeStay"
     />
   </ul>
   <!-- <div class="empty-wishlist" v-else>
@@ -32,13 +31,14 @@ export default {
       return this.$store.getters.loggedinUser
     }
   },
+  watch: {
+    user() {
+      this.loadStays()
+    }
+  },
   methods: {
     async loadStays() {
       this.likedStays = await stayService.getLikedStays()
-    },
-    removeStay(stayId) {
-      const idx = this.likedStays.findIndex(stay => stay._id === stayId)
-      this.likedStays.splice(idx, 1)
     }
   }
 }

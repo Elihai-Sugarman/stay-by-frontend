@@ -2,7 +2,7 @@ import { userService } from '../services/user.service'
 import {
     socketService,
     SOCKET_EMIT_USER_WATCH,
-    SOCKET_EVENT_USER_UPDATED,
+    SOCKET_EMIT_USER_UPDATE,
 } from '../services/socket.service'
 
 // var localLoggedinUser = null
@@ -114,6 +114,8 @@ export const userStore = {
             try {
                 user = await userService.update(user)
                 commit({ type: 'setLoggedinUser', user })
+                socketService.emit(SOCKET_EMIT_USER_UPDATE, user)
+                userService.saveLocalUser(user)
             } catch (err) {
                 console.log('userStore: Error in updateUser', err)
                 throw err
