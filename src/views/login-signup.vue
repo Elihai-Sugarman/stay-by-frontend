@@ -24,7 +24,7 @@
 
         <el-divider>or</el-divider>
 
-        <el-button @click="handleDemoLogin" v-if="isLoginPage" class="demo-btn" :loading="isLoading">Log in as Moshe</el-button>
+        <el-button @click="handleDemoLogin" v-if="isLoginPage" class="demo-btn" :loading="isLoading">Demo login</el-button>
         
         <router-link to="/login" v-if="!isLoginPage">
           <el-button class="w-100">Log in</el-button>
@@ -50,6 +50,7 @@ import { ElMessage } from 'element-plus'
 import { GoogleLogin } from 'vue3-google-login'
 const GOOGLE_CLIENT_ID = ''
 
+import { socketService } from '../services/socket.service'
 import imgUploader from '../cmps/img-uploader.vue'
 
 export default {
@@ -86,10 +87,18 @@ export default {
   methods: {
     async handleSubmit() {
       this.isLoading = true
-      const action = this.isLoginPage ? this.doLogin : this.doSignup
-      await action()
+      try {
+        const action = this.isLoginPage ? this.doLogin : this.doSignup
+        const user = await action()
 
-      this.isLoading = false
+        socketService.login(user._id)
+        this.redirectOnSuccess && this.$router.push('/')
+      } catch (err) {
+        console.log('err', err)
+        ElMessage.error(err.response.data.err)
+      } finally {
+        this.isLoading = false
+      }
     },
     handleGoogleLogin(res) {
       console.log('res', res)
@@ -105,23 +114,11 @@ export default {
 
       this.handleSubmit()
     },
-    async doLogin() {
-      try {
-        await this.$store.dispatch({ type: 'login', userCred: this.credentials })
-        this.redirectOnSuccess && this.$router.push('/')
-      } catch (err) {
-        console.log(err)
-        ElMessage.error('invalid username or password')
-      }
+    doLogin() {
+      return this.$store.dispatch({ type: 'login', userCred: this.credentials })
     },
-    async doSignup() {
-      try {
-        await this.$store.dispatch({ type: 'signup', userCred: this.credentials })
-        this.redirectOnSuccess && this.$router.push('/')
-      } catch (err) {
-        console.log(err)
-        ElMessage.error('failed to signup')
-      }
+    doSignup() {
+      return this.$store.dispatch({ type: 'signup', userCred: this.credentials })
     }
   }
 }
