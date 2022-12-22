@@ -2,7 +2,7 @@
   <el-form class="search-form" :model="form">
     <div class="container" :class="activeBgColor" v-outside-click="setActive">
       <div
-        class="form-control form-box"
+        class="form-control"
         :class="getActiveClass('where')"
         @click="() => {
           setActive('where')
@@ -49,7 +49,7 @@
       <span class="splitter"></span>
 
       <div
-        class="form-control submit form-box"
+        class="form-control submit"
         :class="getActiveClass('who')"
         @click="setActive('who')">
         <div>

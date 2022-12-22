@@ -1,6 +1,5 @@
 .locations-modal {
     position: absolute;
-    display: flex;
     gap: 10px;
     top: 100%;
     left: 0;
@@ -13,8 +12,17 @@
     cursor: auto;
     min-width: 100%;
     min-height: 400px;
+    z-index: 10;
+
+    @media (min-width: 800px) {
+        display: flex;
+    }
 
     & .region-container {
+        @media (max-width: 800px) {
+            display: none;
+        }
+
         padding: 16px 8px 24px;
 
         & .title {
