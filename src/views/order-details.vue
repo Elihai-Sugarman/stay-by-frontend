@@ -181,7 +181,6 @@ export default {
           price: this.stay.price,
           imgUrl: this.stay.imgUrls[0],
         },
-        msgs: [],
         status: 'pending', // pending, approved or rejected
       }
 
