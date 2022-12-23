@@ -30,12 +30,16 @@ export function getActionAddStayMsg(stayId) {
 export const stayStore = {
     state: {
         stays: [],
+        totalStays: 0,
         filterBy: null,
         isLoading: false
     },
     getters: {
         stays(state) {
             return state.stays
+        },
+        totalStays(state) {
+            return state.totalStays
         },
         filterBy(state) {
             return state.filterBy
@@ -48,8 +52,9 @@ export const stayStore = {
         setIsLoading(state, { isLoading }) {
             state.isLoading = isLoading
         },
-        setStays(state, { stays }) {
+        setStays(state, { stays, totalStays }) {
             state.stays = stays
+            state.totalStays = totalStays
         },
         addMoreStays(state, { stays }) {
             state.stays.push(...stays)
@@ -102,8 +107,8 @@ export const stayStore = {
             context.commit({ type: 'setIsLoading', isLoading: true })
             try {
                 let filterBy = context.state.filterBy || {}
-                const stays = await stayService.query(filterBy)
-                context.commit({ type: 'setStays', stays })
+                const response = await stayService.query(filterBy)
+                context.commit({ type: 'setStays', ...response })
             } catch (err) {
                 console.log('stayStore: Error in loadStays', err)
                 throw err
@@ -112,10 +117,13 @@ export const stayStore = {
             }
         },
         async loadMoreStays(context, { skip }) {
+            const { stays, totalStays } = context.getters
+            if (stays.length >= totalStays) return
+
             context.commit({ type: 'setIsLoading', isLoading: true })
             try {
                 let filterBy = context.state.filterBy || {}
-                const stays = await stayService.query({ ...filterBy, skip })
+                const { stays } = await stayService.query({ ...filterBy, skip })
                 context.commit({ type: 'addMoreStays', stays })
             } catch (err) {
                 console.log('stayStore: Error in loadMoreStays', err)

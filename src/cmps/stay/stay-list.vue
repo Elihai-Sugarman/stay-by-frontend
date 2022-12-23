@@ -41,10 +41,18 @@ export default {
   computed: {
     isLoading() {
       return this.$store.getters.isStaysLoading
+    },
+    staysCount() {
+      return this.$store.getters.stays.length
+    },
+    totalStays() {
+      return this.$store.getters.totalStays
     }
   },
   methods: {
     onScrollDown() {
+      if (this.staysCount >= this.totalStays) return
+
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         this.loadMoreStays()
       }

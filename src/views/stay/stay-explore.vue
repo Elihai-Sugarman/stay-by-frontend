@@ -1,6 +1,6 @@
 <template>
     <div class="stays-count">
-      <h4>Found {{ stays.length }} homes for you!</h4>
+      <h4>Found {{ totalStays }} homes for you!</h4>
     </div>
     <div class="container home">
       <stay-list :stays="stays" />
@@ -21,6 +21,9 @@
       },
       stays() {
         return this.$store.getters.stays
+      },
+      totalStays() {
+        return this.$store.getters.totalStays
       },
       queryParams() {
         return this.$route.query
