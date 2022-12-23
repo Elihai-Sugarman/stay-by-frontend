@@ -1,13 +1,14 @@
 <template>
-  <el-form class="search-form" :model="form">
-    <div class="container" :class="activeBgColor" v-outside-click="setActive">
+  <el-form class="search-form" :model="form" v-if="open">
+    <div class="container" :class="activeBgColor" v-outside-click="setActive" @mouseleave="this.hoverInput = null">
       <div
         class="form-control"
         :class="getActiveClass('where')"
         @click="() => {
           setActive('where')
           this.hideRegion = false
-        }">
+        }"
+        @mouseenter="this.hoverInput = 'where'">
         <div class="title">Where</div>
         <el-input
           v-model="form.where"
@@ -26,32 +27,35 @@
         />
       </div>
 
-      <span class="splitter"></span>
+      <span class="splitter" :class="getActiveSplitterClass('where', 'checkIn')"></span>
 
       <div
         class="form-control"
         :class="getActiveClass('checkIn')"
-        @click="setActive('checkIn')">
+        @click="setActive('checkIn')"
+        @mouseenter="this.hoverInput = 'checkIn'">
         <div class="title">Check in</div>
         <span class="subtitle">{{ checkInLabel }}</span>
       </div>
       
-      <span class="splitter"></span>
+      <span class="splitter" :class="getActiveSplitterClass('checkIn', 'checkOut')"></span>
 
       <div
         class="form-control"
         :class="getActiveClass('checkOut')"
-        @click="setActive('checkOut')">
+        @click="setActive('checkOut')"
+        @mouseenter="this.hoverInput = 'checkOut'">
         <div class="title">Check out</div>
         <span class="subtitle">{{ checkoutLabel }}</span>
       </div>
 
-      <span class="splitter"></span>
+      <span class="splitter" :class="getActiveSplitterClass('checkOut', 'who')"></span>
 
       <div
         class="form-control submit"
         :class="getActiveClass('who')"
-        @click="setActive('who')">
+        @click="setActive('who')"
+        @mouseenter="this.hoverInput = 'who'">
         <div>
           <div class="title">Who</div>
           <span class="subtitle">{{ guestsLabel }}</span>
@@ -73,7 +77,6 @@
       <dates-modal
         :open="(getActiveClass('checkIn').active || getActiveClass('checkOut').active)"
         @change="handleDatesChange"
-        @close="setActive"
       />
     </div>
   </el-form>
@@ -104,6 +107,7 @@ const initialForm = {
 }
 
 export default {
+  props: { open: Boolean },
   components: {
     guestModal,
     datesModal,
@@ -114,6 +118,7 @@ export default {
     return {
       form: { ...initialForm },
       activeInput: { ...initialActive },
+      hoverInput: null,
       locations: [],
       hideRegion: false,
       resetSearchListener: null,
@@ -179,6 +184,11 @@ export default {
     },
     getActiveClass(type) {
       return { active: this.activeInput[type] }
+    },
+    getActiveSplitterClass(s1, s2) {
+      return {
+        active: this.activeInput[s1] || this.activeInput[s2] || [s1, s2].includes(this.hoverInput)
+      }
     }
   },
   computed: {

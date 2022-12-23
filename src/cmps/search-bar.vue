@@ -26,9 +26,7 @@
     </Transition>
 
     <Transition name="fade-in">
-      <KeepAlive>
-        <search-form v-if="open" @searched="handleSearch" @close="$emit('close')" />
-      </KeepAlive>
+      <search-form :open="open" @searched="handleSearch" @close="$emit('close')" />
     </Transition>
   </section>
 </template>

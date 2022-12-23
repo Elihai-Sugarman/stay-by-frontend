@@ -103,9 +103,13 @@
 
 .splitter {
   flex: 0 0 1px;
-  height: 24px;
+  height: 32px;
   width: 1px;
   background-color: $clr12;
+
+  &.active {
+    visibility: hidden;
+  }
 }
 
 .slide-down-enter-active,
