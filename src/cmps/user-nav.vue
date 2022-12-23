@@ -34,20 +34,19 @@
     </template>
 
     <button>
-      <icon iconType="bars" />
-      <icon iconType="avatar" class="profile-icon" v-if="!user" />
+      <icon-cmp iconType="bars" />
+      <icon-cmp iconType="avatar" class="profile-icon" v-if="!user" />
       <img :src="user.imgUrl" alt="user pic" class="profile-icon" v-else />
     </button>
   </section>
 </template>
 
 <script>
-import icon from '../cmps/icon-cmp.vue'
+import { socketService } from '../services/socket.service'
 
 export default {
   props: { open: Boolean },
   emits: ['click'],
-  components: { icon },
   computed: {
     user() {
       return this.$store.getters.loggedinUser
@@ -56,8 +55,8 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('logout')
-      // this.$router.push('/stay')
-      location.reload()
+      this.$router.push('/')
+      socketService.logout()
     }
   }
 }
