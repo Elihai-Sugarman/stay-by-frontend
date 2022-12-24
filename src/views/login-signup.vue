@@ -9,23 +9,37 @@
         <el-form-item label="Fullname" class="w-100" required v-if="!isLoginPage">
           <el-input v-model="credentials.fullname" />
         </el-form-item>
-  
+
         <el-form-item label="Username" class="w-100" required>
           <el-input v-model="credentials.username" />
         </el-form-item>
-  
+
         <el-form-item label="Password" class="w-100" required>
           <el-input type="password" v-model="credentials.password" />
         </el-form-item>
-    
+
+        <el-form-item class="w-100" v-if="!isLoginPage" v-loading="isUploading">
+          <el-upload class="w-100" ref="upload"
+            list-type="picture"
+            :http-request="handleImgUpload"
+            :on-exceed="handleUploadExceed"
+            :on-remove="clearUploadedImgs"
+            :limit="1">
+            <template #trigger>
+              <el-button type="primary" :loading="isUploading">Upload a profile photo</el-button>
+            </template>
+          </el-upload>
+        </el-form-item>
+
         <branded-btn @click="handleSubmit">
           <el-button class="submit-btn" :loading="isLoading">{{ submitBtnText }}</el-button>
         </branded-btn>
 
         <el-divider>or</el-divider>
 
-        <el-button @click="handleDemoLogin" v-if="isLoginPage" class="demo-btn" :loading="isLoading">Demo login</el-button>
-        
+        <el-button @click="handleDemoLogin" v-if="isLoginPage" class="demo-btn" :loading="isLoading">Demo
+          login</el-button>
+
         <router-link to="/login" v-if="!isLoginPage">
           <el-button class="w-100">Log in</el-button>
         </router-link>
@@ -46,11 +60,12 @@
 </template>
 
 <script>
-import { ElMessage } from 'element-plus'
+import { ElMessage, genFileId } from 'element-plus'
 import { GoogleLogin } from 'vue3-google-login'
 const GOOGLE_CLIENT_ID = ''
 
 import { socketService } from '../services/socket.service'
+import { uploadService } from '../services/upload.service'
 import imgUploader from '../cmps/img-uploader.vue'
 
 export default {
@@ -71,9 +86,11 @@ export default {
       credentials: {
         username: '',
         password: '',
-        fullname: ''
+        fullname: '',
+        imgUrl: ''
       },
-      isLoading: false
+      isLoading: false,
+      isUploading: false
     }
   },
   computed: {
@@ -85,6 +102,28 @@ export default {
     }
   },
   methods: {
+    handleImgUpload({ file }) {
+      this.isUploading = true
+
+      return uploadService.uploadImg(file)
+        .then(({ url }) => {
+          // save url to imgUrl
+          this.credentials.imgUrl = url
+        })
+        .finally(() => this.isUploading = false)
+    },
+    clearUploadedImgs() {
+      this.$refs.upload?.clearFiles()
+      this.credentials.imgUrl = ''
+    },
+    handleUploadExceed(files) {
+      this.clearUploadedImgs()
+
+      const file = files[0]
+      file.uid = genFileId()
+      this.$refs.upload?.handleStart(file)
+      this.$refs.upload?.submit()
+    },
     async handleSubmit() {
       this.isLoading = true
       try {
