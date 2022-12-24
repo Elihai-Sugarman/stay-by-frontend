@@ -1,6 +1,5 @@
 .locations-modal {
     position: absolute;
-    gap: 10px;
     top: 100%;
     left: 0;
     width: max-content;
@@ -13,6 +12,10 @@
     min-width: 100%;
     min-height: 400px;
     z-index: 10;
+
+    &.modal-gap {
+        gap: 10px;
+    }
 
     @media (min-width: 800px) {
         display: flex;
@@ -74,7 +77,8 @@
     & .location-list {
         padding-block-start: 8px;
         max-height: 425px;
-        overflow-y: scroll;
+        overflow-y: auto;
+        width: 100%;
 
         &::-webkit-scrollbar,
         &::-webkit-scrollbar-thumb {
