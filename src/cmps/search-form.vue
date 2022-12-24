@@ -84,6 +84,8 @@
 
 <script>
 import moment from 'moment'
+import { debounce } from 'lodash'
+
 import guestModal from './guest-modal.vue'
 import datesModal from './dates-modal.vue'
 import locationsModal from './locations-modal.vue'
@@ -123,13 +125,14 @@ export default {
       hideRegion: false,
       resetSearchListener: null,
       searchFocusListener: null,
-      isLocationLoading: false
+      isLocationLoading: false,
+      fetchSuggestedLocations: () => {}
     }
   },
   created() {
     this.resetSearchListener = eventBus.on('resetSearch', () => this.form = { ...initialForm })
     this.searchFocusListener = eventBus.on('setSearchFocus', type => this.setActive(type))
-    this.fetchSuggestedLocations()
+    this.fetchSuggestedLocations = debounce(this.doFetchLocations, 500)
   },
   unmounted() {
     this.resetSearchListener && this.resetSearchListener()
@@ -162,7 +165,7 @@ export default {
         checkOut: dates.checkOut
       }})
     },
-    async fetchSuggestedLocations(queryString = '') {
+    async doFetchLocations(queryString = '') {
       this.hideRegion = true
       this.isLocationLoading = true
       const locations = await stayService.getLocations(queryString)
