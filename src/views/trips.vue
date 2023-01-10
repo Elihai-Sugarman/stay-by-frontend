@@ -8,16 +8,6 @@
     </div>
     <el-table :data="tableData" align="left">
 
-      <!-- <el-table-column label="" min-width="90">
-        <template #default="scope">
-          <router-link :to="('/stay/' + scope.row.stay._id)">
-            <div class="listing-preview">
-              <img :src="scope.row.stay.imgUrl" alt="listing preview">
-            </div>
-          </router-link>
-        </template>
-      </el-table-column> -->
-
       <el-table-column label="Destination" min-width="350" align="left">
         <template #default="scope">
           <router-link :to="('/stay/' + scope.row.stay._id)">
@@ -58,7 +48,7 @@
 <script>
 import moment from 'moment'
 import { capitalize } from 'lodash'
-import { utilService } from '../services/util.service'
+
 import { orderService } from '../services/order.service'
 import { socketService, SOCKET_EVENT_ORDER_STATUS } from '../services/socket.service'
 
@@ -100,21 +90,11 @@ export default {
       const data = (await orderService.getRenterOrders())
       this.tableData = data.reverse()
     },
-    formatLocation({ address }) {
-      return `${address.city}, ${address.country}`
-    },
     formatCurrency({ totalPrice }) {
       return new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'
       }).format(totalPrice)
-    },
-    handleOrder(order, command) {
-      // if (order.status !== 'pending') return
-      order.status = command === 'approve' ? 'approved' : 'rejected'
-      this.colorClass = order.status === 'approved' ? 'color-green' : 'color-red'
-      const newOrder = utilService.deepCopy(order)
-      this.$store.dispatch({type: 'updateOrder', order: newOrder})
     },
     changeTripStatus(order) {
       const orderToChange = this.tableData.find(({ _id }) => _id === order._id)

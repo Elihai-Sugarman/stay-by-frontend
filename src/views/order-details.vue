@@ -121,7 +121,6 @@ import moment from 'moment'
 import ratingReview from '../cmps/stay/rating-review-cmp.vue'
 import loginSignup from '../views/login-signup.vue'
 import { getActionAddOrder } from '../store/order.store'
-import { utilService } from '../services/util.service'
 import { stayService } from '../services/stay.service'
 
 export default {

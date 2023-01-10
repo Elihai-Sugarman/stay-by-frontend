@@ -31,12 +31,6 @@
           <chart v-if="tableData.length" :data="reservationsPerListingData" chartType="pie" />
         </div>
       </div>
-      <!-- <div class="info-container">
-        <h3 class="info-title">Current reservation status</h3>
-        <div class="chart">
-          <chart v-if="tableData.length" :data="reservationStatusData" chartType="doughnut" />
-        </div>
-      </div> -->
     </div>
 
     <div class="listing-title">
@@ -109,6 +103,7 @@ import { orderService } from '../../services/order.service'
 import { socketService, SOCKET_EVENT_ORDER_ADD, SOCKET_EMIT_ORDER_STATUS } from '../../services/socket.service'
 
 export default {
+  components: { chart },
   data() {
     return {
       tableData: []
@@ -207,9 +202,6 @@ export default {
       const data = await orderService.getHostOrders()
       this.tableData = data.reverse()
     },
-    formatLocation({ address }) {
-      return `${address.city}, ${address.country}`
-    },
     formatCurrency({ totalPrice }) {
       return new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -234,9 +226,6 @@ export default {
     getFormattedBookedDate({ createdAt }) {
       return moment(createdAt).format('MM/DD/YYYY')
     },
-  },
-  components: {
-    chart
   }
 }
 </script>
