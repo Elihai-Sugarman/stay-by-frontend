@@ -60,6 +60,11 @@
       overflow: hidden;
       min-width: 80px;
       cursor: inherit;
+
+      @media screen and (max-width: 800px){
+        min-width: unset;
+      }
+
     }
     & button.guests-btn {
       color: $clr8;
