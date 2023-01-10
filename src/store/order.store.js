@@ -1,5 +1,6 @@
 import { orderService } from '../services/order.service'
 import { socketService, SOCKET_EMIT_ORDER_ADD } from '../services/socket.service'
+
 export function getActionRemoveOrder(orderId) {
     return {
         type: 'removeOrder',
@@ -22,7 +23,6 @@ export function getActionUpdateOrder(order) {
 export const orderStore = {
     state: {
         orders: [],
-        allOrders: [],
         filterBy: null,
     },
     getters: {

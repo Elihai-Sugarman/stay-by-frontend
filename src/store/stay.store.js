@@ -1,5 +1,4 @@
 import { stayService } from '../services/stay.service'
-// import { stayService } from '../services/stay.service.local'
 
 export function getActionRemoveStay(stayId) {
     return {
@@ -17,13 +16,6 @@ export function getActionUpdateStay(stay) {
     return {
         type: 'updateStay',
         stay,
-    }
-}
-export function getActionAddStayMsg(stayId) {
-    return {
-        type: 'addStayMsg',
-        stayId,
-        txt: 'Stam txt',
     }
 }
 
@@ -68,11 +60,6 @@ export const stayStore = {
         },
         removeStay(state, { stayId }) {
             state.stays = state.stays.filter((stay) => stay._id !== stayId)
-        },
-        addStayMsg(state, { stayId, msg }) {
-            const stay = state.stays.find((stay) => stay._id === stayId)
-            if (!stay.msgs) stay.msgs = []
-            stay.msgs.push(msg)
         },
         setFilterBy(state, { filterBy }) {
             if (!filterBy) state.filterBy = null
@@ -140,15 +127,6 @@ export const stayStore = {
                 console.log('stayStore: Error in removeStay', err)
                 throw err
             }
-        },
-        async addStayMsg(context, { stayId, txt }) {
-            try {
-                const msg = await stayService.addStayMsg(stayId, txt)
-                context.commit({ type: 'addStayMsg', stayId, msg })
-            } catch (err) {
-                console.log('stayStore: Error in addStayMsg', err)
-                throw err
-            }
-        },
-    },
+        }
+    }
 }
