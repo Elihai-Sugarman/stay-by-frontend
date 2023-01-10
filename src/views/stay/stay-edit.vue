@@ -77,7 +77,7 @@
           </el-form-item>
         </el-col>
 
-        <el-col :offset="1" :span="7">
+        <el-col :offset="1" :xs="10" :sm="7">
           <el-form-item label="Property type">
             <el-select
               placeholder="Select room type"
@@ -89,7 +89,7 @@
           </el-form-item>
         </el-col>
 
-        <el-col :offset="1" :span="7">
+        <el-col :offset="1" :xs="4" :sm="7">
           <el-form-item label="Price">
             <el-input type="number" v-model="stayToEdit.price" />
           </el-form-item>
