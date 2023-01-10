@@ -1,6 +1,7 @@
 export const uploadService = {
   uploadImg
 }
+
 function uploadImg(file) {
   const CLOUD_NAME = "dgczimxpo"
   const UPLOAD_PRESET = "mister-toy"

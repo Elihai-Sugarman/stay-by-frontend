@@ -18,13 +18,6 @@ export function getActionUpdateOrder(order) {
         order,
     }
 }
-export function getActionAddOrderMsg(orderId) {
-    return {
-        type: 'addOrderMsg',
-        orderId,
-        txt: 'Stam txt',
-    }
-}
 
 export const orderStore = {
     state: {
@@ -98,15 +91,6 @@ export const orderStore = {
                 console.log('orderStore: Error in removeOrder', err)
                 throw err
             }
-        },
-        async addOrderMsg(context, { orderId, txt }) {
-            try {
-                const msg = await orderService.addOrderMsg(orderId, txt)
-                context.commit({ type: 'addOrderMsg', orderId, msg })
-            } catch (err) {
-                console.log('orderStore: Error in addOrderMsg', err)
-                throw err
-            }
-        },
-    },
+        }
+    }
 }
