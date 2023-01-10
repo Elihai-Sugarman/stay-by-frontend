@@ -11,6 +11,7 @@
       color="gray"
       is-range
       is-expanded
+      :min-date='new Date()'
       :masks="masks"
     />
   </section>
