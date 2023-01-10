@@ -133,6 +133,8 @@ export default {
     this.resetSearchListener = eventBus.on('resetSearch', () => this.form = { ...initialForm })
     this.searchFocusListener = eventBus.on('setSearchFocus', type => setTimeout(() => this.setActive(type), 1)) // for the focus
     this.fetchSuggestedLocations = debounce(this.doFetchLocations, 500)
+    this.doFetchLocations()
+      .then(() => this.hideRegion = false) // initial load all locations
   },
   unmounted() {
     this.resetSearchListener && this.resetSearchListener()
