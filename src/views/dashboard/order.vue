@@ -1,7 +1,7 @@
 <template>
   <section class="dashboard-listings">
 
-    <div class="charts flex justify-between">
+    <div class="charts">
       <div class="info-container">
         <h3 class="info-title avg-payout">Revenue / month</h3>
         <div class="chart">

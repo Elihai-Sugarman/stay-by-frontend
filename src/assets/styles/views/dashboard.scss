@@ -16,6 +16,18 @@
     }
   }
   .charts {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 5px;
+    
+    @media (min-width: 800px) {
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+
+    @media (min-width: 1250px) {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+
     gap: 16px;
     margin-bottom: 48px;
     font-size: rem(18px);
