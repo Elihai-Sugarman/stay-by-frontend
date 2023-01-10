@@ -1,6 +1,5 @@
 import { orderService } from '../services/order.service'
 import { socketService, SOCKET_EMIT_ORDER_ADD } from '../services/socket.service'
-import { ordersArray } from '../../temp-data/order-demo.js'
 export function getActionRemoveOrder(orderId) {
     return {
         type: 'removeOrder',

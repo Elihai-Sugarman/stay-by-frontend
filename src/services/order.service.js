@@ -1,7 +1,6 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
-import { staysArray } from '../../temp-data/stay-demo.js'
 import { httpService } from './http.service'
 
 const STORAGE_KEY = 'order'

@@ -1,5 +1,4 @@
 // import { storageService } from './async-storage.service'
-import { usersArray } from '../../temp-data/user-demo'
 import { httpService } from './http.service'
 import { store } from '../store/store'
 import {
