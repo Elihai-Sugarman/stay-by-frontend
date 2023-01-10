@@ -169,6 +169,7 @@
 .search-preview {
     @media screen and (max-width: 800px) {
         max-width: calc(100vw - 90px) !important;
+        min-width: 230px;
     }
 }
 
