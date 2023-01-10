@@ -23,7 +23,7 @@
           :locations="locations"
           :hideRegion="hideRegion"
           @change="handleLocationSelect"
-          @close="setActive"
+          @close="setActive('where')"
         />
       </div>
 
@@ -131,7 +131,7 @@ export default {
   },
   created() {
     this.resetSearchListener = eventBus.on('resetSearch', () => this.form = { ...initialForm })
-    this.searchFocusListener = eventBus.on('setSearchFocus', type => this.setActive(type))
+    this.searchFocusListener = eventBus.on('setSearchFocus', type => setTimeout(() => this.setActive(type), 1)) // for the focus
     this.fetchSuggestedLocations = debounce(this.doFetchLocations, 500)
   },
   unmounted() {
@@ -164,6 +164,7 @@ export default {
         checkIn: dates.checkIn,
         checkOut: dates.checkOut
       }})
+      this.setActive('who')
     },
     async doFetchLocations(queryString = '') {
       this.hideRegion = true
@@ -174,13 +175,12 @@ export default {
     },
     handleLocationSelect(location) {
       this.form.where = location
+      setTimeout(() => this.setActive('checkIn'), 1) // for focus
     },
     setActive(type) {
       if (type === 'where' && !this.activeInput[type]) {
         this.$refs.whereInput?.focus()
-      }
-
-      // if (this.activeInput[type] && (type === 'checkIn' || type === 'checkOut')) return
+      } else if (type === 'where' && this.activeInput[type]) return this.$refs.whereInput?.focus()
 
       this.activeInput = { ...initialActive }
       if (type) this.activeInput[type] = !this.activeInput[type]
