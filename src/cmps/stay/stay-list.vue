@@ -22,16 +22,11 @@
 </template>
 
 <script>
-import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import stayPreview from './stay-preview.vue'
 
 export default {
-  props: {
-    stays: Array
-  },
-  components: {
-    stayPreview
-  },
+  props: { stays: Array },
+  components: { stayPreview },
   created() {
     window.addEventListener('scroll', this.onScrollDown)
   },
@@ -59,40 +54,6 @@ export default {
     },
     loadMoreStays() {
       this.$store.dispatch({ type: 'loadMoreStays', skip: this.stays.length })
-    },
-    async removeStay(stayId) {
-      try {
-        await this.$store.dispatch(getActionRemoveStay(stayId))
-        showSuccessMsg('Stay removed')
-
-      } catch (err) {
-        console.log(err)
-        showErrorMsg('Cannot remove stay')
-      }
-    },
-    async updateStay(stay) {
-      try {
-        stay = { ...stay }
-        stay.price = +prompt('New price?', stay.price)
-        await this.$store.dispatch(getActionUpdateStay(stay))
-        showSuccessMsg('Stay updated')
-
-      } catch (err) {
-        console.log(err)
-        showErrorMsg('Cannot update stay')
-      }
-    },
-    async addStayMsg(stayId) {
-      try {
-        await this.$store.dispatch(getActionAddStayMsg(stayId))
-        showSuccessMsg('Stay msg added')
-      } catch (err) {
-        console.log(err)
-        showErrorMsg('Cannot add stay msg')
-      }
-    },
-    printStayToConsole(stay) {
-      console.log('Stay msgs:', stay.msgs)
     }
   }
 }
