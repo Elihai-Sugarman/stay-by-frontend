@@ -71,7 +71,7 @@ export default {
       this.search = {
         where: form.where,
         checkIn: form?.checkIn ? moment(form.checkIn).format('MMM DD, YYYY') : null,
-        checkOut: form?.checkIn ? moment(form.checkOut).format('MMM DD, YYYY') : null,
+        checkOut: form?.checkOut ? moment(form.checkOut).format('MMM DD, YYYY') : null,
         guests: form.guests
       }
 
