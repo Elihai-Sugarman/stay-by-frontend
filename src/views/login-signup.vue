@@ -66,7 +66,6 @@ const GOOGLE_CLIENT_ID = ''
 
 import { socketService } from '../services/socket.service'
 import { uploadService } from '../services/upload.service'
-import imgUploader from '../cmps/img-uploader.vue'
 
 export default {
   name: 'login-signup',
@@ -77,10 +76,7 @@ export default {
       type: Boolean
     }
   },
-  components: {
-    imgUploader,
-    GoogleLogin
-  },
+  components: { GoogleLogin },
   data() {
     return {
       credentials: {
