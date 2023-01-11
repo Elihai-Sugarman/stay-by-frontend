@@ -1,29 +1,20 @@
 <template>
   <section class="amenity flex">
-    <!-- {{camelizedAmenity}} -->
+    <!-- {{ camelizedAmenity }} -->
     <icon-cmp :iconType="camelizedAmenity" />
-    <span>{{amenity}}</span>
+    <span>{{ amenity }}</span>
   </section>
 </template>
 
 <script>
-import iconCmp from '../icon-cmp.vue'
 import _camelCase from 'lodash/camelCase'
 
 export default {
-  props: {
-    amenity: String,
-  },
-  data() {
-    return {}
-  },
+  props: { amenity: String },
   computed: {
     camelizedAmenity() {
-        return _camelCase(this.amenity)
-    },
-  },
-  components: {
-    iconCmp
+      return _camelCase(this.amenity)
+    }
   }
 }
 </script>

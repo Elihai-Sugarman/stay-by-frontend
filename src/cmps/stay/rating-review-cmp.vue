@@ -12,14 +12,7 @@
 
 export default {
   name: 'rating-review',
-  props: {
-    reviews: Array,
-  },
-  data() {
-    return {
-      
-    }
-  },
+  props: { reviews: Array },
   computed: {
     avgRating() {
       return +(

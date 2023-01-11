@@ -1,7 +1,7 @@
 <template>
     <button type="button" class="stay-filter" @click="(open = true)">
         <div class="flex justify-center align-center">
-            <icon icon-type="filter" />
+            <icon-cmp icon-type="filter" />
             <span>Filters</span>
         </div>
 
@@ -12,10 +12,7 @@
 </template>
 
 <script>
-import icon from '../icon-cmp.vue'
-
 export default {
-    components: { icon },
     emits: ['change'],
     data() {
         return {

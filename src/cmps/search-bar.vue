@@ -10,7 +10,7 @@
           <span class="splitter"></span>
           <button type="button" class="guests-btn" @click="$emit('addGuests')">{{ anyguests }}</button>
           <button type="button" class="search-btn" @click="$emit('click')">
-            <icon icon-type="search" />
+            <icon-cmp icon-type="search" />
           </button>
         </div>
 
@@ -18,7 +18,7 @@
           @click="$emit('click')">
           <div>Start your search</div>
           <button type="button" class="search-btn">
-            <icon icon-type="search" />
+            <icon-cmp icon-type="search" />
           </button>
         </div>
 
@@ -35,17 +35,12 @@
 import { Transition } from 'vue'
 import moment from 'moment'
 import { eventBus } from '../services/event-bus.service'
-
-import icon from './icon-cmp.vue'
 import searchForm from './search-form.vue'
 
 export default {
   props: { open: Boolean },
   emits: ['click', 'anyWhere', 'anyWeek', 'addGuests', 'close'],
-  components: {
-    icon,
-    searchForm
-  },
+  components: { searchForm },
   data() {
     return {
       search: {

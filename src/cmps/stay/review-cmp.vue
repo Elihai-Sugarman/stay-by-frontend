@@ -48,8 +48,7 @@ export default {
     },
     reviewsCount() {
       return this.reviews.length
-    },
-  },
+    }
+  }
 }
 </script>
-<style></style>

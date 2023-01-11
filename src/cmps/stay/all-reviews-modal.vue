@@ -1,9 +1,6 @@
 <template>
-  <Transition
-    name="custom-classes"
-    enter-active-class="animate__fadeInUpBig"
-    leave-active-class="animate__fadeOutDownBig"
-  >
+  <Transition name="custom-classes" enter-active-class="animate__fadeInUpBig"
+    leave-active-class="animate__fadeOutDownBig">
     <div v-if="isOpen" class="all-reviews-modal" @click.self="onCloseModal">
       <div class="modal-content">
         <span @click="onCloseModal" class="close">&times;</span>
@@ -27,18 +24,15 @@ export default {
     reviews: Array,
     isOpen: Boolean,
   },
-  emits: ['closeModal'],
-  data() {
-    return {}
-  },
-  methods: {
-    onCloseModal() {
-      this.$emit('closeModal')
-    },
-  },
   components: {
     ratingReview,
     reviewCmp,
   },
+  emits: ['closeModal'],
+  methods: {
+    onCloseModal() {
+      this.$emit('closeModal')
+    }
+  }
 }
 </script>
