@@ -456,7 +456,6 @@ export default {
       el.scrollIntoView({behavior: 'smooth'})
     },
     openAllReviewsModal() {
-      console.log('open reviews modal')
       this.isReviewsModalOpen = true
     },
     handleDatesChange(dates) {

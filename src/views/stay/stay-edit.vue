@@ -182,7 +182,6 @@ export default {
 
       try {
         const res = await action()
-        console.log('res', res)
         ElMessage.success('The listing saved successfully!')
         this.$router.push('/dashboard/listings')
 

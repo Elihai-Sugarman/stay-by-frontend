@@ -30,7 +30,6 @@ export default {
     mobileFooter
   },
   created() {
-    console.log('Vue App created')
     const user = userService.getLoggedinUser()
     if (user) {
       // Get most updated user
@@ -53,7 +52,6 @@ export default {
   },
   computed: {
     pageClassLayout() {
-      console.log('route', this.$route.name);
       return {
         'stay-layout': this.$route.name === 'stay-app',
         'smaller-layout': this.$route.name === 'stay-details' || 

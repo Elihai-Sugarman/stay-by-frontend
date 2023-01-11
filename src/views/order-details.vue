@@ -186,7 +186,6 @@ export default {
       try {
         await this.$store.dispatch(getActionAddOrder(order))
         this.isBooked = true
-        console.log('final order', order)
       } catch (error) {}
     },
     goToTrips() {
