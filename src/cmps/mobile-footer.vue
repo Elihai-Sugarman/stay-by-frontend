@@ -13,10 +13,11 @@
 </template>
 
 <script>
+import { eventBus } from '../services/event-bus.service'
 import userNav from './user-nav.vue'
 
 export default {
-  components: { userNav},
+  components: { userNav },
   data() {
     return {
       isUserNavOpen: false,
@@ -26,6 +27,7 @@ export default {
     resetFilters() {
       this.$store.commit({ type: 'setFilterBy', filterBy: null })
       this.$store.dispatch({ type: 'loadStays' })
+      eventBus.emit('resetSearch')
     },
   },
   computed: {
