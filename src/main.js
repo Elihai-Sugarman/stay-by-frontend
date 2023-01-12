@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import vueCookies from 'vue-cookies'
 
 import { router } from './router.js'
 import { store } from './store/store.js'
@@ -32,5 +33,6 @@ app.use(VCalendar, {})
 app.use(ElementPlus)
 app.use(router)
 app.use(store)
+app.use(vueCookies)
 
 app.mount('#app')
