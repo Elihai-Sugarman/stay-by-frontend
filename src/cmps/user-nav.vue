@@ -42,8 +42,6 @@
 </template>
 
 <script>
-import { socketService } from '../services/socket.service'
-
 export default {
   props: { open: Boolean },
   emits: ['click'],
@@ -53,10 +51,9 @@ export default {
     }
   },
   methods: {
-    logout() {
-      this.$store.dispatch('logout')
+    async logout() {
+      await this.$store.dispatch({ type: 'logout' })
       this.$router.push('/')
-      socketService.logout()
     }
   }
 }

@@ -1,5 +1,4 @@
 import { httpService } from './http.service'
-import { socketService } from './socket.service'
 import { utilService } from './util.service'
 
 const STORAGE_KEY = 'loggedinUser'
@@ -49,7 +48,6 @@ async function signup(userCred) {
 async function logout() {
     const result = await httpService.post('auth/logout')
     localStorage.removeItem(STORAGE_KEY)
-    socketService.logout()
     return result
 }
 

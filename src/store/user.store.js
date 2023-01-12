@@ -19,8 +19,9 @@ export const userStore = {
         async login({ commit }, { userCred }) {
             try {
                 const user = await userService.login(userCred)
+                socketService.login(user._id)
+                console.log('User socket signed!')
                 commit({ type: 'setLoggedinUser', user })
-                console.log(user)
                 return user
             } catch (err) {
                 console.log('userStore: Error in login', err)
@@ -30,6 +31,8 @@ export const userStore = {
         async signup({ commit }, { userCred }) {
             try {
                 const user = await userService.signup(userCred)
+                socketService.login(user._id)
+                console.log('User socket signed!')
                 commit({ type: 'setLoggedinUser', user })
                 return user
             } catch (err) {
@@ -40,6 +43,7 @@ export const userStore = {
         async logout({ commit }) {
             try {
                 await userService.logout()
+                socketService.logout()
                 commit({ type: 'setLoggedinUser', user: null })
             } catch (err) {
                 console.log('userStore: Error in logout', err)

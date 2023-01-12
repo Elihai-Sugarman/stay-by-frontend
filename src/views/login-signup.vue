@@ -64,7 +64,6 @@ import { ElMessage, genFileId } from 'element-plus'
 import { GoogleLogin } from 'vue3-google-login'
 const GOOGLE_CLIENT_ID = ''
 
-import { socketService } from '../services/socket.service'
 import { uploadService } from '../services/upload.service'
 
 export default {
@@ -124,9 +123,8 @@ export default {
       this.isLoading = true
       try {
         const action = this.isLoginPage ? this.doLogin : this.doSignup
-        const user = await action()
+        await action()
 
-        socketService.login(user._id)
         this.redirectOnSuccess && this.$router.push('/')
       } catch (err) {
         console.log('err', err)
