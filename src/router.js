@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { requireAuth } from './guards'
 
 import stayApp from './views/stay/stay-app.vue'
 import stayDetails from './views/stay/stay-details.vue'
@@ -17,48 +18,49 @@ import tripsCmp from './views/trips.vue'
 const routes = [
     {
         path: '/',
-        redirect: '/stay',
+        redirect: '/stay'
     },
     {
         path: '/stay',
         name: 'stay-app',
-        component: stayApp,
+        component: stayApp
     },
     {
         path: '/stay/:id/order',
         name: 'order-details',
-        component: orderDetails,
+        component: orderDetails
     },
     {
         path: '/stay/:id',
         name: 'stay-details',
-        component: stayDetails,
+        component: stayDetails
     },
     {
         path: '/explore',
         name: 'explore',
-        component: stayExplore,
+        component: stayExplore
     },
     {
         path: '/login',
         name: 'login',
         component: loginSignup,
-        props: { isLoginPage: true },
+        props: { isLoginPage: true }
     },
     {
         path: '/signup',
         name: 'signup',
         component: loginSignup,
-        props: { isLoginPage: false },
+        props: { isLoginPage: false }
     },
     {
         path: '/dashboard',
-        redirect: '/dashboard/reservation',
+        redirect: '/dashboard/reservation'
     },
     {
         path: '/dashboard',
         name: 'dashboard',
         component: dashboard,
+        beforeEnter: requireAuth,
         children: [
             {
                 path: 'reservation',
@@ -81,16 +83,17 @@ const routes = [
         path: '/wishlist',
         name: 'wishlist',
         component: stayWishlist,
+        beforeEnter: requireAuth
     },
     {
         path: '/trip',
         name: 'trips',
         component: tripsCmp,
-    },
+        beforeEnter: requireAuth
+    }
 ]
 
 export const router = createRouter({
     routes,
-    history: createWebHashHistory(),
-    // base: process.env.BASE_URL,
+    history: createWebHashHistory()
 })
