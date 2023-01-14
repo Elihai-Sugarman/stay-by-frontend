@@ -30,7 +30,11 @@ function remove(userId) {
 
 async function update(user) {
     user = await httpService.put(`user/${user._id}`, user)
-    if (getLoggedinUser()._id === user._id) saveLocalUser(user)
+    const { _id, tokenExp } = getLoggedinUser()
+    if (_id === user._id) {
+        user.tokenExp = tokenExp // presave the login expiration token
+        saveLocalUser(user)
+    }
     return user
 }
 
