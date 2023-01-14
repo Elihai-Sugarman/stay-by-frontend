@@ -64,6 +64,10 @@ export default {
                 // Get most updated user
                 const updatedUser = await userService.getById(user._id)
                 store.commit({ type: 'setLoggedinUser', user: updatedUser })
+                userService.startAutoLogoutService(() => {
+                    this.$store.dispatch({ type: 'logout' })
+                    this.$router.push('/login')
+                })
             }
         },
         initializeWebSockets() {

@@ -2,6 +2,7 @@ import { httpService } from './http.service'
 import { utilService } from './util.service'
 
 const STORAGE_KEY = 'loggedinUser'
+let autoLogoutTimerId
 
 export const userService = {
     login,
@@ -12,7 +13,8 @@ export const userService = {
     getUsers,
     getById,
     remove,
-    update
+    update,
+    startAutoLogoutService
 }
 
 function getUsers() {
@@ -49,9 +51,15 @@ async function signup(userCred) {
     return saveLocalUser(user)
 }
 
+function startAutoLogoutService(onAuthTokenExpired) {
+    const { tokenExp } = getLoggedinUser()
+    autoLogoutTimerId = setTimeout(onAuthTokenExpired, tokenExp - Date.now())
+}
+
 async function logout() {
     const result = await httpService.post('auth/logout')
     localStorage.removeItem(STORAGE_KEY)
+    clearTimeout(autoLogoutTimerId)
     return result
 }
 

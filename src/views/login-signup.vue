@@ -65,6 +65,7 @@ import { GoogleLogin } from 'vue3-google-login'
 const GOOGLE_CLIENT_ID = ''
 
 import { uploadService } from '../services/upload.service'
+import { userService } from '../services/user.service'
 
 export default {
   name: 'login-signup',
@@ -125,6 +126,10 @@ export default {
         const action = this.isLoginPage ? this.doLogin : this.doSignup
         await action()
 
+        userService.startAutoLogoutService(() => {
+          this.$store.dispatch({ type: 'logout' })
+          this.$router.push('/login')
+        })
         this.redirectOnSuccess && this.$router.push('/')
       } catch (err) {
         console.log('err', err)
