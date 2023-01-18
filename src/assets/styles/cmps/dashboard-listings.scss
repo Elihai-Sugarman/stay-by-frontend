@@ -2,6 +2,10 @@
   max-width: 100%;
   padding: 0;
 
+  @media screen and (max-width: 800px) {
+    margin-bottom: 100px;
+  }
+
   .page-title {
     // margin-left: 10px;
     h1 {
@@ -57,4 +61,11 @@
   text-overflow: ellipsis;
   margin: 0;
   line-height: 2;
+}
+
+.add-padding {
+  @media screen and (max-width: 800px) {
+    margin-bottom: 100px;
+    
+  }
 }

@@ -37,7 +37,7 @@
       <div>{{ tableData.length }} reservation<span v-if="(tableData.length > 1)">s</span></div>
     </div>
 
-    <el-table :data="tableData" align="center">
+    <el-table class="add-padding" :data="tableData" align="center">
 
       <el-table-column fixed label="Guest" min-width="150" prop="renter.fullname" align="left">
         <template #default="scope">

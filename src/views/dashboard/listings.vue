@@ -7,7 +7,7 @@
       </router-link>
     </div>
 
-    <el-table :data="tableData">
+    <el-table class="add-padding" :data="tableData">
 
       <el-table-column label="LISTING" min-width="250" fixed>
         <template #default="scope">
